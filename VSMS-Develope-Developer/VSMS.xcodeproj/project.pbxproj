@@ -44,6 +44,7 @@
 		86AAF0CF22C081C3003C46F3 /* NewlyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86AAF0C522C081C3003C46F3 /* NewlyTableViewCell.xib */; };
 		86AAF0D222C0894B003C46F3 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AAF0D022C0894B003C46F3 /* SearchTableViewCell.swift */; };
 		86AAF0D322C0894B003C46F3 /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86AAF0D122C0894B003C46F3 /* SearchTableViewCell.xib */; };
+		86AAF0D722C0C4D4003C46F3 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AAF0D622C0C4D4003C46F3 /* MenuViewController.swift */; };
 		86B10326229C4C7A00192DAD /* PhotoListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86B1031B229C4C7600192DAD /* PhotoListCollectionViewCell.xib */; };
 		86B10327229C4C7A00192DAD /* MapTableViewHeaderFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86B1031C229C4C7600192DAD /* MapTableViewHeaderFooterView.xib */; };
 		86B10328229C4C7A00192DAD /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B1031D229C4C7700192DAD /* ImageCollectionViewCell.swift */; };
@@ -121,6 +122,7 @@
 		86AAF0C522C081C3003C46F3 /* NewlyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewlyTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		86AAF0D022C0894B003C46F3 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		86AAF0D122C0894B003C46F3 /* SearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = SOURCE_ROOT; };
+		86AAF0D622C0C4D4003C46F3 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		86B1031B229C4C7600192DAD /* PhotoListCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PhotoListCollectionViewCell.xib; path = VSMS/View/Collectionphoto/PhotoListCollectionViewCell.xib; sourceTree = SOURCE_ROOT; };
 		86B1031C229C4C7600192DAD /* MapTableViewHeaderFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MapTableViewHeaderFooterView.xib; path = VSMS/View/Collectionphoto/MapTableViewHeaderFooterView.xib; sourceTree = SOURCE_ROOT; };
 		86B1031D229C4C7700192DAD /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageCollectionViewCell.swift; path = VSMS/View/Collectionphoto/ImageCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
@@ -219,31 +221,32 @@
 		865B5DC9221FDD7200864F7E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				86626B96229C464B00FE25DD /* LocationService.swift */,
-				86626B98229C464C00FE25DD /* Register.swift */,
-				86626B9A229C464C00FE25DD /* ResultTableViewCell.swift */,
-				86626B99229C464C00FE25DD /* TestViewController.swift */,
-				86626B97229C464B00FE25DD /* TransferpdViewController.swift */,
-				864F7A5C222E607C00437C24 /* AppDelegate.swift */,
 				D5D64F8E2236E41500A2D4E1 /* AccountDetail.swift */,
-				D52D64542232736D00008156 /* NewViewController.swift */,
-				D55FA97A223EBD34005B0C8D /* SettingController.swift */,
-				D54C4810224223BD004FE033 /* LoginController.swift */,
+				D521AC88226F19E200BE534A /* alertMessageViewController.swift */,
+				864F7A5C222E607C00437C24 /* AppDelegate.swift */,
 				C40213A322574D08007920C4 /* HomePageController.swift */,
 				C40213A022574D06007920C4 /* HomeSearchController.swift */,
-				C402139F22574D06007920C4 /* ProductDetailController.swift */,
-				C40213A222574D07007920C4 /* SearchResultController.swift */,
-				C40213A122574D07007920C4 /* UploadProfileController.swift */,
-				D54C48122242249D004FE033 /* RegisterController.swift */,
-				D5901C892248890C00F0D581 /* StockTransfer.swift */,
+				86626B96229C464B00FE25DD /* LocationService.swift */,
+				D54C4810224223BD004FE033 /* LoginController.swift */,
 				D54C481422422F20004FE033 /* MyAccountController.swift */,
+				86560C5D229CD1C900C5A21F /* NewHomepageViewController.swift */,
+				D52D64542232736D00008156 /* NewViewController.swift */,
+				869CF1962276F0800006D7F2 /* PostAdViewController.swift */,
+				C402139F22574D06007920C4 /* ProductDetailController.swift */,
+				86626B98229C464C00FE25DD /* Register.swift */,
+				D54C48122242249D004FE033 /* RegisterController.swift */,
+				86626B9A229C464C00FE25DD /* ResultTableViewCell.swift */,
+				C40213A222574D07007920C4 /* SearchResultController.swift */,
+				D55FA97A223EBD34005B0C8D /* SettingController.swift */,
+				D5901C892248890C00F0D581 /* StockTransfer.swift */,
 				D5885159224DC5CC006BF532 /* TablebalanceViewController.swift */,
 				D5B6471D2255A91E00C113FF /* TablepostviewController.swift */,
+				86626B99229C464C00FE25DD /* TestViewController.swift */,
 				D5BA49EC2255ECC100C61E9C /* TransferinfomationViewController.swift */,
+				86626B97229C464B00FE25DD /* TransferpdViewController.swift */,
+				C40213A122574D07007920C4 /* UploadProfileController.swift */,
 				D5DE6174225D8A10006D2E9D /* VPPDViewController.swift */,
-				D521AC88226F19E200BE534A /* alertMessageViewController.swift */,
-				869CF1962276F0800006D7F2 /* PostAdViewController.swift */,
-				86560C5D229CD1C900C5A21F /* NewHomepageViewController.swift */,
+				86AAF0D622C0C4D4003C46F3 /* MenuViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -284,42 +287,42 @@
 		D52D644F2232720300008156 /* CollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				86626BC1229C498400FE25DD /* AddmoreNumberPhoneTableViewCell.swift */,
+				86626BC0229C498400FE25DD /* AddmoreNumberPhoneTableViewCell.xib */,
+				86626BB4229C491A00FE25DD /* CollectionTableViewCell.swift */,
+				86626BB5229C491A00FE25DD /* CollectionTableViewCell.xib */,
+				86B10323229C4C7900192DAD /* CollectionViewHeader.swift */,
+				86626BBD229C496300FE25DD /* DeTailTableCell.swift */,
+				86626BBC229C496300FE25DD /* DeTailTableCell.xib */,
 				86AAF0BD22C081C2003C46F3 /* DiscountCollectionViewCell.swift */,
 				86AAF0BE22C081C3003C46F3 /* DiscountCollectionViewCell.xib */,
 				86AAF0C322C081C3003C46F3 /* DiscountTableViewCell.swift */,
 				86AAF0C422C081C3003C46F3 /* DiscountTableViewCell.xib */,
 				86AAF0BC22C081C2003C46F3 /* GreditImageCollectionViewCell.swift */,
 				86AAF0C022C081C3003C46F3 /* GreditImageCollectionViewCell.xib */,
-				86AAF0C122C081C3003C46F3 /* ImgeSlideCollectionViewCell.swift */,
-				86AAF0C222C081C3003C46F3 /* ImgeSlideCollectionViewCell.xib */,
-				86AAF0BF22C081C3003C46F3 /* NewlyTableViewCell.swift */,
-				86AAF0C522C081C3003C46F3 /* NewlyTableViewCell.xib */,
-				86B10323229C4C7900192DAD /* CollectionViewHeader.swift */,
-				86B10335229C4E9D00192DAD /* PostContainer.swift */,
 				86B1031E229C4C7700192DAD /* HomeCollectionViewCell.swift */,
-				86B1031D229C4C7700192DAD /* ImageCollectionViewCell.swift */,
-				86B1031C229C4C7600192DAD /* MapTableViewHeaderFooterView.xib */,
-				86B10320229C4C7800192DAD /* MenuTableViewCell.swift */,
-				86B10322229C4C7900192DAD /* PhotoListCollectionViewCell.swift */,
-				86B1031B229C4C7600192DAD /* PhotoListCollectionViewCell.xib */,
-				86B1031F229C4C7700192DAD /* TablebalanceViewCell.swift */,
-				86B10321229C4C7800192DAD /* TablepostViewCell.swift */,
-				86626BC1229C498400FE25DD /* AddmoreNumberPhoneTableViewCell.swift */,
-				86626BC0229C498400FE25DD /* AddmoreNumberPhoneTableViewCell.xib */,
-				86626BBD229C496300FE25DD /* DeTailTableCell.swift */,
-				86626BBC229C496300FE25DD /* DeTailTableCell.xib */,
-				86626BB9229C493D00FE25DD /* PassDataCell.swift */,
-				86626BB8229C493D00FE25DD /* PassDataCell.xib */,
-				86626BB4229C491A00FE25DD /* CollectionTableViewCell.swift */,
-				86626BB5229C491A00FE25DD /* CollectionTableViewCell.xib */,
-				86626BAD229C480800FE25DD /* PhoneNumberHeader.swift */,
-				86626BAC229C480800FE25DD /* PhoneNumberHeader.xib */,
-				86626BA8229C47B800FE25DD /* MapTableViewHeaderFooterView.swift */,
-				86626BA1229C470B00FE25DD /* ImageCollectionViewCell.xib */,
 				861C50C0229D667400946FAB /* HomePageTableViewCell.swift */,
 				861C50C1229D667400946FAB /* HomePageTableViewCell.xib */,
+				86B1031D229C4C7700192DAD /* ImageCollectionViewCell.swift */,
+				86626BA1229C470B00FE25DD /* ImageCollectionViewCell.xib */,
+				86AAF0C122C081C3003C46F3 /* ImgeSlideCollectionViewCell.swift */,
+				86AAF0C222C081C3003C46F3 /* ImgeSlideCollectionViewCell.xib */,
+				86626BA8229C47B800FE25DD /* MapTableViewHeaderFooterView.swift */,
+				86B1031C229C4C7600192DAD /* MapTableViewHeaderFooterView.xib */,
+				86B10320229C4C7800192DAD /* MenuTableViewCell.swift */,
+				86AAF0BF22C081C3003C46F3 /* NewlyTableViewCell.swift */,
+				86AAF0C522C081C3003C46F3 /* NewlyTableViewCell.xib */,
+				86626BB9229C493D00FE25DD /* PassDataCell.swift */,
+				86626BB8229C493D00FE25DD /* PassDataCell.xib */,
+				86626BAD229C480800FE25DD /* PhoneNumberHeader.swift */,
+				86626BAC229C480800FE25DD /* PhoneNumberHeader.xib */,
+				86B10322229C4C7900192DAD /* PhotoListCollectionViewCell.swift */,
+				86B1031B229C4C7600192DAD /* PhotoListCollectionViewCell.xib */,
+				86B10335229C4E9D00192DAD /* PostContainer.swift */,
 				86AAF0D022C0894B003C46F3 /* SearchTableViewCell.swift */,
 				86AAF0D122C0894B003C46F3 /* SearchTableViewCell.xib */,
+				86B1031F229C4C7700192DAD /* TablebalanceViewCell.swift */,
+				86B10321229C4C7800192DAD /* TablepostViewCell.swift */,
 			);
 			name = CollectionViewCell;
 			sourceTree = "<group>";
@@ -524,6 +527,7 @@
 				D5BA49ED2255ECC100C61E9C /* TransferinfomationViewController.swift in Sources */,
 				D52D64552232736D00008156 /* NewViewController.swift in Sources */,
 				865B5DB7221FDD3600864F7E /* ViewController.swift in Sources */,
+				86AAF0D722C0C4D4003C46F3 /* MenuViewController.swift in Sources */,
 				86626BAA229C47B800FE25DD /* MapTableViewHeaderFooterView.swift in Sources */,
 				86B10328229C4C7A00192DAD /* ImageCollectionViewCell.swift in Sources */,
 				86AAF0C922C081C3003C46F3 /* NewlyTableViewCell.swift in Sources */,
