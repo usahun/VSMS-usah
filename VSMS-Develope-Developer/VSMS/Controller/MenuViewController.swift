@@ -8,14 +8,14 @@
 
 import UIKit
 
-class MenuViewController: UIViewController {
-   
+
+
+class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
-    
+
     @IBOutlet weak var imageprofile: UIImageView!
     
-    let titleArray = ["Your Profile","Your Posts","Your Like",
-                     "Your Share","Setting","About Us","Term of Privancy"]
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,8 +24,38 @@ class MenuViewController: UIViewController {
         
         
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 8
+    }
    
-
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SectionMenu
+        let row = indexPath.row
+        
+        if row == 0{
+            cell.titleLabel.text = " Your Profile"
+        } else if row == 1 {
+            cell.titleLabel.text = " Your Posts "
+        } else if row == 2 {
+            cell.titleLabel.text = " Your Likes "
+        } else if row == 3 {
+            cell.titleLabel.text = " Your Shares "
+        } else if row == 4 {
+            cell.titleLabel.text = " Your Loans "
+        } else if row == 5 {
+            cell.titleLabel.text = " Settng    "
+        } else if row == 6 {
+            cell.titleLabel.text = " About Us "
+        } else if row == 7 {
+            cell.titleLabel.text = " Term Privacy "
+        }
+        return cell
+    }
+    
 }
 
-
+class SectionMenu: UITableViewCell {
+    
+    @IBOutlet weak var titleLabel: UILabel!
+}
