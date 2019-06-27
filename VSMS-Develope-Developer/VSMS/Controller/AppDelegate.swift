@@ -29,25 +29,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,CLLocationManagerDelegate
         
        // LocationService.sharedInstance.delegate = self
         
-        let contentViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenu")
-        
-        let menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leftMenu")
-        
-        let sideMenuController = SideMenuController(
-            contentViewController: contentViewController,
-            menuViewController: menuViewController)
+       //  startup homepage
+//        let contentViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenu")
+//
+//        let menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leftMenu")
+//
+//        let sideMenuController = SideMenuController(
+//            contentViewController: contentViewController,
+//            menuViewController: menuViewController)
        
         
-//
+
 //        let initialViewController = storyboard.instantiateViewController(withIdentifier: "SideMenu") as! SideMenuController
+
+//        self.window?.rootViewController = sideMenuController
+//        self.window?.makeKeyAndVisible()
 //
-        self.window?.rootViewController = sideMenuController
-        self.window?.makeKeyAndVisible()
-        
-        configureSideMenu()
-        locationservice.delegate = self
-        print(locationservice.lastLocation as Any)
-        return true
+//        configureSideMenu()
+//        locationservice.delegate = self
+//        print(locationservice.lastLocation as Any)
+       return true
     }
     
     private func configureSideMenu() {

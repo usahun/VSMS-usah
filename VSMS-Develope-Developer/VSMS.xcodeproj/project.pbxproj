@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5A40B576ABDEBD0C0DDE15E0 /* Pods_VSMS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422454760A29C3178F1F4F7C /* Pods_VSMS.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		861699FE22C32B76002C5624 /* LoginPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861699FD22C32B76002C5624 /* LoginPasswordController.swift */; };
 		861C50C2229D667400946FAB /* HomePageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861C50C0229D667400946FAB /* HomePageTableViewCell.swift */; };
 		861C50C3229D667400946FAB /* HomePageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 861C50C1229D667400946FAB /* HomePageTableViewCell.xib */; };
 		864F7A5D222E607C00437C24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F7A5C222E607C00437C24 /* AppDelegate.swift */; };
@@ -17,7 +18,6 @@
 		865B5DBF221FDD3700864F7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 865B5DBD221FDD3700864F7E /* LaunchScreen.storyboard */; };
 		86626B9B229C464C00FE25DD /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86626B96229C464B00FE25DD /* LocationService.swift */; };
 		86626B9C229C464C00FE25DD /* TransferpdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86626B97229C464B00FE25DD /* TransferpdViewController.swift */; };
-		86626B9D229C464C00FE25DD /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86626B98229C464C00FE25DD /* Register.swift */; };
 		86626B9E229C464C00FE25DD /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86626B99229C464C00FE25DD /* TestViewController.swift */; };
 		86626B9F229C464C00FE25DD /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86626B9A229C464C00FE25DD /* ResultTableViewCell.swift */; };
 		86626BA3229C470B00FE25DD /* ImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86626BA1229C470B00FE25DD /* ImageCollectionViewCell.xib */; };
@@ -82,6 +82,7 @@
 		0DBE36CC98970F76E207A56D /* Pods-VSMS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VSMS.release.xcconfig"; path = "Target Support Files/Pods-VSMS/Pods-VSMS.release.xcconfig"; sourceTree = "<group>"; };
 		1AF75AC80883AE714FAFFEFD /* Pods-VSMS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VSMS.debug.xcconfig"; path = "Target Support Files/Pods-VSMS/Pods-VSMS.debug.xcconfig"; sourceTree = "<group>"; };
 		422454760A29C3178F1F4F7C /* Pods_VSMS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VSMS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		861699FD22C32B76002C5624 /* LoginPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPasswordController.swift; sourceTree = "<group>"; };
 		861C50C0229D667400946FAB /* HomePageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		861C50C1229D667400946FAB /* HomePageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomePageTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		864F7A5C222E607C00437C24 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -93,7 +94,6 @@
 		865B5DC0221FDD3700864F7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		86626B96229C464B00FE25DD /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		86626B97229C464B00FE25DD /* TransferpdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferpdViewController.swift; sourceTree = "<group>"; };
-		86626B98229C464C00FE25DD /* Register.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
 		86626B99229C464C00FE25DD /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		86626B9A229C464C00FE25DD /* ResultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
 		86626BA1229C470B00FE25DD /* ImageCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImageCollectionViewCell.xib; path = VSMS/Controller/ImageCollectionViewCell.xib; sourceTree = SOURCE_ROOT; };
@@ -232,6 +232,11 @@
 				C40213A322574D08007920C4 /* HomePageController.swift */,
 				C40213A022574D06007920C4 /* HomeSearchController.swift */,
 				C402139F22574D06007920C4 /* ProductDetailController.swift */,
+<<<<<<< Updated upstream
+=======
+				D54C48122242249D004FE033 /* RegisterController.swift */,
+				86626B9A229C464C00FE25DD /* ResultTableViewCell.swift */,
+>>>>>>> Stashed changes
 				C40213A222574D07007920C4 /* SearchResultController.swift */,
 				C40213A122574D07007920C4 /* UploadProfileController.swift */,
 				D54C48122242249D004FE033 /* RegisterController.swift */,
@@ -241,9 +246,14 @@
 				D5B6471D2255A91E00C113FF /* TablepostviewController.swift */,
 				D5BA49EC2255ECC100C61E9C /* TransferinfomationViewController.swift */,
 				D5DE6174225D8A10006D2E9D /* VPPDViewController.swift */,
+<<<<<<< Updated upstream
 				D521AC88226F19E200BE534A /* alertMessageViewController.swift */,
 				869CF1962276F0800006D7F2 /* PostAdViewController.swift */,
 				86560C5D229CD1C900C5A21F /* NewHomepageViewController.swift */,
+=======
+				86AAF0D622C0C4D4003C46F3 /* MenuViewController.swift */,
+				861699FD22C32B76002C5624 /* LoginPasswordController.swift */,
+>>>>>>> Stashed changes
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -529,7 +539,6 @@
 				86AAF0C922C081C3003C46F3 /* NewlyTableViewCell.swift in Sources */,
 				86626B9C229C464C00FE25DD /* TransferpdViewController.swift in Sources */,
 				86B1032A229C4C7A00192DAD /* TablebalanceViewCell.swift in Sources */,
-				86626B9D229C464C00FE25DD /* Register.swift in Sources */,
 				86AAF0CD22C081C3003C46F3 /* DiscountTableViewCell.swift in Sources */,
 				D588515A224DC5CC006BF532 /* TablebalanceViewController.swift in Sources */,
 				D5DE6175225D8A10006D2E9D /* VPPDViewController.swift in Sources */,
@@ -539,6 +548,7 @@
 				86626B9B229C464C00FE25DD /* LocationService.swift in Sources */,
 				86626B9E229C464C00FE25DD /* TestViewController.swift in Sources */,
 				86626BBB229C493E00FE25DD /* PassDataCell.swift in Sources */,
+				861699FE22C32B76002C5624 /* LoginPasswordController.swift in Sources */,
 				86B1032B229C4C7A00192DAD /* MenuTableViewCell.swift in Sources */,
 				86626BC3229C498400FE25DD /* AddmoreNumberPhoneTableViewCell.swift in Sources */,
 				D54C481522422F20004FE033 /* MyAccountController.swift in Sources */,
