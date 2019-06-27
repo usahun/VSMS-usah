@@ -11,9 +11,16 @@ import CoreLocation
 import SideMenuSwift
 
 class NewHomepageViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
-   
-
+   //Properties
     @IBOutlet weak var tableView: UITableView!
+    var ContentHeight: CGFloat = 787
+    var MaxHeightofContent: CGFloat = 0
+    var willAppear: Bool = true
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.estimatedRowHeight = 300
+        tableView.rowHeight = UITableView.automaticDimension
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +40,7 @@ class NewHomepageViewController: UIViewController,UITableViewDataSource,UITableV
         
         let newly = UINib(nibName: "NewlyTableViewCell", bundle: nil)
         tableView.register(newly, forCellReuseIdentifier: "newly")
-        
+    
         
         
         
@@ -87,31 +94,49 @@ class NewHomepageViewController: UIViewController,UITableViewDataSource,UITableV
         self.navigationItem.rightBarButtonItem = barButton
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
        let row = indexPath.row
+
         switch row {
         case 0:
             return 150
         case 1:
-            return 114
+            return 130
         case 2:
-            return 180
-        case 3:
             return 200
+        case 3:
+            return ContentHeight
         default:
-            return 1
+            return 60
         }
 
     }
     
-    
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        print(MaxHeightofContent)
+       // print(MaxHeightofContent)
+//        if (indexPath.row == 4 && ContentHeight < MaxHeightofContent * 2) || (indexPath.row == 4 && MaxHeightofContent == 0) {
+//           // print(MaxHeightofContent)
+//            if(MaxHeightofContent != 0){
+//                ContentHeight = ContentHeight + MaxHeightofContent
+//            }
+//            else{
+//                ContentHeight = ContentHeight + 200
+//            }
+//
+//            tableView.reloadData()
+//            //print("OK 4 is appear...\(ContentHeight)")
+//        }
+    }
+    
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -129,11 +154,16 @@ class NewHomepageViewController: UIViewController,UITableViewDataSource,UITableV
             return cell
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "newly", for: indexPath) as! NewlyTableViewCell
+            print(cell.cellHeightCount)
+            MaxHeightofContent = cell.cellHeightCount
+            return cell
+        case 4:
+            let cell = UITableViewCell()
+            cell.textLabel?.text = "Loading..."
             return cell
         default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "")
-            return cell ?? UITableViewCell()
-       	
+            let cell = UITableViewCell()
+            return cell
         }
         
         
@@ -141,6 +171,8 @@ class NewHomepageViewController: UIViewController,UITableViewDataSource,UITableV
     
    
 }
+
+
 
 
 

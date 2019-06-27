@@ -64,6 +64,8 @@
 		C40213A722574D08007920C4 /* SearchResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40213A222574D07007920C4 /* SearchResultController.swift */; };
 		C40213A822574D08007920C4 /* HomePageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40213A322574D08007920C4 /* HomePageController.swift */; };
 		C40213B522574D75007920C4 /* BalancedContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40213B322574D75007920C4 /* BalancedContainer.swift */; };
+		C453177222C3303A006F0BB8 /* NewPostListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453177022C3303A006F0BB8 /* NewPostListCollectionViewCell.swift */; };
+		C453177322C3303A006F0BB8 /* NewPostListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C453177122C3303A006F0BB8 /* NewPostListCollectionViewCell.xib */; };
 		D521AC89226F19E200BE534A /* alertMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D521AC88226F19E200BE534A /* alertMessageViewController.swift */; };
 		D52D64552232736D00008156 /* NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52D64542232736D00008156 /* NewViewController.swift */; };
 		D54A83CC225465A900BA1634 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D54A83CB225465A900BA1634 /* Assets.xcassets */; };
@@ -143,6 +145,8 @@
 		C40213A222574D07007920C4 /* SearchResultController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultController.swift; sourceTree = "<group>"; };
 		C40213A322574D08007920C4 /* HomePageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageController.swift; sourceTree = "<group>"; };
 		C40213B322574D75007920C4 /* BalancedContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalancedContainer.swift; sourceTree = "<group>"; };
+		C453177022C3303A006F0BB8 /* NewPostListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostListCollectionViewCell.swift; sourceTree = "<group>"; };
+		C453177122C3303A006F0BB8 /* NewPostListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewPostListCollectionViewCell.xib; sourceTree = "<group>"; };
 		D521AC88226F19E200BE534A /* alertMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = alertMessageViewController.swift; sourceTree = "<group>"; };
 		D52D64542232736D00008156 /* NewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewViewController.swift; sourceTree = "<group>"; };
 		D54A83CB225465A900BA1634 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -213,6 +217,7 @@
 		865B5DC7221FDD6400864F7E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C453176D22C32F82006F0BB8 /* Components */,
 				D52D644F2232720300008156 /* CollectionViewCell */,
 			);
 			path = Views;
@@ -282,6 +287,31 @@
 				C40213B322574D75007920C4 /* BalancedContainer.swift */,
 			);
 			name = Container;
+			sourceTree = "<group>";
+		};
+		C453176D22C32F82006F0BB8 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				C453176E22C32F8F006F0BB8 /* Home */,
+			);
+			name = Components;
+			sourceTree = "<group>";
+		};
+		C453176E22C32F8F006F0BB8 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				C453176F22C32FA0006F0BB8 /* NewPostComponents */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		C453176F22C32FA0006F0BB8 /* NewPostComponents */ = {
+			isa = PBXGroup;
+			children = (
+				C453177022C3303A006F0BB8 /* NewPostListCollectionViewCell.swift */,
+				C453177122C3303A006F0BB8 /* NewPostListCollectionViewCell.xib */,
+			);
+			name = NewPostComponents;
 			sourceTree = "<group>";
 		};
 		D52D644F2232720300008156 /* CollectionViewCell */ = {
@@ -409,6 +439,7 @@
 				865B5DBA221FDD3600864F7E /* Main.storyboard in Resources */,
 				86626BA3229C470B00FE25DD /* ImageCollectionViewCell.xib in Resources */,
 				86AAF0CF22C081C3003C46F3 /* NewlyTableViewCell.xib in Resources */,
+				C453177322C3303A006F0BB8 /* NewPostListCollectionViewCell.xib in Resources */,
 				86AAF0D322C0894B003C46F3 /* SearchTableViewCell.xib in Resources */,
 				86626BC2229C498400FE25DD /* AddmoreNumberPhoneTableViewCell.xib in Resources */,
 				D54A83CC225465A900BA1634 /* Assets.xcassets in Resources */,
@@ -456,6 +487,7 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-VSMS/Pods-VSMS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CollectionViewGridLayout/CollectionViewGridLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenuSwift/SideMenuSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -463,6 +495,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CollectionViewGridLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenuSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -516,6 +549,7 @@
 				864F7A5D222E607C00437C24 /* AppDelegate.swift in Sources */,
 				86B1032D229C4C7A00192DAD /* PhotoListCollectionViewCell.swift in Sources */,
 				C402139E22574CD8007920C4 /* SWRevealViewController.m in Sources */,
+				C453177222C3303A006F0BB8 /* NewPostListCollectionViewCell.swift in Sources */,
 				D5901C8A2248890C00F0D581 /* StockTransfer.swift in Sources */,
 				86AAF0CB22C081C3003C46F3 /* ImgeSlideCollectionViewCell.swift in Sources */,
 				86AAF0D222C0894B003C46F3 /* SearchTableViewCell.swift in Sources */,
