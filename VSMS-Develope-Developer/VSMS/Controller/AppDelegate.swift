@@ -29,24 +29,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,CLLocationManagerDelegate
         
        // LocationService.sharedInstance.delegate = self
         
-        let contentViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenu")
-        
-        let menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leftMenu")
-        
-        let sideMenuController = SideMenuController(
-            contentViewController: contentViewController,
-            menuViewController: menuViewController)
+        //day-28-06
+//        let contentViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenu")
+//
+//        let menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leftMenu")
+//
+//        let sideMenuController = SideMenuController(
+//            contentViewController: contentViewController,
+//            menuViewController: menuViewController)
        
         
 //
 //        let initialViewController = storyboard.instantiateViewController(withIdentifier: "SideMenu") as! SideMenuController
 //
-        self.window?.rootViewController = sideMenuController
-        self.window?.makeKeyAndVisible()
-        
-        configureSideMenu()
-        locationservice.delegate = self
-        print(locationservice.lastLocation as Any)
+        //28-06
+//        self.window?.rootViewController = sideMenuController
+//        self.window?.makeKeyAndVisible()
+//
+//        configureSideMenu()
+//        locationservice.delegate = self
+//        print(locationservice.lastLocation as Any)
         return true
     }
     
