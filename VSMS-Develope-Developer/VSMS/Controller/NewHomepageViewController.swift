@@ -8,12 +8,12 @@
 
 import UIKit
 import CoreLocation
-import SideMenuSwift
+
 
 class NewHomepageViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
    //Properties
     @IBOutlet weak var tableView: UITableView!
-    var ContentHeight: CGFloat = 787
+    var ContentHeight: CGFloat = 1200
     var MaxHeightofContent: CGFloat = 0
     var willAppear: Bool = true
     
@@ -94,7 +94,7 @@ class NewHomepageViewController: UIViewController,UITableViewDataSource,UITableV
         self.navigationItem.rightBarButtonItem = barButton
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 4
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -112,7 +112,6 @@ class NewHomepageViewController: UIViewController,UITableViewDataSource,UITableV
         default:
             return 60
         }
-
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -136,7 +135,7 @@ class NewHomepageViewController: UIViewController,UITableViewDataSource,UITableV
 //        }
     }
     
-    
+
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         

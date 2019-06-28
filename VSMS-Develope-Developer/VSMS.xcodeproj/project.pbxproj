@@ -66,6 +66,10 @@
 		C40213B522574D75007920C4 /* BalancedContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40213B322574D75007920C4 /* BalancedContainer.swift */; };
 		C453177222C3303A006F0BB8 /* NewPostListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453177022C3303A006F0BB8 /* NewPostListCollectionViewCell.swift */; };
 		C453177322C3303A006F0BB8 /* NewPostListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C453177122C3303A006F0BB8 /* NewPostListCollectionViewCell.xib */; };
+		C4AAF7A622C5F2E200B82364 /* NewPostGridCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AAF7A422C5F2E200B82364 /* NewPostGridCollectionViewCell.swift */; };
+		C4AAF7A722C5F2E300B82364 /* NewPostGridCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4AAF7A522C5F2E200B82364 /* NewPostGridCollectionViewCell.xib */; };
+		C4AAF7AA22C60E1C00B82364 /* NewPostImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AAF7A822C60E1C00B82364 /* NewPostImageCollectionViewCell.swift */; };
+		C4AAF7AB22C60E1C00B82364 /* NewPostImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4AAF7A922C60E1C00B82364 /* NewPostImageCollectionViewCell.xib */; };
 		D521AC89226F19E200BE534A /* alertMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D521AC88226F19E200BE534A /* alertMessageViewController.swift */; };
 		D52D64552232736D00008156 /* NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52D64542232736D00008156 /* NewViewController.swift */; };
 		D54A83CC225465A900BA1634 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D54A83CB225465A900BA1634 /* Assets.xcassets */; };
@@ -147,6 +151,10 @@
 		C40213B322574D75007920C4 /* BalancedContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalancedContainer.swift; sourceTree = "<group>"; };
 		C453177022C3303A006F0BB8 /* NewPostListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostListCollectionViewCell.swift; sourceTree = "<group>"; };
 		C453177122C3303A006F0BB8 /* NewPostListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewPostListCollectionViewCell.xib; sourceTree = "<group>"; };
+		C4AAF7A422C5F2E200B82364 /* NewPostGridCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostGridCollectionViewCell.swift; sourceTree = "<group>"; };
+		C4AAF7A522C5F2E200B82364 /* NewPostGridCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewPostGridCollectionViewCell.xib; sourceTree = "<group>"; };
+		C4AAF7A822C60E1C00B82364 /* NewPostImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		C4AAF7A922C60E1C00B82364 /* NewPostImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewPostImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		D521AC88226F19E200BE534A /* alertMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = alertMessageViewController.swift; sourceTree = "<group>"; };
 		D52D64542232736D00008156 /* NewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewViewController.swift; sourceTree = "<group>"; };
 		D54A83CB225465A900BA1634 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -310,6 +318,10 @@
 			children = (
 				C453177022C3303A006F0BB8 /* NewPostListCollectionViewCell.swift */,
 				C453177122C3303A006F0BB8 /* NewPostListCollectionViewCell.xib */,
+				C4AAF7A422C5F2E200B82364 /* NewPostGridCollectionViewCell.swift */,
+				C4AAF7A522C5F2E200B82364 /* NewPostGridCollectionViewCell.xib */,
+				C4AAF7A822C60E1C00B82364 /* NewPostImageCollectionViewCell.swift */,
+				C4AAF7A922C60E1C00B82364 /* NewPostImageCollectionViewCell.xib */,
 			);
 			name = NewPostComponents;
 			sourceTree = "<group>";
@@ -433,10 +445,12 @@
 				86626BB7229C491A00FE25DD /* CollectionTableViewCell.xib in Resources */,
 				86B10327229C4C7A00192DAD /* MapTableViewHeaderFooterView.xib in Resources */,
 				86626BAE229C480800FE25DD /* PhoneNumberHeader.xib in Resources */,
+				C4AAF7A722C5F2E300B82364 /* NewPostGridCollectionViewCell.xib in Resources */,
 				865B5DBF221FDD3700864F7E /* LaunchScreen.storyboard in Resources */,
 				86AAF0CE22C081C3003C46F3 /* DiscountTableViewCell.xib in Resources */,
 				86B10326229C4C7A00192DAD /* PhotoListCollectionViewCell.xib in Resources */,
 				865B5DBA221FDD3600864F7E /* Main.storyboard in Resources */,
+				C4AAF7AB22C60E1C00B82364 /* NewPostImageCollectionViewCell.xib in Resources */,
 				86626BA3229C470B00FE25DD /* ImageCollectionViewCell.xib in Resources */,
 				86AAF0CF22C081C3003C46F3 /* NewlyTableViewCell.xib in Resources */,
 				C453177322C3303A006F0BB8 /* NewPostListCollectionViewCell.xib in Resources */,
@@ -559,6 +573,7 @@
 				D54C4811224223BD004FE033 /* LoginController.swift in Sources */,
 				86626BB6229C491A00FE25DD /* CollectionTableViewCell.swift in Sources */,
 				D5BA49ED2255ECC100C61E9C /* TransferinfomationViewController.swift in Sources */,
+				C4AAF7A622C5F2E200B82364 /* NewPostGridCollectionViewCell.swift in Sources */,
 				D52D64552232736D00008156 /* NewViewController.swift in Sources */,
 				865B5DB7221FDD3600864F7E /* ViewController.swift in Sources */,
 				86AAF0D722C0C4D4003C46F3 /* MenuViewController.swift in Sources */,
@@ -570,6 +585,7 @@
 				86626B9D229C464C00FE25DD /* Register.swift in Sources */,
 				86AAF0CD22C081C3003C46F3 /* DiscountTableViewCell.swift in Sources */,
 				D588515A224DC5CC006BF532 /* TablebalanceViewController.swift in Sources */,
+				C4AAF7AA22C60E1C00B82364 /* NewPostImageCollectionViewCell.swift in Sources */,
 				D5DE6175225D8A10006D2E9D /* VPPDViewController.swift in Sources */,
 				861C50C2229D667400946FAB /* HomePageTableViewCell.swift in Sources */,
 				C40213B522574D75007920C4 /* BalancedContainer.swift in Sources */,
@@ -733,7 +749,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N57Y6URRUJ;
+				DEVELOPMENT_TEAM = CN5W8SS7A9;
 				INFOPLIST_FILE = VSMS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -756,7 +772,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N57Y6URRUJ;
+				DEVELOPMENT_TEAM = CN5W8SS7A9;
 				INFOPLIST_FILE = VSMS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
