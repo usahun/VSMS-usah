@@ -38,9 +38,9 @@
                                 <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Old Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uLa-fl-Pat">
-                                <rect key="frame" x="0.0" y="88" width="70" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Old Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uLa-fl-Pat">
+                                <rect key="frame" x="0.0" y="88" width="102" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -76,7 +76,7 @@
                 <outlet property="lblProductName" destination="Dqk-hT-CQb" id="ek6-uC-f1V"/>
                 <outlet property="lblProductPrice" destination="ixT-S4-rad" id="emx-8r-sSz"/>
             </connections>
-            <point key="canvasLocation" x="76" y="108.84557721139431"/>
+            <point key="canvasLocation" x="-1" y="81"/>
         </collectionViewCell>
     </objects>
     <resources>
