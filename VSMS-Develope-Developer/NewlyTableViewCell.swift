@@ -209,7 +209,7 @@ class NewlyTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionV
     func CellHeight(collectionHeight: CGFloat) -> CGFloat{
         switch listType{
         case "list": return collectionHeight / 8 - 4
-        case "grid": return collectionHeight / 6 - 4
+        case "grid": return collectionHeight / 4 - 4
         case "img": return collectionHeight / 4
         default:
             return 0
