@@ -8,26 +8,32 @@
 
 import UIKit
 import CoreLocation
+import SideMenuSwift
 
 
-class NewHomepageViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+class NewHomepageViewController:
+    UIViewController,
+UITableViewDataSource,
+UITableViewDelegate {
    //Properties
-    @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var tableView: UITableView?
     var ContentHeight: CGFloat = 1200
     var MaxHeightofContent: CGFloat = 0
     var willAppear: Bool = true
     
     override func viewWillAppear(_ animated: Bool) {
-        tableView.estimatedRowHeight = 300
-        tableView.rowHeight = UITableView.automaticDimension
+        tableView?.estimatedRowHeight = 300
+        tableView?.rowHeight = UITableView.automaticDimension
+        self.sideMenuController?.delegate = self
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupNavigationBarItem()
-        tableView.delegate = self
-        tableView.dataSource = self
+        tableView?.delegate = self
+        tableView?.dataSource = self
         
         let cellnib = UINib(nibName: "HomePageTableViewCell", bundle: nil)
         tableView?.register(cellnib, forCellReuseIdentifier: "ImageSlide")
@@ -36,10 +42,10 @@ class NewHomepageViewController: UIViewController,UITableViewDataSource,UITableV
         tableView?.register(searchbar, forCellReuseIdentifier: "Searchbar")
         
         let discount = UINib(nibName: "DiscountTableViewCell", bundle: nil)
-        tableView.register(discount, forCellReuseIdentifier: "discount")
+        tableView?.register(discount, forCellReuseIdentifier: "discount")
         
         let newly = UINib(nibName: "NewlyTableViewCell", bundle: nil)
-        tableView.register(newly, forCellReuseIdentifier: "newly")
+        tableView?.register(newly, forCellReuseIdentifier: "newly")
     
         
         
@@ -154,7 +160,7 @@ class NewHomepageViewController: UIViewController,UITableViewDataSource,UITableV
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "newly", for: indexPath) as! NewlyTableViewCell
             print(cell.cellHeightCount)
-            MaxHeightofContent = cell.cellHeightCount
+            MaxHeightofContent = view.frame.size.height
             return cell
         case 4:
             let cell = UITableViewCell()
@@ -164,14 +170,24 @@ class NewHomepageViewController: UIViewController,UITableViewDataSource,UITableV
             let cell = UITableViewCell()
             return cell
         }
-        
-        
+    }
+}
+extension NewHomepageViewController: SideMenuControllerDelegate {
+    func sideMenuController(_ sideMenuController: SideMenuController, willShow viewController: UIViewController, animated: Bool) {
+        view.frame = UIScreen.main.bounds
     }
     
-   
+    func sideMenuControllerWillRevealMenu(_ sideMenuController: SideMenuController) {
+        view.frame = UIScreen.main.bounds
+    }
+    func sideMenuControllerDidRevealMenu(_ sideMenuController: SideMenuController) {
+        view.frame = UIScreen.main.bounds
+    }
+    func sideMenuControllerWillHideMenu(_ sideMenuController: SideMenuController) {
+        view.frame = UIScreen.main.bounds
+    }
+    func sideMenuControllerDidHideMenu(_ sideMenuController: SideMenuController) {
+        view.frame = UIScreen.main.bounds
+    }
 }
-
-
-
-
 

@@ -19,7 +19,7 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        navigationController?.navigationBar.tintColor = UIColor.blue
     }
     
     
