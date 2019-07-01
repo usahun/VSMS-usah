@@ -21,40 +21,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,CLLocationManagerDelegate
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        
+        UITabBar.appearance().tintColor = .blue
+        
         GMSServices.provideAPIKey("AIzaSyChN5VYq3X6RKvoFeIRfz0WNmC31FrZ0wg")
         GMSPlacesClient.provideAPIKey("AIzaSyChN5VYq3X6RKvoFeIRfz0WNmC31FrZ0wg")
         // Override point for customization after application launch.
 //        window?.rootViewController = NewViewController()
 //        window?.makeKeyAndVisible()
         
+        let tabbar = CustomTabBarController()
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = tabbar
+        window?.makeKeyAndVisible()
+        
+        
        // LocationService.sharedInstance.delegate = self
         
-        let contentViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenu")
+        //day-28-06
         
-        let menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leftMenu")
-        
-        let sideMenuController = SideMenuController(
-            contentViewController: contentViewController,
-            menuViewController: menuViewController)
-       
-        
+//        let contentViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenu")
+//
+//        let menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leftMenu")
+//
+//        let sideMenuController = SideMenuController(
+//            contentViewController: contentViewController,
+//            menuViewController: menuViewController)
+//
 //
 //        let initialViewController = storyboard.instantiateViewController(withIdentifier: "SideMenu") as! SideMenuController
 //
-        self.window?.rootViewController = sideMenuController
-        self.window?.makeKeyAndVisible()
-        
-        configureSideMenu()
-        locationservice.delegate = self
-        print(locationservice.lastLocation as Any)
+        //28-06
+//        self.window?.rootViewController = sideMenuController
+//        self.window?.makeKeyAndVisible()
+//
+//        configureSideMenu()
+//        locationservice.delegate = self
+//        print(locationservice.lastLocation as Any)
         return true
     }
-    
-    private func configureSideMenu() {
-        SideMenuController.preferences.basic.menuWidth = 240
-        SideMenuController.preferences.basic.defaultCacheKey = "0"
-    }
-
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

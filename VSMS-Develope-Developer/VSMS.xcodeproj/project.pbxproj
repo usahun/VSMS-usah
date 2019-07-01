@@ -15,6 +15,7 @@
 		865B5DB7221FDD3600864F7E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B5DB6221FDD3600864F7E /* ViewController.swift */; };
 		865B5DBA221FDD3600864F7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 865B5DB8221FDD3600864F7E /* Main.storyboard */; };
 		865B5DBF221FDD3700864F7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 865B5DBD221FDD3700864F7E /* LaunchScreen.storyboard */; };
+		865C543822C5B1810081FBC5 /* LoginPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865C543722C5B1810081FBC5 /* LoginPasswordController.swift */; };
 		86626B9B229C464C00FE25DD /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86626B96229C464B00FE25DD /* LocationService.swift */; };
 		86626B9C229C464C00FE25DD /* TransferpdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86626B97229C464B00FE25DD /* TransferpdViewController.swift */; };
 		86626B9D229C464C00FE25DD /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86626B98229C464C00FE25DD /* Register.swift */; };
@@ -56,6 +57,7 @@
 		86B1032E229C4C7A00192DAD /* CollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B10323229C4C7900192DAD /* CollectionViewHeader.swift */; };
 		86B10336229C4E9D00192DAD /* PostContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B10335229C4E9D00192DAD /* PostContainer.swift */; };
 		86B10337229C4FCE00192DAD /* PassDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86626BB8229C493D00FE25DD /* PassDataCell.xib */; };
+		86D6C40F22C74D1F003B952E /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D6C40E22C74D1F003B952E /* CustomTabBarController.swift */; };
 		C402139A22574C9C007920C4 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402139922574C9B007920C4 /* MenuController.swift */; };
 		C402139E22574CD8007920C4 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C402139D22574CD7007920C4 /* SWRevealViewController.m */; };
 		C40213A422574D08007920C4 /* ProductDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402139F22574D06007920C4 /* ProductDetailController.swift */; };
@@ -98,6 +100,7 @@
 		865B5DB9221FDD3600864F7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		865B5DBE221FDD3700864F7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		865B5DC0221FDD3700864F7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		865C543722C5B1810081FBC5 /* LoginPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPasswordController.swift; sourceTree = "<group>"; };
 		86626B96229C464B00FE25DD /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		86626B97229C464B00FE25DD /* TransferpdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferpdViewController.swift; sourceTree = "<group>"; };
 		86626B98229C464C00FE25DD /* Register.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
@@ -139,6 +142,7 @@
 		86B10322229C4C7900192DAD /* PhotoListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoListCollectionViewCell.swift; path = VSMS/View/Collectionphoto/PhotoListCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		86B10323229C4C7900192DAD /* CollectionViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionViewHeader.swift; path = VSMS/View/Collectionphoto/CollectionViewHeader.swift; sourceTree = SOURCE_ROOT; };
 		86B10335229C4E9D00192DAD /* PostContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostContainer.swift; path = VSMS/View/Collectionphoto/PostContainer.swift; sourceTree = SOURCE_ROOT; };
+		86D6C40E22C74D1F003B952E /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		C402139922574C9B007920C4 /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		C402139B22574CD4007920C4 /* VSMS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VSMS-Bridging-Header.h"; sourceTree = "<group>"; };
 		C402139C22574CD6007920C4 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -260,6 +264,8 @@
 				C40213A122574D07007920C4 /* UploadProfileController.swift */,
 				D5DE6174225D8A10006D2E9D /* VPPDViewController.swift */,
 				86AAF0D622C0C4D4003C46F3 /* MenuViewController.swift */,
+				865C543722C5B1810081FBC5 /* LoginPasswordController.swift */,
+				86D6C40E22C74D1F003B952E /* CustomTabBarController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -546,6 +552,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				865C543822C5B1810081FBC5 /* LoginPasswordController.swift in Sources */,
 				D521AC89226F19E200BE534A /* alertMessageViewController.swift in Sources */,
 				C40213A822574D08007920C4 /* HomePageController.swift in Sources */,
 				D54C48132242249D004FE033 /* RegisterController.swift in Sources */,
@@ -595,6 +602,7 @@
 				86626BBB229C493E00FE25DD /* PassDataCell.swift in Sources */,
 				86B1032B229C4C7A00192DAD /* MenuTableViewCell.swift in Sources */,
 				86626BC3229C498400FE25DD /* AddmoreNumberPhoneTableViewCell.swift in Sources */,
+				86D6C40F22C74D1F003B952E /* CustomTabBarController.swift in Sources */,
 				D54C481522422F20004FE033 /* MyAccountController.swift in Sources */,
 				C40213A622574D08007920C4 /* UploadProfileController.swift in Sources */,
 				86B10336229C4E9D00192DAD /* PostContainer.swift in Sources */,

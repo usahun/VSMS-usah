@@ -34,9 +34,12 @@ class alertMessageViewController: UIViewController {
             self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default )
             self.navigationController?.navigationBar.shadowImage = UIImage()
             self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Motocycle for Sale", style: .plain, target: nil, action: nil)
-            
+           
+            self.navigationController?.navigationBar.installBlurEffect()
         }
     }
+    
+   
     
     @IBAction func altertNumberCall(_ sender: UIButton) {
         
@@ -110,4 +113,22 @@ extension alertMessageViewController : UICollectionViewDelegateFlowLayout {
         return 0.0
     }
     
+}
+
+
+extension UINavigationBar {
+    func installBlurEffect() {
+        isTranslucent = true
+        setBackgroundImage(UIImage(), for: .default)
+        let statusBarHeight: CGFloat = UIApplication.shared.statusBarFrame.height
+        var blurFrame = bounds
+        blurFrame.size.height += statusBarHeight
+        blurFrame.origin.y -= statusBarHeight
+        let blurView  = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+        blurView.isUserInteractionEnabled = false
+        blurView.frame = blurFrame
+        blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        addSubview(blurView)
+        blurView.layer.zPosition = -1
+    }
 }
