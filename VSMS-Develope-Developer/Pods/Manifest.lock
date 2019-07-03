@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (4.8.2)
   - CollectionViewGridLayout (2.1.0)
+  - DropDown (2.3.4)
   - GoogleMaps (3.1.0):
     - GoogleMaps/Maps (= 3.1.0)
   - GoogleMaps/Base (3.1.0)
@@ -9,29 +10,36 @@ PODS:
   - GooglePlaces (3.1.0):
     - GoogleMaps/Base (= 3.1.0)
   - SideMenuSwift (1.0.0)
+  - SwiftyJSON (4.3.0)
 
 DEPENDENCIES:
   - Alamofire
   - CollectionViewGridLayout
+  - DropDown (= 2.3.4)
   - GoogleMaps
   - GooglePlaces
   - SideMenuSwift (= 1.0.0)
+  - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - CollectionViewGridLayout
+    - DropDown
     - GoogleMaps
     - GooglePlaces
     - SideMenuSwift
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   CollectionViewGridLayout: f22fba04dff5c028ce20f1c29ba212e790b6f316
+  DropDown: f225ff0fd09dde064d17aa03db7e4d4e4ff40b6b
   GoogleMaps: 5c13302e6fe6bb6e686b267196586b91cd594225
   GooglePlaces: e874db179f2675c4f3eeda0b686b540273a578b0
   SideMenuSwift: f8567754feb36ade13ffd613f608829f4b86d4b3
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 9f4b1ef46755df830988d6187d6e67db1d94726d
+PODFILE CHECKSUM: 7d1fd4a6a7919647962c3d500b9580a6745095e0
 
 COCOAPODS: 1.6.1

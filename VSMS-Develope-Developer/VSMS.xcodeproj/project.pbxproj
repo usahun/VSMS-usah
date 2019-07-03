@@ -58,6 +58,8 @@
 		86B10336229C4E9D00192DAD /* PostContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B10335229C4E9D00192DAD /* PostContainer.swift */; };
 		86B10337229C4FCE00192DAD /* PassDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86626BB8229C493D00FE25DD /* PassDataCell.xib */; };
 		86D6C40F22C74D1F003B952E /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D6C40E22C74D1F003B952E /* CustomTabBarController.swift */; };
+		86E8F0AF22CC427F0093D7A9 /* DropdownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8F0AD22CC427F0093D7A9 /* DropdownTableViewCell.swift */; };
+		86E8F0B022CC427F0093D7A9 /* DropdownTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86E8F0AE22CC427F0093D7A9 /* DropdownTableViewCell.xib */; };
 		C402139A22574C9C007920C4 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402139922574C9B007920C4 /* MenuController.swift */; };
 		C402139E22574CD8007920C4 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C402139D22574CD7007920C4 /* SWRevealViewController.m */; };
 		C40213A422574D08007920C4 /* ProductDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402139F22574D06007920C4 /* ProductDetailController.swift */; };
@@ -144,6 +146,8 @@
 		86B10323229C4C7900192DAD /* CollectionViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionViewHeader.swift; path = VSMS/View/Collectionphoto/CollectionViewHeader.swift; sourceTree = SOURCE_ROOT; };
 		86B10335229C4E9D00192DAD /* PostContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostContainer.swift; path = VSMS/View/Collectionphoto/PostContainer.swift; sourceTree = SOURCE_ROOT; };
 		86D6C40E22C74D1F003B952E /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		86E8F0AD22CC427F0093D7A9 /* DropdownTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownTableViewCell.swift; sourceTree = "<group>"; };
+		86E8F0AE22CC427F0093D7A9 /* DropdownTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropdownTableViewCell.xib; sourceTree = "<group>"; };
 		C402139922574C9B007920C4 /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		C402139B22574CD4007920C4 /* VSMS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VSMS-Bridging-Header.h"; sourceTree = "<group>"; };
 		C402139C22574CD6007920C4 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -231,6 +235,7 @@
 		865B5DC7221FDD6400864F7E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				86E8F0AC22CC41410093D7A9 /* Dropdownlist */,
 				C453176D22C32F82006F0BB8 /* Components */,
 				D52D644F2232720300008156 /* CollectionViewCell */,
 			);
@@ -271,6 +276,15 @@
 				C47744BA22CA108E00B79D33 /* PostViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		86E8F0AC22CC41410093D7A9 /* Dropdownlist */ = {
+			isa = PBXGroup;
+			children = (
+				86E8F0AD22CC427F0093D7A9 /* DropdownTableViewCell.swift */,
+				86E8F0AE22CC427F0093D7A9 /* DropdownTableViewCell.xib */,
+			);
+			name = Dropdownlist;
 			sourceTree = "<group>";
 		};
 		921D21CDE67B0CC389C8D671 /* Pods */ = {
@@ -467,6 +481,7 @@
 			files = (
 				86AAF0C822C081C3003C46F3 /* DiscountCollectionViewCell.xib in Resources */,
 				86626BBE229C496300FE25DD /* DeTailTableCell.xib in Resources */,
+				86E8F0B022CC427F0093D7A9 /* DropdownTableViewCell.xib in Resources */,
 				86626BB7229C491A00FE25DD /* CollectionTableViewCell.xib in Resources */,
 				86B10327229C4C7A00192DAD /* MapTableViewHeaderFooterView.xib in Resources */,
 				86626BAE229C480800FE25DD /* PhoneNumberHeader.xib in Resources */,
@@ -527,7 +542,9 @@
 				"${PODS_ROOT}/Target Support Files/Pods-VSMS/Pods-VSMS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CollectionViewGridLayout/CollectionViewGridLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenuSwift/SideMenuSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -535,7 +552,9 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CollectionViewGridLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenuSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -574,6 +593,7 @@
 				865C543822C5B1810081FBC5 /* LoginPasswordController.swift in Sources */,
 				D521AC89226F19E200BE534A /* alertMessageViewController.swift in Sources */,
 				C40213A822574D08007920C4 /* HomePageController.swift in Sources */,
+				86E8F0AF22CC427F0093D7A9 /* DropdownTableViewCell.swift in Sources */,
 				D54C48132242249D004FE033 /* RegisterController.swift in Sources */,
 				86AAF0C622C081C3003C46F3 /* GreditImageCollectionViewCell.swift in Sources */,
 				86B10329229C4C7A00192DAD /* HomeCollectionViewCell.swift in Sources */,

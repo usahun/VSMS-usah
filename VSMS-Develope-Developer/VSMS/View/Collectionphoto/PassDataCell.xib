@@ -34,6 +34,14 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Guk-Sb-Z03">
+                        <rect key="frame" x="187" y="-3" width="46" height="30"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal" title="Button"/>
+                        <connections>
+                            <action selector="eventclick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="k3D-G4-RFc"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="ymU-zE-OZE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="0C7-Gl-Yzs"/>
@@ -46,6 +54,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="buttonTapped" destination="Guk-Sb-Z03" id="1jG-aw-IDK"/>
                 <outlet property="mytextField" destination="ymU-zE-OZE" id="fjf-IE-PoB"/>
                 <outlet property="titleLabel" destination="NRC-QR-W2e" id="3K0-SN-27X"/>
             </connections>
