@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class LoginPasswordController: UIViewController {
     
@@ -25,7 +26,7 @@ class LoginPasswordController: UIViewController {
         super.viewDidLoad()
 
         //if user is already logged in switching to profile screen
-     // self.defaultValues.set(nil, forKey: "username")
+        self.defaultValues.set(nil, forKey: "username")
         if defaultValues.string(forKey: "username") != nil{
             let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "StockTranfer") as! StockTranfer
             self.navigationController?.pushViewController(profileViewController, animated: true)
@@ -49,7 +50,8 @@ class LoginPasswordController: UIViewController {
         Alamofire.request(URL_USER_LOGIN, method: .post, parameters: parameters,encoding: JSONEncoding.default, headers: headers).responseJSON
             { response in
                 //printing response
-                print(response)
+                let json = JSON(response.result.value as Any)
+                print(json)
                 //getting the json value from the server
                 if let result = response.result.value {
                     let jsonData = result as! NSDictionary

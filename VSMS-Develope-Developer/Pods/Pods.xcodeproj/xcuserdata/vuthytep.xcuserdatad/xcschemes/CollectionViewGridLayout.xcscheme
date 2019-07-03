@@ -14,9 +14,9 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3383968E74B5371B20BB519B170DC7FD"
-               BuildableName = "Alamofire.framework"
-               BlueprintName = "Alamofire"
+               BlueprintIdentifier = "2E67F4835514DEAC558D120AC4AB02F4"
+               BuildableName = "CollectionViewGridLayout.framework"
+               BlueprintName = "CollectionViewGridLayout"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
