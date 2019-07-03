@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2ox-Yz-Z96">
+
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -4051,16 +4053,16 @@
         <image name="1" width="177" height="50"/>
         <image name="121logo" width="120" height="69"/>
         <image name="ArrowDown-50" width="50" height="50"/>
-        <image name="Camera" width="33.333332061767578" height="33.333332061767578"/>
+        <image name="Camera" width="33" height="33"/>
         <image name="Customer-white" width="25" height="25"/>
         <image name="Dream192" width="1500" height="1000"/>
         <image name="EditUser-White" width="50" height="50"/>
         <image name="HamburgarIcon" width="25" height="25"/>
         <image name="Home-Active" width="25" height="25"/>
         <image name="Honda-Dream-black" width="620" height="450"/>
-        <image name="HondaClick2019" width="206.66667175292969" height="150"/>
-        <image name="HondaDream2019" width="206.66667175292969" height="150"/>
-        <image name="HondaPCX2019" width="206.66667175292969" height="150"/>
+        <image name="HondaClick2019" width="206" height="150"/>
+        <image name="HondaDream2019" width="206" height="150"/>
+        <image name="HondaPCX2019" width="206" height="150"/>
         <image name="Icon-Camera-20x20" width="20" height="20"/>
         <image name="Icon-Camera-20x20-1" width="20" height="20"/>
         <image name="Icon-home-20x20" width="20" height="20"/>
@@ -4070,7 +4072,7 @@
         <image name="SearchIcon" width="25" height="25"/>
         <image name="Setting-white" width="50" height="50"/>
         <image name="Share-White" width="50" height="50"/>
-        <image name="XbladeHomeBanner" width="390" height="145.66667175292969"/>
+        <image name="XbladeHomeBanner" width="390" height="145"/>
         <image name="backbar-1" width="25" height="25"/>
         <image name="delete" width="25" height="25"/>
         <image name="edit" width="25" height="25"/>
