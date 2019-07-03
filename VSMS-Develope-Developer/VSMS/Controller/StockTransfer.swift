@@ -74,11 +74,12 @@ class StockTranfer : UIViewController, UINavigationControllerDelegate, UIImagePi
   
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        configNavigation()
+        
         
         img.layer.cornerRadius = img.frame.width * 0.5
         img.clipsToBounds = true
-      
-        
     }
     
     
@@ -94,6 +95,13 @@ class StockTranfer : UIViewController, UINavigationControllerDelegate, UIImagePi
             linepost.isHidden = false
             linebalance.isHidden = true
         }
+    }
+    
+    ///functions
+    
+    func configNavigation(){
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "opacity50"), for: .default)
+        self.navigationController?.navigationBar.isTranslucent = true
     }
     
 }

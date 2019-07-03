@@ -97,6 +97,7 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //google map
 //        GMSServices.provideAPIKey("AIzaSyChN5VYq3X6RKvoFeIRfz0WNmC31FrZ0wg")
 //        let camera = GMSCameraPosition.camera(withLatitude:11.568653 , longitude: 104.870329, zoom: 6.0)
@@ -108,6 +109,8 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
        // 11.568653; 104.870329
        // let camera = GMSCameraPosition.camera(withLatitude: 11.568653, longitude: 104.870329, zoom: 10)
         //all section in tableview
+        
+        
         self.allTypes = [Section.photosProduct,
                          Section.detail,
                          Section.discount,
@@ -157,7 +160,7 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
         let sec = allTypes[indexPath.section]
         switch sec {
         case .photosProduct:
-            return 95
+            return 110
         case .detail:
             if indexPath.row == 8{
                 return 100

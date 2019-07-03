@@ -27,9 +27,17 @@ class LoginPasswordController: UIViewController {
         //if user is already logged in switching to profile screen
      // self.defaultValues.set(nil, forKey: "username")
         if defaultValues.string(forKey: "username") != nil{
+//            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+//            let controller = storyBoard.instantiateViewController(withIdentifier: "StockTranfer")
+//            self.present(controller, animated: true, completion: nil)
+//            
+//            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StockTranfer") as? StockTranfer {
+//                present(vc, animated: true, completion: nil)
+//            }
+            
+//
             let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "StockTranfer") as! StockTranfer
             self.navigationController?.pushViewController(profileViewController, animated: true)
-            
         }
         
     }
