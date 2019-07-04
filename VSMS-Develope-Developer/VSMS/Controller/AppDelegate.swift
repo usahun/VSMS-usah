@@ -36,6 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,CLLocationManagerDelegate
 //        window?.makeKeyAndVisible()
         
         
+        
+        
        // LocationService.sharedInstance.delegate = self
         
         //day-28-06

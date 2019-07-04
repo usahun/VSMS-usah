@@ -27,7 +27,7 @@ class LoginPasswordController: UIViewController {
 
         //if user is already logged in switching to profile screen
         self.defaultValues.set(nil, forKey: "username")
-        if defaultValues.string(forKey: "username") != nil{
+        if defaultValues.string(forKey: "username") != nil || true{
 //            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
 //            let controller = storyBoard.instantiateViewController(withIdentifier: "StockTranfer")
 //            self.present(controller, animated: true, completion: nil)

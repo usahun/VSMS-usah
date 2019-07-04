@@ -18,7 +18,6 @@
 		865C543822C5B1810081FBC5 /* LoginPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865C543722C5B1810081FBC5 /* LoginPasswordController.swift */; };
 		86626B9B229C464C00FE25DD /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86626B96229C464B00FE25DD /* LocationService.swift */; };
 		86626B9C229C464C00FE25DD /* TransferpdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86626B97229C464B00FE25DD /* TransferpdViewController.swift */; };
-		86626B9D229C464C00FE25DD /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86626B98229C464C00FE25DD /* Register.swift */; };
 		86626B9E229C464C00FE25DD /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86626B99229C464C00FE25DD /* TestViewController.swift */; };
 		86626B9F229C464C00FE25DD /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86626B9A229C464C00FE25DD /* ResultTableViewCell.swift */; };
 		86626BA3229C470B00FE25DD /* ImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86626BA1229C470B00FE25DD /* ImageCollectionViewCell.xib */; };
@@ -70,6 +69,10 @@
 		C40213B522574D75007920C4 /* BalancedContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40213B322574D75007920C4 /* BalancedContainer.swift */; };
 		C453177222C3303A006F0BB8 /* NewPostListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453177022C3303A006F0BB8 /* NewPostListCollectionViewCell.swift */; };
 		C453177322C3303A006F0BB8 /* NewPostListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C453177122C3303A006F0BB8 /* NewPostListCollectionViewCell.xib */; };
+		C45661B322CE6D6200973945 /* PostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45661B122CE6D6200973945 /* PostsTableViewCell.swift */; };
+		C45661B422CE6D6200973945 /* PostsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C45661B222CE6D6200973945 /* PostsTableViewCell.xib */; };
+		C45661B722CE6D9200973945 /* LikesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45661B522CE6D9200973945 /* LikesTableViewCell.swift */; };
+		C45661B822CE6D9200973945 /* LikesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C45661B622CE6D9200973945 /* LikesTableViewCell.xib */; };
 		C47744BB22CA108E00B79D33 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47744BA22CA108E00B79D33 /* PostViewController.swift */; };
 		C4AAF7A622C5F2E200B82364 /* NewPostGridCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AAF7A422C5F2E200B82364 /* NewPostGridCollectionViewCell.swift */; };
 		C4AAF7A722C5F2E300B82364 /* NewPostGridCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4AAF7A522C5F2E200B82364 /* NewPostGridCollectionViewCell.xib */; };
@@ -106,7 +109,6 @@
 		865C543722C5B1810081FBC5 /* LoginPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPasswordController.swift; sourceTree = "<group>"; };
 		86626B96229C464B00FE25DD /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		86626B97229C464B00FE25DD /* TransferpdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferpdViewController.swift; sourceTree = "<group>"; };
-		86626B98229C464C00FE25DD /* Register.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
 		86626B99229C464C00FE25DD /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		86626B9A229C464C00FE25DD /* ResultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
 		86626BA1229C470B00FE25DD /* ImageCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImageCollectionViewCell.xib; path = VSMS/Controller/ImageCollectionViewCell.xib; sourceTree = SOURCE_ROOT; };
@@ -160,6 +162,10 @@
 		C40213B322574D75007920C4 /* BalancedContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalancedContainer.swift; sourceTree = "<group>"; };
 		C453177022C3303A006F0BB8 /* NewPostListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostListCollectionViewCell.swift; sourceTree = "<group>"; };
 		C453177122C3303A006F0BB8 /* NewPostListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewPostListCollectionViewCell.xib; sourceTree = "<group>"; };
+		C45661B122CE6D6200973945 /* PostsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewCell.swift; sourceTree = "<group>"; };
+		C45661B222CE6D6200973945 /* PostsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsTableViewCell.xib; sourceTree = "<group>"; };
+		C45661B522CE6D9200973945 /* LikesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesTableViewCell.swift; sourceTree = "<group>"; };
+		C45661B622CE6D9200973945 /* LikesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LikesTableViewCell.xib; sourceTree = "<group>"; };
 		C47744BA22CA108E00B79D33 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		C4AAF7A422C5F2E200B82364 /* NewPostGridCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostGridCollectionViewCell.swift; sourceTree = "<group>"; };
 		C4AAF7A522C5F2E200B82364 /* NewPostGridCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewPostGridCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -235,6 +241,7 @@
 		865B5DC7221FDD6400864F7E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C4533A5222CDA900008F9D2F /* Profile */,
 				86E8F0AC22CC41410093D7A9 /* Dropdownlist */,
 				C453176D22C32F82006F0BB8 /* Components */,
 				D52D644F2232720300008156 /* CollectionViewCell */,
@@ -257,7 +264,6 @@
 				D52D64542232736D00008156 /* NewViewController.swift */,
 				869CF1962276F0800006D7F2 /* PostAdViewController.swift */,
 				C402139F22574D06007920C4 /* ProductDetailController.swift */,
-				86626B98229C464C00FE25DD /* Register.swift */,
 				D54C48122242249D004FE033 /* RegisterController.swift */,
 				86626B9A229C464C00FE25DD /* ResultTableViewCell.swift */,
 				C40213A222574D07007920C4 /* SearchResultController.swift */,
@@ -323,7 +329,6 @@
 		C453176D22C32F82006F0BB8 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				C47744B822CA0FFA00B79D33 /* Post */,
 				C453176E22C32F8F006F0BB8 /* Home */,
 			);
 			name = Components;
@@ -350,19 +355,15 @@
 			name = NewPostComponents;
 			sourceTree = "<group>";
 		};
-		C47744B822CA0FFA00B79D33 /* Post */ = {
+		C4533A5222CDA900008F9D2F /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				C47744B922CA101B00B79D33 /* ImagePicker */,
+				C45661B522CE6D9200973945 /* LikesTableViewCell.swift */,
+				C45661B622CE6D9200973945 /* LikesTableViewCell.xib */,
+				C45661B122CE6D6200973945 /* PostsTableViewCell.swift */,
+				C45661B222CE6D6200973945 /* PostsTableViewCell.xib */,
 			);
-			name = Post;
-			sourceTree = "<group>";
-		};
-		C47744B922CA101B00B79D33 /* ImagePicker */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = ImagePicker;
+			name = Profile;
 			sourceTree = "<group>";
 		};
 		D52D644F2232720300008156 /* CollectionViewCell */ = {
@@ -481,6 +482,7 @@
 			files = (
 				86AAF0C822C081C3003C46F3 /* DiscountCollectionViewCell.xib in Resources */,
 				86626BBE229C496300FE25DD /* DeTailTableCell.xib in Resources */,
+				C45661B822CE6D9200973945 /* LikesTableViewCell.xib in Resources */,
 				86E8F0B022CC427F0093D7A9 /* DropdownTableViewCell.xib in Resources */,
 				86626BB7229C491A00FE25DD /* CollectionTableViewCell.xib in Resources */,
 				86B10327229C4C7A00192DAD /* MapTableViewHeaderFooterView.xib in Resources */,
@@ -495,6 +497,7 @@
 				86AAF0CF22C081C3003C46F3 /* NewlyTableViewCell.xib in Resources */,
 				C453177322C3303A006F0BB8 /* NewPostListCollectionViewCell.xib in Resources */,
 				86AAF0D322C0894B003C46F3 /* SearchTableViewCell.xib in Resources */,
+				C45661B422CE6D6200973945 /* PostsTableViewCell.xib in Resources */,
 				86626BC2229C498400FE25DD /* AddmoreNumberPhoneTableViewCell.xib in Resources */,
 				D54A83CC225465A900BA1634 /* Assets.xcassets in Resources */,
 				86B10337229C4FCE00192DAD /* PassDataCell.xib in Resources */,
@@ -629,15 +632,16 @@
 				86AAF0C922C081C3003C46F3 /* NewlyTableViewCell.swift in Sources */,
 				86626B9C229C464C00FE25DD /* TransferpdViewController.swift in Sources */,
 				86B1032A229C4C7A00192DAD /* TablebalanceViewCell.swift in Sources */,
-				86626B9D229C464C00FE25DD /* Register.swift in Sources */,
 				86AAF0CD22C081C3003C46F3 /* DiscountTableViewCell.swift in Sources */,
 				D588515A224DC5CC006BF532 /* TablebalanceViewController.swift in Sources */,
 				C4AAF7AA22C60E1C00B82364 /* NewPostImageCollectionViewCell.swift in Sources */,
 				D5DE6175225D8A10006D2E9D /* VPPDViewController.swift in Sources */,
 				861C50C2229D667400946FAB /* HomePageTableViewCell.swift in Sources */,
 				C40213B522574D75007920C4 /* BalancedContainer.swift in Sources */,
+				C45661B322CE6D6200973945 /* PostsTableViewCell.swift in Sources */,
 				C40213A422574D08007920C4 /* ProductDetailController.swift in Sources */,
 				86626B9B229C464C00FE25DD /* LocationService.swift in Sources */,
+				C45661B722CE6D9200973945 /* LikesTableViewCell.swift in Sources */,
 				86626B9E229C464C00FE25DD /* TestViewController.swift in Sources */,
 				86626BBB229C493E00FE25DD /* PassDataCell.swift in Sources */,
 				86B1032B229C4C7A00192DAD /* MenuTableViewCell.swift in Sources */,
