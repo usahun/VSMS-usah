@@ -57,8 +57,15 @@
 		86B10336229C4E9D00192DAD /* PostContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B10335229C4E9D00192DAD /* PostContainer.swift */; };
 		86B10337229C4FCE00192DAD /* PassDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86626BB8229C493D00FE25DD /* PassDataCell.xib */; };
 		86D6C40F22C74D1F003B952E /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D6C40E22C74D1F003B952E /* CustomTabBarController.swift */; };
+		86D6FC2322CDA25600B27B25 /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D6FC2222CDA25600B27B25 /* APIModel.swift */; };
+		86D6FC2522CDA4F500B27B25 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D6FC2422CDA4F500B27B25 /* Functions.swift */; };
+		86D6FC2722CDE1BF00B27B25 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D6FC2622CDE1BF00B27B25 /* PostViewModel.swift */; };
 		86E8F0AF22CC427F0093D7A9 /* DropdownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8F0AD22CC427F0093D7A9 /* DropdownTableViewCell.swift */; };
 		86E8F0B022CC427F0093D7A9 /* DropdownTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86E8F0AE22CC427F0093D7A9 /* DropdownTableViewCell.xib */; };
+		86E8F0B222CCBE4D0093D7A9 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8F0B122CCBE4D0093D7A9 /* Protocol.swift */; };
+		86F0FB1922D1CF1500DF6559 /* PostList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F0FB1822D1CF1500DF6559 /* PostList.swift */; };
+		86F3CF7122D2DD85005F8FF6 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F3CF6F22D2DD85005F8FF6 /* DetailTableViewCell.swift */; };
+		86F3CF7222D2DD85005F8FF6 /* DetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F3CF7022D2DD85005F8FF6 /* DetailTableViewCell.xib */; };
 		C402139A22574C9C007920C4 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402139922574C9B007920C4 /* MenuController.swift */; };
 		C402139E22574CD8007920C4 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C402139D22574CD7007920C4 /* SWRevealViewController.m */; };
 		C40213A422574D08007920C4 /* ProductDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402139F22574D06007920C4 /* ProductDetailController.swift */; };
@@ -149,8 +156,15 @@
 		86B10323229C4C7900192DAD /* CollectionViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionViewHeader.swift; path = VSMS/View/Collectionphoto/CollectionViewHeader.swift; sourceTree = SOURCE_ROOT; };
 		86B10335229C4E9D00192DAD /* PostContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostContainer.swift; path = VSMS/View/Collectionphoto/PostContainer.swift; sourceTree = SOURCE_ROOT; };
 		86D6C40E22C74D1F003B952E /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		86D6FC2222CDA25600B27B25 /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
+		86D6FC2422CDA4F500B27B25 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		86D6FC2622CDE1BF00B27B25 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		86E8F0AD22CC427F0093D7A9 /* DropdownTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownTableViewCell.swift; sourceTree = "<group>"; };
 		86E8F0AE22CC427F0093D7A9 /* DropdownTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropdownTableViewCell.xib; sourceTree = "<group>"; };
+		86E8F0B122CCBE4D0093D7A9 /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
+		86F0FB1822D1CF1500DF6559 /* PostList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostList.swift; sourceTree = "<group>"; };
+		86F3CF6F22D2DD85005F8FF6 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
+		86F3CF7022D2DD85005F8FF6 /* DetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTableViewCell.xib; sourceTree = "<group>"; };
 		C402139922574C9B007920C4 /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		C402139B22574CD4007920C4 /* VSMS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VSMS-Bridging-Header.h"; sourceTree = "<group>"; };
 		C402139C22574CD6007920C4 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -286,6 +300,23 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		86C90F8122D05C5A00A6E608 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				86C90F8B22D0923900A6E608 /* Detail */,
+			);
+			name = Post;
+			sourceTree = "<group>";
+		};
+		86C90F8B22D0923900A6E608 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				86F3CF6F22D2DD85005F8FF6 /* DetailTableViewCell.swift */,
+				86F3CF7022D2DD85005F8FF6 /* DetailTableViewCell.xib */,
+			);
+			name = Detail;
+			sourceTree = "<group>";
+		};
 		86E8F0AC22CC41410093D7A9 /* Dropdownlist */ = {
 			isa = PBXGroup;
 			children = (
@@ -317,6 +348,13 @@
 			children = (
 				C402139922574C9B007920C4 /* MenuController.swift */,
 				C456203F22D0BAE300DBF21D /* ProfileModel.swift */,
+
+				86E8F0B122CCBE4D0093D7A9 /* Protocol.swift */,
+				86D6FC2222CDA25600B27B25 /* APIModel.swift */,
+				86D6FC2422CDA4F500B27B25 /* Functions.swift */,
+				86D6FC2622CDE1BF00B27B25 /* PostViewModel.swift */,
+				86F0FB1822D1CF1500DF6559 /* PostList.swift */,
+
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -332,6 +370,7 @@
 		C453176D22C32F82006F0BB8 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				86C90F8122D05C5A00A6E608 /* Post */,
 				C453176E22C32F8F006F0BB8 /* Home */,
 			);
 			name = Components;
@@ -484,6 +523,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				86AAF0C822C081C3003C46F3 /* DiscountCollectionViewCell.xib in Resources */,
+				86F3CF7222D2DD85005F8FF6 /* DetailTableViewCell.xib in Resources */,
 				86626BBE229C496300FE25DD /* DeTailTableCell.xib in Resources */,
 				C45661B822CE6D9200973945 /* LikesTableViewCell.xib in Resources */,
 				86E8F0B022CC427F0093D7A9 /* DropdownTableViewCell.xib in Resources */,
@@ -605,8 +645,10 @@
 				86B10329229C4C7A00192DAD /* HomeCollectionViewCell.swift in Sources */,
 				C402139A22574C9C007920C4 /* MenuController.swift in Sources */,
 				86626BAF229C480800FE25DD /* PhoneNumberHeader.swift in Sources */,
+				86F3CF7122D2DD85005F8FF6 /* DetailTableViewCell.swift in Sources */,
 				86626BBF229C496300FE25DD /* DeTailTableCell.swift in Sources */,
 				D5B6471E2255A91E00C113FF /* TablepostviewController.swift in Sources */,
+				86D6FC2322CDA25600B27B25 /* APIModel.swift in Sources */,
 				D55FA97B223EBD34005B0C8D /* SettingController.swift in Sources */,
 				86B1032E229C4C7A00192DAD /* CollectionViewHeader.swift in Sources */,
 				C47744BB22CA108E00B79D33 /* PostViewController.swift in Sources */,
@@ -618,13 +660,16 @@
 				86B1032D229C4C7A00192DAD /* PhotoListCollectionViewCell.swift in Sources */,
 				C402139E22574CD8007920C4 /* SWRevealViewController.m in Sources */,
 				C453177222C3303A006F0BB8 /* NewPostListCollectionViewCell.swift in Sources */,
+				86D6FC2722CDE1BF00B27B25 /* PostViewModel.swift in Sources */,
 				D5901C8A2248890C00F0D581 /* StockTransfer.swift in Sources */,
 				86AAF0CB22C081C3003C46F3 /* ImgeSlideCollectionViewCell.swift in Sources */,
+				86D6FC2522CDA4F500B27B25 /* Functions.swift in Sources */,
 				86AAF0D222C0894B003C46F3 /* SearchTableViewCell.swift in Sources */,
 				C40213A722574D08007920C4 /* SearchResultController.swift in Sources */,
 				D5D64F8F2236E41500A2D4E1 /* AccountDetail.swift in Sources */,
 				86B1032C229C4C7A00192DAD /* TablepostViewCell.swift in Sources */,
 				D54C4811224223BD004FE033 /* LoginController.swift in Sources */,
+				86E8F0B222CCBE4D0093D7A9 /* Protocol.swift in Sources */,
 				86626BB6229C491A00FE25DD /* CollectionTableViewCell.swift in Sources */,
 				D5BA49ED2255ECC100C61E9C /* TransferinfomationViewController.swift in Sources */,
 				C4AAF7A622C5F2E200B82364 /* NewPostGridCollectionViewCell.swift in Sources */,
@@ -649,6 +694,7 @@
 				86626B9E229C464C00FE25DD /* TestViewController.swift in Sources */,
 				86626BBB229C493E00FE25DD /* PassDataCell.swift in Sources */,
 				86B1032B229C4C7A00192DAD /* MenuTableViewCell.swift in Sources */,
+				86F0FB1922D1CF1500DF6559 /* PostList.swift in Sources */,
 				86626BC3229C498400FE25DD /* AddmoreNumberPhoneTableViewCell.swift in Sources */,
 				86D6C40F22C74D1F003B952E /* CustomTabBarController.swift in Sources */,
 				D54C481522422F20004FE033 /* MyAccountController.swift in Sources */,

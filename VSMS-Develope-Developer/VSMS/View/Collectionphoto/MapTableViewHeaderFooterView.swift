@@ -10,12 +10,15 @@ import UIKit
 
 class MapTableViewHeaderFooterView: UITableViewHeaderFooterView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    weak var delegate: CellTableClick?
+    
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
     }
-    */
 
+    @IBAction func submitClick(_ sender: Any) {
+        self.delegate?.SubmitClick()
+    }
+    
 }

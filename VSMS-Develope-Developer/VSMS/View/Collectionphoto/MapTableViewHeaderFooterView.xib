@@ -17,25 +17,25 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JyS-jC-bTn">
-                    <rect key="frame" x="39" y="4" width="265" height="17"/>
-                    <color key="textColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <rect key="frame" x="39" y="4" width="265" height="18"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVj-OE-cOP">
-                    <rect key="frame" x="39" y="37" width="106" height="17"/>
+                    <rect key="frame" x="39" y="32" width="106" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ETC-nM-qM0">
-                    <rect key="frame" x="297" y="86" width="8" height="17"/>
+                    <rect key="frame" x="297" y="84" width="8" height="17"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="CEp-Ke-UMZ">
-                    <rect key="frame" x="16" y="71" width="289" height="273"/>
+                    <rect key="frame" x="16" y="69" width="289" height="275"/>
                 </mapView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update this contact to profile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1bn-4k-xRa">
                     <rect key="frame" x="16" y="356" width="289" height="29"/>
@@ -53,12 +53,15 @@
                         <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="titleShadowColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
+                    <connections>
+                        <action selector="submitClick:" destination="Ksp-if-wKi" eventType="touchUpInside" id="2hV-hV-A4n"/>
+                    </connections>
                 </button>
                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FlN-eo-AoQ">
                     <rect key="frame" x="256" y="355" width="51" height="31"/>
                 </switch>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P2q-2C-tMP">
-                    <rect key="frame" x="39" y="71" width="265" height="18"/>
+                    <rect key="frame" x="39" y="69" width="265" height="18"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="18" id="2k3-xJ-rCL"/>
                     </constraints>
@@ -77,11 +80,11 @@
                 <constraint firstItem="S6D-dG-FDf" firstAttribute="trailing" secondItem="ETC-nM-qM0" secondAttribute="trailing" constant="15" id="G7v-15-YZh"/>
                 <constraint firstItem="P2q-2C-tMP" firstAttribute="trailing" secondItem="JyS-jC-bTn" secondAttribute="trailing" id="KBs-5E-ulv"/>
                 <constraint firstItem="OvA-zE-TMT" firstAttribute="width" secondItem="CEp-Ke-UMZ" secondAttribute="width" id="MBr-S7-HuM"/>
-                <constraint firstItem="oVj-OE-cOP" firstAttribute="top" secondItem="JyS-jC-bTn" secondAttribute="bottom" constant="16" id="SXz-H0-4vK"/>
+                <constraint firstItem="oVj-OE-cOP" firstAttribute="top" secondItem="JyS-jC-bTn" secondAttribute="bottom" constant="10" id="SXz-H0-4vK"/>
                 <constraint firstItem="FlN-eo-AoQ" firstAttribute="trailing" secondItem="CEp-Ke-UMZ" secondAttribute="trailing" id="VGm-Po-xVP"/>
                 <constraint firstItem="S6D-dG-FDf" firstAttribute="bottom" secondItem="CEp-Ke-UMZ" secondAttribute="bottom" constant="103" id="WYL-n9-H6u"/>
                 <constraint firstItem="S6D-dG-FDf" firstAttribute="trailing" secondItem="JyS-jC-bTn" secondAttribute="trailing" constant="16" id="acA-is-Rt7"/>
-                <constraint firstItem="P2q-2C-tMP" firstAttribute="top" secondItem="oVj-OE-cOP" secondAttribute="bottom" constant="17" id="es8-fv-rhG"/>
+                <constraint firstItem="P2q-2C-tMP" firstAttribute="top" secondItem="oVj-OE-cOP" secondAttribute="bottom" constant="20" id="es8-fv-rhG"/>
                 <constraint firstItem="S6D-dG-FDf" firstAttribute="bottom" secondItem="OvA-zE-TMT" secondAttribute="bottom" constant="17" id="kT1-K0-YIm"/>
                 <constraint firstItem="1bn-4k-xRa" firstAttribute="top" secondItem="CEp-Ke-UMZ" secondAttribute="bottom" constant="12" id="km0-kH-NMT"/>
                 <constraint firstItem="S6D-dG-FDf" firstAttribute="trailing" secondItem="oVj-OE-cOP" secondAttribute="trailing" constant="175" id="r51-2i-atg"/>

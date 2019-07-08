@@ -8,6 +8,8 @@
 
 import UIKit
 import GoogleMaps
+import Alamofire
+import SwiftyJSON
 
 struct postImageModel {
     let image:  UIImage
@@ -17,7 +19,7 @@ class Phone {
     var numbers: [String]? = []
 }
 
-enum Section {
+enum SectionEnum {
     
     case photosProduct
     case detail
@@ -25,7 +27,6 @@ enum Section {
     case contact
     case phone(phone: Phone)
 
-    
     var description: String {
         switch self {
             
@@ -59,8 +60,8 @@ enum Section {
         return[""]
             
         case .detail:
-           return ["Title","Choose Type","Tax Type","Brand","Year","Condition","Cost","Price","Description"]
-           
+            //return ["PostTypeCell", "TitleCell", "CategoryCell", "TypeCell", "BrandCell", "ModelCell","YearCell","ConditionCell"]
+           return ["PostTypeCell", "TitleCell", "CategoryCell", "TypeCell", "BrandCell", "ModelCell","YearCell","ConditionCell","ColorCell","VinCodeCell","MachineCodeCell","DescriptionCell", "PriceCell"]
         case .discount:
             return ["Discount Type","Discount Amount"]
         case .contact:
@@ -71,88 +72,169 @@ enum Section {
     }
 }
 
-
-
-
-class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDelegate,UITextFieldDelegate , UITableViewDelegate {
+class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDelegate,UITextFieldDelegate , UITableViewDelegate, CellTableClick {
     
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet private weak var collectionView: UICollectionView?
     
     var phone: Phone = Phone()
-    
-    var postImages: Array<postImageModel> = []
-    
+    var postImages: [postImageModel] = []
     let picker = UIImagePickerController()
     
     var tempImage: UIImage?
-    
     var currentIndex: Int = 0
-    
-    
-    var allTypes: [Section] = []
-    
+    var allTypes: [SectionEnum] = []
     var isHideButtonOfSection = false
     
+    var JsonData = PostViewModel()
+    var SalePostData = SalePost()
+    var RentPostData = RentPost()
+    var BuyPostData = BuyPost()
+    
+    weak var refreshXibDelegate: refreshDropdownInXib?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //google map
-//        GMSServices.provideAPIKey("AIzaSyChN5VYq3X6RKvoFeIRfz0WNmC31FrZ0wg")
-//        let camera = GMSCameraPosition.camera(withLatitude:11.568653 , longitude: 104.870329, zoom: 6.0)
-//        let mapView = GMSMapView.map(withFrame: .zero, camera: camera)
-//        self.view = mapView
-        
-        
-        // address LSI
-       // 11.568653; 104.870329
-       // let camera = GMSCameraPosition.camera(withLatitude: 11.568653, longitude: 104.870329, zoom: 10)
-        //all section in tableview
-        
-        
-        self.allTypes = [Section.photosProduct,
-                         Section.detail,
-                         Section.discount,
-                         Section.contact,
-                         Section.phone(phone: self.phone)]
+        self.allTypes = [SectionEnum.photosProduct,
+                         SectionEnum.detail,
+                         SectionEnum.discount,
+                         SectionEnum.contact,
+                         SectionEnum.phone(phone: self.phone)]
+
         
         tableview.delegate = self
         tableview.dataSource = self
- 
+        RegisterXib()
+    }
+    
+    
+    //Configuration
+    func RegisterXib(){
         
-        // register nib intaleview
         let cellNib = UINib(nibName: "DeTailTableCell", bundle: nil)
         tableview?.register(cellNib, forCellReuseIdentifier: "detailCell")
         tableview.keyboardDismissMode = .onDrag
         
-        
         let cellcollection = UINib(nibName: "CollectionTableViewCell", bundle: nil)
-       tableview?.register(cellcollection, forCellReuseIdentifier: "photocollection")
-    
+        tableview?.register(cellcollection, forCellReuseIdentifier: "photocollection")
         
+        let dropdownlist = UINib(nibName: "DropdownTableViewCell", bundle: nil)
+        tableview.register(dropdownlist, forCellReuseIdentifier: "dropdownlist")
         
         let cellData = UINib(nibName: "PassDataCell", bundle: nil)
         tableview?.register(cellData, forCellReuseIdentifier: "dataCell")
+        
         let cellphone = UINib(nibName: "PhoneNumberHeader", bundle: nil)
         tableview?.register(cellphone, forHeaderFooterViewReuseIdentifier: "headerView")
         let celladdnewnumber = UINib(nibName: "AddmoreNumberPhoneTableViewCell", bundle: nil)
         tableview?.register(celladdnewnumber, forCellReuseIdentifier: "AddmoreNumberPhoneTableViewCell")
-      
+        
         let cellFooter = UINib(nibName: "MapTableViewHeaderFooterView", bundle: nil)
         tableview?.register(cellFooter, forHeaderFooterViewReuseIdentifier: "MapTableViewHeaderFooterView")
-        //collectionview
+        
         setupView()
         
-        for _ in 0...6 {
+        for _ in 0...3 {
             self.postImages.append(postImageModel(image: UIImage(named: "icons8-plus-math-50 (5)")!))
         }
     }
+    
+    //DelegateMethod
+    func SubmitClick() {
+        JsonData.sale_post = [SalePostData.asDictionary]
+        
+        let headers: HTTPHeaders = [
+            "Cookie": "",
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization" : User.getUserEncoded(),
+        ]
+        
+//        let imagePost = #imageLiteral(resourceName: <#T##String#>)
+//        let keys = JsonData.asDictionary.keys
+//        let values = JsonData.asDictionary.values
+//        
+//        
+//        Alamofire.upload(
+//            multipartFormData: { MultipartFormData in
+//                
+//                for (key, value) in self.JsonData.asDictionary {
+//                    MultipartFormData.append((value as AnyObject), withName: key)
+//                }
+//    
+//                MultipartFormData.append(imagePost.jpegData(compressionQuality: 1)!, withName: "front_image_path", fileName: "Rathana", mimeType: "image/png")
+//        }, to: PROJECT_API.POST_SELL) { (result) in
+//            
+//            switch result {
+//            case .success(let upload, _, _):
+//                
+//                upload.responseJSON { response in
+//                    print(response.result.value)
+//                }
+//                
+//            case .failure(let encodingError): break
+//            print(encodingError)
+//            }
+//            
+//            
+//        }
+        
+        
+        Alamofire.request(PROJECT_API.POST_SELL,
+                          method: .post,
+                          parameters: JsonData.asDictionary,
+                          encoding: JSONEncoding.default,
+                          headers: headers).responseJSON { response in
+                        switch response.result{
+                        case .success (let value):
+                            print(value)
+                            let AlertMessage = UIAlertController(title: "Successfully",
+                                                                 message: "Post created succssfully.",
+                                                                 preferredStyle: .alert)
+                            AlertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                            self.present(AlertMessage, animated: true, completion: nil)
+                        case .failure(let error):
+                            
+                            print(error)
+                        }
+                    }
+    }
+    
+    func ClickCell(currentCell: CellClickViewModel) {
+        getValueFromDetailSectionByRowIndex(passedData: currentCell)
+        if currentCell.IndexPathKey?.row == 4 {
+            self.refreshXibDelegate?.refreshXib(FKKey: currentCell.ID.toInt())
+        }
+    }
+    
     //fucntion
+    func getValueFromDetailSectionByRowIndex(passedData: CellClickViewModel){
+        
+        switch passedData.IndexPathKey?.row {
+        case 0: JsonData.post_type = passedData.ID
+        case 1: JsonData.title = passedData.ID
+        case 2: JsonData.category = passedData.ID.toInt()
+        case 3: JsonData.type = passedData.ID.toInt()
+        case 4: JsonData.brand = passedData.ID.toInt()
+        case 5: JsonData.modeling = passedData.ID.toInt()
+        case 6: JsonData.year = passedData.ID.toInt()
+        case 7: JsonData.condition = passedData.ID
+        case 8: JsonData.color = passedData.ID
+        case 9: JsonData.vin_code = passedData.ID
+        case 10: JsonData.machine_code = passedData.ID
+        case 11: JsonData.description = passedData.ID
+        case 12:
+            
+            SalePostData.price = passedData.ID
+            SalePostData.total_price = passedData.ID
+        default:
+            print("default")
+        }
+    }
+    
     
     fileprivate func setupView() {
-        
-        
         picker.delegate = self
     }
 
@@ -162,9 +244,6 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
         case .photosProduct:
             return 110
         case .detail:
-            if indexPath.row == 8{
-                return 100
-            }
             return 60
         case .discount:
             if indexPath.row == 1{
@@ -185,29 +264,13 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
       
       let sec = allTypes[section]
       return sec.rowCount
-        
-//        var rows: Int!
-//        switch section {
-//        case 0:
-//            rows = item1.count
-//            break
-//        case 1:
-//            rows = item2.count
-//            break
-//        case 2:
-//            rows = item3.count
-//            break
-//        default:
-//            break
-//        }
-//        return rows
-       // return items[section].count
-       // return 8
     }
+    
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section == 4 {
             let footerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MapTableViewHeaderFooterView") as? MapTableViewHeaderFooterView
             footerView?.contentView.backgroundColor = .white
+            footerView?.delegate = self
             return footerView
         }
         return nil
@@ -215,39 +278,25 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
 
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    
-        
         let type = allTypes[section]
-        
         if section == 0 {
-//            let collection = tableView.dequeueReusableHeaderFooterView(withIdentifier: "photocollection") as! CollectionTableViewCell
-//            collection.postImagecollectionview.dataSource = self
-//            collection.postImagecollectionview.delegate = self
             return nil
-//            let cellcollection = tableView.dequeueReusableHeaderFooterView(withIdentifier: "photocollection") as? CollectionTableViewCell
-//            return cellcollection
-            
-            //add new phone number
-            
-        }else if section == 4 {
+        } else if section == 4 {
             let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "headerView") as? PhoneNumberHeader
             headerView?.contentView.backgroundColor = UIColor.white;
             headerView?.addingButton?.isHidden = self.isHideButtonOfSection
             headerView?.titleLabel?.text = "Phone 1"
+            
             headerView?.addingTapComplietion = {
                 self.phone.numbers?.append("Okay")
                 
-                if self.phone.numbers?.count != 0
-                {
+                if self.phone.numbers?.count != 0 {
                     self.isHideButtonOfSection = true
                     headerView?.addingButton?.isHidden = self.isHideButtonOfSection
                     headerView?.titleLabel?.text = "kkk"
-                }
-                else
-                {
+                } else {
                     self.isHideButtonOfSection = false
-                    headerView?.titleLabel?.text = "nono"
-                    //headerView?.addingButton?.isHidden = self.isHideButtonOfSection
+                    headerView?.titleLabel?.text = "none"
                 }
                tableView.reloadData()
             }
@@ -261,11 +310,7 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
         titleView.addSubview(titleLabel)
         
         return titleView
-        
     }
-    
-    
-    
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if section == 4 {
@@ -285,11 +330,7 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
     }
     
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
-//    if indexPath.section == 0 {
-    
     let type = allTypes[indexPath.section]
-    
     switch type {
     
     case .photosProduct:
@@ -299,22 +340,19 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
         return cell
         
     case .detail:
-        let cell = tableview.dequeueReusableCell(withIdentifier: "dataCell") as! PassDataTableViewCell
-        //cell.titlelabel.text = Sections(rawValue: indexPath.section)?.Content[indexPath.row] as? String
-        if indexPath.row == 1 ||
-                    indexPath.row == 2 ||
-                    indexPath.row == 3 ||
-                    indexPath.row == 4 ||
-                    indexPath.row == 5 {
-                    cell.accessoryType = .disclosureIndicator
-                } else {
-                    cell.accessoryType = .none
-                }
-        let sec = allTypes[indexPath.section]
-        cell.titleLabel.text = sec.Content[indexPath.row] as? String
-        
-        
-        return cell
+        let data  = allTypes[indexPath.section]
+        var detailCell = tableView.dequeueReusableCell(withIdentifier: data.Content[indexPath.row] as! String) as? DetailTableViewCell
+        if detailCell == nil {
+            let nib = Bundle.main.loadNibNamed("DetailTableViewCell", owner: self, options: nil)
+            detailCell = nib?[indexPath.row] as? DetailTableViewCell
+        }
+        detailCell?.passingData.IndexPathKey = NSIndexPath(row: indexPath.row, section: indexPath.section)
+        detailCell?.delegate = self
+        if indexPath.row == 5 {
+            self.refreshXibDelegate = detailCell.self
+        }
+        return detailCell ?? UITableViewCell()
+
         
     case .discount:
         let cell = tableview.dequeueReusableCell(withIdentifier: "detailCell") as! DeTailTableCell
@@ -328,11 +366,10 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
         cell.titlelabel.text = sec.Content[indexPath.row] as? String
         return cell
         //cell.titlelabel.text = Sections(rawValue: indexPath.section)?.Content[indexPath.row] as? String
-    case .phone(let phone):
+    case .phone:
         let cell = tableview.dequeueReusableCell(withIdentifier: "AddmoreNumberPhoneTableViewCell") as! AddmoreNumberPhoneTableViewCell
         
         cell.addingbutton?.isHidden = false
-        
         if indexPath.row != self.phone.numbers!.count - 1 {
             cell.addingbutton?.isHidden = true
         }
@@ -356,64 +393,11 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
         }
         
         return cell
-        //cell.titlelabel.text = Sections(rawValue: indexPath.section)?.Content[indexPath.row] as? String
-   // case .footer:
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "MapTableViewHeaderFooterView") as? MapTableViewHeaderFooterView
-//        return cell
-
-    
     }
     
     
-        
-//        if indexPath.row == 1 ||
-//            indexPath.row == 2 ||
-//            indexPath.row == 3 ||
-//            indexPath.row == 4 ||
-//            indexPath.row == 5 {
-//            cell.accessoryType = .disclosureIndicator
-//        } else {
-//            cell.accessoryType = .none
-//        }
-    
-        //return cell
-//    }else if indexPath.section == 2 {
-//        let cell =
-//        let cell = tableview.dequeueReusableCell(withIdentifier: "dataCell") as!
-//        PassDataTableViewCell
-//        cell.titleLabel.text = Sections(rawValue: indexPath.section)?.Content[indexPath.row] as? String
-//         cell.accessoryType = .none
-//    return cell
-//    }
-   
-    
-//    let cell = tableView.dequeueReusableCell(withIdentifier: "detailCell", for:    indexPath) as! DeTailTableCell
-//    let sec = Sections(rawValue: indexPath.section)
-//    cell.titlelabel.text = sec!.Content[indexPath.row] as? String
-//    cell.titlelabel.numberOfLines = 0
-//    return cell
-    
+}
 
- //       cell.labelTitle.text = titlelabel[indexPath.row]
-//       if indexPath.section == 0 {
-//            cell.labelTitle.text = titlelabel[indexPath.row]
-//        }
-//        else{
-//            cell.labelTitle.text = titlelabel1[indexPath.row]
-//        }
-//       //cell.textLabel?.text = items[indexPath.section][indexPath.row]
-//
-    
-    }
-    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        var cell = tableview.dequeueReusableCell(withIdentifier: "cell")
-//        if cell == nil{
-//            cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-//        }
-//        cell!.textLabel?.text = tabledata[indexPath.row]
-//        return cell!
-//    }
 }
 
 extension PostAdViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -478,3 +462,11 @@ extension PostAdViewController: UIImagePickerControllerDelegate , UINavigationCo
         
     }
 }
+
+
+extension String {
+    func toInt() -> Int {
+        return Int(self) ?? 0
+    }
+}
+

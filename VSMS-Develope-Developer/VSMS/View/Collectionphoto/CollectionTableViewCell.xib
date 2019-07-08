@@ -19,8 +19,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="353" height="95.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="w6O-4r-ATu">
-                        <rect key="frame" x="0.0" y="5" width="353" height="85.5"/>
+
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="w6O-4r-ATu">
+                        <rect key="frame" x="8" y="0.0" width="338" height="96"/>
+
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="10" id="b91-Ax-sJ9">
                             <size key="itemSize" width="50" height="50"/>
@@ -31,17 +33,19 @@
                     </collectionView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="w6O-4r-ATu" secondAttribute="bottom" constant="5" id="RGy-jf-f7g"/>
-                    <constraint firstItem="w6O-4r-ATu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="XiA-nv-icb"/>
-                    <constraint firstItem="w6O-4r-ATu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="a30-VJ-K5W"/>
-                    <constraint firstAttribute="trailing" secondItem="w6O-4r-ATu" secondAttribute="trailing" id="vll-fI-fzQ"/>
+
+                    <constraint firstAttribute="bottom" secondItem="w6O-4r-ATu" secondAttribute="bottom" id="RGy-jf-f7g"/>
+                    <constraint firstItem="w6O-4r-ATu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="XiA-nv-icb"/>
+                    <constraint firstItem="w6O-4r-ATu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="a30-VJ-K5W"/>
+                    <constraint firstAttribute="trailing" secondItem="w6O-4r-ATu" secondAttribute="trailing" constant="7" id="vll-fI-fzQ"/>
+
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="postImagecollectionview" destination="w6O-4r-ATu" id="Cxw-1b-vgk"/>
             </connections>
-            <point key="canvasLocation" x="169" y="4"/>
+            <point key="canvasLocation" x="168.84057971014494" y="3.3482142857142856"/>
         </tableViewCell>
     </objects>
 </document>
