@@ -11,8 +11,6 @@ import UIKit
 class PostsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var lblName: UILabel!
-    
-    
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var PostImage: UIImageView!
     
