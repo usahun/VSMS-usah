@@ -71,6 +71,7 @@ class CustomTabBarController: UITabBarController {
                     menuViewController: menuViewController)
         
         let cameratap = storyBoard.instantiateViewController(withIdentifier: "PostAdViewController")
+
         let profiletap = storyBoard.instantiateViewController(withIdentifier: "LoginController")
         
         

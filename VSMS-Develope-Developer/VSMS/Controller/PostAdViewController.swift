@@ -101,6 +101,7 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
                          SectionEnum.discount,
                          SectionEnum.contact,
                          SectionEnum.phone(phone: self.phone)]
+
         
         tableview.delegate = self
         tableview.dataSource = self
@@ -241,7 +242,7 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
         let sec = allTypes[indexPath.section]
         switch sec {
         case .photosProduct:
-            return 95
+            return 110
         case .detail:
             return 60
         case .discount:
