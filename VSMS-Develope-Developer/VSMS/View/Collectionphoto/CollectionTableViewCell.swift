@@ -16,7 +16,7 @@ class CollectionTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 70, height: 80)
+        layout.itemSize = CGSize(width: 80, height: 80)
         layout.scrollDirection = .horizontal
         postImagecollectionview?.collectionViewLayout = layout
         

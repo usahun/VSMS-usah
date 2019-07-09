@@ -23,8 +23,8 @@ UITableViewDelegate {
     var willAppear: Bool = true
     
     override func viewWillAppear(_ animated: Bool) {
-        tableView?.estimatedRowHeight = 300
-        tableView?.rowHeight = UITableView.automaticDimension
+//        tableView?.estimatedRowHeight = 300
+//        tableView?.rowHeight = UITableView.automaticDimension
         self.sideMenuController?.delegate = self
     }
     
@@ -47,10 +47,6 @@ UITableViewDelegate {
         let newly = UINib(nibName: "NewlyTableViewCell", bundle: nil)
         tableView?.register(newly, forCellReuseIdentifier: "newly")
     
-        
-        
-        
-        
        // sideMenuController?.delegate = self as! SideMenuControllerDelegate
         let menuBarButton = UIBarButtonItem(image: UIImage(named: "HamburgarIcon"), style: .done, target: self, action: #selector(menutap))
 //        let menubutton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(menutap))
@@ -153,6 +149,7 @@ UITableViewDelegate {
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "Searchbar", for: indexPath) as! SearchTableViewCell
+            cell.txtYear.text = "123"
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier:"discount", for: indexPath) as! DiscountTableViewCell
@@ -172,7 +169,20 @@ UITableViewDelegate {
         }
     }
 }
+
+extension SideMenuController {
+    open override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        view.frame = UIScreen.main.bounds
+    }
+    
+    open override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        view.frame = UIScreen.main.bounds
+    }
+}
 extension NewHomepageViewController: SideMenuControllerDelegate {
+    
     func sideMenuController(_ sideMenuController: SideMenuController, willShow viewController: UIViewController, animated: Bool) {
         view.frame = UIScreen.main.bounds
     }
