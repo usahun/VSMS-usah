@@ -8,15 +8,19 @@
 
 import UIKit
 
-class CollectionTableViewCell: UITableViewCell {
+class CollectionTableViewCell: UITableViewCell, refreshCollectionProtocol {
 
     @IBOutlet weak var postImagecollectionview: UICollectionView!
+
+    func refreshCollection() {
+        postImagecollectionview.reloadData()
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 80, height: 80)
+        layout.itemSize = CGSize(width: 120, height: 120)
         layout.scrollDirection = .horizontal
         postImagecollectionview?.collectionViewLayout = layout
         

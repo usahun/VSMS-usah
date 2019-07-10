@@ -38,18 +38,25 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        LabelName.text = User.getUsername()
+
+        
+        User.IsAuthentication(view: self)
+
         
        tableView.delegate = self
        tableView.dataSource = self
        self.tableView.reloadData()
-       
+       LabelName.text = User.getUsername()
         profileImage.layer.cornerRadius = profileImage.frame.width * 0.5
         profileImage.clipsToBounds = true
+
         
        self.navigationController?.navigationBar.barTintColor = UIColor.white
        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
        self.navigationController?.navigationBar.shadowImage = UIImage()
+
+        navigationController?.setNavigationBarHidden(false, animated: false)
+
         
         //Api
         
@@ -80,6 +87,7 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         tableView.register(likes, forCellReuseIdentifier: "likesCell")
         
     }
+
     
     
     
@@ -105,13 +113,11 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 //
 //    }
     
+
     
     @IBAction func swicthChange(_ sender: UISegmentedControl) {
-      
-
         index = mysegmentControl.selectedSegmentIndex
         tableView.reloadData()
-        
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

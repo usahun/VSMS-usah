@@ -11,11 +11,16 @@ import UIKit
 class PhotoListCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var postImageView: UIImageView?
+    @IBOutlet weak var btnRemove: UIButton!
+    var removeImage:(() -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
     }
 
+    @IBAction func btnRemoveClick(_ sender: UIButton) {
+        self.removeImage!()
+    }
     
 }

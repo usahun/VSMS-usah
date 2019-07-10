@@ -20,6 +20,7 @@ class LoginController: UIViewController {
         super.viewDidLoad()
 
         navigationController?.navigationBar.tintColor = UIColor.blue
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     

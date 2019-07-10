@@ -16,26 +16,20 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="447"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JyS-jC-bTn">
-                    <rect key="frame" x="39" y="4" width="265" height="18"/>
-                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVj-OE-cOP">
-                    <rect key="frame" x="39" y="32" width="106" height="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVj-OE-cOP">
+                    <rect key="frame" x="16" y="8" width="129" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ETC-nM-qM0">
-                    <rect key="frame" x="297" y="84" width="8" height="17"/>
+                    <rect key="frame" x="297" y="50" width="8" height="17"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="CEp-Ke-UMZ">
-                    <rect key="frame" x="16" y="69" width="289" height="275"/>
+                    <rect key="frame" x="16" y="35" width="289" height="309"/>
                 </mapView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update this contact to profile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1bn-4k-xRa">
                     <rect key="frame" x="16" y="356" width="289" height="29"/>
@@ -61,7 +55,7 @@
                     <rect key="frame" x="256" y="355" width="51" height="31"/>
                 </switch>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P2q-2C-tMP">
-                    <rect key="frame" x="39" y="69" width="265" height="18"/>
+                    <rect key="frame" x="16" y="35" width="8" height="18"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="18" id="2k3-xJ-rCL"/>
                     </constraints>
@@ -75,30 +69,26 @@
                 <constraint firstItem="1bn-4k-xRa" firstAttribute="leading" secondItem="CEp-Ke-UMZ" secondAttribute="leading" id="1IE-se-ceG"/>
                 <constraint firstItem="P2q-2C-tMP" firstAttribute="leading" secondItem="oVj-OE-cOP" secondAttribute="leading" id="3PC-30-c8E"/>
                 <constraint firstItem="CEp-Ke-UMZ" firstAttribute="leading" secondItem="S6D-dG-FDf" secondAttribute="leading" constant="16" id="4hg-KY-dEn"/>
-                <constraint firstItem="JyS-jC-bTn" firstAttribute="top" secondItem="S6D-dG-FDf" secondAttribute="top" constant="4" id="9Ia-Uu-90g"/>
                 <constraint firstItem="CEp-Ke-UMZ" firstAttribute="top" secondItem="ETC-nM-qM0" secondAttribute="bottom" constant="-32" id="BWa-kx-Uaq"/>
                 <constraint firstItem="S6D-dG-FDf" firstAttribute="trailing" secondItem="ETC-nM-qM0" secondAttribute="trailing" constant="15" id="G7v-15-YZh"/>
-                <constraint firstItem="P2q-2C-tMP" firstAttribute="trailing" secondItem="JyS-jC-bTn" secondAttribute="trailing" id="KBs-5E-ulv"/>
                 <constraint firstItem="OvA-zE-TMT" firstAttribute="width" secondItem="CEp-Ke-UMZ" secondAttribute="width" id="MBr-S7-HuM"/>
-                <constraint firstItem="oVj-OE-cOP" firstAttribute="top" secondItem="JyS-jC-bTn" secondAttribute="bottom" constant="10" id="SXz-H0-4vK"/>
                 <constraint firstItem="FlN-eo-AoQ" firstAttribute="trailing" secondItem="CEp-Ke-UMZ" secondAttribute="trailing" id="VGm-Po-xVP"/>
                 <constraint firstItem="S6D-dG-FDf" firstAttribute="bottom" secondItem="CEp-Ke-UMZ" secondAttribute="bottom" constant="103" id="WYL-n9-H6u"/>
-                <constraint firstItem="S6D-dG-FDf" firstAttribute="trailing" secondItem="JyS-jC-bTn" secondAttribute="trailing" constant="16" id="acA-is-Rt7"/>
-                <constraint firstItem="P2q-2C-tMP" firstAttribute="top" secondItem="oVj-OE-cOP" secondAttribute="bottom" constant="20" id="es8-fv-rhG"/>
+                <constraint firstItem="P2q-2C-tMP" firstAttribute="top" secondItem="oVj-OE-cOP" secondAttribute="bottom" constant="10" id="es8-fv-rhG"/>
+                <constraint firstItem="oVj-OE-cOP" firstAttribute="top" secondItem="S6D-dG-FDf" secondAttribute="top" constant="8" id="fJD-KX-nkU"/>
                 <constraint firstItem="S6D-dG-FDf" firstAttribute="bottom" secondItem="OvA-zE-TMT" secondAttribute="bottom" constant="17" id="kT1-K0-YIm"/>
                 <constraint firstItem="1bn-4k-xRa" firstAttribute="top" secondItem="CEp-Ke-UMZ" secondAttribute="bottom" constant="12" id="km0-kH-NMT"/>
                 <constraint firstItem="S6D-dG-FDf" firstAttribute="trailing" secondItem="oVj-OE-cOP" secondAttribute="trailing" constant="175" id="r51-2i-atg"/>
                 <constraint firstItem="FlN-eo-AoQ" firstAttribute="centerY" secondItem="1bn-4k-xRa" secondAttribute="centerY" id="r5z-zV-SDl"/>
-                <constraint firstItem="JyS-jC-bTn" firstAttribute="leading" secondItem="S6D-dG-FDf" secondAttribute="leading" constant="39" id="s0h-IP-pOd"/>
                 <constraint firstItem="S6D-dG-FDf" firstAttribute="trailing" secondItem="CEp-Ke-UMZ" secondAttribute="trailing" constant="15" id="tLV-Gh-Juf"/>
                 <constraint firstItem="CEp-Ke-UMZ" firstAttribute="top" secondItem="P2q-2C-tMP" secondAttribute="bottom" constant="-18" id="uZW-NM-Su0"/>
                 <constraint firstItem="OvA-zE-TMT" firstAttribute="centerX" secondItem="S6D-dG-FDf" secondAttribute="centerX" id="uk0-J4-kxs"/>
-                <constraint firstItem="oVj-OE-cOP" firstAttribute="leading" secondItem="S6D-dG-FDf" secondAttribute="leading" constant="39" id="wNX-Tz-7vy"/>
+                <constraint firstItem="oVj-OE-cOP" firstAttribute="leading" secondItem="S6D-dG-FDf" secondAttribute="leading" constant="16" id="wNX-Tz-7vy"/>
                 <constraint firstItem="1bn-4k-xRa" firstAttribute="trailing" secondItem="CEp-Ke-UMZ" secondAttribute="trailing" id="xOy-HN-2aO"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="S6D-dG-FDf"/>
-            <point key="canvasLocation" x="-75.362318840579718" y="-316.71195652173918"/>
+            <point key="canvasLocation" x="-445" y="-347"/>
         </view>
     </objects>
 </document>

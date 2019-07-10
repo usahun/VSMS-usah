@@ -27,7 +27,7 @@ class LoginPasswordController: UIViewController {
 
         //if user is already logged in switching to profile screen
 
-       // self.defaultValues.set(nil, forKey: "username")
+
         if defaultValues.string(forKey: "username") != nil{
             let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "TestViewController") as! TestViewController
             self.navigationController?.pushViewController(profileViewController, animated: true)

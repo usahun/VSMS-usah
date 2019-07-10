@@ -21,6 +21,13 @@ protocol refreshDropdownInXib: class {
 protocol RecordCountProtocol: class {
     func getRecCount(recordCount: Int)
 }
+protocol getDropdowntypeProtocol: class {
+    func getDropDownTypeData(type: String)
+}
+
+protocol refreshCollectionProtocol: class {
+    func refreshCollection()
+}
 
 class CellClickViewModel {
     var ID: String = ""

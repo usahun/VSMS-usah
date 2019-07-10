@@ -9,8 +9,8 @@
 import UIKit
 import DropDown
 
-class DetailTableViewCell: UITableViewCell, refreshDropdownInXib {
-    
+class DetailTableViewCell: UITableViewCell, refreshDropdownInXib, UITextViewDelegate {
+
     @IBOutlet weak var btnPostType: UIButton!
     @IBOutlet weak var txttitle: UITextField!
     @IBOutlet weak var btnCategory: UIButton!
@@ -22,8 +22,8 @@ class DetailTableViewCell: UITableViewCell, refreshDropdownInXib {
     @IBOutlet weak var btnColor: UIButton!
     @IBOutlet weak var txtVinCode: UITextField!
     @IBOutlet weak var txtMachineCode: UITextField!
-    @IBOutlet weak var txtDescription: UITextField!
     @IBOutlet weak var btnPrice: UITextField!
+    @IBOutlet weak var txtDescription: UITextView!
     
     //Internal Properties
     weak var delegate: CellTableClick?
@@ -42,6 +42,7 @@ class DetailTableViewCell: UITableViewCell, refreshDropdownInXib {
     //Override Methods
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         // Initialization code
     }
 
@@ -51,12 +52,21 @@ class DetailTableViewCell: UITableViewCell, refreshDropdownInXib {
     }
     
     func refreshXib(FKKey: Int) {
+        btnModel.setTitle("", for: .normal)
+        passingData.ID = ""
+        passingData.Value = ""
+        self.delegate?.ClickCell(currentCell: passingData)
+        
         Functions.getDropDownList(key: passingData.IndexPathKey!.row) { (val) in
             self.rawValue = val.filter({$0.FKKey == FKKey.toString()})
             self.dropdownData = []
             self.dropdownData = val.filter({$0.FKKey == FKKey.toString()}).map({$0.Text})
             self.setupModelDropDown()
         }
+    }
+    
+    func getDiscountTypeValue(disType: String) {
+        print("")
     }
     
     //Functions and Selectors
@@ -101,18 +111,17 @@ class DetailTableViewCell: UITableViewCell, refreshDropdownInXib {
         passingData.Value = sender.text ?? ""
         self.delegate?.ClickCell(currentCell: passingData)
     }
-    @IBAction func DescriptionChange(_ sender: UITextField) {
-        passingData.ID = sender.text ?? ""
-        passingData.Value = sender.text ?? ""
-        self.delegate?.ClickCell(currentCell: passingData)
+ 
+    func textViewDidChange(_ textView: UITextView) {
+        print("I have edit text View.")
     }
+    
     @IBAction func PriceChange(_ sender: UITextField) {
         passingData.ID = sender.text ?? ""
         passingData.Value = sender.text ?? ""
         self.delegate?.ClickCell(currentCell: passingData)
     }
-    
-    
+
     
     //Configuration methods
     
@@ -244,6 +253,8 @@ class DetailTableViewCell: UITableViewCell, refreshDropdownInXib {
                 self.setupConditionDropDown()
             case 8:
                 self.setupColorDropDown()
+            case 11:
+                self.txtDescription.delegate = self
             default:
                 print("OK")
             }

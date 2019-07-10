@@ -10,14 +10,18 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
+var http_absoluteString = "http://103.205.26.103:8000"
+
 class PROJECT_API {
-    static var CATEGORIES = "http://103.205.26.103:8000/api/v1/categories/"
-    static var MODELS = "http://103.205.26.103:8000/api/v1/models/"
-    static var BRANDS = "http://103.205.26.103:8000/api/v1/brands/"
-    static var YEARS = "http://103.205.26.103:8000/api/v1/years/"
-    static var TYPES = "http://103.205.26.103:8000/api/v1/types/"
-    static var STATUS = "http://103.205.26.103:8000/api/v1/status/"
-    static var PROVINCES = "http://103.205.26.103:8000/api/v1/provinces/"
+
+    static var CATEGORIES = "\(http_absoluteString)/api/v1/categories/"
+    static var MODELS = "\(http_absoluteString)/api/v1/models/"
+    static var BRANDS = "\(http_absoluteString)/api/v1/brands/"
+    static var YEARS = "\(http_absoluteString)/api/v1/years/"
+    static var TYPES = "\(http_absoluteString)/api/v1/types/"
+    static var STATUS = "\(http_absoluteString)/api/v1/status/"
+    static var PROVINCES = "\(http_absoluteString)/api/v1/provinces/"
+    
     static var POST_BYUSER = "http://103.205.26.103:8000/postbyuser/"
     static var LOGIN = "http://103.205.26.103:8000/api/v1/rest-auth/login/"
     
@@ -26,15 +30,16 @@ class PROJECT_API {
     static var LIKEBYUSER = "http://103.205.26.103:8000/likebyuser/"
     static var BESTDEAL = "http://103.205.26.103:8000/bestdeal/"
     
-    static var POST_BUYS = "http://103.205.26.103:8000/api/v1/postbuys/"
-    static var POST_RENTS = "http://103.205.26.103:8000/postrent/"
-    static var POST_SELL = "http://103.205.26.103:8000/postsale/"
+    static var POST_BUYS = "\(http_absoluteString)/api/v1/postbuys/"
+    static var POST_RENTS = "\(http_absoluteString)/postrent/"
+    static var POST_SELL = "\(http_absoluteString)/postsale/"
 }
+
 
 class User {
     static func getUserID() -> Int {
         let defaultValues = UserDefaults.standard
-        return Int(defaultValues.string(forKey: "userid")!)!
+        return Int(defaultValues.string(forKey: "userid") ?? "0") ?? 0
     }
     
     static func getUsername() -> String {
@@ -47,13 +52,26 @@ class User {
         let username = defaultValues.string(forKey: "username")!
         let password = defaultValues.string(forKey: "password")!
         let userPass = username + ":" + password
-        
-        
         return "Basic " + userPass.base64Encoded()!
+    }
+    
+    static func IsAuthenticated(view: UIViewController) {
+        let defaultValues = UserDefaults.standard
+        if defaultValues.string(forKey: "username") == nil{
+            let LogInView = view.storyboard?.instantiateViewController(withIdentifier: "LoginController") as! LoginController
+            view.navigationController?.pushViewController(LogInView, animated: true)
+        }
+        else{
+            return
+        }
     }
 }
 
 class Functions {
+    
+    static func getDiscountTypeList() -> [String] {
+        return ["Amount", "Percentage"]
+    }
     
     
     static func getDropDownList(key: Int ,completion: @escaping ([dropdownData]) -> ()){
@@ -175,7 +193,6 @@ class Functions {
 }
 
 
-
 extension String {
     func base64Encoded() -> String? {
         return data(using: .utf8)?.base64EncodedString()
@@ -197,5 +214,4 @@ extension Int {
         return "\(self)"
     }
 }
-
 

@@ -440,11 +440,11 @@
             </connections>
             <point key="canvasLocation" x="-239" y="691"/>
         </tableViewCell>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="DescriptionCell" rowHeight="62" id="MPY-ON-4Qb" userLabel="Description" customClass="DetailTableViewCell" customModule="VSMS" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="DescriptionCell" rowHeight="83" id="MPY-ON-4Qb" userLabel="Description" customClass="DetailTableViewCell" customModule="VSMS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="83"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MPY-ON-4Qb" id="37u-78-YMf">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="61.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="82.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6y8-eK-JQb">
@@ -453,28 +453,27 @@
                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SLn-Uf-AQF">
-                        <rect key="frame" x="15" y="30" width="290" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <textInputTraits key="textInputTraits"/>
-                        <connections>
-                            <action selector="DescriptionChange:" destination="MPY-ON-4Qb" eventType="editingDidEnd" id="7OQ-QM-wo7"/>
-                        </connections>
-                    </textField>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0wH-yn-cyl">
+                        <rect key="frame" x="16" y="30" width="288" height="44.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="SLn-Uf-AQF" firstAttribute="top" secondItem="6y8-eK-JQb" secondAttribute="bottom" constant="8" id="59w-AS-bbr"/>
+                    <constraint firstItem="0wH-yn-cyl" firstAttribute="top" secondItem="6y8-eK-JQb" secondAttribute="bottom" constant="8" id="0iT-09-1ku"/>
                     <constraint firstItem="6y8-eK-JQb" firstAttribute="top" secondItem="37u-78-YMf" secondAttribute="top" constant="5" id="708-2o-4xT"/>
-                    <constraint firstItem="SLn-Uf-AQF" firstAttribute="leading" secondItem="37u-78-YMf" secondAttribute="leading" constant="15" id="YlY-BP-uUx"/>
-                    <constraint firstAttribute="trailing" secondItem="SLn-Uf-AQF" secondAttribute="trailing" constant="15" id="hXH-n6-GVL"/>
+                    <constraint firstAttribute="bottom" secondItem="0wH-yn-cyl" secondAttribute="bottom" constant="8" id="VbG-4J-0fl"/>
+                    <constraint firstAttribute="trailing" secondItem="0wH-yn-cyl" secondAttribute="trailing" constant="16" id="bef-ya-bpq"/>
                     <constraint firstItem="6y8-eK-JQb" firstAttribute="leading" secondItem="37u-78-YMf" secondAttribute="leading" constant="15" id="ijg-uS-SDB"/>
+                    <constraint firstItem="0wH-yn-cyl" firstAttribute="leading" secondItem="37u-78-YMf" secondAttribute="leading" constant="16" id="lPe-kO-5zQ"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="nCM-bi-opP"/>
             <connections>
-                <outlet property="txtDescription" destination="SLn-Uf-AQF" id="0zg-9W-lX9"/>
+                <outlet property="txtDescription" destination="0wH-yn-cyl" id="Do1-nk-Dh2"/>
             </connections>
-            <point key="canvasLocation" x="-239" y="767"/>
+            <point key="canvasLocation" x="-239.13043478260872" y="773.77232142857144"/>
         </tableViewCell>
         <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="PriceCell" rowHeight="62" id="pOE-eP-0tV" userLabel="Price" customClass="DetailTableViewCell" customModule="VSMS" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
@@ -492,7 +491,7 @@
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GOZ-jA-CwQ">
                         <rect key="frame" x="15" y="30" width="290" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                         <connections>
                             <action selector="PriceChange:" destination="pOE-eP-0tV" eventType="editingDidEnd" id="HMt-ut-DLY"/>
                         </connections>
