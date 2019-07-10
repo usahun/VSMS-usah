@@ -18,7 +18,7 @@ class LoginPasswordController: UIViewController {
     
     @IBOutlet weak var loginbutton: UIButton!
     
-    let URL_USER_LOGIN = "http://103.205.26.103:8000/api/v1/rest-auth/login/"
+    
     let defaultValues = UserDefaults.standard
     
     
@@ -27,9 +27,9 @@ class LoginPasswordController: UIViewController {
 
         //if user is already logged in switching to profile screen
 
-        //self.defaultValues.set(nil, forKey: "username")
+       // self.defaultValues.set(nil, forKey: "username")
         if defaultValues.string(forKey: "username") != nil{
-            let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "StockTranfer") as! StockTranfer
+            let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "TestViewController") as! TestViewController
             self.navigationController?.pushViewController(profileViewController, animated: true)
         }
         
@@ -47,7 +47,7 @@ class LoginPasswordController: UIViewController {
             "Cookie": ""
         ]
         
-        Alamofire.request(URL_USER_LOGIN, method: .post, parameters: parameters,encoding: JSONEncoding.default, headers: headers).responseJSON
+        Alamofire.request(PROJECT_API.LOGIN, method: .post, parameters: parameters,encoding: JSONEncoding.default, headers: headers).responseJSON
             { response in
 
                 if let result = response.result.value {
@@ -66,7 +66,7 @@ class LoginPasswordController: UIViewController {
                         self.defaultValues.set(self.textpassword.text, forKey: "password")
                         
                         //switching the screen
-                        let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "StockTranfer") as! StockTranfer
+                        let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "TestViewController") as! TestViewController
                         self.navigationController?.pushViewController(profileViewController, animated: true)
                         
                         self.dismiss(animated: false, completion: nil)
@@ -83,3 +83,4 @@ class LoginPasswordController: UIViewController {
 
     }
 
+}

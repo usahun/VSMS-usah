@@ -17,12 +17,13 @@ class ProfileModel {
     var category: Int = 0
     var condition: String = ""
     var cost: String = "0.0"
+    var imagefront: String = ""
     
-    
-    init(id: Int, name: String, cost: String){
+    init(id: Int, name: String, cost: String, imagefront: String){
         self.PosID = id
         self.title = name
         self.cost = cost
+        self.imagefront = imagefront
     }
     
     init(json: JSON){
@@ -31,20 +32,12 @@ class ProfileModel {
         self.title = json["title"].stringValue
         self.category = json["category"].stringValue.toInt()
         self.cost = json["cost"].stringValue
+        self.imagefront = json["base64_front_image"].stringValue
         
         
     }
 }
 
-extension Int {
-    func toString() -> String {
-        return "\(self)"
-    }
-}
-extension String {
-    func toInt() -> Int {
-        return Int(self) ?? 0
-    }
-}
+
 
 

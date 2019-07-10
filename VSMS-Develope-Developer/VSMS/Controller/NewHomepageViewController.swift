@@ -9,7 +9,8 @@
 import UIKit
 import CoreLocation
 import SideMenuSwift
-
+import Alamofire
+import SwiftyJSON
 
 class NewHomepageViewController:
     UIViewController,
@@ -22,18 +23,26 @@ UITableViewDelegate {
     var MaxHeightofContent: CGFloat = 0
     var willAppear: Bool = true
     
+     
+    
     override func viewWillAppear(_ animated: Bool) {
 //        tableView?.estimatedRowHeight = 300
 //        tableView?.rowHeight = UITableView.automaticDimension
         self.sideMenuController?.delegate = self
     }
     
+    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
         
         setupNavigationBarItem()
         tableView?.delegate = self
         tableView?.dataSource = self
+        tableView?.reloadData()
         
         let cellnib = UINib(nibName: "HomePageTableViewCell", bundle: nil)
         tableView?.register(cellnib, forCellReuseIdentifier: "ImageSlide")

@@ -13,33 +13,54 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NewPostImageCollectionCell_ID" id="gTV-IL-0wX" customClass="NewPostImageCollectionViewCell" customModule="VSMS" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="202" height="154"/>
+            <rect key="frame" x="0.0" y="0.0" width="202" height="192"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="202" height="154"/>
+                <rect key="frame" x="0.0" y="0.0" width="202" height="192"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Kawasaki2019" translatesAutoresizingMaskIntoConstraints="NO" id="EJq-jO-vgn">
-                        <rect key="frame" x="0.0" y="0.0" width="202" height="154"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EJq-jO-vgn">
+                        <rect key="frame" x="0.0" y="0.0" width="202" height="128"/>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ProductPrice" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S75-gk-G2N">
+                        <rect key="frame" x="8" y="164" width="84" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="9ZE-Fm-XrW"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ProductName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N8d-7b-gmv">
+                        <rect key="frame" x="8" y="139" width="89" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="wPY-Sq-Ird"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="EJq-jO-vgn" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="84m-pw-VxN"/>
-                <constraint firstAttribute="bottom" secondItem="EJq-jO-vgn" secondAttribute="bottom" id="ne1-KK-6g8"/>
-                <constraint firstAttribute="trailing" secondItem="EJq-jO-vgn" secondAttribute="trailing" id="ugJ-FP-cfU"/>
-                <constraint firstItem="EJq-jO-vgn" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="wKz-7U-lFP"/>
+                <constraint firstItem="N8d-7b-gmv" firstAttribute="top" secondItem="EJq-jO-vgn" secondAttribute="bottom" constant="11" id="0bj-7G-KIU"/>
+                <constraint firstItem="N8d-7b-gmv" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" constant="8" id="CBM-YW-3bh"/>
+                <constraint firstItem="S75-gk-G2N" firstAttribute="top" secondItem="N8d-7b-gmv" secondAttribute="bottom" constant="8" id="MOb-qX-5y9"/>
+                <constraint firstItem="S75-gk-G2N" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" constant="8" id="VdP-vs-PFO"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="S75-gk-G2N" secondAttribute="bottom" constant="11" id="Ye8-cP-kZf"/>
+                <constraint firstItem="EJq-jO-vgn" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="o1o-Pp-UnZ"/>
+                <constraint firstItem="EJq-jO-vgn" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="oO5-4s-32x"/>
+                <constraint firstAttribute="trailing" secondItem="EJq-jO-vgn" secondAttribute="trailing" id="wAH-SR-fwb"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <size key="customSize" width="202" height="154"/>
+            <size key="customSize" width="202" height="192"/>
             <connections>
                 <outlet property="Image" destination="EJq-jO-vgn" id="yl1-VW-HW2"/>
+                <outlet property="LblName" destination="N8d-7b-gmv" id="Cj2-7J-hsx"/>
+                <outlet property="lblPrice" destination="S75-gk-G2N" id="JjY-xh-gXu"/>
             </connections>
-            <point key="canvasLocation" x="153.59999999999999" y="113.3433283358321"/>
+            <point key="canvasLocation" x="153.59999999999999" y="130.43478260869566"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="Kawasaki2019" width="310" height="225"/>
-    </resources>
 </document>

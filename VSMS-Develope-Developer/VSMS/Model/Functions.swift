@@ -18,7 +18,13 @@ class PROJECT_API {
     static var TYPES = "http://103.205.26.103:8000/api/v1/types/"
     static var STATUS = "http://103.205.26.103:8000/api/v1/status/"
     static var PROVINCES = "http://103.205.26.103:8000/api/v1/provinces/"
+    static var POST_BYUSER = "http://103.205.26.103:8000/postbyuser/"
+    static var LOGIN = "http://103.205.26.103:8000/api/v1/rest-auth/login/"
     
+    static var USER = "http://103.205.26.103:8000/api/v1/users/"
+    static var HOMEPAGE = "http://103.205.26.103:8000/allposts/"
+    static var LIKEBYUSER = "http://103.205.26.103:8000/likebyuser/"
+    static var BESTDEAL = "http://103.205.26.103:8000/bestdeal/"
     
     static var POST_BUYS = "http://103.205.26.103:8000/api/v1/postbuys/"
     static var POST_RENTS = "http://103.205.26.103:8000/postrent/"
@@ -33,7 +39,7 @@ class User {
     
     static func getUsername() -> String {
         let defaultValues = UserDefaults.standard
-        return defaultValues.string(forKey: "username")!
+        return defaultValues.string(forKey: "username") ?? ""
     }
     
     static func getUserEncoded() -> String {
@@ -179,6 +185,11 @@ extension String {
         guard let data = Data(base64Encoded: self) else { return nil }
         return String(data: data, encoding: .utf8)
     }
+    
+    func base64ToImage() -> UIImage?{
+        let imageData = NSData(base64Encoded: self ,options: NSData.Base64DecodingOptions.ignoreUnknownCharacters)
+        return UIImage(data: imageData! as Data) ?? UIImage()
+    }
 }
 
 extension Int {
@@ -186,3 +197,5 @@ extension Int {
         return "\(self)"
     }
 }
+
+

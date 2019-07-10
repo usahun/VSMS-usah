@@ -28,8 +28,8 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHd-f9-0gm">
-                        <rect key="frame" x="139" y="68" width="51" height="26"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHd-f9-0gm">
+                        <rect key="frame" x="139" y="68" width="41.5" height="26"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="26" id="3JS-p6-4fn"/>
                         </constraints>
@@ -37,7 +37,7 @@
                         <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dream192" translatesAutoresizingMaskIntoConstraints="NO" id="5Wd-iM-z1v">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Wd-iM-z1v">
                         <rect key="frame" x="5" y="10" width="128" height="88"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="88" id="Ffz-ZM-i3h"/>
@@ -64,7 +64,4 @@
             <point key="canvasLocation" x="53.600000000000001" y="161.46926536731635"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="Dream192" width="1500" height="1000"/>
-    </resources>
 </document>

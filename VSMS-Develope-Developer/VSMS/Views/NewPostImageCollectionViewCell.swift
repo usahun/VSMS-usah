@@ -12,6 +12,8 @@ class NewPostImageCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var Image: UIImageView!
     
+    @IBOutlet weak var lblPrice: UILabel!
+    @IBOutlet weak var LblName: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

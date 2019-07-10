@@ -7,6 +7,8 @@
 //
 import CollectionViewGridLayout
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 enum TemporaryData: Int, CustomStringConvertible {
     case HondaClick2019
@@ -109,11 +111,34 @@ class NewlyTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionV
     @IBOutlet weak var btnGrid: UIButton!
     @IBOutlet weak var btnImage: UIButton!
     
+    var postPro: [HomePageModel] = []
+    var recordCount: Int = 0
+    weak var delegate: RecordCountProtocol?
     
     //Internal Properties
     var cellHeightCount: CGFloat = 0
     var collectionViewFlolayout: UICollectionViewFlowLayout!
     var listType = "list"
+    
+    func API() {
+        
+        Alamofire.request(PROJECT_API.HOMEPAGE, method: .get,encoding: JSONEncoding.default).responseJSON
+            { (response) in
+                switch response.result{
+                case .success(let value):
+                    let json = JSON(value)
+                    self.postPro = (json["results"].array?.map{
+                        HomePageModel(id: $0["id"].stringValue.toInt(), name: $0["title"].stringValue,cost: $0["cost"].stringValue,imagefront: $0["front_image_base64"].stringValue)
+                        })!
+                    self.recordCount = json.count
+                  //  print(self.postPro)
+                    self.NewlyPost.reloadData()
+                case .failure(let error):
+                    print("error")
+                }
+        }
+        
+    }
     
     
     //Methods
@@ -130,6 +155,8 @@ class NewlyTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionV
         //Call function
         registerXibFile()
         configBtnHandler()
+        
+        API()
     
     }
     
@@ -181,25 +208,27 @@ class NewlyTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionV
     }
     
     func getCellByListType(collection: UICollectionView, index: IndexPath) -> UICollectionViewCell{
-         let data = TemporaryData(rawValue: index.row)
+       //  let data = TemporaryData(rawValue: index.row)
         switch listType{
         case "list":
             let cell = collection.dequeueReusableCell(withReuseIdentifier: "NewPostCollectionCell_ID", for: index) as! NewPostListCollectionViewCell
-            cell.Img.image = data?.Image ?? UIImage()
-            cell.lblProductName.text = data?.description
-            cell.lblProductPrice.text = "\(data?.Price ?? 0)"
-            cell.lblOldPrice.text = "$\(data?.Price ?? 0 - 200)"
+            cell.Img.image = postPro[index.row].imagefront.base64ToImage()
+            cell.lblProductName.text = postPro[index.row].title
+            cell.lblProductPrice.text = "$\(postPro[index.row].cost)"
+            //cell.lblOldPrice.text = "$\(data?.Price ?? 0 - 200)"
             return cell
         case "grid":
             let cell = collection.dequeueReusableCell(withReuseIdentifier: "NewPostGridCollectionCell_ID", for: index) as! NewPostGridCollectionViewCell
-            cell.img.image = data?.Image ?? UIImage()
-            cell.lblProductName.text = data?.description
-            cell.lblPrice.text = "$\(data?.Price ?? 0)"
-            cell.lblOldPrice.text = "$\((data?.Price ?? 0) - 200)"
+            cell.img.image = postPro[index.row].imagefront.base64ToImage()
+            cell.lblProductName.text = postPro[index.row].title
+            cell.lblPrice.text = "$\(postPro[index.row].cost)"
+            //cell.lblOldPrice.text = "$\((data?.Price ?? 0) - 200)"
             return cell
         case "img":
             let cell = collection.dequeueReusableCell(withReuseIdentifier: "NewPostImageCollectionCell_ID", for: index) as! NewPostImageCollectionViewCell
-            cell.Image.image = data?.Image
+            cell.Image.image = postPro[index.row].imagefront.base64ToImage()
+            cell.LblName.text = postPro[index.row].title
+            cell.lblPrice.text = "$\(postPro[index.row].cost)"
             return cell
         default:
             return collection.dequeueReusableCell(withReuseIdentifier: "NewPostCollectionCell_ID", for: index) as! NewPostListCollectionViewCell
@@ -208,9 +237,9 @@ class NewlyTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionV
     
     func CellHeight(collectionHeight: CGFloat) -> CGFloat{
         switch listType{
-        case "list": return collectionHeight / 8 - 4
-        case "grid": return collectionHeight / 4 - 4
-        case "img": return collectionHeight / 4
+        case "list": return 125 //collectionHeight / 8 - 4
+        case "grid": return 250 //collectionHeight / 4 - 4
+        case "img": return 350
         default:
             return 0
         }
@@ -249,12 +278,12 @@ class NewlyTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionV
     //Overide Methods
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        print("================record count")
+        print(self.recordCount)
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return self.postPro.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

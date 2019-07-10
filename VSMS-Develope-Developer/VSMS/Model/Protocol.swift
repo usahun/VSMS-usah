@@ -18,6 +18,10 @@ protocol refreshDropdownInXib: class {
     func refreshXib(FKKey: Int)
 }
 
+protocol RecordCountProtocol: class {
+    func getRecCount(recordCount: Int)
+}
+
 class CellClickViewModel {
     var ID: String = ""
     var Value: String = ""
