@@ -48,7 +48,7 @@
                 <outlet property="phonenumbertextfield" destination="IjA-fd-Z1B" id="vRg-uy-aDi"/>
                 <outlet property="titleLabel" destination="EtH-mQ-KtQ" id="FhQ-Ih-sZl"/>
             </connections>
-            <point key="canvasLocation" x="134" y="67"/>
+            <point key="canvasLocation" x="70" y="64"/>
         </view>
     </objects>
     <resources>

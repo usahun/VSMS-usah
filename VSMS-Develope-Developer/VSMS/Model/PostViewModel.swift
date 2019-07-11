@@ -25,17 +25,19 @@ class PostViewModel {
     var description: String = ""
     var cost: String = "0.0"
     var created_by: Int = User.getUserID()
+    var discount_type: String?
+    var discount: String?
     
     //var discount_type: String = ""
-    var discount: String = "0.0"
     var contact_phone: String = User.getUsername()
     var contact_email: String = ""
     var contact_address: String = ""
     
-    var back_image_path: String = ""
-    var front_image_path: String = ""
-    var left_image_path: String = ""
-    var right_image_path: String = ""
+    //Image
+    var front_image_path: String?
+    var right_image_path: String?
+    var left_image_path: String?
+    var back_image_path: String?
     
     var sale_post: [[String: Any]] = [[:]]
     var rent_post: [[String: Any]] = [[:]]
@@ -112,7 +114,7 @@ class BuyPost {
     var buy_status: Int = 2
     var record_status: Int = 2
     var created: Date?
-    var post: Int = 3
+    //var post: Int = 3
     var total_price: String = ""
     
     var asDictionary : [String:Any] {

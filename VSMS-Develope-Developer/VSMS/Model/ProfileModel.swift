@@ -36,15 +36,6 @@ class ProfileModel {
     }
 }
 
-extension Int {
-    func toString() -> String {
-        return "\(self)"
-    }
-}
-extension String {
-    func toInt() -> Int {
-        return Int(self) ?? 0
-    }
-}
+
 
 

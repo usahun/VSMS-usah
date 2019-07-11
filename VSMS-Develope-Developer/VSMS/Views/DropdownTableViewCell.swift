@@ -17,6 +17,8 @@ protocol CellTableClick: class {
 }
 
 class DropdownTableViewCell: UITableViewCell, refreshDropdownInXib {
+ 
+    
    
     weak var delegate: CellTableClick?
     @IBOutlet weak var titleLabel: UILabel!
@@ -53,6 +55,10 @@ class DropdownTableViewCell: UITableViewCell, refreshDropdownInXib {
             print(self.drowdownData)
             self.setupChooseArticleDropDown()
         })
+    }
+    
+    func getDiscountTypeValue(disType: String) {
+        print("ss")
     }
 
     

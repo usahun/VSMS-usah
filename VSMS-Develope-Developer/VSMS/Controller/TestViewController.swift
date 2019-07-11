@@ -33,12 +33,15 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        User.IsAuthentication(view: self)
+        
        tableView.delegate = self
        tableView.dataSource = self
        
         profileImage.layer.cornerRadius = profileImage.frame.width * 0.5
         profileImage.clipsToBounds = true
-        
+        navigationController?.setNavigationBarHidden(false, animated: false)
         
         //Api
         
@@ -66,16 +69,11 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         tableView.register(likes, forCellReuseIdentifier: "likesCell")
         
     }
-    
-   
-    
+
     
     @IBAction func swicthChange(_ sender: UISegmentedControl) {
-      
-
         index = mysegmentControl.selectedSegmentIndex
         tableView.reloadData()
-        
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

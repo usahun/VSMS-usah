@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,23 +19,45 @@
                 <rect key="frame" x="0.0" y="0.0" width="252" height="220"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JeF-9k-aXf">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" highlightedImage="icons8-plus-math-50 (5)-1" translatesAutoresizingMaskIntoConstraints="NO" id="JeF-9k-aXf">
                         <rect key="frame" x="0.0" y="0.0" width="252" height="220"/>
                     </imageView>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XGl-K9-OfO">
+                        <rect key="frame" x="227" y="0.0" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="6I0-ta-lcy"/>
+                            <constraint firstAttribute="width" constant="25" id="GhX-36-Zfu"/>
+                        </constraints>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal" image="CrossIcon">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <connections>
+                            <action selector="btnRemoveClick:" destination="gTV-IL-0wX" eventType="touchUpInside" id="VNU-3S-bRy"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="XGl-K9-OfO" secondAttribute="trailing" id="1aD-Za-vwc"/>
                 <constraint firstItem="JeF-9k-aXf" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="EpC-SD-ojf"/>
                 <constraint firstItem="JeF-9k-aXf" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="cOu-Bz-SyI"/>
                 <constraint firstAttribute="bottom" secondItem="JeF-9k-aXf" secondAttribute="bottom" id="dzc-x5-vY2"/>
                 <constraint firstAttribute="trailing" secondItem="JeF-9k-aXf" secondAttribute="trailing" id="fTA-N4-g04"/>
+                <constraint firstItem="XGl-K9-OfO" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="rqo-iv-Qci"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="252" height="220"/>
             <connections>
+                <outlet property="btnRemove" destination="XGl-K9-OfO" id="brw-hZ-y3P"/>
                 <outlet property="postImageView" destination="JeF-9k-aXf" id="4HH-Xk-PAa"/>
             </connections>
-            <point key="canvasLocation" x="294.39999999999998" y="78.260869565217391"/>
+            <point key="canvasLocation" x="-74" y="94"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="CrossIcon" width="60" height="60"/>
+        <image name="icons8-plus-math-50 (5)-1" width="50" height="50"/>
+    </resources>
 </document>

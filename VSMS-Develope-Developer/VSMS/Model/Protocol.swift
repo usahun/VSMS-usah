@@ -18,6 +18,14 @@ protocol refreshDropdownInXib: class {
     func refreshXib(FKKey: Int)
 }
 
+protocol getDropdowntypeProtocol: class {
+    func getDropDownTypeData(type: String)
+}
+
+protocol refreshCollectionProtocol: class {
+    func refreshCollection()
+}
+
 class CellClickViewModel {
     var ID: String = ""
     var Value: String = ""
