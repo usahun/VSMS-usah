@@ -67,6 +67,8 @@
 		86D6FC2322CDA25600B27B25 /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D6FC2222CDA25600B27B25 /* APIModel.swift */; };
 		86D6FC2522CDA4F500B27B25 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D6FC2422CDA4F500B27B25 /* Functions.swift */; };
 		86D6FC2722CDE1BF00B27B25 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D6FC2622CDE1BF00B27B25 /* PostViewModel.swift */; };
+		86E46AAF22D845470028C93E /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E46AAE22D845470028C93E /* DetailViewModel.swift */; };
+		86E46AB122D875FF0028C93E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E46AB022D875FE0028C93E /* DetailViewController.swift */; };
 		86E5494C22D6F596002B2980 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E5494B22D6F595002B2980 /* Message.swift */; };
 		86E8F0AF22CC427F0093D7A9 /* DropdownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8F0AD22CC427F0093D7A9 /* DropdownTableViewCell.swift */; };
 		86E8F0B022CC427F0093D7A9 /* DropdownTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86E8F0AE22CC427F0093D7A9 /* DropdownTableViewCell.xib */; };
@@ -175,6 +177,8 @@
 		86D6FC2222CDA25600B27B25 /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
 		86D6FC2422CDA4F500B27B25 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		86D6FC2622CDE1BF00B27B25 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
+		86E46AAE22D845470028C93E /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		86E46AB022D875FE0028C93E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		86E5494B22D6F595002B2980 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		86E8F0AD22CC427F0093D7A9 /* DropdownTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownTableViewCell.swift; sourceTree = "<group>"; };
 		86E8F0AE22CC427F0093D7A9 /* DropdownTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropdownTableViewCell.xib; sourceTree = "<group>"; };
@@ -335,6 +339,7 @@
 				865C543722C5B1810081FBC5 /* LoginPasswordController.swift */,
 				86D6C40E22C74D1F003B952E /* CustomTabBarController.swift */,
 				C47744BA22CA108E00B79D33 /* PostViewController.swift */,
+				86E46AB022D875FE0028C93E /* DetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -402,11 +407,9 @@
 				86D6FC2422CDA4F500B27B25 /* Functions.swift */,
 				86D6FC2622CDE1BF00B27B25 /* PostViewModel.swift */,
 				86F0FB1822D1CF1500DF6559 /* PostList.swift */,
-
 				C492463C22D4A119003B41E4 /* HomePageModel.swift */,
-
 				86022E0C22D445FC00D4C9C2 /* ExtensionHelper.swift */,
-
+				86E46AAE22D845470028C93E /* DetailViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -746,6 +749,7 @@
 				D5DE6175225D8A10006D2E9D /* VPPDViewController.swift in Sources */,
 				861C50C2229D667400946FAB /* HomePageTableViewCell.swift in Sources */,
 				C40213B522574D75007920C4 /* BalancedContainer.swift in Sources */,
+				86E46AB122D875FF0028C93E /* DetailViewController.swift in Sources */,
 				C45661B322CE6D6200973945 /* PostsTableViewCell.swift in Sources */,
 				C492463D22D4A119003B41E4 /* HomePageModel.swift in Sources */,
 				C40213A422574D08007920C4 /* ProductDetailController.swift in Sources */,
@@ -763,6 +767,7 @@
 				86B10336229C4E9D00192DAD /* PostContainer.swift in Sources */,
 				86626B9F229C464C00FE25DD /* ResultTableViewCell.swift in Sources */,
 				869CF1972276F0800006D7F2 /* PostAdViewController.swift in Sources */,
+				86E46AAF22D845470028C93E /* DetailViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

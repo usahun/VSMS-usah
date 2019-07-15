@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class alertMessageViewController: UIViewController {
 
@@ -15,15 +17,18 @@ class alertMessageViewController: UIViewController {
     @IBOutlet weak var pageView: UIPageControl!
     
     var imgArr = [  UIImage(named:"Dream191"),
-                    UIImage(named:"Dream192") ,
+                    UIImage(named:"Dream192"),
                     UIImage(named:"Dream193")]
     
     var timer = Timer()
     var counter = 0
+    var ProductID: Int = -1
+    var ProductDetail = DetailViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        LoadProductDetail(ID: self.ProductID)
         pageView.numberOfPages = imgArr.count
         pageView.currentPage = 0
         DispatchQueue.main.async {
@@ -75,6 +80,35 @@ class alertMessageViewController: UIViewController {
             pageView.currentPage = counter
             counter = 1
         }
+        
+    }
+    
+    //Function
+    func LoadProductDetail(ID: Int){
+        
+        let headers: HTTPHeaders = [
+            "Cookie": "",
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization" : User.getUserEncoded(),
+        ]
+        
+        Alamofire.request(PROJECT_API.LOADPRODUCT(ProID: self.ProductID), method: .get,encoding: JSONEncoding.default, headers: headers).responseJSON
+            { response in
+                switch response.result{
+                case .success (let value):
+                    let json = JSON(value)
+                    self.ProductDetail = DetailViewModel(json: json)
+                    print(self.ProductDetail)
+                    print("I got u \(self.ProductID)")
+                case .failure(let error):
+                    
+                    print(error)
+                }
+        }
+    }
+    
+    func InitialToDetail(){
         
     }
 

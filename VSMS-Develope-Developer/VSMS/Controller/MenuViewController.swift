@@ -13,8 +13,8 @@ import SideMenuSwift
 class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
 
+    @IBOutlet weak var lblProfileName: UILabel!
     @IBOutlet weak var imageprofile: UIImageView!
-    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -22,6 +22,10 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         imageprofile.layer.cornerRadius = imageprofile.frame.width * 0.5
         imageprofile.clipsToBounds = true
         
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        lblProfileName.text = User.getUsername()
         
     }
     

@@ -27,6 +27,7 @@ class PostViewModel {
     var created_by: Int = User.getUserID()
     var discount_type: String?
     var discount: String?
+    var status: Int = 4
     
     //var discount_type: String = ""
     var contact_phone: String = User.getUsername()
@@ -73,6 +74,7 @@ class PostViewModel {
 
 
 class SalePost {
+    var id: Int = -1
     var sale_status: Int = 2
     var record_status: Int = 2
     var sold_date: Date?
@@ -87,9 +89,21 @@ class SalePost {
         }).compactMap{ $0 })
         return dict
     }
+    
+    init() {}
+    
+    init(json: JSON){
+        self.id = json["id"].stringValue.toInt()
+        self.sale_status = json["sale_status"].stringValue.toInt()
+        self.record_status = json["record_status"].stringValue.toInt()
+        self.sold_date = json["sold_date"].stringValue.toDate()
+        self.price = json["price"].stringValue
+        self.total_price = json["total_price"].stringValue
+    }
 }
 
 class RentPost {
+    var id: Int = -1
     var rent_status: Int = 2
     var record_status: Int = 2
     var rent_type: String = "" //day,week,month
@@ -107,10 +121,17 @@ class RentPost {
         }).compactMap{ $0 })
         return dict
     }
+    
+    init() {}
+    
+    init(json: JSON){
+        self.id = json["id"].stringValue.toInt()
+    }
 }
 
 
 class BuyPost {
+    var id: Int = -1
     var buy_status: Int = 2
     var record_status: Int = 2
     var created: Date?
@@ -124,5 +145,11 @@ class BuyPost {
             return (label!,value)
         }).compactMap{ $0 })
         return dict
+    }
+    
+    init() {}
+    
+    init(json: JSON){
+        self.id = json["id"].stringValue.toInt()
     }
 }

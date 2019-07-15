@@ -30,3 +30,19 @@ class Message {
     }
     
 }
+
+
+class UIViewBorderButtom: UIView {
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        
+        let border = CALayer()
+        border.backgroundColor = UIColor.black.cgColor
+        border.frame = CGRect(x: frame.minX, y: frame.height, width: frame.width, height: 0.5);
+        layer.addSublayer(border)
+    }
+}
+
+

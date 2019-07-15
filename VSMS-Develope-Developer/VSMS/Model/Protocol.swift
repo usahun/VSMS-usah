@@ -19,7 +19,7 @@ protocol refreshDropdownInXib: class {
 }
 
 protocol RecordCountProtocol: class {
-    func getRecCount(recordCount: Int)
+    func getHeighOfCollectionView(recordCount: CGFloat)
 }
 protocol getDropdowntypeProtocol: class {
     func getDropDownTypeData(type: String)
@@ -27,6 +27,14 @@ protocol getDropdowntypeProtocol: class {
 
 protocol refreshCollectionProtocol: class {
     func refreshCollection()
+}
+
+protocol InitailViewControllerProtocol: class {
+    func pushNewViewController(ID: Int)
+}
+
+protocol CollectionToTableProtocol: class {
+    func getFromCollectionCell(ProID: Int)
 }
 
 class CellClickViewModel {

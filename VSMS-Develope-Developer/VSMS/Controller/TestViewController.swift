@@ -27,6 +27,7 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var postArr: [ProfileModel] = []
     var likeArr: [ProfileModel] = []
     var index = 0
+
     
     let headers: HTTPHeaders = [
         "Cookie": "",
@@ -40,7 +41,9 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
 
         
-        User.IsAuthentication(view: self)
+        User.IsAuthenticated(view: self) {
+            return
+        }
 
         
        tableView.delegate = self
@@ -67,8 +70,8 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 let json = JSON(value)
                     self.postArr = (json["results"].array?.map{
                         ProfileModel(id: $0["id"].stringValue.toInt(), name: $0["title"].stringValue,cost: $0["cost"].stringValue,imagefront: $0["base64_front_image"].stringValue)
-                        })!
-                    //print(self.postArr)
+                        } ?? [])
+                    print(self.postArr)
                     self.tableView.reloadData()
                 case .failure:
                     print("error")

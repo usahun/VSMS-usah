@@ -38,6 +38,11 @@ class ProfileModel {
     }
 }
 
-
-
+struct Profile {
+    var ID: String
+    var Name: String
+    var PhoneNumber: String
+    var Email: String
+    var Profile: UIImage
+}
 

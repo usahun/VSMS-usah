@@ -15,29 +15,22 @@ import SwiftyJSON
 class NewHomepageViewController:
     UIViewController,
 UITableViewDataSource,
-UITableViewDelegate {
+UITableViewDelegate, RecordCountProtocol {
+   
    //Properties
-    
     @IBOutlet weak var tableView: UITableView?
     var ContentHeight: CGFloat = 1200
     var MaxHeightofContent: CGFloat = 0
     var willAppear: Bool = true
-    
-     
+    var ProductID: Int = -1
+    var productDetail: DetailViewModel?
     
     override func viewWillAppear(_ animated: Bool) {
-//        tableView?.estimatedRowHeight = 300
-//        tableView?.rowHeight = UITableView.automaticDimension
         self.sideMenuController?.delegate = self
     }
-    
-    
-   
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
         
         setupNavigationBarItem()
         tableView?.delegate = self
@@ -64,7 +57,12 @@ UITableViewDelegate {
     
     @objc func menutap() {
         sideMenuController?.revealMenu()
-        print("Your tap")
+    }
+    
+    
+    func getHeighOfCollectionView(recordCount: CGFloat) {
+        ContentHeight = CGFloat(recordCount)
+        tableView?.reloadData()
     }
     
     private func setupNavigationBarItem() {
@@ -130,23 +128,8 @@ UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        print(MaxHeightofContent)
-       // print(MaxHeightofContent)
-//        if (indexPath.row == 4 && ContentHeight < MaxHeightofContent * 2) || (indexPath.row == 4 && MaxHeightofContent == 0) {
-//           // print(MaxHeightofContent)
-//            if(MaxHeightofContent != 0){
-//                ContentHeight = ContentHeight + MaxHeightofContent
-//            }
-//            else{
-//                ContentHeight = ContentHeight + 200
-//            }
-//
-//            tableView.reloadData()
-//            //print("OK 4 is appear...\(ContentHeight)")
-//        }
+       
     }
-    
-
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -158,7 +141,6 @@ UITableViewDelegate {
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "Searchbar", for: indexPath) as! SearchTableViewCell
-            cell.txtYear.text = "123"
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier:"discount", for: indexPath) as! DiscountTableViewCell
@@ -167,6 +149,8 @@ UITableViewDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: "newly", for: indexPath) as! NewlyTableViewCell
             print(cell.cellHeightCount)
             MaxHeightofContent = view.frame.size.height
+            cell.delegate = self
+            cell.TableToCollectDelegate = self
             return cell
         case 4:
             let cell = UITableViewCell()
@@ -177,7 +161,18 @@ UITableViewDelegate {
             return cell
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let DetailVC = segue.destination as? DetailViewController {
+            DetailVC.ProductDetail = self.productDetail ?? DetailViewModel()
+        }
+    }
 }
+
 
 extension SideMenuController {
     open override func viewWillAppear(_ animated: Bool) {
@@ -190,6 +185,9 @@ extension SideMenuController {
         view.frame = UIScreen.main.bounds
     }
 }
+
+
+
 extension NewHomepageViewController: SideMenuControllerDelegate {
     
     func sideMenuController(_ sideMenuController: SideMenuController, willShow viewController: UIViewController, animated: Bool) {
@@ -210,3 +208,14 @@ extension NewHomepageViewController: SideMenuControllerDelegate {
     }
 }
 
+
+extension NewHomepageViewController: CollectionToTableProtocol {
+    func getFromCollectionCell(ProID: Int) {
+        self.ProductID = ProID
+        DetailViewModel.LoadProductByID(ProID: ProID) { (val) in
+            self.productDetail = val
+            self.performSegue(withIdentifier: "HomePageDetailSW", sender: self)
+        }
+        
+    }
+}

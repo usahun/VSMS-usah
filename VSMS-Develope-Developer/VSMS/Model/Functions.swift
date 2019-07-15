@@ -12,6 +12,7 @@ import SwiftyJSON
 
 var http_absoluteString = "http://103.205.26.103:8000"
 
+
 class PROJECT_API {
 
     static var CATEGORIES = "\(http_absoluteString)/api/v1/categories/"
@@ -33,6 +34,13 @@ class PROJECT_API {
     static var POST_BUYS = "\(http_absoluteString)/api/v1/postbuys/"
     static var POST_RENTS = "\(http_absoluteString)/postrent/"
     static var POST_SELL = "\(http_absoluteString)/postsale/"
+    
+    static func LOADPRODUCT(ProID: Int) -> String {
+        return "\(http_absoluteString)/allposts/\(ProID)/"
+    }
+    static func GETUSERDETAIL(ID: Int) -> String {
+        return "\(http_absoluteString)/api/v1/users/\(ID)/"
+    }
 }
 
 
@@ -49,13 +57,13 @@ class User {
     
     static func getUserEncoded() -> String {
         let defaultValues = UserDefaults.standard
-        let username = defaultValues.string(forKey: "username")!
-        let password = defaultValues.string(forKey: "password")!
+        let username = defaultValues.string(forKey: "username") ?? ""
+        let password = defaultValues.string(forKey: "password") ?? ""
         let userPass = username + ":" + password
         return "Basic " + userPass.base64Encoded()!
     }
     
-    static func IsAuthenticated(view: UIViewController) {
+    static func IsAuthenticated(view: UIViewController, callBack: (() -> Void)) {
         let defaultValues = UserDefaults.standard
         if defaultValues.string(forKey: "username") == nil{
             let LogInView = view.storyboard?.instantiateViewController(withIdentifier: "LoginController") as! LoginController
@@ -65,7 +73,105 @@ class User {
             return
         }
     }
+    
+    static func getUserInfo(id: Int, completion: @escaping (Profile) -> ()) {
+        Alamofire.request(PROJECT_API.GETUSERDETAIL(ID: id), method: .get, encoding: JSONEncoding.default).responseJSON { (respone) in
+            switch respone.result {
+            case .success(let value):
+                let json = JSON(value)
+                let profile = json["profile"]
+                completion(Profile(ID: json["id"].stringValue,
+                                   Name: json["username"].stringValue,
+                                   PhoneNumber: profile["telephone"].stringValue,
+                                   Email: json["email"].stringValue,
+                                   Profile: profile["base64_profile_image"].stringValue.base64ToImage() ?? UIImage()))
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 }
+
+class Converts {
+
+    static func getBrandbyID(id: Int, completion: @escaping (String) -> ()){
+        Alamofire.request("\(PROJECT_API.BRANDS)\(id)/", method: .get, encoding: JSONEncoding.default).responseJSON { (respone) in
+            switch respone.result {
+            case .success(let value):
+                let json = JSON(value)
+                completion(json["brand_name"].stringValue)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    static func getYearbyID(id: Int, completion: @escaping (String) -> ()){
+        Alamofire.request("\(PROJECT_API.YEARS)\(id)/", method: .get, encoding: JSONEncoding.default ).responseJSON { (respone) in
+            switch respone.result {
+            case .success(let value):
+                let json = JSON(value)
+                completion(json["year"].stringValue)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    static func getCategorybyID(id: Int, completion: @escaping (String) -> ()){
+        Alamofire.request("\(PROJECT_API.CATEGORIES)\(id)/", method: .get, encoding: JSONEncoding.default ).responseJSON { (respone) in
+            switch respone.result {
+            case .success(let value):
+                let json = JSON(value)
+                completion(json["cat_name"].stringValue)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    static func getTypebyID(id: Int, completion: @escaping (String) -> ()){
+        Alamofire.request("\(PROJECT_API.TYPES)\(id)/", method: .get, encoding: JSONEncoding.default ).responseJSON { (respone) in
+            switch respone.result {
+            case .success(let value):
+                let json = JSON(value)
+                completion(json["type"].stringValue)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    static func getModelbyID(id: Int, completion: @escaping (String) -> ()){
+        Alamofire.request("\(PROJECT_API.MODELS)\(id)/", method: .get, encoding: JSONEncoding.default ).responseJSON { (respone) in
+            switch respone.result {
+            case .success(let value):
+                let json = JSON(value)
+                completion(json["modeling_name"].stringValue)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    static func getBrandbyModeID(id: Int, completion: @escaping (String) -> ()){
+        Alamofire.request("\(PROJECT_API.MODELS)\(id)/", method: .get, encoding: JSONEncoding.default ).responseJSON { (respone) in
+            switch respone.result {
+            case .success(let value):
+                let json = JSON(value)
+                let BrandID = json["brand"].stringValue
+                Converts.getBrandbyID(id: BrandID.toInt(), completion: { (val) in
+                    completion(val)
+                })
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+}
+
+
 
 class Functions {
     
@@ -193,25 +299,5 @@ class Functions {
 }
 
 
-extension String {
-    func base64Encoded() -> String? {
-        return data(using: .utf8)?.base64EncodedString()
-    }
-    
-    func base64Decoded() -> String? {
-        guard let data = Data(base64Encoded: self) else { return nil }
-        return String(data: data, encoding: .utf8)
-    }
-    
-    func base64ToImage() -> UIImage?{
-        let imageData = NSData(base64Encoded: self ,options: NSData.Base64DecodingOptions.ignoreUnknownCharacters)
-        return UIImage(data: imageData! as Data) ?? UIImage()
-    }
-}
 
-extension Int {
-    func toString() -> String {
-        return "\(self)"
-    }
-}
 

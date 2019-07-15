@@ -16,11 +16,19 @@ class NewPostListCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lblProductPrice: UILabel!
     @IBOutlet weak var lblOldPrice: UILabel!
     
-    
+    //Internal Properties
+    var proID: Int = -1
+    weak var delgate: InitailViewControllerProtocol?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handerCellClick)))
     }
 
+    @objc func handerCellClick(){
+        print(self.proID)
+        //switching the screen
+        self.delgate?.pushNewViewController(ID: self.proID)
+    }
 }
