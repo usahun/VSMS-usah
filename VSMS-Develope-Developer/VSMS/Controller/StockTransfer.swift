@@ -32,9 +32,9 @@ class StockTranfer : UIViewController, UITableViewDataSource, UITableViewDelegat
     //Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableContent.delegate = self
-        tableContent.dataSource = self
-        configNavigation()
+//        tableContent.delegate = self
+//        tableContent.dataSource = self
+//        configNavigation()
     }
     
     @IBAction func editProfileclick(_ sender: Any) {

@@ -7,126 +7,159 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
+import SideMenuSwift
 
-enum MotorContent: Int, CustomStringConvertible{
-    case Motor1
-    case Motor2
-    case Motor3
-    case Motor4
-    case Motor5
-    case Motor6
-    case Motor7
-    case Motor8
-    case Motor9
+class HomePageController: UIViewController{
+   
+ 
+    @IBOutlet weak var tableView: UITableView!
     
-    var description: String
-    {
-        switch self
-        {
-        case .Motor1:
-            return "Honday Dream 2019"
-        case .Motor2:
-            return "Honda PCX 2019"
-        case .Motor3:
-            return "Kawasaki 2019"
-        case .Motor4:
-            return "Honda Zoomer X 2019"
-        case .Motor5:
-            return "Suzuki Nex 2019"
-        case .Motor6:
-            return "Suzuki Smash 2019"
-        case .Motor7:
-            return "Honda Scoopy 2019"
-        case .Motor8:
-            return "Honda Click 2019"
-        case .Motor9:
-            return "Wave 2019"
-        }
-    }
-    var ImageContent: UIImage
-    {
-        switch self
-        {
-        case .Motor1:
-            return UIImage(named: "HondaDream2019") ?? UIImage()
-        case .Motor2:
-            return UIImage(named: "HondaPCX2019") ?? UIImage()
-        case .Motor3:
-            return UIImage(named: "Kawasaki2019") ?? UIImage()
-        case .Motor4:
-            return UIImage(named: "HondaZoomerX2019") ?? UIImage()
-        case .Motor5:
-            return UIImage(named: "SuzukiNex2019") ?? UIImage()
-        case .Motor6:
-            return UIImage(named: "SuzukiSmash2019") ?? UIImage()
-        case .Motor7:
-            return UIImage(named: "HondaScoopy2019") ?? UIImage()
-        case .Motor8:
-            return UIImage(named: "HondaClick2019") ?? UIImage()
-        case .Motor9:
-            return UIImage(named: "HondaWave2019") ?? UIImage()
-        }
-    }
+    @IBOutlet weak var SliderCollection: UICollectionView!
     
-    var PriceLabel: Double
-    {
-        switch self
-        {
-            
-        case .Motor1:
-            return 1800
-        case .Motor2:
-            return 1900
-        case .Motor3:
-            return 2000
-        case .Motor4:
-            return 2100
-        case .Motor5:
-            return 2200
-        case .Motor6:
-            return 2300
-        case .Motor7:
-            return 2400
-        case .Motor8:
-            return 2500
-        case .Motor9:
-            return 2600
-        }
-    }
-}
-
-class HomePageController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-
-    @IBOutlet weak var menuButton: UIBarButtonItem!
+    @IBOutlet weak var DiscountCollection: UICollectionView!
     
+    var imgArr = [  UIImage(named:"Dream191"),
+                    UIImage(named:"Dream192"),
+                    UIImage(named:"Dream193")]
+    var timer = Timer()
+    var counter = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        menuButton.target = revealViewController()
-        menuButton.action = #selector(SWRevealViewController().revealToggle(_:))
         
-        view.addGestureRecognizer(revealViewController()!.panGestureRecognizer())
+       
+        SliderCollection.delegate = self
+        SliderCollection.dataSource = self
+        
+        DiscountCollection.delegate = self
+        DiscountCollection.dataSource = self
+        setupNavigationBarItem()
+      
+     
+        
+        RegisterXib()
+        self.timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.changeImage), userInfo: nil, repeats: true)
+        
+        let menuBarButton = UIBarButtonItem(image: UIImage(named: "HamburgarIcon"), style: .done, target: self, action: #selector(menutap))
+         self.navigationItem.leftBarButtonItem = menuBarButton
     }
     
+    func RegisterXib(){
+        let imagehomepage = UINib(nibName: "DiscountCollectionViewCell", bundle: nil)
+        DiscountCollection.register(imagehomepage, forCellWithReuseIdentifier: "imgediscount")
 
-    //Handler
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        self.sideMenuController?.delegate = self
+    }
     
+    @objc func menutap() {
+        sideMenuController?.revealMenu()
+       
+    }
+    
+    @objc func changeImage() {
+        
+        if counter < imgArr.count {
+            let index = IndexPath.init(item: counter, section: 0)
+            self.SliderCollection.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+            counter += 1
+        } else {
+            counter = 0
+            let index = IndexPath.init(item: counter, section: 0)
+            self.SliderCollection.scrollToItem(at: index, at: .centeredHorizontally, animated: false)
+           
+            counter = 1
+        }
+        
+    }
+    
+    private func setupNavigationBarItem() {
+        
+        let logo = UIImage(named: "HamburgarIcon")
+        let menu = UIButton(type: .system)
+        menu.setImage(logo, for: .normal)
+        
+        // navigationItem.leftBarButtonItem = UIBarButtonItem(customView: menu)
+        menu.frame = CGRect(x: 0, y: 0, width: 38, height: 38)
+        menu.tintColor = UIColor.lightGray
+        
+        //logo
+        let menubutton = UIBarButtonItem(customView: menu)
+        let logoImage = UIImage.init(named: "121logo")
+        let logoImageView = UIImageView.init(image: logoImage)
+        logoImageView.contentMode = .scaleAspectFit
+        logoImageView.frame = CGRect(x:0, y: 0, width: 0, height: 0)
+        logoImageView.widthAnchor.constraint(equalToConstant: 38).isActive = true
+        logoImageView.heightAnchor.constraint(equalToConstant: 38).isActive = true
+        
+        //   (-40, 0, 150, 25)
+        logoImageView.contentMode = .scaleAspectFit
+        let imageItem = UIBarButtonItem.init(customView: logoImageView)
+        let negativeSpacer = UIBarButtonItem.init(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        negativeSpacer.width = -25
+        navigationItem.leftBarButtonItems = [menubutton, imageItem]
+        let button = UIButton(type: .custom)
+        
+        //set image for button
+        button.setImage(UIImage(named: "flatenglish"), for: .normal)
+        button.frame = CGRect(x: 0, y: 0, width: 38, height: 38)
+        button.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 30).isActive =  true
+        let barButton = UIBarButtonItem(customView: button)
+        
+        //assign button to navigationbar
+        self.navigationItem.rightBarButtonItem = barButton
+    }
+    
+}
+
+    
+extension HomePageController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 9
+        if collectionView == SliderCollection {
+            return imgArr.count
+        }
+        else {
+            return 9
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionCell", for: indexPath) as! HomeCollectionViewCell
-        
-        let Motor = MotorContent(rawValue: indexPath.row)
-        cell.ImageCollection.image = Motor?.ImageContent
-        cell.ContentTitle.text = Motor?.description
-        cell.CurrentPriceLabel.text = "$ \(Motor?.PriceLabel ?? 0)"
-        cell.OldPriceLabel.text = "$ \((Motor?.PriceLabel ?? 0) + 200 )"
-        
-        return cell
+        if collectionView == SliderCollection {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SliderCell", for: indexPath)
+            if let vc = cell.viewWithTag(111) as? UIImageView {
+                vc.image = imgArr[indexPath.row]
+            }
+            return cell
+        }
+        else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imgediscount", for: indexPath) as! DiscountCollectionViewCell
+            return cell
+        }
     }
     
+    
+}
 
+extension HomePageController: SideMenuControllerDelegate {
+    func sideMenuController(_ sideMenuController: SideMenuController, willShow viewController: UIViewController, animated: Bool) {
+        view.frame = UIScreen.main.bounds
+    }
+    
+    func sideMenuControllerWillRevealMenu(_ sideMenuController: SideMenuController) {
+        view.frame = UIScreen.main.bounds
+    }
+    func sideMenuControllerDidRevealMenu(_ sideMenuController: SideMenuController) {
+        view.frame = UIScreen.main.bounds
+    }
+    func sideMenuControllerWillHideMenu(_ sideMenuController: SideMenuController) {
+        view.frame = UIScreen.main.bounds
+    }
+    func sideMenuControllerDidHideMenu(_ sideMenuController: SideMenuController) {
+        view.frame = UIScreen.main.bounds
+    }
 }

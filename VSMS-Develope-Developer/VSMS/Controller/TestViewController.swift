@@ -77,7 +77,7 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 let json = JSON(value)
                     self.postArr = (json["results"].array?.map{
 
-                        ProfileModel(id: $0["id"].stringValue.toInt(), name: $0["title"].stringValue,cost: $0["cost"].stringValue,imagefront: $0["base64_front_image"].stringValue)
+                        ProfileModel(id: $0["id"].stringValue.toInt(), name: $0["title"].stringValue,cost: $0["cost"].stringValue,base64Img: $0["front_image_base64"].stringValue)
                         } ?? [])
                     print(self.postArr)
 
@@ -152,7 +152,7 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             "Authorization" : User.getUserEncoded(),
             ]
         
-        Alamofire.request(PROJECT_API.LOADPRODUCT(ProLD:ID), method: .get,encoding: JSONEncoding.default,headers: headers).responseJSON
+        Alamofire.request(PROJECT_API.LOADPRODUCT(ProID:ID), method: .get,encoding: JSONEncoding.default,headers: headers).responseJSON
             { (response) in
                 switch response.result{
                 case .success(let value):

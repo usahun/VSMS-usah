@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,CLLocationManagerDelegate
         GMSServices.provideAPIKey("AIzaSyChN5VYq3X6RKvoFeIRfz0WNmC31FrZ0wg")
         GMSPlacesClient.provideAPIKey("AIzaSyChN5VYq3X6RKvoFeIRfz0WNmC31FrZ0wg")
         // Override point for customization after application launch.
-//        window?.rootViewController = NewViewController()
+//        window?.rootViewController = HomePageController()
 //        window?.makeKeyAndVisible()
         
         let tabbar = CustomTabBarController()

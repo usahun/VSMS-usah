@@ -18,6 +18,10 @@ class SettingController: UIViewController {
 
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.installBlurEffect()
+      
+    }
     
     @IBAction func activeclick(_ sender: UIButton) {
          print(buttonactive.titleLabel?.text ?? "")
@@ -38,15 +42,10 @@ class SettingController: UIViewController {
         dismiss(animated: true, completion:nil)
     }
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func buttonLogoutTaptted(_ sender: Any) {
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey: "username")
+        defaults.removeObject(forKey: "password")
+       
     }
-    */
-
 }
