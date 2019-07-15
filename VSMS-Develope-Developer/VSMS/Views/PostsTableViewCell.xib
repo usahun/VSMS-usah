@@ -22,36 +22,27 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0yq-XX-jUl">
                         <rect key="frame" x="25" y="16" width="390" height="168"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2Zk-z0-zgR">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2Zk-z0-zgR">
                                 <rect key="frame" x="8" y="8" width="139" height="104"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="139" id="BbJ-Ki-omc"/>
-                                    <constraint firstAttribute="height" constant="104" id="Hrh-hd-k8t"/>
+                                    <constraint firstAttribute="height" constant="104" id="UJb-o1-bGc"/>
+                                    <constraint firstAttribute="width" constant="139" id="b5i-qI-ghY"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pGa-DV-GvV" userLabel="lblname">
-                                <rect key="frame" x="167" y="20" width="193" height="25"/>
+                                <rect key="frame" x="155" y="8" width="227" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="jQY-ho-yEq"/>
+                                    <constraint firstAttribute="height" constant="25" id="X09-6W-Gkj"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCi-gO-fmz" userLabel="lblprice">
-                                <rect key="frame" x="167" y="95" width="193" height="19"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="19" id="sHk-Rz-Xym"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="pDP-3B-shw">
-                                <rect key="frame" x="8" y="120" width="377" height="38"/>
+                                <rect key="frame" x="8" y="133" width="377" height="25"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fNs-ro-RoE">
-                                        <rect key="frame" x="0.0" y="0.0" width="150" height="38"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="25"/>
                                         <state key="normal" title=" Transfer" image="reload">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -60,7 +51,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Eg-n9-UIe">
-                                        <rect key="frame" x="170" y="0.0" width="64" height="38"/>
+                                        <rect key="frame" x="170" y="0.0" width="64" height="25"/>
                                         <inset key="contentEdgeInsets" minX="7" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="-11" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" title="Edit" image="edit">
@@ -71,7 +62,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRN-pE-aOR">
-                                        <rect key="frame" x="254" y="0.0" width="78" height="38"/>
+                                        <rect key="frame" x="254" y="0.0" width="78" height="25"/>
                                         <state key="normal" title="Delete" image="delete">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -80,7 +71,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i1O-qa-E75" userLabel="btnoption">
-                                        <rect key="frame" x="352" y="0.0" width="25" height="38"/>
+                                        <rect key="frame" x="352" y="0.0" width="25" height="25"/>
                                         <state key="normal" image="icons8-share-25"/>
                                         <connections>
                                             <action selector="buttonShareTepped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="yqj-05-iFe"/>
@@ -88,21 +79,29 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCi-gO-fmz" userLabel="lblprice">
+                                <rect key="frame" x="155" y="92" width="227" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="19" id="FIO-kt-2bc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="NCi-gO-fmz" firstAttribute="leading" secondItem="2Zk-z0-zgR" secondAttribute="trailing" constant="20" id="6z3-Yx-uPr"/>
-                            <constraint firstItem="pGa-DV-GvV" firstAttribute="top" secondItem="0yq-XX-jUl" secondAttribute="top" constant="20" id="GXR-B5-sMg"/>
-                            <constraint firstAttribute="trailing" secondItem="NCi-gO-fmz" secondAttribute="trailing" constant="30" id="HcC-sQ-2ry"/>
-                            <constraint firstItem="pDP-3B-shw" firstAttribute="top" secondItem="2Zk-z0-zgR" secondAttribute="bottom" constant="8" id="Hma-zN-xFC"/>
+                            <constraint firstItem="pGa-DV-GvV" firstAttribute="leading" secondItem="2Zk-z0-zgR" secondAttribute="trailing" constant="8" id="4Dd-up-tZK"/>
+                            <constraint firstItem="pDP-3B-shw" firstAttribute="top" secondItem="NCi-gO-fmz" secondAttribute="bottom" constant="22" id="4cV-zA-cXY"/>
                             <constraint firstAttribute="trailing" secondItem="pDP-3B-shw" secondAttribute="trailing" constant="5" id="Iy2-uJ-g9l"/>
-                            <constraint firstItem="2Zk-z0-zgR" firstAttribute="top" secondItem="0yq-XX-jUl" secondAttribute="top" constant="8" id="JM1-RT-OGb"/>
-                            <constraint firstItem="2Zk-z0-zgR" firstAttribute="leading" secondItem="0yq-XX-jUl" secondAttribute="leading" constant="8" id="Ru6-18-Cs4"/>
-                            <constraint firstItem="pGa-DV-GvV" firstAttribute="leading" secondItem="2Zk-z0-zgR" secondAttribute="trailing" constant="20" id="csx-zd-8TE"/>
-                            <constraint firstItem="NCi-gO-fmz" firstAttribute="top" secondItem="pGa-DV-GvV" secondAttribute="bottom" constant="50" id="grK-Qc-L4A"/>
-                            <constraint firstAttribute="trailing" secondItem="pGa-DV-GvV" secondAttribute="trailing" constant="30" id="iua-M1-Alz"/>
+                            <constraint firstAttribute="trailing" secondItem="NCi-gO-fmz" secondAttribute="trailing" constant="8" id="WuQ-S0-tVS"/>
                             <constraint firstItem="pDP-3B-shw" firstAttribute="leading" secondItem="0yq-XX-jUl" secondAttribute="leading" constant="8" id="lNV-Ar-VoF"/>
+                            <constraint firstItem="pGa-DV-GvV" firstAttribute="top" secondItem="0yq-XX-jUl" secondAttribute="top" constant="8" id="okz-Q9-dYH"/>
+                            <constraint firstItem="2Zk-z0-zgR" firstAttribute="leading" secondItem="0yq-XX-jUl" secondAttribute="leading" constant="8" id="pK8-nF-jWG"/>
+                            <constraint firstItem="NCi-gO-fmz" firstAttribute="leading" secondItem="2Zk-z0-zgR" secondAttribute="trailing" constant="8" id="pjZ-VF-CKl"/>
+                            <constraint firstAttribute="trailing" secondItem="pGa-DV-GvV" secondAttribute="trailing" constant="8" id="rDX-mf-VpC"/>
                             <constraint firstAttribute="bottom" secondItem="pDP-3B-shw" secondAttribute="bottom" constant="10" id="snX-im-dp8"/>
+                            <constraint firstItem="2Zk-z0-zgR" firstAttribute="top" secondItem="0yq-XX-jUl" secondAttribute="top" constant="8" id="uOn-gV-pXx"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -115,7 +114,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="PostImage" destination="2Zk-z0-zgR" id="SdN-iK-tjj"/>
+                <outlet property="PostImage" destination="2Zk-z0-zgR" id="Scq-Qz-iS3"/>
                 <outlet property="lblName" destination="pGa-DV-GvV" id="Zo6-dH-dAx"/>
                 <outlet property="lblPrice" destination="NCi-gO-fmz" id="w0K-ZK-aWj"/>
             </connections>

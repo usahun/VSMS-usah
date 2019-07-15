@@ -14,7 +14,6 @@ var http_absoluteString = "http://103.205.26.103:8000"
 
 
 class PROJECT_API {
-
     static var CATEGORIES = "\(http_absoluteString)/api/v1/categories/"
     static var MODELS = "\(http_absoluteString)/api/v1/models/"
     static var BRANDS = "\(http_absoluteString)/api/v1/brands/"
@@ -23,23 +22,29 @@ class PROJECT_API {
     static var STATUS = "\(http_absoluteString)/api/v1/status/"
     static var PROVINCES = "\(http_absoluteString)/api/v1/provinces/"
     
-    static var POST_BYUSER = "http://103.205.26.103:8000/postbyuser/"
-    static var LOGIN = "http://103.205.26.103:8000/api/v1/rest-auth/login/"
+    static var POST_BYUSER = "\(http_absoluteString)/postbyuser/"
+    static var LOGIN = "\(http_absoluteString)/api/v1/rest-auth/login/"
     
-    static var USER = "http://103.205.26.103:8000/api/v1/users/"
-    static var HOMEPAGE = "http://103.205.26.103:8000/allposts/"
-    static var LIKEBYUSER = "http://103.205.26.103:8000/likebyuser/"
-    static var BESTDEAL = "http://103.205.26.103:8000/bestdeal/"
+    
+    static var USER = "\(http_absoluteString)/api/v1/users/\(User.getUserID())/"
+    static var HOMEPAGE = "\(http_absoluteString)/allposts/"
+    static var LIKEBYUSER = "\(http_absoluteString)/likebyuser/"
+    static var BESTDEAL = "\(http_absoluteString)/bestdeal/"
     
     static var POST_BUYS = "\(http_absoluteString)/api/v1/postbuys/"
     static var POST_RENTS = "\(http_absoluteString)/postrent/"
     static var POST_SELL = "\(http_absoluteString)/postsale/"
+
     
     static func LOADPRODUCT(ProID: Int) -> String {
         return "\(http_absoluteString)/allposts/\(ProID)/"
     }
     static func GETUSERDETAIL(ID: Int) -> String {
         return "\(http_absoluteString)/api/v1/users/\(ID)/"
+
+    static func LOADPRODUCT(ProLD: Int) -> String {
+        return "\(http_absoluteString)/allposts/\(ProLD)"
+
     }
 }
 
@@ -59,6 +64,7 @@ class User {
         let defaultValues = UserDefaults.standard
         let username = defaultValues.string(forKey: "username") ?? ""
         let password = defaultValues.string(forKey: "password") ?? ""
+
         let userPass = username + ":" + password
         return "Basic " + userPass.base64Encoded()!
     }
@@ -297,7 +303,5 @@ class Functions {
     }
     
 }
-
-
 
 
