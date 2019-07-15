@@ -115,9 +115,9 @@ UITableViewDelegate {
         case 0:
             return 150
         case 1:
-            return 130
+            return 150
         case 2:
-            return 200
+            return 240
         case 3:
             return ContentHeight
         default:

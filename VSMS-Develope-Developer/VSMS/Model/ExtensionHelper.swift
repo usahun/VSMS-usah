@@ -24,6 +24,11 @@ extension String {
         return self.data(using: String.Encoding.utf8)!
     }
     
+    func base64ToImage() -> UIImage?{
+        let imageData = NSData(base64Encoded: self ,options: NSData.Base64DecodingOptions.ignoreUnknownCharacters)
+        return UIImage(data: imageData! as Data) ?? UIImage()
+    }
+    
     func toInt() -> Int {
         return Int(self) ?? 0
     }

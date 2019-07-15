@@ -36,4 +36,5 @@ class PostsTableViewCell: UITableViewCell {
     
     @IBAction func buttonShareTepped(_ sender: Any) {
     }
+    
 }
