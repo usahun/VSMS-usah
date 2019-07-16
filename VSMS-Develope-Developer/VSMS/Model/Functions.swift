@@ -26,6 +26,8 @@ class PROJECT_API {
     static var LOGIN = "\(http_absoluteString)/api/v1/rest-auth/login/"
     
     
+    static var REGISTER = "\(http_absoluteString)/api/v1/users/"
+    
     static var USER = "\(http_absoluteString)/api/v1/users/\(User.getUserID())/"
     static var HOMEPAGE = "\(http_absoluteString)/allposts/"
     static var LIKEBYUSER = "\(http_absoluteString)/likebyuser/"

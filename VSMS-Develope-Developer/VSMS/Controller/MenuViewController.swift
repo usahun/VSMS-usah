@@ -11,8 +11,8 @@ import Alamofire
 import SwiftyJSON
 import SideMenuSwift
 class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
-    
 
+    
     @IBOutlet weak var lblProfileName: UILabel!
     @IBOutlet weak var imageprofile: UIImageView!
     @IBOutlet weak var tableView: UITableView!
@@ -24,13 +24,19 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         tableView.delegate = self
         tableView.dataSource = self
-        
         lblProfileName.text = User.getUsername()
         
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 8
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+           let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "TestViewController") as! TestViewController
+            self.present(profileViewController, animated: true, completion: nil)
+        }
     }
    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -48,7 +54,7 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         } else if row == 4 {
             cell.titleLabel.text = " Your Loans "
         } else if row == 5 {
-            cell.titleLabel.text = " Settng    "
+            cell.titleLabel.text = " Settng "
         } else if row == 6 {
             cell.titleLabel.text = " About Us "
         } else if row == 7 {
@@ -62,4 +68,5 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 class SectionMenu: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
+    
 }

@@ -58,7 +58,6 @@ class ImageProfileModel {
     
     init(){}
     
-  
     init(json: JSON){
         self.profileID = json["id"].stringValue
         self.name = json["username"].stringValue
