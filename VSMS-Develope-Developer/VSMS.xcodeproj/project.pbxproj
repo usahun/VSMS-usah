@@ -91,6 +91,7 @@
 		C45661B422CE6D6200973945 /* PostsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C45661B222CE6D6200973945 /* PostsTableViewCell.xib */; };
 		C45661B722CE6D9200973945 /* LikesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45661B522CE6D9200973945 /* LikesTableViewCell.swift */; };
 		C45661B822CE6D9200973945 /* LikesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C45661B622CE6D9200973945 /* LikesTableViewCell.xib */; };
+		C4713BC822DC98EA00724699 /* HomeUICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4713BC722DC98EA00724699 /* HomeUICollectionView.swift */; };
 		C47744BB22CA108E00B79D33 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47744BA22CA108E00B79D33 /* PostViewController.swift */; };
 		C492463D22D4A119003B41E4 /* HomePageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492463C22D4A119003B41E4 /* HomePageModel.swift */; };
 		C4AAF7A622C5F2E200B82364 /* NewPostGridCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AAF7A422C5F2E200B82364 /* NewPostGridCollectionViewCell.swift */; };
@@ -202,6 +203,7 @@
 		C45661B222CE6D6200973945 /* PostsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsTableViewCell.xib; sourceTree = "<group>"; };
 		C45661B522CE6D9200973945 /* LikesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesTableViewCell.swift; sourceTree = "<group>"; };
 		C45661B622CE6D9200973945 /* LikesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LikesTableViewCell.xib; sourceTree = "<group>"; };
+		C4713BC722DC98EA00724699 /* HomeUICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUICollectionView.swift; sourceTree = "<group>"; };
 		C47744BA22CA108E00B79D33 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		C492463C22D4A119003B41E4 /* HomePageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageModel.swift; sourceTree = "<group>"; };
 		C4AAF7A422C5F2E200B82364 /* NewPostGridCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostGridCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -407,6 +409,7 @@
 				C492463C22D4A119003B41E4 /* HomePageModel.swift */,
 				86022E0C22D445FC00D4C9C2 /* ExtensionHelper.swift */,
 				86E46AAE22D845470028C93E /* DetailViewModel.swift */,
+				C4713BC722DC98EA00724699 /* HomeUICollectionView.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -720,6 +723,7 @@
 				D5901C8A2248890C00F0D581 /* StockTransfer.swift in Sources */,
 				86AAF0CB22C081C3003C46F3 /* ImgeSlideCollectionViewCell.swift in Sources */,
 				86D6FC2522CDA4F500B27B25 /* Functions.swift in Sources */,
+				C4713BC822DC98EA00724699 /* HomeUICollectionView.swift in Sources */,
 				86022E0D22D445FC00D4C9C2 /* ExtensionHelper.swift in Sources */,
 				86AAF0D222C0894B003C46F3 /* SearchTableViewCell.swift in Sources */,
 				C40213A722574D08007920C4 /* SearchResultController.swift in Sources */,

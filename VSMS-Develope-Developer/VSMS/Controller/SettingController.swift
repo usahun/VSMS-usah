@@ -18,6 +18,10 @@ class SettingController: UIViewController {
 
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.installBlurEffect()
+      
+    }
     
     @IBAction func activeclick(_ sender: UIButton) {
          print(buttonactive.titleLabel?.text ?? "")
@@ -36,6 +40,7 @@ class SettingController: UIViewController {
     }
   
     
+
     @IBAction func btnLogoutHandler(_ sender: UIButton) {
         let user_default = UserDefaults.standard
         user_default.set(nil, forKey: "username")
@@ -59,7 +64,6 @@ class SettingController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-    }
-    */
 
+    }
 }

@@ -89,8 +89,22 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         /////// Calling Functions
         XibRegister()
         
-        performOn(.HighPriority) {
-            self.LoadAllPostByUser()
+        Alamofire.request(PROJECT_API.POST_BYUSER, method: .get,encoding: JSONEncoding.default,headers: headers).responseJSON
+            { (response) in
+                switch response.result{
+                case .success(let value):
+                let json = JSON(value)
+                    self.postArr = (json["results"].array?.map{
+
+                        ProfileModel(id: $0["id"].stringValue.toInt(), name: $0["title"].stringValue,cost: $0["cost"].stringValue,base64Img: $0["front_image_base64"].stringValue)
+                        } ?? [])
+                    print(self.postArr)
+
+                    self.tableView.reloadData()
+                case .failure:
+                    print("error")
+                }
+
         }
         performOn(.Main) {
             self.LoadUserProfileInfo()
@@ -155,9 +169,11 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         }
     }
     
+
     @objc
     func LoadAllPostLike() {
         Alamofire.request(PROJECT_API.LIKEBYUSER, method: .get,encoding: JSONEncoding.default,headers: headers).responseJSON
+
             { (response) in
                 switch response.result{
                 case .success(let value):
