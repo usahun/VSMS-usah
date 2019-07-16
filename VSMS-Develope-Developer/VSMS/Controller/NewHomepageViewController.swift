@@ -27,6 +27,7 @@ UITableViewDelegate, RecordCountProtocol {
     
     override func viewWillAppear(_ animated: Bool) {
         self.sideMenuController?.delegate = self
+        self.tabBarController?.tabBar.isHidden = false
     }
 
     override func viewDidLoad() {
@@ -58,7 +59,6 @@ UITableViewDelegate, RecordCountProtocol {
     @objc func menutap() {
         sideMenuController?.revealMenu()
     }
-    
     
     func getHeighOfCollectionView(recordCount: CGFloat) {
         ContentHeight = CGFloat(recordCount)
@@ -127,10 +127,6 @@ UITableViewDelegate, RecordCountProtocol {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-       
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let row = indexPath.row
@@ -161,10 +157,7 @@ UITableViewDelegate, RecordCountProtocol {
             return cell
         }
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let DetailVC = segue.destination as? DetailViewController {
@@ -211,7 +204,6 @@ extension NewHomepageViewController: SideMenuControllerDelegate {
 
 extension NewHomepageViewController: CollectionToTableProtocol {
     func getFromCollectionCell(ProID: Int) {
-        self.ProductID = ProID
         DetailViewModel.LoadProductByID(ProID: ProID) { (val) in
             self.productDetail = val
             self.performSegue(withIdentifier: "HomePageDetailSW", sender: self)

@@ -19,6 +19,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet weak var CollectView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var btnLike: BottomDetail!
     
     
     //IBOutlet Propeties
@@ -38,19 +39,51 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var lblUserPhoneNumber: UILabel!
     @IBOutlet weak var lblUserEmail: UILabel!
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         imgProfilePic.layer.cornerRadius = imgProfilePic.frame.width * 0.5
         // Do any additional setup after loading the view.
+        config()
         ImageSlideConfig()
         InitailDetail()
         LoadUserDetail()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+            self.tabBarController?.tabBar.isHidden = true
+    }
+    
+    //Events Handler
+    @IBAction func clickCall(_ sender: Any) {
+        Message.AlertMessage(message: "", header: "Call", View: self) {
+            
+        }
+    }
+    
+    @IBAction func clickSms(_ sender: Any) {
+        Message.AlertMessage(message: "", header: "SMS", View: self) {
+            
+        }
+    }
+    
+    @IBAction func clickLike(_ sender: Any) {
+        Message.AlertMessage(message: "You have been like this product.", header: "LIKE", View: self) {
+            
+        }
+    }
+    
+    @IBAction func clickLoan(_ sender: Any) {
+        Message.AlertMessage(message: "", header: "LOAN", View: self) {
+            
+        }
+    }
+    
     //Function and Selector
+    func config(){
+        self.navigationItem.title = "Detail"
+    }
+    
     func InitailDetail(){
         lblProductName.text = ProductDetail.title
         lblProductPrice.text = ProductDetail.cost.toCurrency()
@@ -82,6 +115,8 @@ class DetailViewController: UIViewController {
             self.timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.changeImage), userInfo: nil, repeats: true)
         }
     }
+    
+    
     
     @objc func changeImage() {
         if counter < 4 {

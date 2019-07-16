@@ -34,10 +34,23 @@ class SettingController: UIViewController {
             buttonactive.setTitleColor(.blue, for: .normal)
         }
     }
-    @IBAction func backbtnpress(_ sender: Any) {
-        dismiss(animated: true, completion:nil)
-    }
+  
     
+    @IBAction func btnLogoutHandler(_ sender: UIButton) {
+        let user_default = UserDefaults.standard
+        user_default.set(nil, forKey: "username")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            guard let loginpasswd = mainStoryboard.instantiateViewController(withIdentifier: "LoginController") as? LoginController else {
+                print("can't fine Viewcontroller")
+                return
+            }
+            
+            self.navigationController?.pushViewController(loginpasswd, animated: true)
+        }
+
+    }
     
     /*
     // MARK: - Navigation

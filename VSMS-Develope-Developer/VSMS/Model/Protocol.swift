@@ -37,6 +37,10 @@ protocol CollectionToTableProtocol: class {
     func getFromCollectionCell(ProID: Int)
 }
 
+protocol CellClickProtocol: class {
+    func cellXibClick(ID: Int)
+}
+
 class CellClickViewModel {
     var ID: String = ""
     var Value: String = ""

@@ -59,7 +59,7 @@ extension String {
         let currencyFormatter = NumberFormatter()
         currencyFormatter.usesGroupingSeparator = true
         currencyFormatter.numberStyle = .currency
-        currencyFormatter.locale = Locale.current
+        currencyFormatter.locale = Locale(identifier: "en_US")
         
         // We'll force unwrap with the !, if you've got defined data you may need more error checking
         
@@ -109,5 +109,23 @@ extension UIView {
         case .Bottom: border.frame = CGRect(x: frame.minX, y: frame.maxY, width: frame.width, height: thickness); break
         }
         layer.addSublayer(border)
+    }
+}
+
+
+extension UINavigationBar {
+    func installBlurEffect() {
+        isTranslucent = true
+        setBackgroundImage(UIImage(), for: .default)
+        let statusBarHeight: CGFloat = UIApplication.shared.statusBarFrame.height
+        var blurFrame = bounds
+        blurFrame.size.height += statusBarHeight
+        blurFrame.origin.y -= statusBarHeight
+        let blurView  = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+        blurView.isUserInteractionEnabled = false
+        blurView.frame = blurFrame
+        blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        addSubview(blurView)
+        blurView.layer.zPosition = -1
     }
 }

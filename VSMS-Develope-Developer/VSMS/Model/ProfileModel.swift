@@ -18,6 +18,7 @@ class ProfileModel {
     var condition: String = ""
     var cost: String = "0.0"
     var base64Img: String = ""
+    var frontImage: UIImage?
     
     init() {}
     
@@ -29,14 +30,11 @@ class ProfileModel {
     }
     
     init(json: JSON){
-        
         self.PosID = json["id"].stringValue.toInt()
         self.title = json["title"].stringValue
         self.category = json["category"].stringValue.toInt()
         self.cost = json["cost"].stringValue
         self.base64Img = json["front_image_base64"].stringValue
-        
-        
     }
 }
 
@@ -89,10 +87,18 @@ class LikebyUserModel {
     
     var post: Int = -1
     var likeby:  Int = -1
+    var pro_detail = ProfileModel()
     
     init(post: Int,likeby: Int){
         self.post = post
         self.likeby = likeby
+        
+        DetailViewModel.LoadProductByIDOfUser(ProID: self.post) { (val) in
+            self.pro_detail.PosID = val.id
+            self.pro_detail.title = val.title
+            self.pro_detail.cost = val.cost
+            self.pro_detail.frontImage = val.front_image_base64
+        }
     }
     
     init(json: JSON) {

@@ -42,6 +42,7 @@ class CustomTabBarController: UITabBarController {
         let _tabar = super.tabBar
         _tabar.barTintColor = .white
         _tabar.isTranslucent = false
+        _tabar.backgroundColor = .white
         return _tabar
     }
     
@@ -72,10 +73,11 @@ class CustomTabBarController: UITabBarController {
         
         let cameratap = storyBoard.instantiateViewController(withIdentifier: "PostAdViewController")
         let profiletap = storyBoard.instantiateViewController(withIdentifier: "TestViewController")
-        
+        let logIntap = storyBoard.instantiateViewController(withIdentifier: "LoginPasswordController")
         
         let profile = UINavigationController(rootViewController: profiletap)
         let camera = UINavigationController(rootViewController: cameratap)
+        let login = UINavigationController(rootViewController: logIntap)
         
         //let HomePageVC = UINavigationController(rootViewController:Homepage )
         //let Profile = UINavigationController(rootViewController: LoginController())

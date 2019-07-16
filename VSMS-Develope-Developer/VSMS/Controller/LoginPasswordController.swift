@@ -66,13 +66,20 @@ class LoginPasswordController: UIViewController {
                         self.defaultValues.set(self.textpassword.text, forKey: "password")
                         
                         //switching the screen
-                        let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "TestViewController") as! TestViewController
-                        self.navigationController?.pushViewController(profileViewController, animated: true)
+                        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                        guard let Profile = mainStoryboard.instantiateViewController(withIdentifier: "TestViewController") as? TestViewController else {
+                            print("can't fine Viewcontroller")
+                            return
+                        }
                         
+                        self.navigationController?.pushViewController(Profile, animated: true)
                         self.dismiss(animated: false, completion: nil)
                     }else{
                         //error message in case of invalid credential
                         let AlertMessage = UIAlertController(title: "Warning", message: "Invalid username or password", preferredStyle: .alert)
+                        let OKbutton = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                        
+                        AlertMessage.addAction(OKbutton)
                         self.present(AlertMessage, animated: true, completion: nil)
                     }
             

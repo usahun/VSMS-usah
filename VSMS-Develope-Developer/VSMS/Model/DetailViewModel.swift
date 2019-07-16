@@ -144,4 +144,59 @@ class DetailViewModel {
             completion(data)
         }
     }
+    
+    static func LoadProductByIDOfUser(ProID: Int, completion: @escaping (DetailViewModel) -> ()){
+        var data = DetailViewModel()
+        let dispatchGroup = DispatchGroup()
+        let headers: HTTPHeaders = [
+            "Cookie": "",
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization" : User.getUserEncoded(),
+        ]
+        
+        dispatchGroup.enter()
+        Alamofire.request(PROJECT_API.LOADPRODUCTOFUSER(ProID: ProID), method: .get,encoding: JSONEncoding.default,
+                          headers: headers ).responseJSON
+            { response in
+                switch response.result{
+                case .success (let value):
+                    let json = JSON(value)
+                    data = DetailViewModel(json: json)
+                    
+                    dispatchGroup.enter()
+                    Converts.getYearbyID(id: data.year, completion: { (val) in
+                        data.getYear = val
+                        dispatchGroup.leave()
+                    })
+                    
+                    dispatchGroup.enter()
+                    Converts.getBrandbyModeID(id: data.modeling, completion: { (val) in
+                        data.getBrand = val
+                        dispatchGroup.leave()
+                    })
+                    
+                    dispatchGroup.enter()
+                    Converts.getTypebyID(id: data.type, completion: { (val) in
+                        data.getType = val
+                        dispatchGroup.leave()
+                    })
+                    
+                    dispatchGroup.enter()
+                    Converts.getModelbyID(id: data.modeling, completion: { (val) in
+                        data.getModel = val
+                        dispatchGroup.leave()
+                    })
+                    
+                    
+                    dispatchGroup.leave()
+                case .failure(let error):
+                    print(error)
+                }
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            completion(data)
+        }
+    }
 }

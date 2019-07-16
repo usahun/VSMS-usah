@@ -41,11 +41,12 @@ class PROJECT_API {
     }
     static func GETUSERDETAIL(ID: Int) -> String {
         return "\(http_absoluteString)/api/v1/users/\(ID)/"
-
-    static func LOADPRODUCT(ProLD: Int) -> String {
-        return "\(http_absoluteString)/allposts/\(ProLD)"
-
     }
+    
+    static func LOADPRODUCTOFUSER(ProID: Int) -> String {
+        return "\(http_absoluteString)/postbyuser/\(ProID)/"
+    }
+
 }
 
 

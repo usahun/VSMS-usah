@@ -13,11 +13,21 @@ class PostsTableViewCell: UITableViewCell {
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var PostImage: UIImageView!
+    @IBOutlet weak var lblDuration: UILabel!
+    
+    //Internal Properties
+    var ProID: Int?
+    weak var delelgate: CellClickProtocol?
     
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handerCellClick)))
+    }
+    
+    @objc func handerCellClick(){
+        self.delelgate?.cellXibClick(ID: self.ProID ?? 0)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -25,16 +35,19 @@ class PostsTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    
     @IBAction func buttonTransterTapped(_ sender: Any) {
+        print("Transfer")
     }
     
     @IBAction func buttonEditTepped(_ sender: Any) {
+        print("Edit")
     }
     
     @IBAction func buttonDeleteTepped(_ sender: Any) {
+        print("Delete")
     }
-    
-    @IBAction func buttonShareTepped(_ sender: Any) {
-    }
+
     
 }
