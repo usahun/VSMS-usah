@@ -36,10 +36,18 @@ class PostViewModel {
     
     //Image
     var front_image_path: String?
-    var right_image_path: String?
-    var left_image_path: String?
-    var back_image_path: String?
+    var front_image_base64: String?
     
+    var right_image_path: String?
+    var right_image_base64: String?
+    
+    var left_image_path: String?
+    var left_image_base64: String?
+    
+    var back_image_path: String?
+    var back_image_base64: String?
+    
+    //Array Post
     var sale_post: [[String: Any]] = [[:]]
     var rent_post: [[String: Any]] = [[:]]
     var buy_post: [[String: Any]] = [[:]]

@@ -148,15 +148,19 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
 
         if postImages[0].Imagevalue != nil {
             JsonData.front_image_path = postImages[0].Imagevalue!.toBase64()
+            JsonData.front_image_base64 = JsonData.front_image_path ?? ""
         }
         if postImages[1].Imagevalue != nil {
             JsonData.left_image_path = postImages[1].Imagevalue!.toBase64()
+            JsonData.left_image_base64 = JsonData.left_image_path ?? ""
         }
         if postImages[2].Imagevalue != nil {
             JsonData.right_image_path = postImages[2].Imagevalue!.toBase64()
+            JsonData.right_image_base64 = JsonData.right_image_path ?? ""
         }
         if postImages[3].Imagevalue != nil {
             JsonData.back_image_path = postImages[3].Imagevalue!.toBase64()
+            JsonData.back_image_base64 = JsonData.back_image_path ?? ""
         }
         
         if JsonData.post_type == "sell" {
@@ -182,7 +186,6 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
             "Content-Type": "application/json",
             "Authorization" : User.getUserEncoded(),
         ]
-        
 
         Alamofire.request(PROJECT_API.POST_SELL,
                           method: .post,

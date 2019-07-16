@@ -29,6 +29,16 @@ class Message {
         View.present(AlertMessage, animated: true, completion: nil)
     }
     
+    public static func AlertMessage(message: String, header: String, View: UIViewController, callback:@escaping (() -> Void)){
+        let AlertMessage = UIAlertController(title: header,
+                                             message: message,
+                                             preferredStyle: .alert)
+        AlertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: { (alert) in
+            callback()
+        }))
+        View.present(AlertMessage, animated: true, completion: nil)
+    }
+    
 }
 
 
@@ -46,3 +56,37 @@ class UIViewBorderButtom: UIView {
 }
 
 
+class BottomDetail: UIButton {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.layer.cornerRadius = 5
+    }
+}
+
+
+public enum QueueType {
+    case Main
+    case Background
+    case LowPriority
+    case HighPriority
+    
+    var queue: DispatchQueue {
+        switch self {
+        case .Main:
+            return DispatchQueue.main
+        case .Background:
+            return DispatchQueue(label: "com.app.queue",
+                                 qos: .background,
+                                 target: nil)
+        case .LowPriority:
+            return DispatchQueue.global(qos: .userInitiated)
+        case .HighPriority:
+            return DispatchQueue.global(qos: .userInitiated)
+        }
+    }
+}
+
+func performOn(_ queueType: QueueType, closure: @escaping () -> Void) {
+    queueType.queue.async(execute: closure)
+}
