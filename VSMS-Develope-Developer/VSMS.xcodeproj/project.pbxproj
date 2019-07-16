@@ -15,6 +15,9 @@
 		8615106522D5914600A37835 /* PhoneNumberInputHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8615106422D5914600A37835 /* PhoneNumberInputHeaderTableViewCell.swift */; };
 		861C50C2229D667400946FAB /* HomePageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861C50C0229D667400946FAB /* HomePageTableViewCell.swift */; };
 		861C50C3229D667400946FAB /* HomePageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 861C50C1229D667400946FAB /* HomePageTableViewCell.xib */; };
+		864222B122DEC6BD002E41E7 /* RequestHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864222B022DEC6BD002E41E7 /* RequestHandle.swift */; };
+		864222B422DEFB44002E41E7 /* ProductListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864222B222DEFB44002E41E7 /* ProductListTableViewCell.swift */; };
+		864222B522DEFB44002E41E7 /* ProductListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 864222B322DEFB44002E41E7 /* ProductListTableViewCell.xib */; };
 		864F7A5D222E607C00437C24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F7A5C222E607C00437C24 /* AppDelegate.swift */; };
 		86560C5E229CD1C900C5A21F /* NewHomepageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86560C5D229CD1C900C5A21F /* NewHomepageViewController.swift */; };
 		865B5DB7221FDD3600864F7E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B5DB6221FDD3600864F7E /* ViewController.swift */; };
@@ -76,6 +79,10 @@
 		86F0FB1922D1CF1500DF6559 /* PostList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F0FB1822D1CF1500DF6559 /* PostList.swift */; };
 		86F3CF7122D2DD85005F8FF6 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F3CF6F22D2DD85005F8FF6 /* DetailTableViewCell.swift */; };
 		86F3CF7222D2DD85005F8FF6 /* DetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F3CF7022D2DD85005F8FF6 /* DetailTableViewCell.xib */; };
+		86F4017822DF0E4500AB9ECD /* ProductImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F4017622DF0E4500AB9ECD /* ProductImageTableViewCell.swift */; };
+		86F4017922DF0E4500AB9ECD /* ProductImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F4017722DF0E4500AB9ECD /* ProductImageTableViewCell.xib */; };
+		86F4017C22DF12B400AB9ECD /* ProductGridTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F4017A22DF12B400AB9ECD /* ProductGridTableViewCell.swift */; };
+		86F4017D22DF12B400AB9ECD /* ProductGridTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F4017B22DF12B400AB9ECD /* ProductGridTableViewCell.xib */; };
 		C402139A22574C9C007920C4 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402139922574C9B007920C4 /* MenuController.swift */; };
 		C402139E22574CD8007920C4 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C402139D22574CD7007920C4 /* SWRevealViewController.m */; };
 		C40213A422574D08007920C4 /* ProductDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402139F22574D06007920C4 /* ProductDetailController.swift */; };
@@ -123,6 +130,9 @@
 		8615106422D5914600A37835 /* PhoneNumberInputHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberInputHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		861C50C0229D667400946FAB /* HomePageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		861C50C1229D667400946FAB /* HomePageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomePageTableViewCell.xib; sourceTree = SOURCE_ROOT; };
+		864222B022DEC6BD002E41E7 /* RequestHandle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandle.swift; sourceTree = "<group>"; };
+		864222B222DEFB44002E41E7 /* ProductListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListTableViewCell.swift; sourceTree = "<group>"; };
+		864222B322DEFB44002E41E7 /* ProductListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductListTableViewCell.xib; sourceTree = "<group>"; };
 		864F7A5C222E607C00437C24 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		86560C5D229CD1C900C5A21F /* NewHomepageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHomepageViewController.swift; sourceTree = "<group>"; };
 		865B5DB1221FDD3600864F7E /* VSMS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VSMS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,6 +196,10 @@
 		86F0FB1822D1CF1500DF6559 /* PostList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostList.swift; sourceTree = "<group>"; };
 		86F3CF6F22D2DD85005F8FF6 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		86F3CF7022D2DD85005F8FF6 /* DetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTableViewCell.xib; sourceTree = "<group>"; };
+		86F4017622DF0E4500AB9ECD /* ProductImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductImageTableViewCell.swift; sourceTree = "<group>"; };
+		86F4017722DF0E4500AB9ECD /* ProductImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductImageTableViewCell.xib; sourceTree = "<group>"; };
+		86F4017A22DF12B400AB9ECD /* ProductGridTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductGridTableViewCell.swift; sourceTree = "<group>"; };
+		86F4017B22DF12B400AB9ECD /* ProductGridTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductGridTableViewCell.xib; sourceTree = "<group>"; };
 		C402139922574C9B007920C4 /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		C402139B22574CD4007920C4 /* VSMS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VSMS-Bridging-Header.h"; sourceTree = "<group>"; };
 		C402139C22574CD6007920C4 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -366,6 +380,7 @@
 			isa = PBXGroup;
 			children = (
 				86E5494B22D6F595002B2980 /* Message.swift */,
+				864222B022DEC6BD002E41E7 /* RequestHandle.swift */,
 			);
 			path = Functions;
 			sourceTree = "<group>";
@@ -448,6 +463,12 @@
 				C4AAF7A522C5F2E200B82364 /* NewPostGridCollectionViewCell.xib */,
 				C4AAF7A822C60E1C00B82364 /* NewPostImageCollectionViewCell.swift */,
 				C4AAF7A922C60E1C00B82364 /* NewPostImageCollectionViewCell.xib */,
+				864222B222DEFB44002E41E7 /* ProductListTableViewCell.swift */,
+				864222B322DEFB44002E41E7 /* ProductListTableViewCell.xib */,
+				86F4017622DF0E4500AB9ECD /* ProductImageTableViewCell.swift */,
+				86F4017722DF0E4500AB9ECD /* ProductImageTableViewCell.xib */,
+				86F4017A22DF12B400AB9ECD /* ProductGridTableViewCell.swift */,
+				86F4017B22DF12B400AB9ECD /* ProductGridTableViewCell.xib */,
 			);
 			name = NewPostComponents;
 			sourceTree = "<group>";
@@ -584,11 +605,14 @@
 				C45661B822CE6D9200973945 /* LikesTableViewCell.xib in Resources */,
 				86E8F0B022CC427F0093D7A9 /* DropdownTableViewCell.xib in Resources */,
 				86626BB7229C491A00FE25DD /* CollectionTableViewCell.xib in Resources */,
+				86F4017D22DF12B400AB9ECD /* ProductGridTableViewCell.xib in Resources */,
 				86B10327229C4C7A00192DAD /* MapTableViewHeaderFooterView.xib in Resources */,
 				86626BAE229C480800FE25DD /* PhoneNumberHeader.xib in Resources */,
 				C4AAF7A722C5F2E300B82364 /* NewPostGridCollectionViewCell.xib in Resources */,
 				865B5DBF221FDD3700864F7E /* LaunchScreen.storyboard in Resources */,
+				864222B522DEFB44002E41E7 /* ProductListTableViewCell.xib in Resources */,
 				86AAF0CE22C081C3003C46F3 /* DiscountTableViewCell.xib in Resources */,
+				86F4017922DF0E4500AB9ECD /* ProductImageTableViewCell.xib in Resources */,
 				86B10326229C4C7A00192DAD /* PhotoListCollectionViewCell.xib in Resources */,
 				865B5DBA221FDD3600864F7E /* Main.storyboard in Resources */,
 				C4AAF7AB22C60E1C00B82364 /* NewPostImageCollectionViewCell.xib in Resources */,
@@ -702,6 +726,7 @@
 				86763E1F22D4A70700391237 /* DiscountInputTableViewCell.swift in Sources */,
 				86B10329229C4C7A00192DAD /* HomeCollectionViewCell.swift in Sources */,
 				C402139A22574C9C007920C4 /* MenuController.swift in Sources */,
+				864222B122DEC6BD002E41E7 /* RequestHandle.swift in Sources */,
 				86626BAF229C480800FE25DD /* PhoneNumberHeader.swift in Sources */,
 				86F3CF7122D2DD85005F8FF6 /* DetailTableViewCell.swift in Sources */,
 				86626BBF229C496300FE25DD /* DeTailTableCell.swift in Sources */,
@@ -734,6 +759,7 @@
 				86626BB6229C491A00FE25DD /* CollectionTableViewCell.swift in Sources */,
 				D5BA49ED2255ECC100C61E9C /* TransferinfomationViewController.swift in Sources */,
 				C4AAF7A622C5F2E200B82364 /* NewPostGridCollectionViewCell.swift in Sources */,
+				86F4017822DF0E4500AB9ECD /* ProductImageTableViewCell.swift in Sources */,
 				D52D64552232736D00008156 /* NewViewController.swift in Sources */,
 				865B5DB7221FDD3600864F7E /* ViewController.swift in Sources */,
 				86AAF0D722C0C4D4003C46F3 /* MenuViewController.swift in Sources */,
@@ -750,6 +776,7 @@
 				861C50C2229D667400946FAB /* HomePageTableViewCell.swift in Sources */,
 				C40213B522574D75007920C4 /* BalancedContainer.swift in Sources */,
 				86E46AB122D875FF0028C93E /* DetailViewController.swift in Sources */,
+				864222B422DEFB44002E41E7 /* ProductListTableViewCell.swift in Sources */,
 				C45661B322CE6D6200973945 /* PostsTableViewCell.swift in Sources */,
 				C492463D22D4A119003B41E4 /* HomePageModel.swift in Sources */,
 				C40213A422574D08007920C4 /* ProductDetailController.swift in Sources */,
@@ -768,6 +795,7 @@
 				86626B9F229C464C00FE25DD /* ResultTableViewCell.swift in Sources */,
 				869CF1972276F0800006D7F2 /* PostAdViewController.swift in Sources */,
 				86E46AAF22D845470028C93E /* DetailViewModel.swift in Sources */,
+				86F4017C22DF12B400AB9ECD /* ProductGridTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

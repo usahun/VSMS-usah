@@ -13,56 +13,112 @@ import SideMenuSwift
 
 class HomePageController: UIViewController{
    
- 
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var SliderCollection: UICollectionView!
-    
     @IBOutlet weak var DiscountCollection: UICollectionView!
+    @IBOutlet weak var btnImag: UIButton!
+    @IBOutlet weak var btnGrid: UIButton!
+    @IBOutlet weak var btnList: UIButton!
+    
     
     var imgArr = [  UIImage(named:"Dream191"),
                     UIImage(named:"Dream192"),
                     UIImage(named:"Dream193")]
+    
     var timer = Timer()
     var counter = 0
+    var CellIdentifier = 3
+    var IndexProduct = 0
+    
+    var bestDealArr: [HomePageModel] = []
+    var allPostArr: [HomePageModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-       
         SliderCollection.delegate = self
         SliderCollection.dataSource = self
         
         DiscountCollection.delegate = self
         DiscountCollection.dataSource = self
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
         setupNavigationBarItem()
-      
-     
-        
         RegisterXib()
-        self.timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.changeImage), userInfo: nil, repeats: true)
+        SlidingPhoto()
         
-        let menuBarButton = UIBarButtonItem(image: UIImage(named: "HamburgarIcon"), style: .done, target: self, action: #selector(menutap))
-         self.navigationItem.leftBarButtonItem = menuBarButton
+        performOn(.HighPriority) {
+            RequestHandle.LoadBestDeal(completion: { (val) in
+                self.bestDealArr = val
+                self.DiscountCollection.reloadData()
+            })
+        }
+        
+        performOn(.Main) {
+            RequestHandle.LoadAllPosts(completion: { (val) in
+                self.allPostArr = val
+                self.tableView.reloadData()
+            })
+        }
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal //this is for direction
+        layout.minimumInteritemSpacing = 0 // this is for spacing between cells
+        layout.itemSize = CGSize(width: (self.DiscountCollection.frame.width / 2) - 20, height: self.DiscountCollection.frame.height)
+        layout.minimumInteritemSpacing = 0
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 1, bottom: 0, right: 1)
+        
+        DiscountCollection.collectionViewLayout = layout
+        
     }
     
-    func RegisterXib(){
-        let imagehomepage = UINib(nibName: "DiscountCollectionViewCell", bundle: nil)
-        DiscountCollection.register(imagehomepage, forCellWithReuseIdentifier: "imgediscount")
-
-    }
+    
     override func viewWillAppear(_ animated: Bool) {
         self.sideMenuController?.delegate = self
     }
     
+    
+    @IBAction func imgClick(_ sender: Any) {
+        refrestButtonFilter(type: 1)
+    }
+    @IBAction func gridClick(_ sender: Any) {
+        refrestButtonFilter(type: 2)
+    }
+    @IBAction func listClick(_ sender: Any) {
+        refrestButtonFilter(type: 3)
+    }
+    
+    func refrestButtonFilter(type: Int) {
+        switch type {
+        case 1:
+            btnImag.setImage(UIImage(named:"img_active"), for: .normal)
+            btnGrid.setImage(UIImage(named:"thumnail"), for: .normal)
+            btnList.setImage(UIImage(named:"list"), for: .normal)
+            self.CellIdentifier = type
+            self.tableView.reloadData()
+        case 2:
+            btnImag.setImage(UIImage(named:"img"), for: .normal)
+            btnGrid.setImage(UIImage(named:"thumnail_active"), for: .normal)
+            btnList.setImage(UIImage(named:"list"), for: .normal)
+            self.CellIdentifier = type
+            self.tableView.reloadData()
+        case 3:
+            btnImag.setImage(UIImage(named:"img"), for: .normal)
+            btnGrid.setImage(UIImage(named:"thumnail"), for: .normal)
+            btnList.setImage(UIImage(named:"list_active"), for: .normal)
+            self.CellIdentifier = type
+            self.tableView.reloadData()
+        default: break
+        }
+    }
+    
     @objc func menutap() {
         sideMenuController?.revealMenu()
-       
     }
     
     @objc func changeImage() {
-        
         if counter < imgArr.count {
             let index = IndexPath.init(item: counter, section: 0)
             self.SliderCollection.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
@@ -74,7 +130,22 @@ class HomePageController: UIViewController{
            
             counter = 1
         }
+    }
+    
+    
+    func RegisterXib(){
+        let imagehomepage = UINib(nibName: "DiscountCollectionViewCell", bundle: nil)
+        DiscountCollection.register(imagehomepage, forCellWithReuseIdentifier: "imgediscount")
+        tableView.register(UINib(nibName: "ProductListTableViewCell", bundle: nil), forCellReuseIdentifier: "ProductListCell")
+        tableView.register(UINib(nibName: "ProductImageTableViewCell", bundle: nil), forCellReuseIdentifier: "ProductImageCell")
+        tableView.register(UINib(nibName: "ProductGridTableViewCell", bundle: nil), forCellReuseIdentifier: "ProductGridCell")
+    }
+    
+    func SlidingPhoto(){
+        self.timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.changeImage), userInfo: nil, repeats: true)
         
+        let menuBarButton = UIBarButtonItem(image: UIImage(named: "HamburgarIcon"), style: .done, target: self, action: #selector(menutap))
+        self.navigationItem.leftBarButtonItem = menuBarButton
     }
     
     private func setupNavigationBarItem() {
@@ -124,7 +195,7 @@ extension HomePageController: UICollectionViewDataSource, UICollectionViewDelega
             return imgArr.count
         }
         else {
-            return 9
+            return bestDealArr.count
         }
     }
     
@@ -138,12 +209,68 @@ extension HomePageController: UICollectionViewDataSource, UICollectionViewDelega
         }
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imgediscount", for: indexPath) as! DiscountCollectionViewCell
+            cell.MotoName.text = bestDealArr[indexPath.row].title
+            cell.image.image = bestDealArr[indexPath.row].imagefront.base64ToImage()
+            cell.MotoPrice.text = bestDealArr[indexPath.row].cost.toCurrency()
+            cell.MotoDiscount.text = bestDealArr[indexPath.row].cost.toCurrency()
+            return cell
+        }
+    }
+}
+
+extension HomePageController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if CellIdentifier == 2 {
+            IndexProduct = 0
+            return allPostArr.count / 2
+        }
+        return allPostArr.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if CellIdentifier == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ProductImageCell", for: indexPath) as! ProductImageTableViewCell
+            cell.imgProduct.image = allPostArr[indexPath.row].imagefront.base64ToImage()
+            cell.lblProductName.text = allPostArr[indexPath.row].title
+            cell.lblProductPrice.text = allPostArr[indexPath.row].cost.toCurrency()
+            cell.lblDiscount.text = allPostArr[indexPath.row].discount.toCurrency()
+            cell.lblDuration.text = "1 Hours ago"
+            return cell
+        }
+        else if CellIdentifier == 2 {
+            index
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ProductGridCell", for: indexPath) as! ProductGridTableViewCell
+            cell.img_2_Productimage.image = allPostArr[indexPath.row].imagefront.base64ToImage()
+            
+            cell.img_1_Product.image = allPostArr[indexPath.row + 1].imagefront.base64ToImage()
+            
+            return cell
+        }
+        else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ProductListCell", for: indexPath) as! ProductListTableViewCell
+            cell.imgProductImage.image = allPostArr[indexPath.row].imagefront.base64ToImage()
+            cell.lblProductname.text = allPostArr[indexPath.row].title
+            cell.lblDuration.text = "1 Hours ago"
+            cell.lblProductPrice.text = allPostArr[indexPath.row].cost.toCurrency()
+            cell.lblDiscountPrice.text = allPostArr[indexPath.row].discount.toCurrency()
             return cell
         }
     }
     
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if CellIdentifier == 1 {
+            return 350
+        }
+        else if CellIdentifier == 2 {
+            return 160
+        }
+        else {
+            return 125
+        }
+    }
 }
+
+
 
 extension HomePageController: SideMenuControllerDelegate {
     func sideMenuController(_ sideMenuController: SideMenuController, willShow viewController: UIViewController, animated: Bool) {
