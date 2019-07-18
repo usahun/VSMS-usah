@@ -447,7 +447,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c5q-0E-hcj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2301" y="-1487"/>
+
+
+            <point key="canvasLocation" x="758" y="4669"/>
+
+
         </scene>
         <!--Setting Controller-->
         <scene sceneID="Avv-uD-kdi">
@@ -3175,7 +3179,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="tel"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="  Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IRC-rd-etf">
                                 <rect key="frame" x="20" y="505" width="374" height="40"/>
@@ -3184,7 +3188,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="tel"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xb1-z8-wzm">
                                 <rect key="frame" x="14" y="558" width="380" height="35"/>
