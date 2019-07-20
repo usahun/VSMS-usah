@@ -10,6 +10,25 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import SideMenuSwift
+import DropDown
+
+class MyNavigation: UINavigationController, leftMenuClick {
+    
+    weak var menuDelegate: navigationToHomepage?
+    
+    func cellClick(list: String) {
+        menuDelegate?.menuClick(list: list)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let rootVC:HomePageController = self.storyboard?.instantiateViewController(withIdentifier: "HomePageController") as! HomePageController
+        
+        self.menuDelegate = rootVC
+        self.viewControllers = [rootVC]
+    }
+}
+
 
 class HomePageController: UIViewController{
    
@@ -20,6 +39,14 @@ class HomePageController: UIViewController{
     @IBOutlet weak var btnGrid: UIButton!
     @IBOutlet weak var btnList: UIButton!
     
+    @IBOutlet weak var txtSearch: UISearchBar!
+    @IBOutlet weak var btnBuy: UIButton!
+    @IBOutlet weak var btnRent: UIButton!
+    @IBOutlet weak var btnSell: UIButton!
+    @IBOutlet weak var btnCategory: UIButton!
+    @IBOutlet weak var btnBrand: UIButton!
+    @IBOutlet weak var btnYear: UIButton!
+    
     
     var imgArr = [  UIImage(named:"Dream191"),
                     UIImage(named:"Dream192"),
@@ -28,26 +55,34 @@ class HomePageController: UIViewController{
     var timer = Timer()
     var counter = 0
     var CellIdentifier = 3
-    var IndexProduct = 0
+    var IndexProduct = -1
+    var ProductDetail = DetailViewModel()
+    var searchFilter = SearchFilter()
     
     var bestDealArr: [HomePageModel] = []
     var allPostArr: [HomePageModel] = []
     
+    var dd_category = DropDown()
+    var categories: [String] = []
+    var categoryRawData: [dropdownData] = []
+    var dd_brand = DropDown()
+    var brands: [String] = []
+    var brandRawData: [dropdownData] = []
+    var brandSubRawData: [dropdownData] = []
+    var dd_year = DropDown()
+    var years: [String] = []
+    var yearRawData: [dropdownData] = []
+    var modelsArr: [dropdownData] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        SliderCollection.delegate = self
-        SliderCollection.dataSource = self
-        
-        DiscountCollection.delegate = self
-        DiscountCollection.dataSource = self
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        
+
+        configuration()
         setupNavigationBarItem()
         RegisterXib()
         SlidingPhoto()
+        //txtSearch.disable()
+        ConfigDrowDown()
         
         performOn(.HighPriority) {
             RequestHandle.LoadBestDeal(completion: { (val) in
@@ -63,22 +98,18 @@ class HomePageController: UIViewController{
             })
         }
         
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal //this is for direction
-        layout.minimumInteritemSpacing = 0 // this is for spacing between cells
-        layout.itemSize = CGSize(width: (self.DiscountCollection.frame.width / 2) - 20, height: self.DiscountCollection.frame.height)
-        layout.minimumInteritemSpacing = 0
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 1, bottom: 0, right: 1)
-        
-        DiscountCollection.collectionViewLayout = layout
-        
+        performOn(.Background) {
+            Functions.getDropDownList(key: 5, completion: { (val) in
+                self.modelsArr = val
+            })
+        }
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         self.sideMenuController?.delegate = self
+        self.tabBarController?.tabBar.isHidden = false
     }
-    
     
     @IBAction func imgClick(_ sender: Any) {
         refrestButtonFilter(type: 1)
@@ -88,6 +119,40 @@ class HomePageController: UIViewController{
     }
     @IBAction func listClick(_ sender: Any) {
         refrestButtonFilter(type: 3)
+    }
+    
+    
+    
+    ///////////////////functions & Selectors
+    func configuration(){
+        SliderCollection.delegate = self
+        SliderCollection.dataSource = self
+        
+        DiscountCollection.delegate = self
+        DiscountCollection.dataSource = self
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        txtSearch.delegate = self
+        
+        btnBuy.addTarget(self, action: #selector(btnPostTypeHandler(_:)), for: .touchUpInside)
+        btnRent.addTarget(self, action: #selector(btnPostTypeHandler(_:)), for: .touchUpInside)
+        btnSell.addTarget(self, action: #selector(btnPostTypeHandler(_:)), for: .touchUpInside)
+        
+        btnCategory.addTarget(self, action: #selector(btnSearchHandler(_:)), for: .touchUpInside)
+        btnBrand.addTarget(self, action: #selector(btnSearchHandler(_:)), for: .touchUpInside)
+        btnYear.addTarget(self, action: #selector(btnSearchHandler(_:)), for: .touchUpInside)
+        
+        //config best deal flow layout
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumInteritemSpacing = 0
+        layout.itemSize = CGSize(width: (self.DiscountCollection.frame.width / 2) - 20, height: self.DiscountCollection.frame.height)
+        layout.minimumInteritemSpacing = 0
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 1, bottom: 0, right: 1)
+        DiscountCollection.collectionViewLayout = layout
+        
     }
     
     func refrestButtonFilter(type: Int) {
@@ -114,6 +179,40 @@ class HomePageController: UIViewController{
         }
     }
     
+    @objc
+    func btnPostTypeHandler(_ sender: UIButton){
+        switch sender {
+        case btnBuy:
+            let buyVC = ListAllPostByTypeViewController()
+            buyVC.parameter.type = "buy"
+            self.navigationController?.pushViewController(buyVC, animated: true)
+        case btnRent:
+            let buyVC = ListAllPostByTypeViewController()
+            buyVC.parameter.type = "rent"
+            self.navigationController?.pushViewController(buyVC, animated: true)
+        case btnSell:
+            let buyVC = ListAllPostByTypeViewController()
+            buyVC.parameter.type = "sell"
+            self.navigationController?.pushViewController(buyVC, animated: true)
+        default:
+            print("default")
+        }
+    }
+    
+    @objc
+    func btnSearchHandler(_ sender: UIButton){
+        switch sender {
+        case btnCategory:
+            dd_category.show()
+        case btnBrand:
+            dd_brand.show()
+        case btnYear:
+            dd_year.show()
+        default:
+            print("")
+        }
+    }
+    
     @objc func menutap() {
         sideMenuController?.revealMenu()
     }
@@ -131,7 +230,6 @@ class HomePageController: UIViewController{
             counter = 1
         }
     }
-    
     
     func RegisterXib(){
         let imagehomepage = UINib(nibName: "DiscountCollectionViewCell", bundle: nil)
@@ -186,6 +284,64 @@ class HomePageController: UIViewController{
         self.navigationItem.rightBarButtonItem = barButton
     }
     
+    func ConfigDrowDown(){
+        Functions.getDropDownList(key: 2) { (val) in
+            self.categoryRawData = val
+            self.categories = val.map{ $0.Text }
+            self.dd_category.anchorView = self.btnCategory
+            self.dd_category.dataSource = self.categories
+            // Action triggered on selection
+            self.dd_category.selectionAction = { [weak self] (index, item) in
+                self?.btnCategory.setTitle(item, for: .normal)
+                self!.dd_category.hide()
+                
+                self?.btnBrand.setTitle("Brand", for: .normal)
+                self?.searchFilter.brand = ""
+                self?.searchFilter.category = (self?.categoryRawData[index].ID)!
+                self?.brandSubRawData = (self?.brandRawData.filter({$0.FKKey == self?.searchFilter.category}))!
+                self?.brands = (self?.brandSubRawData.map{ $0.Text })!
+                self?.dd_brand.dataSource = self!.brands
+            }
+        }
+        
+        Functions.getDropDownList(key: 4) { (val) in
+            self.brandRawData = val
+            self.brandSubRawData = val
+            self.brands = val.map{$0.Text}
+            self.dd_brand.anchorView = self.btnBrand
+            self.dd_brand.dataSource = self.brands
+            // Action triggered on selection
+            self.dd_brand.selectionAction = { [weak self] (index, item) in
+                self?.btnBrand.setTitle(item, for: .normal)
+                self!.dd_brand.hide()
+                
+                self?.searchFilter.brand = (self?.brandSubRawData[index].ID)!
+                self?.searchFilter.modelings = (self?.modelsArr.filter{ $0.FKKey == self?.searchFilter.brand }
+                                                               .map{ $0.ID })!
+            }
+        }
+        
+        Functions.getDropDownList(key: 6) { (val) in
+            self.yearRawData = val
+            self.years = val.map{ $0.Text }
+            self.dd_year.anchorView = self.btnYear
+            self.dd_year.dataSource = self.years
+            // Action triggered on selection
+            self.dd_year.selectionAction = { [weak self] (index, item) in
+                self?.btnYear.setTitle(item, for: .normal)
+                self!.dd_year.hide()
+                
+                self?.searchFilter.year = self!.yearRawData[index].ID
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let DetailVC = segue.destination as? DetailViewController {
+            DetailVC.ProductDetail = self.ProductDetail
+        }
+    }
+    
 }
 
     
@@ -213,6 +369,8 @@ extension HomePageController: UICollectionViewDataSource, UICollectionViewDelega
             cell.image.image = bestDealArr[indexPath.row].imagefront.base64ToImage()
             cell.MotoPrice.text = bestDealArr[indexPath.row].cost.toCurrency()
             cell.MotoDiscount.text = bestDealArr[indexPath.row].cost.toCurrency()
+            cell.ProductID = bestDealArr[indexPath.row].product
+            cell.delegate = self
             return cell
         }
     }
@@ -221,7 +379,8 @@ extension HomePageController: UICollectionViewDataSource, UICollectionViewDelega
 extension HomePageController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if CellIdentifier == 2 {
-            IndexProduct = 0
+            IndexProduct = -1
+            print(allPostArr.count / 2)
             return allPostArr.count / 2
         }
         return allPostArr.count
@@ -230,29 +389,25 @@ extension HomePageController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if CellIdentifier == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProductImageCell", for: indexPath) as! ProductImageTableViewCell
-            cell.imgProduct.image = allPostArr[indexPath.row].imagefront.base64ToImage()
-            cell.lblProductName.text = allPostArr[indexPath.row].title
-            cell.lblProductPrice.text = allPostArr[indexPath.row].cost.toCurrency()
-            cell.lblDiscount.text = allPostArr[indexPath.row].discount.toCurrency()
-            cell.lblDuration.text = "1 Hours ago"
+            
+            cell.data = allPostArr[indexPath.row]
+            cell.delegate = self
             return cell
         }
         else if CellIdentifier == 2 {
-            index
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProductGridCell", for: indexPath) as! ProductGridTableViewCell
-            cell.img_2_Productimage.image = allPostArr[indexPath.row].imagefront.base64ToImage()
             
-            cell.img_1_Product.image = allPostArr[indexPath.row + 1].imagefront.base64ToImage()
-            
+            let index = indexPath.row * 2
+            cell.data1 = allPostArr[index]
+            cell.data2 = allPostArr[index + 1]
+            cell.delegate = self
             return cell
         }
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProductListCell", for: indexPath) as! ProductListTableViewCell
-            cell.imgProductImage.image = allPostArr[indexPath.row].imagefront.base64ToImage()
-            cell.lblProductname.text = allPostArr[indexPath.row].title
-            cell.lblDuration.text = "1 Hours ago"
-            cell.lblProductPrice.text = allPostArr[indexPath.row].cost.toCurrency()
-            cell.lblDiscountPrice.text = allPostArr[indexPath.row].discount.toCurrency()
+            
+            cell.ProductData = allPostArr[indexPath.row]
+            cell.delegate = self
             return cell
         }
     }
@@ -262,15 +417,13 @@ extension HomePageController: UITableViewDelegate, UITableViewDataSource {
             return 350
         }
         else if CellIdentifier == 2 {
-            return 160
+            return 180
         }
         else {
             return 125
         }
     }
 }
-
-
 
 extension HomePageController: SideMenuControllerDelegate {
     func sideMenuController(_ sideMenuController: SideMenuController, willShow viewController: UIViewController, animated: Bool) {
@@ -290,3 +443,39 @@ extension HomePageController: SideMenuControllerDelegate {
         view.frame = UIScreen.main.bounds
     }
 }
+
+extension HomePageController : CellClickProtocol {
+    func cellXibClick(ID: Int) {
+        DetailViewModel.LoadProductByID(ProID: ID) { (val) in
+            self.ProductDetail = val
+            self.performSegue(withIdentifier: "HomePageDetailSW", sender: self)
+        }
+    }
+}
+
+extension HomePageController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.txtSearch.endEditing(false)
+        
+        self.searchFilter.search = searchBar.text ?? ""
+        let searchVC = SearchViewController()
+        searchVC.parameter = self.searchFilter
+        self.navigationController?.pushViewController(searchVC, animated: true)
+    }
+}
+
+extension HomePageController: navigationToHomepage {
+    func menuClick(list: String) {
+        
+        if list == "profile" {
+            let profileVC:TestViewController = self.storyboard?.instantiateViewController(withIdentifier: "TestViewController") as! TestViewController
+            self.present(profileVC, animated: true, completion: nil)
+        }
+        else{
+            sideMenuController?.hideMenu()
+            let listVC = ListFromNavigationViewController()
+            self.navigationController?.pushViewController(listVC, animated: true)
+        }
+    }
+}
+

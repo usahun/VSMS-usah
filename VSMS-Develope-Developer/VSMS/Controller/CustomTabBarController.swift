@@ -63,25 +63,24 @@ class CustomTabBarController: UITabBarController {
     fileprivate func setuptabBar () {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         
-        let contentViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenu")
+        let contentViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenu") as! MyNavigation
         
-                let menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leftMenu")
+        let menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leftMenu") as! MenuViewController
+            menuViewController.delegate = contentViewController
         
-                let sideMenuController = SideMenuController(
+        let sideMenuController = SideMenuController(
                     contentViewController: contentViewController,
                     menuViewController: menuViewController)
               
         
         let cameratap = storyBoard.instantiateViewController(withIdentifier: "PostAdViewController")
         let profiletap = storyBoard.instantiateViewController(withIdentifier: "TestViewController")
-        let logIntap = storyBoard.instantiateViewController(withIdentifier: "LoginPasswordController")
+        //let logIntap = storyBoard.instantiateViewController(withIdentifier: "LoginPasswordController")
         
         
         let profile = UINavigationController(rootViewController: profiletap)
         let camera = UINavigationController(rootViewController: cameratap)
-        let login = UINavigationController(rootViewController: logIntap)
-       
-        
+
         //let HomePageVC = UINavigationController(rootViewController:Homepage )
         //let Profile = UINavigationController(rootViewController: LoginController())
         

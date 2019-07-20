@@ -14,6 +14,7 @@ var http_absoluteString = "http://103.205.26.103:8000"
 
 
 class PROJECT_API {
+    /////
     static var CATEGORIES = "\(http_absoluteString)/api/v1/categories/"
     static var MODELS = "\(http_absoluteString)/api/v1/models/"
     static var BRANDS = "\(http_absoluteString)/api/v1/brands/"
@@ -22,30 +23,42 @@ class PROJECT_API {
     static var STATUS = "\(http_absoluteString)/api/v1/status/"
     static var PROVINCES = "\(http_absoluteString)/api/v1/provinces/"
     
+    //Profile
     static var POST_BYUSER = "\(http_absoluteString)/postbyuser/"
+    static var USER = "\(http_absoluteString)/api/v1/users/\(User.getUserID())/"
+    static var POSTBYUSERACTIVE = "\(http_absoluteString)/postbyuser/?status=1"
+    static var POSTBYUSERHISTORY = "\(http_absoluteString)/postbyuser/?status=2"
+    static var PROFILE_PIC = "\(http_absoluteString)/api/v1/users/\(User.getUserID())/profilephoto/"
+    static var COVER_PIC = "\(http_absoluteString)/api/v1/users/\(User.getUserID())/coverphoto/"
+    
+    //LogIN
     static var LOGIN = "\(http_absoluteString)/api/v1/rest-auth/login/"
-    
-    
     static var REGISTER = "\(http_absoluteString)/api/v1/users/"
     
-    static var USER = "\(http_absoluteString)/api/v1/users/\(User.getUserID())/"
+    //Homepage
     static var HOMEPAGE = "\(http_absoluteString)/allposts/"
     static var LIKEBYUSER = "\(http_absoluteString)/likebyuser/"
     static var BESTDEAL = "\(http_absoluteString)/bestdeal/"
+    static func RELATED_PRODUCT(type: String, category: String) -> String {
+        return "\(http_absoluteString)/relatedpost/?post_type=\(type)&category=\(category)&modeling=&min_price=&max_price="
+    }
+    static func SEARCH_PRODUCT(filter: SearchFilter) -> String {
+        return "\(http_absoluteString)/postsearch/?search=\(filter.search)&category=\(filter.category)&modeling=\(filter.model)&year=\(filter.year)"
+        
+    }
     
+    //Post Ad
     static var POST_BUYS = "\(http_absoluteString)/api/v1/postbuys/"
     static var POST_RENTS = "\(http_absoluteString)/postrent/"
     static var POST_SELL = "\(http_absoluteString)/postsale/"
 
-    
+    //Detail
     static func LOADPRODUCT(ProID: Int) -> String {
         return "\(http_absoluteString)/allposts/\(ProID)/"
     }
     static func GETUSERDETAIL(ID: Int) -> String {
         return "\(http_absoluteString)/api/v1/users/\(ID)/"
     }
-
-    
     static func LOADPRODUCTOFUSER(ProID: Int) -> String {
         return "\(http_absoluteString)/postbyuser/\(ProID)/"
     }
@@ -239,7 +252,7 @@ class Functions {
                     let arrData = json["results"].array?.map {
                         dropdownData(ID: $0["id"].stringValue,
                                      Text: $0["brand_name"].stringValue,
-                                     FKKey: "")
+                                     FKKey: $0["category"].stringValue)
                     }
                     completion(arrData ?? [])
                 case .failure(let error):

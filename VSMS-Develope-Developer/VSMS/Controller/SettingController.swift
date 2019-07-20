@@ -53,7 +53,7 @@ class SettingController: UIViewController {
         let user_default = UserDefaults.standard
         user_default.set(nil, forKey: "username")
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
             let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             guard let loginpasswd = mainStoryboard.instantiateViewController(withIdentifier: "LoginController") as? LoginController else {
                 print("can't fine Viewcontroller")

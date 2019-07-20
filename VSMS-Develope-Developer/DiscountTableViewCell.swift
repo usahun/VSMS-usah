@@ -56,12 +56,12 @@ class DiscountTableViewCell: UITableViewCell,UICollectionViewDelegate
                 case .success(let value):
                     let json = JSON(value)
                     self.discount = (json["results"].array?.map{
-                        HomePageModel(id: $0["id"].stringValue.toInt(), name: $0["title"].stringValue,cost: $0["cost"].stringValue,imagefront: $0["front_image_base64"].stringValue,discount: $0["discount"].stringValue)
+                        HomePageModel(id: $0["id"].stringValue.toInt(), name: $0["title"].stringValue,cost: $0["cost"].stringValue,imagefront: $0["front_image_base64"].stringValue,discount: $0["discount"].stringValue, postType: $0["post_type"].stringValue)
                         }) ?? []
                    // self.recordCount = json.count
                     print(self.discount)
                     self.Imagediscount.reloadData()
-                case .failure(let error):
+                case .failure:
                     print("error")
                 }
         }

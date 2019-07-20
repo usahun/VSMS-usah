@@ -17,6 +17,8 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     @IBOutlet weak var imageprofile: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     
+    weak var delegate: leftMenuClick?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         imageprofile.layer.cornerRadius = imageprofile.frame.width * 0.5
@@ -38,13 +40,24 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if indexPath.row == 0 {
-//            let navController = UINavigationController.init(rootViewController: self.storyboard!.instantiateViewController(withIdentifier: "TestViewController"))
-//            self.present(navController, animated: true, completion: {})
-//            self.show(self.storyboard!.instantiateViewController(withIdentifier: "TestViewController"), sender: self)
-//           
-//            
-//        }
+
+        switch indexPath.row {
+        case 0:
+            self.delegate?.cellClick(list: "profile")
+        case 1:
+            self.delegate?.cellClick(list: "post")
+        case 2:
+            self.delegate?.cellClick(list: "like")
+        case 3:
+            break
+            //self.delegate?.cellClick(list: "share")
+        case 4:
+            self.delegate?.cellClick(list: "loan")
+        default:
+            break
+        }
+        self.tableView.deselectRow(at: indexPath, animated: true)
+
     }
    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -62,7 +75,7 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         } else if row == 4 {
             cell.titleLabel.text = " Your Loans "
         } else if row == 5 {
-            cell.titleLabel.text = " Settng "
+            cell.titleLabel.text = " Setting "
         } else if row == 6 {
             cell.titleLabel.text = " About Us "
         } else if row == 7 {
@@ -71,10 +84,11 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         return cell
     }
     
+    
+    
 }
 
 class SectionMenu: UITableViewCell {
-    
     @IBOutlet weak var titleLabel: UILabel!
     
 }
