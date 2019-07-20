@@ -18,12 +18,21 @@ class RegisterController: UIViewController {
     @IBOutlet weak var textconfirmPassword: UITextField!
     var defaultUser = UserDefaults.standard
     
+//    func resetDefaults() {
+//        let domain = Bundle.main.bundleIdentifier!
+//        UserDefaults.standard.removePersistentDomain(forName: domain)
+//        UserDefaults.standard.synchronize()
+//        print(Array(UserDefaults.standard.dictionaryRepresentation().keys).count)
+//
+//    }
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       
+        //resetDefaults()
     }
     
+  
    
     @IBAction func submitTapped(_ sender: Any) {
         
@@ -72,6 +81,7 @@ class RegisterController: UIViewController {
                 switch response.result {
                 case .success(let value) :
                     let json = JSON(value)
+                    
 //                    self.defaultUser.set(json["username"], forKey: "username")
 //                    self.defaultUser.set(json["id"], forKey: "userid")
 //                    self.defaultUser.set(self.textconfirmPassword, forKey: "password")

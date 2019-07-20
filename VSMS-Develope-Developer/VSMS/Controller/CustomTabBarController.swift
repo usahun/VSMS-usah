@@ -59,7 +59,7 @@ class CustomTabBarController: UITabBarController {
         SideMenuController.preferences.basic.statusBarBehavior = .hideOnMenu
         
     }
-    
+
     fileprivate func setuptabBar () {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         
@@ -70,14 +70,17 @@ class CustomTabBarController: UITabBarController {
                 let sideMenuController = SideMenuController(
                     contentViewController: contentViewController,
                     menuViewController: menuViewController)
+              
         
         let cameratap = storyBoard.instantiateViewController(withIdentifier: "PostAdViewController")
         let profiletap = storyBoard.instantiateViewController(withIdentifier: "TestViewController")
         let logIntap = storyBoard.instantiateViewController(withIdentifier: "LoginPasswordController")
         
+        
         let profile = UINavigationController(rootViewController: profiletap)
         let camera = UINavigationController(rootViewController: cameratap)
         let login = UINavigationController(rootViewController: logIntap)
+       
         
         //let HomePageVC = UINavigationController(rootViewController:Homepage )
         //let Profile = UINavigationController(rootViewController: LoginController())
@@ -87,7 +90,7 @@ class CustomTabBarController: UITabBarController {
       
         //HomePageVC.tabBarItem.selectedImage = UIImage.
         
-        viewControllers = [sideMenuController,camera, profile]
+        viewControllers = [sideMenuController,camera,profile]
         
         for (index, bar) in self.tabBar.items!.enumerated() {
             bar.image = VSMSTabBar(rawValue: index)?.image

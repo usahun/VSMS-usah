@@ -60,23 +60,26 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = false
+        super.viewWillAppear(animated)
+        
+       self.navigationController?.navigationBar.isHidden = false
         tableView.reloadData()
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+      
         
         tableView.refreshControl = postRefresher
-        self.navigationController?.navigationBar.isHidden = false
+        
         mysegmentControl.setTitle("POSTS(\(postArr.count))", forSegmentAt: 0)
         mysegmentControl.setTitle("LIKES(\(likeArr.count))", forSegmentAt: 1)
         mysegmentControl.setTitle("LOANS(0)", forSegmentAt: 2)
-        
         //Check User is Log in
         User.IsAuthenticated(view: self) {
             return
         }
+        
         
         tableView.delegate = self
         tableView.dataSource = self

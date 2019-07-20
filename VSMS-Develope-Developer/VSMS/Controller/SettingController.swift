@@ -15,12 +15,20 @@ class SettingController: UIViewController {
     @IBOutlet weak var buttonactive: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
+        UserDefaults()
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.installBlurEffect()
       
+    }
+    
+    func resetDefaults() {
+        let domain = Bundle.main.bundleIdentifier!
+        UserDefaults.standard.removePersistentDomain(forName: domain)
+        UserDefaults.standard.synchronize()
+        print(Array(UserDefaults.standard.dictionaryRepresentation().keys).count)
+        
     }
     
     @IBAction func activeclick(_ sender: UIButton) {

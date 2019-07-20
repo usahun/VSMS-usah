@@ -21,7 +21,6 @@
 		864F7A5D222E607C00437C24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F7A5C222E607C00437C24 /* AppDelegate.swift */; };
 		86560C5E229CD1C900C5A21F /* NewHomepageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86560C5D229CD1C900C5A21F /* NewHomepageViewController.swift */; };
 		865B5DB7221FDD3600864F7E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B5DB6221FDD3600864F7E /* ViewController.swift */; };
-		865B5DBA221FDD3600864F7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 865B5DB8221FDD3600864F7E /* Main.storyboard */; };
 		865B5DBF221FDD3700864F7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 865B5DBD221FDD3700864F7E /* LaunchScreen.storyboard */; };
 		865C543822C5B1810081FBC5 /* LoginPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865C543722C5B1810081FBC5 /* LoginPasswordController.swift */; };
 		86626B9B229C464C00FE25DD /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86626B96229C464B00FE25DD /* LocationService.swift */; };
@@ -100,6 +99,7 @@
 		C45661B822CE6D9200973945 /* LikesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C45661B622CE6D9200973945 /* LikesTableViewCell.xib */; };
 		C4713BC822DC98EA00724699 /* HomeUICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4713BC722DC98EA00724699 /* HomeUICollectionView.swift */; };
 		C47744BB22CA108E00B79D33 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47744BA22CA108E00B79D33 /* PostViewController.swift */; };
+		C489D19E22E0FEDF002BB560 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 865B5DB8221FDD3600864F7E /* Main.storyboard */; };
 		C492463D22D4A119003B41E4 /* HomePageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492463C22D4A119003B41E4 /* HomePageModel.swift */; };
 		C4AAF7A622C5F2E200B82364 /* NewPostGridCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AAF7A422C5F2E200B82364 /* NewPostGridCollectionViewCell.swift */; };
 		C4AAF7A722C5F2E300B82364 /* NewPostGridCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4AAF7A522C5F2E200B82364 /* NewPostGridCollectionViewCell.xib */; };
@@ -614,7 +614,6 @@
 				86AAF0CE22C081C3003C46F3 /* DiscountTableViewCell.xib in Resources */,
 				86F4017922DF0E4500AB9ECD /* ProductImageTableViewCell.xib in Resources */,
 				86B10326229C4C7A00192DAD /* PhotoListCollectionViewCell.xib in Resources */,
-				865B5DBA221FDD3600864F7E /* Main.storyboard in Resources */,
 				C4AAF7AB22C60E1C00B82364 /* NewPostImageCollectionViewCell.xib in Resources */,
 				86626BA3229C470B00FE25DD /* ImageCollectionViewCell.xib in Resources */,
 				86AAF0CF22C081C3003C46F3 /* NewlyTableViewCell.xib in Resources */,
@@ -628,6 +627,7 @@
 				86AAF0CC22C081C3003C46F3 /* ImgeSlideCollectionViewCell.xib in Resources */,
 				861C50C3229D667400946FAB /* HomePageTableViewCell.xib in Resources */,
 				86AAF0CA22C081C3003C46F3 /* GreditImageCollectionViewCell.xib in Resources */,
+				C489D19E22E0FEDF002BB560 /* Main.storyboard in Resources */,
 				8615106322D5911B00A37835 /* PhoneNumberInputHeaderTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
