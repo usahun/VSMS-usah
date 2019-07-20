@@ -15,10 +15,19 @@ class DiscountCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var MotoDiscount: UILabel!
     @IBOutlet weak var MotoPrice: UILabel!
     @IBOutlet weak var MotoName: UILabel!
+    
+    var ProductID: Int?
+    weak var delegate: CellClickProtocol?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        image.clipsToBounds = true
+        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handerCellClick)))
+    }
+    
+    @objc
+    func handerCellClick(){
+        self.delegate?.cellXibClick(ID: ProductID!)
     }
 
 }

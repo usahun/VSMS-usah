@@ -41,11 +41,20 @@ protocol CellClickProtocol: class {
     func cellXibClick(ID: Int)
 }
 
+protocol leftMenuClick: class {
+    func cellClick(list: String)
+}
+
+protocol navigationToHomepage: class {
+    func menuClick(list: String)
+}
+
 class CellClickViewModel {
     var ID: String = ""
     var Value: String = ""
     var IndexPathKey: NSIndexPath? = nil
 }
+
 
 struct dropdownData {
     var ID: String

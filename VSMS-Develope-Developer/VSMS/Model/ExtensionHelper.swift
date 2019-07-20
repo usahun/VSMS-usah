@@ -66,6 +66,20 @@ extension String {
         let priceString = currencyFormatter.string(from: NSNumber(value: myDouble))!
         return priceString
     }
+    
+    func strikeThrough() -> NSAttributedString {
+        let attributeString =  NSMutableAttributedString(string: self)
+        attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: NSUnderlineStyle.single.rawValue, range: NSMakeRange(0,attributeString.length))
+        return attributeString
+    }
+    
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).uppercased() + self.lowercased().dropFirst()
+    }
+    
+    mutating func capitalizeFirstLetter() {
+        self = self.capitalizingFirstLetter()
+    }
 }
 
 extension Int {
@@ -84,8 +98,20 @@ extension UIImage {
         guard let imageData = self.pngData() else { return "" }
         return imageData.base64EncodedString(options: Data.Base64EncodingOptions.lineLength64Characters) 
     }
+    
+    
 }
 
+extension UIImageView {
+    func CirleWithWhiteBorder(thickness: CGFloat){
+        self.layer.cornerRadius = self.layer.frame.width / 2
+        self.clipsToBounds = true
+        
+        self.layer.borderColor = UIColor.white.cgColor
+        self.layer.borderWidth = thickness
+    }
+    
+}
 
 extension Collection {
     func get(at index: Index) -> Iterator.Element? {
@@ -129,3 +155,26 @@ extension UINavigationBar {
         blurView.layer.zPosition = -1
     }
 }
+
+
+extension Collection {
+    
+    subscript(optional i: Index) -> Iterator.Element? {
+        return self.indices.contains(i) ? self[i] : nil
+    }
+    
+}
+
+extension UISearchBar {
+    func enable() {
+        isUserInteractionEnabled = true
+        alpha = 1.0
+    }
+    
+    func disable() {
+        isUserInteractionEnabled = false
+        alpha = 0.5
+    }
+}
+
+

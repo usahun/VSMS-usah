@@ -83,8 +83,8 @@ class PostViewModel {
 
 class SalePost {
     var id: Int = -1
-    var sale_status: Int = 2
-    var record_status: Int = 2
+    var sale_status: Int = 1
+    var record_status: Int = 1
     var sold_date: Date?
     var price: String = ""
     var total_price: String = ""
@@ -112,8 +112,8 @@ class SalePost {
 
 class RentPost {
     var id: Int = -1
-    var rent_status: Int = 2
-    var record_status: Int = 2
+    var rent_status: Int = 1
+    var record_status: Int = 1
     var rent_type: String = "" //day,week,month
     var rent_date: Date = Date()
     var return_date: Date = Date()
@@ -140,8 +140,8 @@ class RentPost {
 
 class BuyPost {
     var id: Int = -1
-    var buy_status: Int = 2
-    var record_status: Int = 2
+    var buy_status: Int = 1
+    var record_status: Int = 1
     var created: Date?
     //var post: Int = 3
     var total_price: String = ""

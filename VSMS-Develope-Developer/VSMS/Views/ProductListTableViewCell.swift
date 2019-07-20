@@ -14,18 +14,44 @@ class ProductListTableViewCell: UITableViewCell {
     @IBOutlet weak var lblProductname: UILabel!
     @IBOutlet weak var lblDuration: UILabel!
     @IBOutlet weak var lblProductPrice: UILabel!
-    @IBOutlet weak var lblDiscountPrice: UILabel!
+    @IBOutlet weak var lblPostType: UILabel!
     
+    var ProductID: Int?
+    var ProductData = HomePageModel()
+    weak var delegate: CellClickProtocol?
     
     override func awakeFromNib() {
         super.awakeFromNib()
+
         // Initialization code
+        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handerCellClick)))
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+        imgProductImage.image = ProductData.imagefront.base64ToImage()
+        lblProductname.text = ProductData.title.capitalizingFirstLetter()
+        lblProductPrice.text = ProductData.cost.toCurrency()
+        lblDuration.text = "5 minutes ago"
+        
+        lblPostType.text = ProductData.postType.capitalizingFirstLetter()
+        if ProductData.postType == "sell" {
+            lblPostType.backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
+        }
+        else if ProductData.postType == "rent" {
+            lblPostType.backgroundColor = #colorLiteral(red: 0.16155532, green: 0.6208058596, blue: 0.002179143718, alpha: 1)
+        }
+        else if ProductData.postType == "buy" {
+            lblPostType.backgroundColor = #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
+        }
+        
+    }
+    
+    @objc
+    func handerCellClick(){
+        self.delegate?.cellXibClick(ID: ProductData.product)
     }
     
 }

@@ -14,18 +14,22 @@ import SwiftyJSON
 
 class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
+    @IBOutlet weak var CoverView: UIView!
     @IBOutlet weak var CoverImage: UIImageView!
     @IBOutlet weak var LabelName: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mysegmentControl: UISegmentedControl!
+    @IBOutlet weak var btnCoverChange: UIButton!
     
     var post = ["Posts","Likes"]
     var imgprofile = ImageProfileModel()
+    let picker = UIImagePickerController()
     
     var postArr: [ProfileModel] = []
     var likeArr: [LikebyUserModel] = []
     var loanArr: [String] = []
+    var pickPhotoCheck = ""
     
     var index = 0
     var productDetail: DetailViewModel?
@@ -67,6 +71,16 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        profileImage.CirleWithWhiteBorder(thickness: 3)
+        CoverView.addBorder(toSide: .Bottom, withColor: UIColor.white.cgColor, andThickness: 3)
+        CoverView.bringSubviewToFront(profileImage)
+        
+        btnCoverChange.addTarget(self, action: #selector(btnCoverHandler), for: .touchUpInside)
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProfileClickHandle))
+        profileImage.isUserInteractionEnabled = true
+        profileImage.addGestureRecognizer(tapGestureRecognizer)
+        
         tableView.refreshControl = postRefresher
         self.navigationController?.navigationBar.isHidden = false
         mysegmentControl.setTitle("POSTS(\(postArr.count))", forSegmentAt: 0)
@@ -80,6 +94,7 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         tableView.delegate = self
         tableView.dataSource = self
+        picker.delegate = self
        
         profileImage.layer.cornerRadius = profileImage.frame.width * 0.5
         profileImage.clipsToBounds = true
@@ -88,27 +103,17 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         /////// Calling Functions
         XibRegister()
+    
+
         
-        Alamofire.request(PROJECT_API.POST_BYUSER, method: .get,encoding: JSONEncoding.default,headers: headers).responseJSON
-            { (response) in
-                switch response.result{
-                case .success(let value):
-                let json = JSON(value)
-                    self.postArr = (json["results"].array?.map{
-
-                        ProfileModel(id: $0["id"].stringValue.toInt(), name: $0["title"].stringValue,cost: $0["cost"].stringValue,base64Img: $0["front_image_base64"].stringValue)
-                        } ?? [])
-                    print(self.postArr)
-
-                    self.tableView.reloadData()
-                case .failure:
-                    print("error")
-                }
-
-        }
         performOn(.Main) {
+            self.LoadAllPostByUser()
+        }
+        
+        performOn(.HighPriority) {
             self.LoadUserProfileInfo()
         }
+        
         performOn(.Background) {
             self.LoadAllPostLike()
         }
@@ -124,9 +129,78 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         tableView.register(likes, forCellReuseIdentifier: "likesCell")
     }
     
+    @objc
+    func ProfileClickHandle(){
+        self.pickPhotoCheck = "profile"
+        let alertCon = UIAlertController(title: "Edit Profile", message: nil, preferredStyle: .actionSheet)
+        let uploadBtn = UIAlertAction(title: "Upload", style: .default) { (alert) in
+            self.picker.sourceType = .photoLibrary
+            self.present(self.picker, animated: true, completion: nil)
+        }
+        let takeNewCover = UIAlertAction(title: "Take a Photo", style: .default) { (alert) in
+            if UIImagePickerController.isSourceTypeAvailable(.camera){
+                self.picker.sourceType = .camera
+                self.present(self.picker, animated: true, completion: nil)
+            }
+            else{
+                Message.ErrorMessage(message: "Camera in your device is not avialable.", View: self)
+            }
+        }
+        let cancelBtn = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+//        if profileImage.image != nil {
+//            let removeBtn = UIAlertAction(title: "Remove", style: .destructive) { (alert) in
+//                print("remove")
+//            }
+//            alertCon.addAction(removeBtn)
+//        }
+        alertCon.addAction(uploadBtn)
+        alertCon.addAction(takeNewCover)
+        alertCon.addAction(cancelBtn)
+        present(alertCon, animated: true, completion: nil)
+    }
+    
+    @objc
+    func btnCoverHandler(){
+        self.pickPhotoCheck = "cover"
+        let alertCon = UIAlertController(title: "Edit Cover", message: nil, preferredStyle: .actionSheet)
+        let uploadBtn = UIAlertAction(title: "Upload", style: .default) { (alert) in
+            self.picker.sourceType = .photoLibrary
+            self.present(self.picker, animated: true, completion: nil)
+        }
+        let takeNewCover = UIAlertAction(title: "Take a Photo", style: .default) { (alert) in
+            if UIImagePickerController.isSourceTypeAvailable(.camera){
+                self.picker.sourceType = .camera
+                self.present(self.picker, animated: true, completion: nil)
+            }
+            else{
+                Message.ErrorMessage(message: "Camera in your device is not avialable.", View: self)
+            }
+        }
+        let cancelBtn = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+//        if CoverImage.image != nil {
+//            let removeBtn = UIAlertAction(title: "Remove", style: .destructive) { (alert) in
+//                print("remove")
+//            }
+//            alertCon.addAction(removeBtn)
+//        }
+        alertCon.addAction(uploadBtn)
+        alertCon.addAction(takeNewCover)
+        alertCon.addAction(cancelBtn)
+        present(alertCon, animated: true, completion: nil)
+    }
+    
     func profileandCover(){
-        CoverImage.image = imgprofile.profile.base64_cover_image.base64ToImage()
-        profileImage.image = imgprofile.profile.base64_profile_image.base64ToImage()
+        if imgprofile.profile.base64_cover_image != "" {
+            CoverImage.image = imgprofile.profile.base64_cover_image.base64ToImage()
+            CoverImage.contentMode = .scaleAspectFill
+        }
+        if imgprofile.profile.base64_profile_image != "" {
+            profileImage.image = imgprofile.profile.base64_profile_image.base64ToImage()
+            
+        }
+        
         LabelName.text = imgprofile.name
     }
     
@@ -146,7 +220,7 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     @objc
     func LoadAllPostByUser(){
-        Alamofire.request(PROJECT_API.POST_BYUSER, method: .get,encoding: JSONEncoding.default,headers: headers).responseJSON
+        Alamofire.request(PROJECT_API.POSTBYUSERACTIVE, method: .get,encoding: JSONEncoding.default,headers: headers).responseJSON
             { (response) in
                 switch response.result{
                 case .success(let value):
@@ -173,7 +247,6 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     @objc
     func LoadAllPostLike() {
         Alamofire.request(PROJECT_API.LIKEBYUSER, method: .get,encoding: JSONEncoding.default,headers: headers).responseJSON
-
             { (response) in
                 switch response.result{
                 case .success(let value):
@@ -271,6 +344,30 @@ extension TestViewController: CellClickProtocol {
             self.performSegue(withIdentifier: "ProfilePostToDetailSW", sender: self)
         }
         
+    }
+}
+
+extension TestViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let selectedImage: UIImage = info[.originalImage] as? UIImage {
+            picker.dismiss(animated: true) {
+                if self.pickPhotoCheck == "profile" {
+                    selectedImage.UpLoadProfile(completion: {
+                        self.profileImage.image = selectedImage
+                    })
+                }
+                else if self.pickPhotoCheck == "cover" {
+                    selectedImage.UpLoadCover(completion: {
+                        self.CoverImage.image = selectedImage
+                    })
+                }
+            }
+        }
     }
 }
 

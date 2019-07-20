@@ -13,6 +13,12 @@
 		8615106122D5845800A37835 /* ContactInputTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8615105F22D5845800A37835 /* ContactInputTableViewCell.xib */; };
 		8615106322D5911B00A37835 /* PhoneNumberInputHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8615106222D5911B00A37835 /* PhoneNumberInputHeaderTableViewCell.xib */; };
 		8615106522D5914600A37835 /* PhoneNumberInputHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8615106422D5914600A37835 /* PhoneNumberInputHeaderTableViewCell.swift */; };
+		861A6FCD22E1732D0028D81D /* ListAllPostByTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861A6FCB22E1732D0028D81D /* ListAllPostByTypeViewController.swift */; };
+		861A6FCE22E1732E0028D81D /* ListAllPostByTypeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 861A6FCC22E1732D0028D81D /* ListAllPostByTypeViewController.xib */; };
+		861A6FD122E17C970028D81D /* ListCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861A6FCF22E17C970028D81D /* ListCategoryTableViewCell.swift */; };
+		861A6FD222E17C970028D81D /* ListCategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 861A6FD022E17C970028D81D /* ListCategoryTableViewCell.xib */; };
+		861A6FD522E195580028D81D /* ListAllProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861A6FD322E195570028D81D /* ListAllProductViewController.swift */; };
+		861A6FD622E195580028D81D /* ListAllProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 861A6FD422E195570028D81D /* ListAllProductViewController.xib */; };
 		861C50C2229D667400946FAB /* HomePageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861C50C0229D667400946FAB /* HomePageTableViewCell.swift */; };
 		861C50C3229D667400946FAB /* HomePageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 861C50C1229D667400946FAB /* HomePageTableViewCell.xib */; };
 		864222B122DEC6BD002E41E7 /* RequestHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864222B022DEC6BD002E41E7 /* RequestHandle.swift */; };
@@ -83,6 +89,10 @@
 		86F4017922DF0E4500AB9ECD /* ProductImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F4017722DF0E4500AB9ECD /* ProductImageTableViewCell.xib */; };
 		86F4017C22DF12B400AB9ECD /* ProductGridTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F4017A22DF12B400AB9ECD /* ProductGridTableViewCell.swift */; };
 		86F4017D22DF12B400AB9ECD /* ProductGridTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F4017B22DF12B400AB9ECD /* ProductGridTableViewCell.xib */; };
+		86F4DEDB22E2D42C000ACA12 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F4DED922E2D42C000ACA12 /* SearchViewController.swift */; };
+		86F4DEDC22E2D42C000ACA12 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F4DEDA22E2D42C000ACA12 /* SearchViewController.xib */; };
+		86F4DEE022E30BDE000ACA12 /* ListFromNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F4DEDE22E30BDE000ACA12 /* ListFromNavigationViewController.swift */; };
+		86F4DEE122E30BDE000ACA12 /* ListFromNavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F4DEDF22E30BDE000ACA12 /* ListFromNavigationViewController.xib */; };
 		C402139A22574C9C007920C4 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402139922574C9B007920C4 /* MenuController.swift */; };
 		C402139E22574CD8007920C4 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C402139D22574CD7007920C4 /* SWRevealViewController.m */; };
 		C40213A422574D08007920C4 /* ProductDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402139F22574D06007920C4 /* ProductDetailController.swift */; };
@@ -98,7 +108,6 @@
 		C45661B422CE6D6200973945 /* PostsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C45661B222CE6D6200973945 /* PostsTableViewCell.xib */; };
 		C45661B722CE6D9200973945 /* LikesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45661B522CE6D9200973945 /* LikesTableViewCell.swift */; };
 		C45661B822CE6D9200973945 /* LikesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C45661B622CE6D9200973945 /* LikesTableViewCell.xib */; };
-		C4713BC822DC98EA00724699 /* HomeUICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4713BC722DC98EA00724699 /* HomeUICollectionView.swift */; };
 		C47744BB22CA108E00B79D33 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47744BA22CA108E00B79D33 /* PostViewController.swift */; };
 		C492463D22D4A119003B41E4 /* HomePageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492463C22D4A119003B41E4 /* HomePageModel.swift */; };
 		C4AAF7A622C5F2E200B82364 /* NewPostGridCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AAF7A422C5F2E200B82364 /* NewPostGridCollectionViewCell.swift */; };
@@ -128,6 +137,12 @@
 		8615105F22D5845800A37835 /* ContactInputTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactInputTableViewCell.xib; sourceTree = "<group>"; };
 		8615106222D5911B00A37835 /* PhoneNumberInputHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhoneNumberInputHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		8615106422D5914600A37835 /* PhoneNumberInputHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberInputHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		861A6FCB22E1732D0028D81D /* ListAllPostByTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAllPostByTypeViewController.swift; sourceTree = "<group>"; };
+		861A6FCC22E1732D0028D81D /* ListAllPostByTypeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListAllPostByTypeViewController.xib; sourceTree = "<group>"; };
+		861A6FCF22E17C970028D81D /* ListCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCategoryTableViewCell.swift; sourceTree = "<group>"; };
+		861A6FD022E17C970028D81D /* ListCategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListCategoryTableViewCell.xib; sourceTree = "<group>"; };
+		861A6FD322E195570028D81D /* ListAllProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAllProductViewController.swift; sourceTree = "<group>"; };
+		861A6FD422E195570028D81D /* ListAllProductViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListAllProductViewController.xib; sourceTree = "<group>"; };
 		861C50C0229D667400946FAB /* HomePageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		861C50C1229D667400946FAB /* HomePageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomePageTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		864222B022DEC6BD002E41E7 /* RequestHandle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandle.swift; sourceTree = "<group>"; };
@@ -200,6 +215,10 @@
 		86F4017722DF0E4500AB9ECD /* ProductImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductImageTableViewCell.xib; sourceTree = "<group>"; };
 		86F4017A22DF12B400AB9ECD /* ProductGridTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductGridTableViewCell.swift; sourceTree = "<group>"; };
 		86F4017B22DF12B400AB9ECD /* ProductGridTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductGridTableViewCell.xib; sourceTree = "<group>"; };
+		86F4DED922E2D42C000ACA12 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		86F4DEDA22E2D42C000ACA12 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
+		86F4DEDE22E30BDE000ACA12 /* ListFromNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFromNavigationViewController.swift; sourceTree = "<group>"; };
+		86F4DEDF22E30BDE000ACA12 /* ListFromNavigationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListFromNavigationViewController.xib; sourceTree = "<group>"; };
 		C402139922574C9B007920C4 /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		C402139B22574CD4007920C4 /* VSMS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VSMS-Bridging-Header.h"; sourceTree = "<group>"; };
 		C402139C22574CD6007920C4 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -217,7 +236,6 @@
 		C45661B222CE6D6200973945 /* PostsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsTableViewCell.xib; sourceTree = "<group>"; };
 		C45661B522CE6D9200973945 /* LikesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesTableViewCell.swift; sourceTree = "<group>"; };
 		C45661B622CE6D9200973945 /* LikesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LikesTableViewCell.xib; sourceTree = "<group>"; };
-		C4713BC722DC98EA00724699 /* HomeUICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUICollectionView.swift; sourceTree = "<group>"; };
 		C47744BA22CA108E00B79D33 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		C492463C22D4A119003B41E4 /* HomePageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageModel.swift; sourceTree = "<group>"; };
 		C4AAF7A422C5F2E200B82364 /* NewPostGridCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostGridCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -270,6 +288,19 @@
 				8615106222D5911B00A37835 /* PhoneNumberInputHeaderTableViewCell.xib */,
 			);
 			name = Contact;
+			sourceTree = "<group>";
+		};
+		861A6FCA22E172F60028D81D /* List Post Type */ = {
+			isa = PBXGroup;
+			children = (
+				861A6FCB22E1732D0028D81D /* ListAllPostByTypeViewController.swift */,
+				861A6FCC22E1732D0028D81D /* ListAllPostByTypeViewController.xib */,
+				861A6FCF22E17C970028D81D /* ListCategoryTableViewCell.swift */,
+				861A6FD022E17C970028D81D /* ListCategoryTableViewCell.xib */,
+				861A6FD322E195570028D81D /* ListAllProductViewController.swift */,
+				861A6FD422E195570028D81D /* ListAllProductViewController.xib */,
+			);
+			name = "List Post Type";
 			sourceTree = "<group>";
 		};
 		865B5DA8221FDD3600864F7E = {
@@ -394,6 +425,24 @@
 			name = Dropdownlist;
 			sourceTree = "<group>";
 		};
+		86F4DED822E2D3FB000ACA12 /* SearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				86F4DED922E2D42C000ACA12 /* SearchViewController.swift */,
+				86F4DEDA22E2D42C000ACA12 /* SearchViewController.xib */,
+			);
+			name = SearchBar;
+			sourceTree = "<group>";
+		};
+		86F4DEDD22E30BC1000ACA12 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				86F4DEDE22E30BDE000ACA12 /* ListFromNavigationViewController.swift */,
+				86F4DEDF22E30BDE000ACA12 /* ListFromNavigationViewController.xib */,
+			);
+			name = Navigation;
+			sourceTree = "<group>";
+		};
 		921D21CDE67B0CC389C8D671 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -424,7 +473,6 @@
 				C492463C22D4A119003B41E4 /* HomePageModel.swift */,
 				86022E0C22D445FC00D4C9C2 /* ExtensionHelper.swift */,
 				86E46AAE22D845470028C93E /* DetailViewModel.swift */,
-				C4713BC722DC98EA00724699 /* HomeUICollectionView.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -449,6 +497,9 @@
 		C453176E22C32F8F006F0BB8 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				86F4DEDD22E30BC1000ACA12 /* Navigation */,
+				86F4DED822E2D3FB000ACA12 /* SearchBar */,
+				861A6FCA22E172F60028D81D /* List Post Type */,
 				C453176F22C32FA0006F0BB8 /* NewPostComponents */,
 			);
 			name = Home;
@@ -601,6 +652,7 @@
 				86AAF0C822C081C3003C46F3 /* DiscountCollectionViewCell.xib in Resources */,
 				86F3CF7222D2DD85005F8FF6 /* DetailTableViewCell.xib in Resources */,
 				86626BBE229C496300FE25DD /* DeTailTableCell.xib in Resources */,
+				861A6FCE22E1732E0028D81D /* ListAllPostByTypeViewController.xib in Resources */,
 				8615106122D5845800A37835 /* ContactInputTableViewCell.xib in Resources */,
 				C45661B822CE6D9200973945 /* LikesTableViewCell.xib in Resources */,
 				86E8F0B022CC427F0093D7A9 /* DropdownTableViewCell.xib in Resources */,
@@ -610,18 +662,22 @@
 				86626BAE229C480800FE25DD /* PhoneNumberHeader.xib in Resources */,
 				C4AAF7A722C5F2E300B82364 /* NewPostGridCollectionViewCell.xib in Resources */,
 				865B5DBF221FDD3700864F7E /* LaunchScreen.storyboard in Resources */,
+				86F4DEDC22E2D42C000ACA12 /* SearchViewController.xib in Resources */,
 				864222B522DEFB44002E41E7 /* ProductListTableViewCell.xib in Resources */,
 				86AAF0CE22C081C3003C46F3 /* DiscountTableViewCell.xib in Resources */,
 				86F4017922DF0E4500AB9ECD /* ProductImageTableViewCell.xib in Resources */,
 				86B10326229C4C7A00192DAD /* PhotoListCollectionViewCell.xib in Resources */,
 				865B5DBA221FDD3600864F7E /* Main.storyboard in Resources */,
+				861A6FD222E17C970028D81D /* ListCategoryTableViewCell.xib in Resources */,
 				C4AAF7AB22C60E1C00B82364 /* NewPostImageCollectionViewCell.xib in Resources */,
+				861A6FD622E195580028D81D /* ListAllProductViewController.xib in Resources */,
 				86626BA3229C470B00FE25DD /* ImageCollectionViewCell.xib in Resources */,
 				86AAF0CF22C081C3003C46F3 /* NewlyTableViewCell.xib in Resources */,
 				C453177322C3303A006F0BB8 /* NewPostListCollectionViewCell.xib in Resources */,
 				86763E2022D4A70700391237 /* DiscountInputTableViewCell.xib in Resources */,
 				86AAF0D322C0894B003C46F3 /* SearchTableViewCell.xib in Resources */,
 				C45661B422CE6D6200973945 /* PostsTableViewCell.xib in Resources */,
+				86F4DEE122E30BDE000ACA12 /* ListFromNavigationViewController.xib in Resources */,
 				86626BC2229C498400FE25DD /* AddmoreNumberPhoneTableViewCell.xib in Resources */,
 				D54A83CC225465A900BA1634 /* Assets.xcassets in Resources */,
 				86B10337229C4FCE00192DAD /* PassDataCell.xib in Resources */,
@@ -720,6 +776,7 @@
 			files = (
 				865C543822C5B1810081FBC5 /* LoginPasswordController.swift in Sources */,
 				C40213A822574D08007920C4 /* HomePageController.swift in Sources */,
+				861A6FCD22E1732D0028D81D /* ListAllPostByTypeViewController.swift in Sources */,
 				86E8F0AF22CC427F0093D7A9 /* DropdownTableViewCell.swift in Sources */,
 				D54C48132242249D004FE033 /* RegisterController.swift in Sources */,
 				86AAF0C622C081C3003C46F3 /* GreditImageCollectionViewCell.swift in Sources */,
@@ -747,8 +804,8 @@
 				8615106022D5845800A37835 /* ContactInputTableViewCell.swift in Sources */,
 				D5901C8A2248890C00F0D581 /* StockTransfer.swift in Sources */,
 				86AAF0CB22C081C3003C46F3 /* ImgeSlideCollectionViewCell.swift in Sources */,
+				86F4DEDB22E2D42C000ACA12 /* SearchViewController.swift in Sources */,
 				86D6FC2522CDA4F500B27B25 /* Functions.swift in Sources */,
-				C4713BC822DC98EA00724699 /* HomeUICollectionView.swift in Sources */,
 				86022E0D22D445FC00D4C9C2 /* ExtensionHelper.swift in Sources */,
 				86AAF0D222C0894B003C46F3 /* SearchTableViewCell.swift in Sources */,
 				C40213A722574D08007920C4 /* SearchResultController.swift in Sources */,
@@ -771,6 +828,7 @@
 				86B1032A229C4C7A00192DAD /* TablebalanceViewCell.swift in Sources */,
 				86AAF0CD22C081C3003C46F3 /* DiscountTableViewCell.swift in Sources */,
 				D588515A224DC5CC006BF532 /* TablebalanceViewController.swift in Sources */,
+				86F4DEE022E30BDE000ACA12 /* ListFromNavigationViewController.swift in Sources */,
 				C4AAF7AA22C60E1C00B82364 /* NewPostImageCollectionViewCell.swift in Sources */,
 				D5DE6175225D8A10006D2E9D /* VPPDViewController.swift in Sources */,
 				861C50C2229D667400946FAB /* HomePageTableViewCell.swift in Sources */,
@@ -792,7 +850,9 @@
 				D54C481522422F20004FE033 /* MyAccountController.swift in Sources */,
 				C40213A622574D08007920C4 /* UploadProfileController.swift in Sources */,
 				86B10336229C4E9D00192DAD /* PostContainer.swift in Sources */,
+				861A6FD522E195580028D81D /* ListAllProductViewController.swift in Sources */,
 				86626B9F229C464C00FE25DD /* ResultTableViewCell.swift in Sources */,
+				861A6FD122E17C970028D81D /* ListCategoryTableViewCell.swift in Sources */,
 				869CF1972276F0800006D7F2 /* PostAdViewController.swift in Sources */,
 				86E46AAF22D845470028C93E /* DetailViewModel.swift in Sources */,
 				86F4017C22DF12B400AB9ECD /* ProductGridTableViewCell.swift in Sources */,
