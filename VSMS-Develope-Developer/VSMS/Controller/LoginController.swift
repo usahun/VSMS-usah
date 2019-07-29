@@ -18,12 +18,12 @@ class LoginController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        navigationController?.navigationBar.tintColor = UIColor.blue
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        self.HasTabNoNav()
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        self.HasTabNoNav()
+    }
     
     @IBAction func LoginbuttonTapped(_ sender: Any) {
         
@@ -34,17 +34,18 @@ class LoginController: UIViewController {
         }
         
         navigationController?.pushViewController(loginpasswd, animated: true)
-        navigationController?.navigationBar.tintColor = UIColor.white
-        
     }
     
     
     @IBAction func RegisterbuttonTapped(_ sender: Any) {
         
-        let registerController = self.storyboard?.instantiateViewController(withIdentifier: "RegisterController") as? RegisterController
-        self.present(registerController!, animated: true)
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        guard let register = mainStoryboard.instantiateViewController(withIdentifier: "RegisterController") as? RegisterController else {
+            print("can't fine Viewcontroller")
+            return
+        }
         
-      
+        navigationController?.pushViewController(register, animated: true)
     }
     
 }

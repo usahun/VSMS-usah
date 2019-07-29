@@ -13,15 +13,21 @@ class ContactInputTableViewCell: UITableViewCell {
     @IBOutlet weak var txtName: UITextField!
     @IBOutlet weak var txtPhoneNumber: UITextField!
     @IBOutlet weak var txtEmail: UITextField!
+    @IBOutlet weak var txtAddress: UITextField!
+    
+    @IBOutlet weak var NameCheck: UIImageView!
+    @IBOutlet weak var PhoneCheck: UIImageView!
+    @IBOutlet weak var EmailCheck: UIImageView!
+    @IBOutlet weak var AddressCheck: UIImageView!
+    
     
     var passingData = CellClickViewModel()
-    weak var delegate: CellTableClick?
+    weak var setValueDelegate: getValueFromXibContact?
     var IsLoadUser = true
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        print(passingData.IndexPathKey?.row)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -33,21 +39,35 @@ class ContactInputTableViewCell: UITableViewCell {
     
     
     @IBAction func txtNameChangeHandle(_ sender: UITextField) {
+        if sender.text!.count > 0 {
+            NameCheck.Inputchecked()
+        }
+        else{
+            NameCheck.InputCrossed()
+        }
+        
         passingData.ID = sender.text!
         passingData.Value = sender.text!
-        delegate?.ClickCell(currentCell: passingData)
+        setValueDelegate?.getName(value: passingData)
     }
     
     @IBAction func txtPhoneNumberChange(_ sender: UITextField) {
+        if sender.text!.count > 8 {
+            PhoneCheck.Inputchecked()
+        }
+        else{
+            PhoneCheck.InputCrossed()
+        }
+        
         passingData.ID = sender.text!
         passingData.Value = sender.text!
-        delegate?.ClickCell(currentCell: passingData)
+        setValueDelegate?.getPhoneNumber(value: passingData)
     }
     
     @IBAction func txtEmailChangeHandle(_ sender: UITextField) {
         passingData.ID = sender.text!
         passingData.Value = sender.text!
-        delegate?.ClickCell(currentCell: passingData)
+        setValueDelegate?.getEmail(value: passingData)
     }
     
     
@@ -59,9 +79,11 @@ class ContactInputTableViewCell: UITableViewCell {
         
         switch passingData.IndexPathKey?.row {
         case 0:
-            txtName.text = User.getUsername()
+            //txtName.text = User.getUsername()
+            break
         case 1:
             txtPhoneNumber.text = User.getUsername()
+            PhoneCheck.Inputchecked()
         default:
             print("default")
         }

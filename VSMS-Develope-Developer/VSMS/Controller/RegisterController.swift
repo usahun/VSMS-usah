@@ -18,12 +18,22 @@ class RegisterController: UIViewController {
     @IBOutlet weak var textconfirmPassword: UITextField!
     var defaultUser = UserDefaults.standard
     
+//    func resetDefaults() {
+//        let domain = Bundle.main.bundleIdentifier!
+//        UserDefaults.standard.removePersistentDomain(forName: domain)
+//        UserDefaults.standard.synchronize()
+//        print(Array(UserDefaults.standard.dictionaryRepresentation().keys).count)
+//
+//    }
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+       self.navigationController?.setNavigationBarHidden(false, animated: false)
 
-       
     }
     
+  
    
     @IBAction func submitTapped(_ sender: Any) {
         
@@ -70,12 +80,14 @@ class RegisterController: UIViewController {
         Alamofire.request(PROJECT_API.REGISTER, method: .post, parameters: data,encoding: JSONEncoding.default, headers: headers).responseJSON
             { response in
                 switch response.result {
-                case .success(let value) :
+                case .success(let value):
                     let json = JSON(value)
-//                    self.defaultUser.set(json["username"], forKey: "username")
-//                    self.defaultUser.set(json["id"], forKey: "userid")
-//                    self.defaultUser.set(self.textconfirmPassword, forKey: "password")
-//                    
+                    let userDefault = UserDefaults.standard
+                        userDefault.set(json["username"].stringValue, forKey: "username")
+                        userDefault.set(json["id"].stringValue, forKey: "userid")
+                        userDefault.set(self.textconfirmPassword.text, forKey: "password")
+                    
+
                     Message.SuccessMessage(message: "Your account has been register.", View: self, callback: {
                         //switching the screen
                         let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "TestViewController") as! TestViewController

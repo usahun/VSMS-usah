@@ -48,6 +48,7 @@ class HomePageController: UIViewController{
     @IBOutlet weak var btnYear: UIButton!
     
     
+    var AL = HomepageRequestHandler()
     var imgArr = [  UIImage(named:"Dream191"),
                     UIImage(named:"Dream192"),
                     UIImage(named:"Dream193")]
@@ -77,10 +78,13 @@ class HomePageController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         configuration()
         setupNavigationBarItem()
+        ShowDefaultNavigation()
         RegisterXib()
         SlidingPhoto()
+        
         //txtSearch.disable()
         ConfigDrowDown()
         
@@ -92,8 +96,7 @@ class HomePageController: UIViewController{
         }
         
         performOn(.Main) {
-            RequestHandle.LoadAllPosts(completion: { (val) in
-                self.allPostArr = val
+            self.AL.LoadAllPosts(completion: {
                 self.tableView.reloadData()
             })
         }
@@ -105,11 +108,15 @@ class HomePageController: UIViewController{
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.sideMenuController?.delegate = self
+       // self.sideMenuController?.delegate = self
         self.tabBarController?.tabBar.isHidden = false
     }
+    
     
     @IBAction func imgClick(_ sender: Any) {
         refrestButtonFilter(type: 1)
@@ -121,10 +128,10 @@ class HomePageController: UIViewController{
         refrestButtonFilter(type: 3)
     }
     
-    
-    
     ///////////////////functions & Selectors
     func configuration(){
+        
+        
         SliderCollection.delegate = self
         SliderCollection.dataSource = self
         
@@ -214,7 +221,10 @@ class HomePageController: UIViewController{
     }
     
     @objc func menutap() {
-        sideMenuController?.revealMenu()
+        if User.IsUserAuthorized() {
+            self.viewDidAppear(true)
+            sideMenuController?.revealMenu()
+        }
     }
     
     @objc func changeImage() {
@@ -254,7 +264,7 @@ class HomePageController: UIViewController{
         
         // navigationItem.leftBarButtonItem = UIBarButtonItem(customView: menu)
         menu.frame = CGRect(x: 0, y: 0, width: 38, height: 38)
-        menu.tintColor = UIColor.lightGray
+        //menu.tintColor = UIColor.lightGray
         
         //logo
         let menubutton = UIBarButtonItem(customView: menu)
@@ -380,17 +390,19 @@ extension HomePageController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if CellIdentifier == 2 {
             IndexProduct = -1
-            print(allPostArr.count / 2)
-            return allPostArr.count / 2
+            return AL.AllPostArr.count / 2
         }
-        return allPostArr.count
+        return AL.AllPostArr.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let data = AL.AllPostArr[indexPath.row]
+        
         if CellIdentifier == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProductImageCell", for: indexPath) as! ProductImageTableViewCell
             
-            cell.data = allPostArr[indexPath.row]
+            cell.data = data
             cell.delegate = self
             return cell
         }
@@ -398,15 +410,15 @@ extension HomePageController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProductGridCell", for: indexPath) as! ProductGridTableViewCell
             
             let index = indexPath.row * 2
-            cell.data1 = allPostArr[index]
-            cell.data2 = allPostArr[index + 1]
+            cell.data1 = AL.AllPostArr[index]
+            cell.data2 = AL.AllPostArr[index + 1]
             cell.delegate = self
             return cell
         }
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProductListCell", for: indexPath) as! ProductListTableViewCell
             
-            cell.ProductData = allPostArr[indexPath.row]
+            cell.ProductData = data
             cell.delegate = self
             return cell
         }
@@ -423,13 +435,22 @@ extension HomePageController: UITableViewDelegate, UITableViewDataSource {
             return 125
         }
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let lastIndex = AL.AllPostArr.count - 1
+        if indexPath.row == lastIndex {
+            AL.LoadAllPostsNextPage {
+                self.tableView.reloadData()
+            }
+        }
+    }
 }
 
 extension HomePageController: SideMenuControllerDelegate {
     func sideMenuController(_ sideMenuController: SideMenuController, willShow viewController: UIViewController, animated: Bool) {
         view.frame = UIScreen.main.bounds
     }
-    
+
     func sideMenuControllerWillRevealMenu(_ sideMenuController: SideMenuController) {
         view.frame = UIScreen.main.bounds
     }
@@ -446,10 +467,7 @@ extension HomePageController: SideMenuControllerDelegate {
 
 extension HomePageController : CellClickProtocol {
     func cellXibClick(ID: Int) {
-        DetailViewModel.LoadProductByID(ProID: ID) { (val) in
-            self.ProductDetail = val
-            self.performSegue(withIdentifier: "HomePageDetailSW", sender: self)
-        }
+        PushToDetailProductViewController(productID: ID)
     }
 }
 
@@ -469,11 +487,14 @@ extension HomePageController: navigationToHomepage {
         
         if list == "profile" {
             let profileVC:TestViewController = self.storyboard?.instantiateViewController(withIdentifier: "TestViewController") as! TestViewController
-            self.present(profileVC, animated: true, completion: nil)
+            let navi = UINavigationController(rootViewController: profileVC)
+            self.present(navi, animated: true, completion: nil)
+            //self.navigationController?.pushViewController(profileVC, animated: true)
         }
         else{
             sideMenuController?.hideMenu()
             let listVC = ListFromNavigationViewController()
+            listVC.listType = list
             self.navigationController?.pushViewController(listVC, animated: true)
         }
     }

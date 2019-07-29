@@ -18,6 +18,7 @@ class ListAllProductViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.hidesBottomBarWhenPushed = true
         tableView.delegate = self
         tableView.dataSource = self
 
@@ -32,7 +33,7 @@ class ListAllProductViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = false
+        //self.tabBarController?.tabBar.isHidden = true
     }
     
 }
@@ -58,11 +59,6 @@ extension ListAllProductViewController: UITableViewDelegate, UITableViewDataSour
 
 extension ListAllProductViewController: CellClickProtocol {
     func cellXibClick(ID: Int) {
-        DetailViewModel.LoadProductByID(ProID: ID) { (val) in
-            if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController {
-                viewController.ProductDetail = val
-                self.navigationController?.pushViewController(viewController, animated: true)
-                }
-            }
+       self.PushToDetailProductViewController(productID: ID)
     }
 }

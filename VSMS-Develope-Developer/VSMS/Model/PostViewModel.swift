@@ -8,13 +8,14 @@
 
 import Foundation
 import SwiftyJSON
+import Alamofire
 
 class PostViewModel {
     var PostID: Int = -1
     var title: String = ""
     var post_type: String = ""
     var category: Int = 0
-    var type: Int = 0
+    var type: Int = 1
     var brand: Int = 0
     var modeling: Int = 0
     var year: Int = 0
@@ -25,9 +26,9 @@ class PostViewModel {
     var description: String = ""
     var cost: String = "0.0"
     var created_by: Int = User.getUserID()
-    var discount_type: String?
-    var discount: String?
-    var status: Int = 4
+    var discount_type: String = "amount"
+    var discount: String = "0.0"
+    var status: Int = 1
     
     //var discount_type: String = ""
     var contact_phone: String = User.getUsername()
@@ -58,7 +59,32 @@ class PostViewModel {
         
     }
     
-    init(json: JSON) {
+    func LoadPostByID(ID: Int, completion: @escaping (PostViewModel) -> Void)
+    {
+        var result = PostViewModel()
+        Alamofire.request(PROJECT_API.LOADPRODUCTOFUSER(ProID: ID),
+                          method: .get,
+                          encoding: JSONEncoding.default,
+                          headers: headers
+        ).responseJSON
+        { response in
+            switch response.result
+            {
+            case .success(let value):
+                let json = JSON(value)
+                result.front_image_base64 = json["front_image_base64"].stringValue
+                result.left_image_base64 = json["left_image_base64"].stringValue
+                result.right_image_base64 = json["right_image_base64"].stringValue
+                result.back_image_base64 = json["back_image_base64"].stringValue
+                completion(result)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    init(json: JSON)
+    {
         self.PostID = json["id"].stringValue.toInt()
         self.title = json["title"].stringValue
         self.post_type = json["post_type"].stringValue
@@ -70,7 +96,8 @@ class PostViewModel {
         self.condition = json["condition"].stringValue
     }
 
-    var asDictionary : [String:Any] {
+    var asDictionary : [String:Any]
+    {
         let mirror = Mirror(reflecting: self)
         let dict = Dictionary(uniqueKeysWithValues: mirror.children.lazy.map({ (label:String?,value:Any) -> (String,Any)? in
             guard label != nil else { return nil }
@@ -83,7 +110,7 @@ class PostViewModel {
 
 class SalePost {
     var id: Int = -1
-    var sale_status: Int = 1
+    var sale_status: Int = 3
     var record_status: Int = 1
     var sold_date: Date?
     var price: String = ""
@@ -100,11 +127,12 @@ class SalePost {
     
     init() {}
     
-    init(json: JSON){
+    init(json: JSON)
+    {
         self.id = json["id"].stringValue.toInt()
         self.sale_status = json["sale_status"].stringValue.toInt()
         self.record_status = json["record_status"].stringValue.toInt()
-        self.sold_date = json["sold_date"].stringValue.toDate()
+        //self.sold_date = json["sold_date"].stringValue.to
         self.price = json["price"].stringValue
         self.total_price = json["total_price"].stringValue
     }
@@ -112,11 +140,11 @@ class SalePost {
 
 class RentPost {
     var id: Int = -1
-    var rent_status: Int = 1
+    var rent_status: Int = 3
     var record_status: Int = 1
-    var rent_type: String = "" //day,week,month
-    var rent_date: Date = Date()
-    var return_date: Date = Date()
+    var rent_type: String = "month" //day,week,month
+    var rent_date: Date?
+    var return_date: Date?
     var price: String = ""
     var total_price: String = ""
     var rent_count_number: Int = 0
@@ -140,7 +168,7 @@ class RentPost {
 
 class BuyPost {
     var id: Int = -1
-    var buy_status: Int = 1
+    var buy_status: Int = 3
     var record_status: Int = 1
     var created: Date?
     //var post: Int = 3

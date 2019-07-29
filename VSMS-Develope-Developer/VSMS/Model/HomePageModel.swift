@@ -19,6 +19,7 @@ class HomePageModel {
     var imagefront: String = ""
     var discount: String = "0.0"
     var postType: String = ""
+    var create_at: String?
     
     init() {}
     
@@ -38,6 +39,33 @@ class HomePageModel {
         self.postType = postType
     }
     
+    init(id: Int, name: String, cost: String, imagefront: String,discount: String, postType: String, createdat: String){
+        self.product = id
+        self.title = name
+        self.cost = cost
+        self.imagefront = imagefront
+        self.discount = discount
+        self.postType = postType
+        self.create_at = createdat
+    }
+    
+    init(postID: Int){
+        performOn(.HighPriority) {
+            RequestHandle.LoadListProductByPostID(postID: postID) { (val) in
+                print("in")
+                self.product = val.product
+                self.title = val.title
+                self.category = val.category
+                self.cost = val.cost
+                self.discount = val.discount
+                self.postType = val.postType
+                self.imagefront = val.imagefront
+                self.create_at = val.create_at
+            }
+        }
+        print("out")
+    }
+    
     init(json: JSON){
         self.product = json["id"].stringValue.toInt()
         self.title = json["title"].stringValue
@@ -45,6 +73,7 @@ class HomePageModel {
         self.discount = json["discount"].stringValue
         self.imagefront = json["front_image_base64"].stringValue
         self.postType = json["post_type"].stringValue
+        self.create_at = json["create_at"].stringValue
     }
 }
 

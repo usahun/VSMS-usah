@@ -14,26 +14,35 @@ class PostsTableViewCell: UITableViewCell {
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var PostImage: UIImageView!
     @IBOutlet weak var lblDuration: UILabel!
+    @IBOutlet weak var btnButtonView: UIView!
+    
     
     //Internal Properties
     var ProID: Int?
-    weak var delelgate: CellClickProtocol?
+    var Data = HomePageModel()
+    weak var delelgate: ProfileCellClickProtocol?
     
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handerCellClick)))
     }
     
     @objc func handerCellClick(){
-        self.delelgate?.cellXibClick(ID: self.ProID ?? 0)
+        self.delelgate?.cellClickToDetail(ID: Data.product)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+        lblName.text = Data.title
+        lblPrice.text = Data.cost.toCurrency()
+        PostImage.image = Data.imagefront.base64ToImage()
+        lblDuration.text = Data.create_at?.getDuration()
+        
     }
     
     
@@ -42,7 +51,7 @@ class PostsTableViewCell: UITableViewCell {
     }
     
     @IBAction func buttonEditTepped(_ sender: Any) {
-        print("Edit")
+        self.delelgate?.cellClickToEdit(ID: Data.product)
     }
     
     @IBAction func buttonDeleteTepped(_ sender: Any) {

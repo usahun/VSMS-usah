@@ -34,7 +34,8 @@ class ProductListTableViewCell: UITableViewCell {
         imgProductImage.image = ProductData.imagefront.base64ToImage()
         lblProductname.text = ProductData.title.capitalizingFirstLetter()
         lblProductPrice.text = ProductData.cost.toCurrency()
-        lblDuration.text = "5 minutes ago"
+        print(ProductData.create_at?.getDuration())
+        lblDuration.text = ProductData.create_at?.getDuration()
         
         lblPostType.text = ProductData.postType.capitalizingFirstLetter()
         if ProductData.postType == "sell" {
@@ -46,7 +47,6 @@ class ProductListTableViewCell: UITableViewCell {
         else if ProductData.postType == "buy" {
             lblPostType.backgroundColor = #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
         }
-        
     }
     
     @objc

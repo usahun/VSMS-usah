@@ -38,6 +38,35 @@ enum VSMSTabBar: Int {
 
 class CustomTabBarController: UITabBarController {
     
+    let LoginTab: UINavigationController = {
+        let login = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginController") as! LoginController
+        return UINavigationController(rootViewController: login)
+    }()
+    
+    let ProfileTab: UINavigationController = {
+        let profile = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TestViewController") as! TestViewController
+        return UINavigationController(rootViewController: profile)
+    }()
+    
+    let SideMenuTab: SideMenuController = {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let contentViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenu") as! MyNavigation
+        
+        let menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leftMenu") as! MenuViewController
+        menuViewController.delegate = contentViewController
+        
+        let sideMenuController = SideMenuController(
+            contentViewController: contentViewController,
+            menuViewController: menuViewController)
+        return sideMenuController
+    }()
+    
+    let PostAdTab: UINavigationController = {
+        let postAd = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PostAdViewController") as! PostAdViewController
+        return UINavigationController(rootViewController: postAd)
+    }()
+    
     override var tabBar: UITabBar {
         let _tabar = super.tabBar
         _tabar.barTintColor = .white
@@ -49,6 +78,7 @@ class CustomTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.delegate = self
         setuptabBar()
         configureSideMenu()
     }
@@ -59,37 +89,9 @@ class CustomTabBarController: UITabBarController {
         SideMenuController.preferences.basic.statusBarBehavior = .hideOnMenu
         
     }
-    
+
     fileprivate func setuptabBar () {
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        
-        let contentViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenu") as! MyNavigation
-        
-        let menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leftMenu") as! MenuViewController
-            menuViewController.delegate = contentViewController
-        
-        let sideMenuController = SideMenuController(
-                    contentViewController: contentViewController,
-                    menuViewController: menuViewController)
-        
-        let cameratap = storyBoard.instantiateViewController(withIdentifier: "PostAdViewController")
-        let profiletap = storyBoard.instantiateViewController(withIdentifier: "TestViewController")
-        //let logIntap = storyBoard.instantiateViewController(withIdentifier: "LoginPasswordController")
-        
-        let profile = UINavigationController(rootViewController: profiletap)
-        let camera = UINavigationController(rootViewController: cameratap)
-        //let login = UINavigationController(rootViewController: logIntap)
-        
-        //let HomePageVC = UINavigationController(rootViewController:Homepage )
-        //let Profile = UINavigationController(rootViewController: LoginController())
-        
-        //Profile.tabBarItem.image = UIImage(named: "icon-messages-app-27x20")
-        //HomePageVC.tabBarItem.image = UIImage(named: "icons8-home-50")
-      
-        //HomePageVC.tabBarItem.selectedImage = UIImage.
-        
-        viewControllers = [sideMenuController,camera, profile]
-        
+
         for (index, bar) in self.tabBar.items!.enumerated() {
             bar.image = VSMSTabBar(rawValue: index)?.image
             bar.title = VSMSTabBar(rawValue: index)?.title
@@ -97,4 +99,21 @@ class CustomTabBarController: UITabBarController {
         
     }
 
+}
+
+extension CustomTabBarController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        print(tabBarController.selectedIndex)
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        switch viewController {
+        case ProfileTab:
+            if tabBarController.selectedIndex == 2 && !User.IsUserAuthorized(){
+                return false
+            }
+            return true
+        default: return true
+        }
+    }
 }

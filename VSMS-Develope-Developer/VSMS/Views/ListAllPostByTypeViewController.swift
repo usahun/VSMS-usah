@@ -20,18 +20,19 @@ class ListAllPostByTypeViewController: UIViewController {
                               UIImage(named: "homeIcon")!]
     
     override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = true
-        print(parameter.type)
+        hideTabBar()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
+        self.hidesBottomBarWhenPushed = true
         tableView.delegate = self
         tableView.dataSource = self
         // Do any additional setup after loading the view.
         Configuration()
         LoadCategory()
+        ShowDefaultNavigation()
     }
     
     func Configuration() {

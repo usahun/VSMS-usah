@@ -22,17 +22,19 @@ class LoginPasswordController: UIViewController {
     let defaultValues = UserDefaults.standard
     
     
+   
+  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loginbutton.reloadInputViews()
+        navigationController?.navigationBar.isHidden = false
 
         //if user is already logged in switching to profile screen
 
-        
-        if defaultValues.string(forKey: "username") != nil{
-            let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "TestViewController") as! TestViewController
-            self.navigationController?.pushViewController(profileViewController, animated: true)
-        }
-        
+        self.ShowDefaultNavigation()
+        self.HasNavNoTab()
     }
     
 
@@ -65,15 +67,17 @@ class LoginPasswordController: UIViewController {
                         self.defaultValues.set(userName, forKey: "username")
                         self.defaultValues.set(self.textpassword.text, forKey: "password")
                         
-                        //switching the screen
-                        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-                        guard let Profile = mainStoryboard.instantiateViewController(withIdentifier: "TestViewController") as? TestViewController else {
-                            print("can't fine Viewcontroller")
-                            return
-                        }
+//                        //switching the screen
+//                        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+//                        guard let Profile = mainStoryboard.instantiateViewController(withIdentifier: "TestViewController") as? TestViewController else {
+//                            print("can't fine Viewcontroller")
+//                            return
+//                        }
+//                        
+//                        self.navigationController?.pushViewController(Profile, animated: true)
+//                        self.dismiss(animated: false, completion: nil)
                         
-                        self.navigationController?.pushViewController(Profile, animated: true)
-                        self.dismiss(animated: false, completion: nil)
+                        self.navigationController?.popToRootViewController(animated: true)
                     }else{
                         //error message in case of invalid credential
                         let AlertMessage = UIAlertController(title: "Warning", message: "Invalid username or password", preferredStyle: .alert)

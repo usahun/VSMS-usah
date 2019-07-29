@@ -22,6 +22,8 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     @IBOutlet weak var mysegmentControl: UISegmentedControl!
     @IBOutlet weak var btnCoverChange: UIButton!
     
+    
+    var ProfileHandleRequest = UserProfileRequestHandle()
     var post = ["Posts","Likes"]
     var imgprofile = ImageProfileModel()
     let picker = UIImagePickerController()
@@ -64,12 +66,21 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = false
+        self.ShowDefaultNavigation()
+        super.viewWillAppear(true)
+        self.viewDidLoad()
+
         tableView.reloadData()
     }
-    
+
     override func viewDidLoad() {
+        //Check User is Log in
         super.viewDidLoad()
+        
+        if !User.IsUserAuthorized() {
+            self.PushToLogInViewController()
+        }
+
         
         profileImage.CirleWithWhiteBorder(thickness: 3)
         CoverView.addBorder(toSide: .Bottom, withColor: UIColor.white.cgColor, andThickness: 3)
@@ -82,15 +93,12 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         profileImage.addGestureRecognizer(tapGestureRecognizer)
         
         tableView.refreshControl = postRefresher
+
         self.navigationController?.navigationBar.isHidden = false
-        mysegmentControl.setTitle("POSTS(\(postArr.count))", forSegmentAt: 0)
+        mysegmentControl.setTitle("POSTS(\(ProfileHandleRequest.AllPostActiveCount))", forSegmentAt: 0)
         mysegmentControl.setTitle("LIKES(\(likeArr.count))", forSegmentAt: 1)
         mysegmentControl.setTitle("LOANS(0)", forSegmentAt: 2)
         
-        //Check User is Log in
-        User.IsAuthenticated(view: self) {
-            return
-        }
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -107,7 +115,10 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 
         
         performOn(.Main) {
-            self.LoadAllPostByUser()
+            self.ProfileHandleRequest.LoadAllPostByUser {
+                self.mysegmentControl.setTitle("Posts(\(self.ProfileHandleRequest.AllPostActiveCount))", forSegmentAt: 0)
+                self.tableView.reloadData()
+            }
         }
         
         performOn(.HighPriority) {
@@ -220,30 +231,13 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     @objc
     func LoadAllPostByUser(){
-        Alamofire.request(PROJECT_API.POSTBYUSERACTIVE, method: .get,encoding: JSONEncoding.default,headers: headers).responseJSON
-            { (response) in
-                switch response.result{
-                case .success(let value):
-                    let json = JSON(value)
-                    self.postArr = (json["results"].array?.map{
-                        
-                        ProfileModel(id: $0["id"].stringValue.toInt(), name: $0["title"].stringValue,cost: $0["cost"].stringValue,base64Img: $0["front_image_base64"].stringValue)
-                        } ?? [])
-                    
-                    self.mysegmentControl.setTitle("POSTS(\(self.postArr.count))", forSegmentAt: 0)
-                    self.postRefresher.endRefreshing()
-
-                    performOn(.Main, closure: {
-                        self.tableView.reloadData()
-                    })
-                    
-                case .failure:
-                    print("error")
-                }
+        ProfileHandleRequest.LoadAllPostByUser {
+            self.mysegmentControl.setTitle("Posts(\(self.ProfileHandleRequest.AllPostActiveCount))", forSegmentAt: 0)
+            self.postRefresher.endRefreshing()
+            self.tableView.reloadData()
         }
     }
     
-
     @objc
     func LoadAllPostLike() {
         Alamofire.request(PROJECT_API.LIKEBYUSER, method: .get,encoding: JSONEncoding.default,headers: headers).responseJSON
@@ -252,7 +246,8 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 case .success(let value):
                     let json = JSON(value)
                     self.likeArr = (json["results"].array?.map{
-                        LikebyUserModel(post: $0["post"].stringValue.toInt(), likeby: $0["like_by"].stringValue.toInt())
+                        LikebyUserModel(post: $0["post"].stringValue.toInt(),
+                                        likeby: $0["like_by"].stringValue.toInt())
                         }) ?? []
                     
                     
@@ -286,7 +281,7 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if index == 0{
-             return postArr.count
+             return ProfileHandleRequest.PostActive.count
         }else if index == 1 {
             return likeArr.count
         }else {
@@ -297,7 +292,7 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if index == 0 {
-            return 170
+            return 190
         }
         else if index == 1 {
             return 150
@@ -310,11 +305,7 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if index == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Postcell", for: indexPath) as! PostsTableViewCell
-            cell.PostImage.image = postArr[indexPath.row].base64Img.base64ToImage()
-            cell.lblName.text = postArr[indexPath.row].title
-            cell.lblPrice.text = "$ \(postArr[indexPath.row].cost)"
-            ////
-            cell.ProID = postArr[indexPath.row].PosID
+            cell.Data = ProfileHandleRequest.PostActive[indexPath.row]
             cell.delelgate = self
             return cell
         }else {
@@ -323,9 +314,18 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             cell.lblPrice.text = likeArr[indexPath.row].pro_detail.cost.toCurrency()
             cell.LikesImage.image = likeArr[indexPath.row].pro_detail.frontImage
             ////
-            cell.delegate = self
+            //cell.delegate = self
             cell.ProID = likeArr[indexPath.row].post
             return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let lastIndex = ProfileHandleRequest.PostActive.count - 1
+        if lastIndex == indexPath.row {
+            ProfileHandleRequest.NextPostByUser {
+                self.tableView.reloadData()
+            }
         }
     }
     
@@ -337,14 +337,16 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
 }
 
-extension TestViewController: CellClickProtocol {
-    func cellXibClick(ID: Int) {
-        DetailViewModel.LoadProductByIDOfUser(ProID: ID) { (val) in
-            self.productDetail = val
-            self.performSegue(withIdentifier: "ProfilePostToDetailSW", sender: self)
-        }
-        
+extension TestViewController: ProfileCellClickProtocol {
+    func cellClickToDetail(ID: Int) {
+        PushToDetailProductByUserViewController(productID: ID)
     }
+    
+    func cellClickToEdit(ID: Int) {
+       PushToEditPostViewController(ID: ID)
+    }
+    
+    
 }
 
 extension TestViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

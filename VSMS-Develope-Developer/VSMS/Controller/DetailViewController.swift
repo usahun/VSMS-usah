@@ -51,14 +51,12 @@ class DetailViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-            self.tabBarController?.tabBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     //Events Handler
     @IBAction func clickCall(_ sender: Any) {
-        Message.AlertMessage(message: "", header: "Call", View: self) {
-            
-        }
+        
     }
     
     @IBAction func clickSms(_ sender: Any) {

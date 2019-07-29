@@ -11,14 +11,14 @@ import UIKit
 class MapTableViewHeaderFooterView: UITableViewHeaderFooterView {
 
     weak var delegate: CellTableClick?
-    
+    var btnSubmitHandler: (() -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
     @IBAction func submitClick(_ sender: Any) {
-        self.delegate?.SubmitClick()
+        btnSubmitHandler?()
     }
     
 }

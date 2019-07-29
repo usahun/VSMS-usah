@@ -70,8 +70,6 @@ extension SearchViewController: UISearchBarDelegate {
         self.parameter.search = searchBar.text ?? ""
         self.SearchHandle()
     }
-    
-    
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
@@ -93,11 +91,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension SearchViewController: CellClickProtocol {
     func cellXibClick(ID: Int) {
-        DetailViewModel.LoadProductByID(ProID: ID) { (val) in
-            if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController {
-                viewController.ProductDetail = val
-                self.navigationController?.pushViewController(viewController, animated: true)
-            }
-        }
+        self.PushToDetailProductViewController(productID: ID)
     }
 }

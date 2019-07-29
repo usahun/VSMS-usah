@@ -87,23 +87,38 @@ class LikebyUserModel {
     var post: Int = -1
     var likeby:  Int = -1
     var pro_detail = ProfileModel()
+    var productShow = HomePageModel()
+    
+    init() {}
     
     init(post: Int,likeby: Int){
         self.post = post
         self.likeby = likeby
         
-        DetailViewModel.LoadProductByIDOfUser(ProID: self.post) { (val) in
-            self.pro_detail.PosID = val.id
-            self.pro_detail.title = val.title
-            self.pro_detail.cost = val.cost
-            self.pro_detail.frontImage = val.front_image_base64
+        performOn(.HighPriority) {
+            DetailViewModel.LoadProductByIDOfUser(ProID: self.post) { (val) in
+                self.pro_detail.PosID = val.id
+                self.pro_detail.title = val.title
+                self.pro_detail.cost = val.cost
+                self.pro_detail.frontImage = val.front_image_base64
+            }
         }
     }
     
     init(json: JSON) {
         self.post = json["post"].stringValue.toInt()
         self.likeby = json["like_by"].stringValue.toInt()
-        
     }
     
+    
+    func getListProduct(json: JSON){
+        self.post = json["post"].stringValue.toInt()
+        self.likeby = json["like_by"].stringValue.toInt()
+        
+        performOn(.HighPriority) {
+            RequestHandle.LoadListProductByPostID(postID: self.post, completion: { (val) in
+                self.productShow = val
+            })
+        }
+    }
 }

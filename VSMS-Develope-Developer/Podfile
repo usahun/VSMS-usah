@@ -12,6 +12,8 @@ target 'VSMS' do
    pod 'CollectionViewGridLayout'
    pod 'SwiftyJSON', '~> 4.0'
    pod 'DropDown', '2.3.4'
+   pod 'TLPhotoPicker', '1.8.3'
+   pod 'Toast-Swift', '~> 4.0.0'
    #  pod 'LGSideMenuController'
    # pod 'Chatto', '= 3.4.0'
 #  pod 'ChattoAdditions', '= 3.4.0' # if you want to use the cells or the input component

@@ -14,9 +14,38 @@ protocol XibtoXib {
     func getDropDownID(Id: String)
 }
 
-protocol refreshDropdownInXib: class {
-    func refreshXib(FKKey: Int)
+protocol getValueFromXibDetail: class {    
+    func getTitle(value: CellClickViewModel)
+    func getPostType(value: CellClickViewModel)
+    func getCategory(value: CellClickViewModel)
+    func getType(value: CellClickViewModel)
+    func getBrand(value: CellClickViewModel)
+    func getModel(value: CellClickViewModel)
+    func getYear(value: CellClickViewModel)
+    func getCondition(value: CellClickViewModel)
+    func getColor(value: CellClickViewModel)
+    func getVinCode(value: CellClickViewModel)
+    func getMachinecode(value: CellClickViewModel)
+    func getDescription(value: CellClickViewModel)
+    func getPrice(value: CellClickViewModel)
 }
+
+protocol getValueFromXibDiscount: class {
+    func getDiscountType(value: CellClickViewModel)
+    func getDiscount(value: CellClickViewModel)
+}
+
+protocol getValueFromXibContact: class {
+    func getName(value: CellClickViewModel)
+    func getPhoneNumber(value: CellClickViewModel)
+    func getEmail(value: CellClickViewModel)
+    func getAddress(value: CellClickViewModel)
+}
+
+protocol getValueFromXibPhoto: class {
+    func getPhoto(Photos: [imageWithPLAsset])
+}
+
 
 protocol RecordCountProtocol: class {
     func getHeighOfCollectionView(recordCount: CGFloat)
@@ -26,7 +55,12 @@ protocol getDropdowntypeProtocol: class {
 }
 
 protocol refreshCollectionProtocol: class {
-    func refreshCollection()
+    func refreshCollection(listImage: [imageWithPLAsset])
+}
+
+protocol ProfileCellClickProtocol: class {
+    func cellClickToDetail(ID: Int)
+    func cellClickToEdit(ID: Int)
 }
 
 protocol InitailViewControllerProtocol: class {
@@ -53,6 +87,7 @@ class CellClickViewModel {
     var ID: String = ""
     var Value: String = ""
     var IndexPathKey: NSIndexPath? = nil
+    var isChecked: Bool = false
 }
 
 

@@ -13,8 +13,14 @@ class DiscountInputTableViewCell: UITableViewCell, getDropdowntypeProtocol {
 
     @IBOutlet weak var btnDiscountType: UIButton!
     @IBOutlet weak var lblDiscount: UILabel!
+    @IBOutlet weak var txtDiscount: UITextField!
     
-    weak var delegate: CellTableClick?
+    
+    @IBOutlet weak var discountTypeCheck: UIImageView!
+    @IBOutlet weak var discountCheck: UIImageView!
+    
+    
+    weak var setValueDelegate: getValueFromXibDiscount?
     var passingData = CellClickViewModel()
     var Dropdown = DropDown()
     
@@ -23,6 +29,8 @@ class DiscountInputTableViewCell: UITableViewCell, getDropdowntypeProtocol {
         super.awakeFromNib()
         setupDiscountTypeDropDown()
         // Initialization code
+        
+        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(HandleClick)))
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -30,8 +38,12 @@ class DiscountInputTableViewCell: UITableViewCell, getDropdowntypeProtocol {
 
         // Configure the view for the selected state
     }
-    @IBAction func btnDiscountTypeClick(_ sender: Any) {
-        Dropdown.show()
+    
+    @objc
+    func HandleClick(){
+        if passingData.IndexPathKey?.row == 0 {
+            Dropdown.show()
+        }
     }
     
     func getDropDownTypeData(type: String) {
@@ -39,19 +51,29 @@ class DiscountInputTableViewCell: UITableViewCell, getDropdowntypeProtocol {
     }
    
     @IBAction func txtDiscountChange(_ sender: UITextField) {
+        
+        if sender.text!.count > 0 {
+            discountCheck.Inputchecked()
+        }
+        else{
+            discountCheck.InputCrossed()
+        }
+        
         passingData.ID = sender.text?.lowercased() ?? ""
         passingData.Value = sender.text ?? ""
-        self.delegate?.ClickCell(currentCell: passingData)
+        self.setValueDelegate?.getDiscount(value: passingData)
     }
     
     func setupDiscountTypeDropDown(){
         Dropdown.anchorView = self.btnDiscountType
         Dropdown.dataSource = Functions.getDiscountTypeList()
+        Dropdown.width = self.frame.width
         // Action triggered on selection
         Dropdown.selectionAction = { [weak self] (index, item) in
+            self?.discountTypeCheck.Inputchecked()
             self?.passingData.ID = item.lowercased()
             self?.passingData.Value = item
-            self?.delegate?.ClickCell(currentCell: self!.passingData)
+            self?.setValueDelegate?.getDiscountType(value: self!.passingData)
             self?.btnDiscountType.setTitle(item, for: .normal)
             self!.Dropdown.hide()
         }

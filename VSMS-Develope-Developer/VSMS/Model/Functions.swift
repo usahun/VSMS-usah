@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import Photos
 
 var http_absoluteString = "http://103.205.26.103:8000"
 
@@ -30,6 +31,7 @@ class PROJECT_API {
     static var POSTBYUSERHISTORY = "\(http_absoluteString)/postbyuser/?status=2"
     static var PROFILE_PIC = "\(http_absoluteString)/api/v1/users/\(User.getUserID())/profilephoto/"
     static var COVER_PIC = "\(http_absoluteString)/api/v1/users/\(User.getUserID())/coverphoto/"
+    static var LIKEBYUSER = "\(http_absoluteString)/likebyuser/"
     
     //LogIN
     static var LOGIN = "\(http_absoluteString)/api/v1/rest-auth/login/"
@@ -37,7 +39,6 @@ class PROJECT_API {
     
     //Homepage
     static var HOMEPAGE = "\(http_absoluteString)/allposts/"
-    static var LIKEBYUSER = "\(http_absoluteString)/likebyuser/"
     static var BESTDEAL = "\(http_absoluteString)/bestdeal/"
     static func RELATED_PRODUCT(type: String, category: String) -> String {
         return "\(http_absoluteString)/relatedpost/?post_type=\(type)&category=\(category)&modeling=&min_price=&max_price="
@@ -90,6 +91,7 @@ class User {
         if defaultValues.string(forKey: "username") == nil{
             let LogInView = view.storyboard?.instantiateViewController(withIdentifier: "LoginController") as! LoginController
             view.navigationController?.pushViewController(LogInView, animated: true)
+            callBack()
         }
         else{
             return
@@ -110,6 +112,16 @@ class User {
             case .failure(let error):
                 print(error.localizedDescription)
             }
+        }
+    }
+    
+    static func IsUserAuthorized() -> Bool {
+        let defaultValues = UserDefaults.standard
+        if defaultValues.string(forKey: "username") == nil{
+            return false
+        }
+        else {
+            return true
         }
     }
 }
@@ -322,3 +334,30 @@ class Functions {
 
 
 
+func PHAssetForFileURL(url: NSURL) -> PHAsset? {
+    let imageRequestOptions = PHImageRequestOptions()
+    imageRequestOptions.version = .current
+    imageRequestOptions.deliveryMode = .fastFormat
+    imageRequestOptions.resizeMode = .fast
+    imageRequestOptions.isSynchronous = true
+    
+    let fetchResult = PHAsset.fetchAssets(with: nil)
+    for index in 0..<fetchResult.count {
+        if let asset = fetchResult[index] as? PHAsset {
+            var found = false
+            PHImageManager.default().requestImageData(for: asset,
+                                                                    options: imageRequestOptions) { (_, _, _, info) in
+                                                                        if let urlkey = info?["PHImageFileURLKey"] as? NSURL {
+                                                                            if urlkey.absoluteString! == url.absoluteString! {
+                                                                                found = true
+                                                                            }
+                                                                        }
+            }
+            if (found) {
+                return asset
+            }
+        }
+    }
+    
+    return nil
+}

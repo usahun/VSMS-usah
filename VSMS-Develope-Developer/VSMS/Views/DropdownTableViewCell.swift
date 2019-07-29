@@ -16,7 +16,7 @@ protocol CellTableClick: class {
     func SubmitClick()
 }
 
-class DropdownTableViewCell: UITableViewCell, refreshDropdownInXib {
+class DropdownTableViewCell: UITableViewCell {
  
     
    
@@ -70,6 +70,7 @@ class DropdownTableViewCell: UITableViewCell, refreshDropdownInXib {
         Dropdown.anchorView = buttondropdown
         Dropdown.bottomOffset = CGPoint(x: 0, y: buttondropdown.bounds.height)
         Dropdown.dataSource = self.drowdownData
+        
         
         // Action triggered on selection
         Dropdown.selectionAction = { [weak self] (index, item) in

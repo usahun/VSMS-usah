@@ -23,34 +23,42 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         super.viewDidLoad()
         imageprofile.layer.cornerRadius = imageprofile.frame.width * 0.5
         imageprofile.clipsToBounds = true
-        
+
+        imageprofile.CirleWithWhiteBorder(thickness: 1)
+    
         tableView.delegate = self
         tableView.dataSource = self
         lblProfileName.text = User.getUsername()
-        
     }
-    
+   
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
+  
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 8
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
         switch indexPath.row {
         case 0:
             self.delegate?.cellClick(list: "profile")
         case 1:
-            self.delegate?.cellClick(list: "post")
+            self.delegate?.cellClick(list: "Your Post")
         case 2:
-            self.delegate?.cellClick(list: "like")
+            self.delegate?.cellClick(list: "Your Like")
         case 3:
             break
             //self.delegate?.cellClick(list: "share")
         case 4:
-            self.delegate?.cellClick(list: "loan")
+            self.delegate?.cellClick(list: "Your Loan")
         default:
             break
         }
         self.tableView.deselectRow(at: indexPath, animated: true)
+
     }
    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -85,3 +93,4 @@ class SectionMenu: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     
 }
+
