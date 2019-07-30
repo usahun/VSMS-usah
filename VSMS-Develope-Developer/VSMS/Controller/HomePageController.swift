@@ -74,6 +74,9 @@ class HomePageController: UIViewController{
     var yearRawData: [dropdownData] = []
     var modelsArr: [dropdownData] = []
     
+    let now = Date()
+    let pastDate = Date(timeIntervalSinceNow: -60 * 62)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -284,6 +287,8 @@ class HomePageController: UIViewController{
         self.navigationItem.rightBarButtonItem = barButton
     }
     
+    
+    
     func ConfigDrowDown(){
         Functions.getDropDownList(key: 2) { (val) in
             self.categoryRawData = val
@@ -478,4 +483,10 @@ extension HomePageController: navigationToHomepage {
         }
     }
 }
+
+
+        
+    
+
+
 

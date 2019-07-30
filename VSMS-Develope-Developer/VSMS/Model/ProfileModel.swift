@@ -19,6 +19,7 @@ class ProfileModel {
     var cost: String = "0.0"
     var base64Img: String = ""
     var frontImage: UIImage?
+   
     
     init() {}
     
@@ -27,6 +28,7 @@ class ProfileModel {
         self.title = name
         self.cost = cost
         self.base64Img = base64Img
+        
     }
     
     init(json: JSON){
@@ -35,6 +37,7 @@ class ProfileModel {
         self.category = json["category"].stringValue.toInt()
         self.cost = json["cost"].stringValue
         self.base64Img = json["front_image_base64"].stringValue
+        
     }
 }
 
@@ -43,15 +46,15 @@ struct Profile {
     var ID: String
     var Name: String
     var PhoneNumber: String
-    var Email: String
     var Profile: UIImage
+    var email: String
 }
 
 class ImageProfileModel {
     
     var profileID : String = ""
     var name: String = ""
-   
+    var email: String = ""
     var profile: ImageSubClass = ImageSubClass()
     
     init(){}
@@ -60,6 +63,7 @@ class ImageProfileModel {
         self.profileID = json["id"].stringValue
         self.name = json["username"].stringValue
         self.profile = ImageSubClass(json: json["profile"])
+        self.email = json["email"].stringValue
     }
     
 }
@@ -69,7 +73,7 @@ class ImageSubClass {
     var telephone: String = ""
     var base64_profile_image: String = ""
     var base64_cover_image: String = ""
-    
+    var address: String = ""
     
     init(){}
     
@@ -77,6 +81,7 @@ class ImageSubClass {
         self.telephone = json["telephone"].stringValue
         self.base64_profile_image = json["base64_profile_image"].stringValue
         self.base64_cover_image = json["base64_cover_image"].stringValue
+        self.address = json["address"].stringValue
     }
 }
 

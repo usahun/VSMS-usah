@@ -39,12 +39,12 @@ class PROJECT_API {
     static var HOMEPAGE = "\(http_absoluteString)/allposts/"
     static var LIKEBYUSER = "\(http_absoluteString)/likebyuser/"
     static var BESTDEAL = "\(http_absoluteString)/bestdeal/"
-    static func RELATED_PRODUCT(type: String, category: String) -> String {
-        return "\(http_absoluteString)/relatedpost/?post_type=\(type)&category=\(category)&modeling=&min_price=&max_price="
+    
+    static func RELATED_PRODUCT(postType: String, category: String, modeling: String) -> String {
+        return "\(http_absoluteString)/relatedpost/?post_type=\(postType)&category=\(category)&modeling=\(modeling)&min_price=&max_price="
     }
     static func SEARCH_PRODUCT(filter: SearchFilter) -> String {
         return "\(http_absoluteString)/postsearch/?search=\(filter.search)&category=\(filter.category)&modeling=\(filter.model)&year=\(filter.year)"
-        
     }
     
     //Post Ad
@@ -61,6 +61,11 @@ class PROJECT_API {
     }
     static func LOADPRODUCTOFUSER(ProID: Int) -> String {
         return "\(http_absoluteString)/postbyuser/\(ProID)/"
+    }
+
+    //Count Views
+    static func COUNT_VIEWS(ProID: Int) -> String {
+        return "\(http_absoluteString)/countview/?post=\(ProID)"
     }
 }
 
@@ -105,8 +110,7 @@ class User {
                 completion(Profile(ID: json["id"].stringValue,
                                    Name: json["username"].stringValue,
                                    PhoneNumber: profile["telephone"].stringValue,
-                                   Email: json["email"].stringValue,
-                                   Profile: profile["base64_profile_image"].stringValue.base64ToImage() ?? UIImage()))
+                                   Profile: profile["base64_profile_image"].stringValue.base64ToImage() ?? UIImage(), email: json["email"].stringValue))
             case .failure(let error):
                 print(error.localizedDescription)
             }

@@ -70,6 +70,7 @@ class DetailViewModel {
         self.post_type = json["post_type"].stringValue
         self.vin_code = json["vin_code"].stringValue
         self.machine_code = json["machine_code"].stringValue
+        self.created_by = json["created_by"].stringValue.toInt()
         
         self.contact_phone = json["contact_phone"].stringValue
         self.contact_email = json["contact_email"].stringValue

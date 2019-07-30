@@ -22,23 +22,23 @@ class LoginPasswordController: UIViewController {
     let defaultValues = UserDefaults.standard
     
     
-   
-  
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loginbutton.reloadInputViews()
-        navigationController?.navigationBar.isHidden = false
+        navigationController?.navigationBar.isHidden = true
+        //navigationController?.navigationBar.barTintColor = UIColor.blue
 
         //if user is already logged in switching to profile screen
 
         if defaultValues.string(forKey: "username") != nil{
           
+           let storyBoard = UIStoryboard.init(name: "Mian", bundle: nil)
+           let profile = storyBoard.instantiateViewController(withIdentifier: "TestViewController")
+           let pro = UINavigationController(rootViewController: profile)
+           
             
-            let VC = self.storyboard!.instantiateViewController(withIdentifier: "TestViewController") as! ViewController
-            let navController = UINavigationController(rootViewController: VC)
-            self.present(navController, animated: true, completion: nil)
             
 //            let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "TestViewController") as! TestViewController
 //            self.navigationController?.pushViewController(profileViewController, animated: true)

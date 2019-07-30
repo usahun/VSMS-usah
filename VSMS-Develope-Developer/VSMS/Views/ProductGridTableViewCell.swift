@@ -17,15 +17,18 @@ class ProductGridTableViewCell: UITableViewCell {
     @IBOutlet weak var img_1_Product: UIImageView!
     @IBOutlet weak var lbl_1_Productname: UILabel!
     @IBOutlet weak var lbl_1_Productprice: UILabel!
-    @IBOutlet weak var lbl_1_discount: UILabel!
     @IBOutlet weak var lbl_1_duration: UILabel!
+    @IBOutlet weak var lbl_1_Views: UILabel!
+    @IBOutlet weak var lbl_1_postTy: UILabel!
     
     //record 2 properties
     @IBOutlet weak var img_2_Productimage: UIImageView!
     @IBOutlet weak var lbl_2_Productname: UILabel!
     @IBOutlet weak var lbl_2_productprice: UILabel!
     @IBOutlet weak var lbl_2_duration: UILabel!
-    @IBOutlet weak var lbl_2_discount: UILabel!
+    @IBOutlet weak var lbl_2_Views: UILabel!
+    @IBOutlet weak var lbl_2_postTy: UILabel!
+    
     
     var data1: HomePageModel?
     var data2: HomePageModel?
@@ -59,7 +62,10 @@ class ProductGridTableViewCell: UITableViewCell {
             img_1_Product.image = data1?.imagefront.base64ToImage()
             lbl_1_Productname.text = data1?.title
             lbl_1_Productprice.text = data1?.cost.toCurrency()
-            lbl_1_discount.attributedText = data1?.discount.toCurrency().strikeThrough()
+            lbl_1_postTy.text = data1?.postType.capitalizingFirstLetter()
+            RequestHandle.CountView(postID: (data1?.product)!) { (count) in
+                self.lbl_1_Views.text = count.toString()+" Views"
+            }
         }
         
         if data2 != nil {
@@ -67,7 +73,10 @@ class ProductGridTableViewCell: UITableViewCell {
             img_2_Productimage.image = data2?.imagefront.base64ToImage()
             lbl_2_Productname.text = data2?.title
             lbl_2_productprice.text = data2?.cost.toCurrency()
-            lbl_2_discount.attributedText = data2?.discount.toCurrency().strikeThrough()
+            lbl_2_postTy.text = data2?.postType.capitalizingFirstLetter()
+            RequestHandle.CountView(postID: (data2?.product)!) { (count) in
+                self.lbl_2_Views.text = count.toString()+" Views"
+            }
         }
     }
     
