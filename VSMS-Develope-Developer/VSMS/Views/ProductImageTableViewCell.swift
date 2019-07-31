@@ -34,7 +34,6 @@ class ProductImageTableViewCell: UITableViewCell {
         imgProduct.image = data.imagefront.base64ToImage()
         lblProductName.text = data.title
         lblProductPrice.text = data.cost.toCurrency()
-        lblDiscount.text = data.discount.toCurrency()
         lblDuration.text = data.create_at?.getDuration()
         RequestHandle.CountView(postID: data.product) { (count) in
             self.lblViews.text = count.toString()+" Views"

@@ -173,6 +173,21 @@ extension UIImageView {
     
 }
 
+extension UITextField {
+    
+    func bordercolor(){
+        let myColor = UIColor(red: CGFloat(92/255.0), green: CGFloat(203/255.0),
+                              blue: CGFloat(207/255.0), alpha: CGFloat(1.0))
+        
+        self.layer.borderColor = myColor.cgColor
+        self.layer.borderWidth = 1.0
+        self.layer.masksToBounds = true
+        self.clipsToBounds = true
+        self.layer.cornerRadius = 8
+    }
+    
+}
+
 extension Collection {
     func get(at index: Index) -> Iterator.Element? {
         return self.indices.contains(index) ? self[index] : nil
