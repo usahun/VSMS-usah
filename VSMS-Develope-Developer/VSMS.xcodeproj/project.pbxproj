@@ -24,6 +24,10 @@
 		864222B122DEC6BD002E41E7 /* RequestHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864222B022DEC6BD002E41E7 /* RequestHandle.swift */; };
 		864222B422DEFB44002E41E7 /* ProductListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864222B222DEFB44002E41E7 /* ProductListTableViewCell.swift */; };
 		864222B522DEFB44002E41E7 /* ProductListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 864222B322DEFB44002E41E7 /* ProductListTableViewCell.xib */; };
+		864997D822F2D93B005BD2DF /* ActiveDeactiveTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864997D622F2D93B005BD2DF /* ActiveDeactiveTableViewCell.swift */; };
+		864997D922F2D93B005BD2DF /* ActiveDeactiveTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 864997D722F2D93B005BD2DF /* ActiveDeactiveTableViewCell.xib */; };
+		864997DD22F2E109005BD2DF /* HelperTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864997DB22F2E109005BD2DF /* HelperTableViewCell.swift */; };
+		864997DE22F2E109005BD2DF /* HelperTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 864997DC22F2E109005BD2DF /* HelperTableViewCell.xib */; };
 		864F7A5D222E607C00437C24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864F7A5C222E607C00437C24 /* AppDelegate.swift */; };
 		86560C5E229CD1C900C5A21F /* NewHomepageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86560C5D229CD1C900C5A21F /* NewHomepageViewController.swift */; };
 		865B5DB7221FDD3600864F7E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B5DB6221FDD3600864F7E /* ViewController.swift */; };
@@ -151,6 +155,10 @@
 		864222B022DEC6BD002E41E7 /* RequestHandle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandle.swift; sourceTree = "<group>"; };
 		864222B222DEFB44002E41E7 /* ProductListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListTableViewCell.swift; sourceTree = "<group>"; };
 		864222B322DEFB44002E41E7 /* ProductListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductListTableViewCell.xib; sourceTree = "<group>"; };
+		864997D622F2D93B005BD2DF /* ActiveDeactiveTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveDeactiveTableViewCell.swift; sourceTree = "<group>"; };
+		864997D722F2D93B005BD2DF /* ActiveDeactiveTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActiveDeactiveTableViewCell.xib; sourceTree = "<group>"; };
+		864997DB22F2E109005BD2DF /* HelperTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperTableViewCell.swift; sourceTree = "<group>"; };
+		864997DC22F2E109005BD2DF /* HelperTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HelperTableViewCell.xib; sourceTree = "<group>"; };
 		864F7A5C222E607C00437C24 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		86560C5D229CD1C900C5A21F /* NewHomepageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHomepageViewController.swift; sourceTree = "<group>"; };
 		865B5DB1221FDD3600864F7E /* VSMS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VSMS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -307,6 +315,15 @@
 				861A6FD422E195570028D81D /* ListAllProductViewController.xib */,
 			);
 			name = "List Post Type";
+			sourceTree = "<group>";
+		};
+		864997DA22F2E0CE005BD2DF /* HelperXibCell */ = {
+			isa = PBXGroup;
+			children = (
+				864997DB22F2E109005BD2DF /* HelperTableViewCell.swift */,
+				864997DC22F2E109005BD2DF /* HelperTableViewCell.xib */,
+			);
+			name = HelperXibCell;
 			sourceTree = "<group>";
 		};
 		865B5DA8221FDD3600864F7E = {
@@ -505,6 +522,7 @@
 		C453176D22C32F82006F0BB8 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				864997DA22F2E0CE005BD2DF /* HelperXibCell */,
 				86C90F8122D05C5A00A6E608 /* Post */,
 				C453176E22C32F8F006F0BB8 /* Home */,
 			);
@@ -548,6 +566,8 @@
 				C45661B622CE6D9200973945 /* LikesTableViewCell.xib */,
 				C45661B122CE6D6200973945 /* PostsTableViewCell.swift */,
 				C45661B222CE6D6200973945 /* PostsTableViewCell.xib */,
+				864997D622F2D93B005BD2DF /* ActiveDeactiveTableViewCell.swift */,
+				864997D722F2D93B005BD2DF /* ActiveDeactiveTableViewCell.xib */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -668,6 +688,7 @@
 			files = (
 				86AAF0C822C081C3003C46F3 /* DiscountCollectionViewCell.xib in Resources */,
 				86F3CF7222D2DD85005F8FF6 /* DetailTableViewCell.xib in Resources */,
+				864997DE22F2E109005BD2DF /* HelperTableViewCell.xib in Resources */,
 				86626BBE229C496300FE25DD /* DeTailTableCell.xib in Resources */,
 				861A6FCE22E1732E0028D81D /* ListAllPostByTypeViewController.xib in Resources */,
 				8615106122D5845800A37835 /* ContactInputTableViewCell.xib in Resources */,
@@ -676,6 +697,7 @@
 				86626BB7229C491A00FE25DD /* CollectionTableViewCell.xib in Resources */,
 				86F4017D22DF12B400AB9ECD /* ProductGridTableViewCell.xib in Resources */,
 				86B10327229C4C7A00192DAD /* MapTableViewHeaderFooterView.xib in Resources */,
+				864997D922F2D93B005BD2DF /* ActiveDeactiveTableViewCell.xib in Resources */,
 				86626BAE229C480800FE25DD /* PhoneNumberHeader.xib in Resources */,
 				C4AAF7A722C5F2E300B82364 /* NewPostGridCollectionViewCell.xib in Resources */,
 				865B5DBF221FDD3700864F7E /* LaunchScreen.storyboard in Resources */,
@@ -846,6 +868,7 @@
 				86626BAA229C47B800FE25DD /* MapTableViewHeaderFooterView.swift in Sources */,
 				86B10328229C4C7A00192DAD /* ImageCollectionViewCell.swift in Sources */,
 				86AAF0C922C081C3003C46F3 /* NewlyTableViewCell.swift in Sources */,
+				864997D822F2D93B005BD2DF /* ActiveDeactiveTableViewCell.swift in Sources */,
 				C48F457722E4618D0097370F /* ContectViewController.swift in Sources */,
 				86626B9C229C464C00FE25DD /* TransferpdViewController.swift in Sources */,
 				8615106522D5914600A37835 /* PhoneNumberInputHeaderTableViewCell.swift in Sources */,
@@ -876,6 +899,7 @@
 				86B10336229C4E9D00192DAD /* PostContainer.swift in Sources */,
 				861A6FD522E195580028D81D /* ListAllProductViewController.swift in Sources */,
 				86626B9F229C464C00FE25DD /* ResultTableViewCell.swift in Sources */,
+				864997DD22F2E109005BD2DF /* HelperTableViewCell.swift in Sources */,
 				861A6FD122E17C970028D81D /* ListCategoryTableViewCell.swift in Sources */,
 				869CF1972276F0800006D7F2 /* PostAdViewController.swift in Sources */,
 				86E46AAF22D845470028C93E /* DetailViewModel.swift in Sources */,
@@ -1030,7 +1054,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CN5W8SS7A9;
+				DEVELOPMENT_TEAM = N57Y6URRUJ;
 				INFOPLIST_FILE = VSMS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1056,7 +1080,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CN5W8SS7A9;
+				DEVELOPMENT_TEAM = N57Y6URRUJ;
 				INFOPLIST_FILE = VSMS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (

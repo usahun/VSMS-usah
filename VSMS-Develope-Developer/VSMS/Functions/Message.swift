@@ -36,9 +36,11 @@ class Message {
         let AlertMessage = UIAlertController(title: header,
                                              message: message,
                                              preferredStyle: .alert)
+        AlertMessage.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         AlertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: { (alert) in
             callback()
         }))
+        
         View.present(AlertMessage, animated: true, completion: nil)
     }
     

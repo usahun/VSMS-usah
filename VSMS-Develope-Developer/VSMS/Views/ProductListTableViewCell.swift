@@ -36,8 +36,11 @@ class ProductListTableViewCell: UITableViewCell {
         lblProductname.text = ProductData.title.capitalizingFirstLetter()
         lblProductPrice.text = ProductData.cost.toCurrency()
         lblDuration.text = ProductData.create_at?.getDuration()
-        RequestHandle.CountView(postID: ProductData.product) { (count) in
-            self.lblView.text = count.toString()+" Views"
+        
+        RequestHandle.CountView(postID: self.ProductData.product) { (count) in
+            performOn(.Main, closure: {
+                self.lblView.text = count.toString()+" Views"
+            })
         }
 
         

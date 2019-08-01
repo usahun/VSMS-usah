@@ -29,6 +29,7 @@ class PostViewModel {
     var discount_type: String = "amount"
     var discount: String = "0.0"
     var status: Int = 1
+    var user: Int = User.getUserID()
     
     
     //var discount_type: String = ""
@@ -112,6 +113,7 @@ class PostViewModel {
                 result.discount_type = json["discount_type"].stringValue
                 result.discount = json["discount"].stringValue
                 result.cost = json["cost"].stringValue
+                result.user = json["created_by"].stringValue.toInt()
                 
                 result.contact_phone = json["contact_phone"].stringValue
                 result.contact_email = json["contact_email"].stringValue
@@ -178,6 +180,12 @@ class PostViewModel {
                 })
                 
                 semephore.enter()
+                Converts.getBrandIDbyModelID(ModelID: result.modeling.toString(), completion: { (brandID) in
+                    result.brand = brandID.toInt()
+                    semephore.leave()
+                })
+                
+                semephore.enter()
                 Converts.getModelbyID(id: result.modeling, completion: { (model) in
                     result.ModelVal = model
                     semephore.leave()
@@ -219,6 +227,29 @@ class PostViewModel {
             return (label!,value)
         }).compactMap{ $0 })
         return dict
+    }
+    
+    var asParameters: [String: Any]
+    {
+        let parameter: Parameters =
+        [
+            "id": self.PostID,
+            "title": self.title,
+            "post_type": self.post_type,
+            "category": self.category,
+            "type": self.type,
+            "brand": self.brand,
+            "modeling": self.modeling,
+            "year": self.year,
+            "condition": self.condition,
+            "color": self.color,
+            "description": self.description,
+            "cost": self.cost,
+            "discount_type": self.discount_type,
+            "discount": self.discount,
+            "status": self.status
+        ]
+        return parameter
     }
 }
 

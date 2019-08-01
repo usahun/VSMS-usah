@@ -199,17 +199,30 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
             "Authorization" : User.getUserEncoded(),
         ]
         
+        var apiEdit = ""
+        if JsonData.post_type == "sell"
+        {
+            apiEdit = PROJECT_API.POST_SELL
+        }
+        else if JsonData.post_type == "buy"
+        {
+            apiEdit = PROJECT_API.POST_BUYS
+        }
+        else if JsonData.post_type == "rent"
+        {
+            apiEdit = PROJECT_API.POST_RENTS
+        }
+        
         if isBeingEdit
         {
-            print(JsonData.asDictionary)
-            Alamofire.request("\(PROJECT_API.POST_SELL)\(JsonData.PostID)/",
+            Alamofire.request("\(apiEdit)\(JsonData.PostID)/",
                               method: .put,
                               parameters: JsonData.asDictionary,
                               encoding: JSONEncoding.default,
                               headers: headers).responseJSON { response in
                                 switch response.result{
-                                case .success (let value):
-                                    print(value)
+                                case .success:
+                                   // print(value)
                                     performOn(.Main, closure: {
                                         alertMessage.dismissActivityIndicator()
                                         Message.AlertMessage(message: "Product updated", header: "Message", View: self, callback: {
@@ -219,20 +232,21 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
                                 case .failure(let error):
                                     performOn(.Main, closure: {
                                         alertMessage.dismissActivityIndicator()
+                                        print(error)
                                         self.view.makeToast("Error Error")
                                     })
                                 }
             }
         }
         else{
-            Alamofire.request(PROJECT_API.POST_SELL,
+            Alamofire.request(apiEdit,
                               method: .post,
                               parameters: JsonData.asDictionary,
                               encoding: JSONEncoding.default,
                               headers: headers).responseJSON { response in
                                 switch response.result{
-                                case .success (let value):
-                                    print(value)
+                                case .success:
+                                   // print(value)
                                     performOn(.Main, closure: {
                                         alertMessage.dismissActivityIndicator()
                                         Message.AlertMessage(message: "Product Posted", header: "Message", View: self, callback: {
@@ -401,100 +415,103 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
             print("")
         }
         
-        if indexPath.row == 0 && JsonData.PostTypeVal != ""
+        if isBeingEdit
         {
-            detailCell?.postTypeCheck.Inputchecked()
-            detailCell?.btnPostType.setTitle(JsonData.PostTypeVal, for: .normal)
-            detailCell?.passingData.Value = JsonData.PostTypeVal ?? ""
-            detailCell?.passingData.ID = JsonData.post_type
-            JsonData.PostTypeVal = ""
-        }
-        if indexPath.row == 1 && JsonData.TitleVal != ""
-        {
-            detailCell?.titleCheck.Inputchecked()
-            detailCell?.txttitle.text = JsonData.title
-            detailCell?.passingData.ID = JsonData.title
-            detailCell?.passingData.Value = JsonData.title
-            JsonData.TitleVal = ""
-        }
-        if indexPath.row == 2 && JsonData.CategoryVal != ""
-        {
-            detailCell?.categoryCheck.Inputchecked()
-            detailCell?.btnCategory.setTitle(JsonData.CategoryVal, for: .normal)
-            detailCell?.passingData.ID = JsonData.category.toString()
-            detailCell?.passingData.Value = JsonData.CategoryVal ?? ""
-            JsonData.CategoryVal = ""
-        }
-        if indexPath.row == 3 && JsonData.TypeVal != ""
-        {
-            detailCell?.typeCheck.Inputchecked()
-            detailCell?.btnType.setTitle(JsonData.TypeVal, for: .normal)
-            detailCell?.passingData.ID = JsonData.type.toString()
-            detailCell?.passingData.Value = JsonData.TypeVal ?? ""
-            JsonData.TypeVal = ""
-        }
-        
-        if indexPath.row == 4 && JsonData.BrandVal != ""
-        {
-            detailCell?.brandCheck.Inputchecked()
-            detailCell?.btnBrand.setTitle(JsonData.BrandVal, for: .normal)
-            detailCell?.passingData.ID = JsonData.brand.toString()
-            detailCell?.passingData.Value = JsonData.BrandVal ?? ""
-            JsonData.BrandVal = ""
-        }
-        
-        if indexPath.row == 5 && JsonData.ModelVal != ""
-        {
-            detailCell?.modelCheck.Inputchecked()
-            detailCell?.btnModel.setTitle(JsonData.ModelVal, for: .normal)
-            detailCell?.passingData.ID = JsonData.modeling.toString()
-            detailCell?.passingData.Value = JsonData.ModelVal ?? ""
-            JsonData.ModelVal = ""
-        }
-    
-        if indexPath.row == 6 && JsonData.YearVal != ""
-        {
-            detailCell?.yearCheck.Inputchecked()
-            detailCell?.btnYear.setTitle(JsonData.YearVal, for: .normal)
-            detailCell?.passingData.ID = JsonData.year.toString()
-            detailCell?.passingData.Value = JsonData.YearVal ?? ""
-            JsonData.YearVal = ""
-        }
-        
-        if indexPath.row == 7 && JsonData.ConditionVal != ""
-        {
-            detailCell?.conditionCheck.Inputchecked()
-            detailCell?.btnCodition.setTitle(JsonData.ConditionVal, for: .normal)
-            detailCell?.passingData.ID = JsonData.condition
-            detailCell?.passingData.Value = JsonData.ConditionVal ?? ""
-            JsonData.ConditionVal = ""
-        }
-        
-        if indexPath.row == 8 && JsonData.ColorVal != ""
-        {
-            detailCell?.colorCheck.Inputchecked()
-            detailCell?.btnColor.setTitle(JsonData.ColorVal, for: .normal)
-            detailCell?.passingData.ID = JsonData.color
-            detailCell?.passingData.Value = JsonData.ColorVal ?? ""
-            JsonData.ColorVal = ""
-        }
-        
-        if indexPath.row == 9 && JsonData.description != ""
-        {
-            detailCell?.desCheck.Inputchecked()
-            detailCell?.textView.text = JsonData.description
-            detailCell?.passingData.ID = JsonData.description
-            detailCell?.passingData.Value = JsonData.description
-            JsonData.description = ""
-        }
-        
-        if indexPath.row == 10 && JsonData.PriceVal != ""
-        {
-            detailCell?.priceCheck.Inputchecked()
-            detailCell?.btnPrice.text = JsonData.cost
-            detailCell?.passingData.ID = JsonData.cost
-            detailCell?.passingData.Value = JsonData.cost
-            JsonData.PriceVal = ""
+            if indexPath.row == 0 && JsonData.PostTypeVal != ""
+            {
+                detailCell?.postTypeCheck.Inputchecked()
+                detailCell?.btnPostType.setTitle(JsonData.PostTypeVal, for: .normal)
+                detailCell?.passingData.Value = JsonData.PostTypeVal ?? ""
+                detailCell?.passingData.ID = JsonData.post_type
+                JsonData.PostTypeVal = ""
+            }
+            if indexPath.row == 1 && JsonData.TitleVal != ""
+            {
+                detailCell?.titleCheck.Inputchecked()
+                detailCell?.txttitle.text = JsonData.title
+                detailCell?.passingData.ID = JsonData.title
+                detailCell?.passingData.Value = JsonData.title
+                JsonData.TitleVal = ""
+            }
+            if indexPath.row == 2 && JsonData.CategoryVal != ""
+            {
+                detailCell?.categoryCheck.Inputchecked()
+                detailCell?.btnCategory.setTitle(JsonData.CategoryVal, for: .normal)
+                detailCell?.passingData.ID = JsonData.category.toString()
+                detailCell?.passingData.Value = JsonData.CategoryVal ?? ""
+                JsonData.CategoryVal = ""
+            }
+            if indexPath.row == 3 && JsonData.TypeVal != ""
+            {
+                detailCell?.typeCheck.Inputchecked()
+                detailCell?.btnType.setTitle(JsonData.TypeVal, for: .normal)
+                detailCell?.passingData.ID = JsonData.type.toString()
+                detailCell?.passingData.Value = JsonData.TypeVal ?? ""
+                JsonData.TypeVal = ""
+            }
+            
+            if indexPath.row == 4 && JsonData.BrandVal != ""
+            {
+                detailCell?.brandCheck.Inputchecked()
+                detailCell?.btnBrand.setTitle(JsonData.BrandVal, for: .normal)
+                detailCell?.passingData.ID = JsonData.brand.toString()
+                detailCell?.passingData.Value = JsonData.BrandVal ?? ""
+                JsonData.BrandVal = ""
+            }
+            
+            if indexPath.row == 5 && JsonData.ModelVal != ""
+            {
+                detailCell?.modelCheck.Inputchecked()
+                detailCell?.btnModel.setTitle(JsonData.ModelVal, for: .normal)
+                detailCell?.passingData.ID = JsonData.modeling.toString()
+                detailCell?.passingData.Value = JsonData.ModelVal ?? ""
+                JsonData.ModelVal = ""
+            }
+            
+            if indexPath.row == 6 && JsonData.YearVal != ""
+            {
+                detailCell?.yearCheck.Inputchecked()
+                detailCell?.btnYear.setTitle(JsonData.YearVal, for: .normal)
+                detailCell?.passingData.ID = JsonData.year.toString()
+                detailCell?.passingData.Value = JsonData.YearVal ?? ""
+                JsonData.YearVal = ""
+            }
+            
+            if indexPath.row == 7 && JsonData.ConditionVal != ""
+            {
+                detailCell?.conditionCheck.Inputchecked()
+                detailCell?.btnCodition.setTitle(JsonData.ConditionVal, for: .normal)
+                detailCell?.passingData.ID = JsonData.condition
+                detailCell?.passingData.Value = JsonData.ConditionVal ?? ""
+                JsonData.ConditionVal = ""
+            }
+            
+            if indexPath.row == 8 && JsonData.ColorVal != ""
+            {
+                detailCell?.colorCheck.Inputchecked()
+                detailCell?.btnColor.setTitle(JsonData.ColorVal, for: .normal)
+                detailCell?.passingData.ID = JsonData.color
+                detailCell?.passingData.Value = JsonData.ColorVal ?? ""
+                JsonData.ColorVal = ""
+            }
+            
+            if indexPath.row == 9 && JsonData.description != ""
+            {
+                detailCell?.desCheck.Inputchecked()
+                detailCell?.textView.text = JsonData.description
+                detailCell?.passingData.ID = JsonData.description
+                detailCell?.passingData.Value = JsonData.description
+                JsonData.description = ""
+            }
+            
+            if indexPath.row == 10 && JsonData.PriceVal != ""
+            {
+                detailCell?.priceCheck.Inputchecked()
+                detailCell?.btnPrice.text = JsonData.cost
+                detailCell?.passingData.ID = JsonData.cost
+                detailCell?.passingData.Value = JsonData.cost
+                JsonData.PriceVal = ""
+            }
         }
         
         detailCell?.passingData.IndexPathKey = NSIndexPath(row: indexPath.row, section: indexPath.section)
@@ -512,22 +529,25 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
         }
         
         
-        if indexPath.row == 0 && JsonData.DiscountTypeVal != ""
+        if isBeingEdit
         {
-            detailCell?.passingData.ID = JsonData.discount_type
-            detailCell?.passingData.Value = JsonData.discount_type.capitalizingFirstLetter()
-            detailCell?.btnDiscountType.setTitle(JsonData.discount_type.capitalizingFirstLetter(), for: .normal)
-            JsonData.DiscountTypeVal = ""
-            detailCell?.discountTypeCheck.Inputchecked()
-        }
-        
-        if indexPath.row == 1 && JsonData.DiscountVal != ""
-        {
-            detailCell?.passingData.ID = JsonData.discount
-            detailCell?.passingData.Value = JsonData.discount
-            detailCell?.txtDiscount.text = JsonData.discount
-            detailCell?.discountCheck.Inputchecked()
-            JsonData.DiscountVal = ""
+            if indexPath.row == 0 && JsonData.DiscountTypeVal != ""
+            {
+                detailCell?.passingData.ID = JsonData.discount_type
+                detailCell?.passingData.Value = JsonData.discount_type.capitalizingFirstLetter()
+                detailCell?.btnDiscountType.setTitle(JsonData.discount_type.capitalizingFirstLetter(), for: .normal)
+                JsonData.DiscountTypeVal = ""
+                detailCell?.discountTypeCheck.Inputchecked()
+            }
+            
+            if indexPath.row == 1 && JsonData.DiscountVal != ""
+            {
+                detailCell?.passingData.ID = JsonData.discount
+                detailCell?.passingData.Value = JsonData.discount
+                detailCell?.txtDiscount.text = JsonData.discount
+                detailCell?.discountCheck.Inputchecked()
+                JsonData.DiscountVal = ""
+            }
         }
         
         detailCell?.passingData.IndexPathKey = NSIndexPath(row: indexPath.row, section: indexPath.section)
@@ -540,36 +560,38 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
             detailCell = nib?[indexPath.row] as? ContactInputTableViewCell
         }
         
-        
-        if indexPath.row == 0 && JsonData.NameVal != ""
+        if isBeingEdit
         {
-            detailCell?.passingData.ID = JsonData.name
-            detailCell?.passingData.Value = JsonData.name
-            detailCell?.txtName.text = JsonData.NameVal
-            JsonData.NameVal = ""
+            if indexPath.row == 0 && JsonData.NameVal != ""
+            {
+                detailCell?.passingData.ID = JsonData.name
+                detailCell?.passingData.Value = JsonData.name
+                detailCell?.txtName.text = JsonData.NameVal
+                JsonData.NameVal = ""
+            }
+            if indexPath.row == 1 && JsonData.PhoneNumberVal != ""
+            {
+                detailCell?.passingData.ID = JsonData.contact_phone
+                detailCell?.passingData.Value = JsonData.contact_phone
+                detailCell?.txtPhoneNumber.text = JsonData.contact_phone
+                JsonData.PhoneNumberVal = ""
+            }
+            if indexPath.row == 2 && JsonData.EmailVal != ""
+            {
+                detailCell?.passingData.ID = JsonData.contact_email
+                detailCell?.passingData.Value = JsonData.contact_email
+                detailCell?.txtEmail.text = JsonData.contact_email
+                JsonData.EmailVal = ""
+            }
+            if indexPath.row == 3 && JsonData.AddressVal != ""
+            {
+                detailCell?.passingData.ID = JsonData.contact_address
+                detailCell?.passingData.Value = JsonData.contact_address
+                detailCell?.txtAddress.text = JsonData.contact_address
+                JsonData.AddressVal = ""
+            }
+
         }
-        if indexPath.row == 1 && JsonData.PhoneNumberVal != ""
-        {
-            detailCell?.passingData.ID = JsonData.contact_phone
-            detailCell?.passingData.Value = JsonData.contact_phone
-            detailCell?.txtPhoneNumber.text = JsonData.contact_phone
-            JsonData.PhoneNumberVal = ""
-        }
-        if indexPath.row == 2 && JsonData.EmailVal != ""
-        {
-            detailCell?.passingData.ID = JsonData.contact_email
-            detailCell?.passingData.Value = JsonData.contact_email
-            detailCell?.txtEmail.text = JsonData.contact_email
-            JsonData.EmailVal = ""
-        }
-        if indexPath.row == 3 && JsonData.AddressVal != ""
-        {
-            detailCell?.passingData.ID = JsonData.contact_address
-            detailCell?.passingData.Value = JsonData.contact_address
-            detailCell?.txtAddress.text = JsonData.contact_address
-            JsonData.AddressVal = ""
-        }
-        
         
         detailCell?.passingData.IndexPathKey = NSIndexPath(row: indexPath.row, section: indexPath.section)
         detailCell?.setValueDelegate = self

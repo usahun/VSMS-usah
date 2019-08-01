@@ -123,7 +123,9 @@ class DetailViewController: UIViewController {
     
     //Events Handler
     @IBAction func clickCall(_ sender: Any) {
-        
+        Message.AlertMessage(message: ProductDetail.contact_phone, header: "Call", View: self) {
+            makeAPhoneCall(phoneNumber: self.ProductDetail.contact_phone)
+        }
     }
     
     @IBAction func clickSms(_ sender: Any) {
@@ -174,7 +176,18 @@ class DetailViewController: UIViewController {
     func InitailDetail(){
         lblProductName.text = ProductDetail.title
         lblProductPrice.text = ProductDetail.cost.toCurrency()
-        lblOldPrice.text = ProductDetail.cost.toCurrency()
+        
+        if ProductDetail.discount.toDouble() != 0.0
+        {
+            lblOldPrice.attributedText = ProductDetail.cost.toCurrency().strikeThrough()
+            lblProductPrice.text = "\(ProductDetail.cost.toDouble() - ProductDetail.discount.toDouble())".toCurrency()
+        }
+        else
+        {
+            lblOldPrice.text = ""
+            lblProductPrice.text = ProductDetail.cost.toCurrency()
+        }
+        
         lblBrand.text = ProductDetail.getBrand
         lblYear.text = ProductDetail.getYear
         lblCondition.text = ProductDetail.condition
@@ -239,7 +252,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         let index = indexPath.row * 2
         cell.data1 = relateArr[index]
         cell.data2 = relateArr[index + 1]
-       // cell.delegate = self
+        cell.delegate = self
         return cell
         //return UITableViewCell()
         
@@ -264,4 +277,11 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
 
 }
 
+
+extension DetailViewController: CellClickProtocol
+{
+    func cellXibClick(ID: Int) {
+        PushToDetailProductViewController(productID: ID)
+    }
+}
 

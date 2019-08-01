@@ -18,6 +18,11 @@ var headers: HTTPHeaders = [
 ]
 
 
+func makeAPhoneCall(phoneNumber: String)  {
+    let url: NSURL = URL(string: "TEL://\(phoneNumber)")! as NSURL
+    UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+}
+
 class RequestHandle {
     var AllPostNextPage: String?
     var AllPostPreviousePage: String?
@@ -332,6 +337,7 @@ class UserProfileRequestHandle {
     
     //Record count
     var AllPostActiveCount: Int = 0
+    var AllPostHistoryCount: Int = 0
     
     //List Data
     var PostActive: [HomePageModel] = []
@@ -398,6 +404,90 @@ class UserProfileRequestHandle {
                         )}) ?? []
                     
                     completion()
+                    
+                case .failure:
+                    print("error")
+                }
+        }
+    }
+    
+    func LoadAllPostHistoryByUser(completion: @escaping () -> Void)
+    {
+        Alamofire.request(PROJECT_API.POSTBYUSERHISTORY,
+                          method: .get,
+                          encoding: JSONEncoding.default,
+                          headers: headers
+            ).responseJSON
+            { (response) in
+                switch response.result{
+                case .success(let value):
+                    let json = JSON(value)
+                    self.NextPostHistory = json["next"].stringValue
+                    self.AllPostHistoryCount = json["count"].stringValue.toInt()
+                    
+                    self.PostHistory = (json["results"].array?.map{
+                        HomePageModel(id: $0["id"].stringValue.toInt(),
+                                      name: $0["title"].stringValue,
+                                      cost: $0["cost"].stringValue,
+                                      imagefront: $0["front_image_base64"].stringValue,
+                                      discount: $0["discount"].stringValue,
+                                      postType: $0["post_type"].stringValue,
+                                      createdat: $0["created"].stringValue
+                        )}) ?? []
+                    completion()
+                    
+                case .failure:
+                    print("error")
+                }
+        }
+    }
+    
+    func NextPostHistoryByUser(completion: @escaping () -> Void)
+    {
+        if self.NextPostHistory == "" {
+            return
+        }
+        
+        Alamofire.request(self.NextPostHistory,
+                          method: .get,
+                          encoding: JSONEncoding.default,
+                          headers: headers
+            ).responseJSON
+            { (response) in
+                switch response.result{
+                case .success(let value):
+                    let json = JSON(value)
+                    self.NextPostHistory = json["next"].stringValue
+                    self.AllPostHistoryCount = json["count"].stringValue.toInt()
+                    
+                    self.PostHistory += (json["results"].array?.map{
+                        HomePageModel(id: $0["id"].stringValue.toInt(),
+                                      name: $0["title"].stringValue,
+                                      cost: $0["cost"].stringValue,
+                                      imagefront: $0["front_image_base64"].stringValue,
+                                      discount: $0["discount"].stringValue,
+                                      postType: $0["post_type"].stringValue,
+                                      createdat: $0["created"].stringValue
+                        )}) ?? []
+                    
+                    completion()
+                    
+                case .failure:
+                    print("error")
+                }
+        }
+    }
+    
+    func LoadAllPostLikeByUser(completion: @escaping () -> Void)
+    {
+        Alamofire.request(PROJECT_API.LIKEBYUSER,
+                          method: .get,
+                          encoding: JSONEncoding.default,
+                          headers: headers).responseJSON
+            { (response) in
+                switch response.result{
+                case .success(let value):
+                    print(value)
                     
                 case .failure:
                     print("error")

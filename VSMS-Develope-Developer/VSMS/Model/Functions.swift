@@ -207,6 +207,23 @@ class Converts {
         }
     }
     
+    static func getBrandIDbyModelID(ModelID: String, completion: @escaping (String) -> Void)
+    {
+        Alamofire.request("\(PROJECT_API.MODELS)\(ModelID)/",
+                            method: .get,
+                            encoding: JSONEncoding.default
+            ).responseJSON { (respone) in
+            switch respone.result {
+            case .success(let value):
+                let json = JSON(value)
+                let BrandID = json["brand"].stringValue
+                completion(BrandID)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
 }
 
 

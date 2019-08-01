@@ -21,6 +21,7 @@ class HomePageModel {
     var postType: String = ""
     var create_at: String?
     
+        
     init() {}
     
     init(id: Int, name: String, cost: String, imagefront: String){

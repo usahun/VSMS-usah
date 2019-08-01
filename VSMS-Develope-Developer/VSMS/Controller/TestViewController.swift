@@ -32,6 +32,7 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var likeArr: [LikebyUserModel] = []
     var loanArr: [String] = []
     var pickPhotoCheck = ""
+    var isActiveOrHistory = true
     
     var index = 0
     var productDetail: DetailViewModel?
@@ -122,10 +123,18 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 self.mysegmentControl.setTitle("Posts(\(self.ProfileHandleRequest.AllPostActiveCount))", forSegmentAt: 0)
                 self.tableView.reloadData()
             }
+            
+            self.ProfileHandleRequest.LoadAllPostHistoryByUser {
+                self.tableView.reloadData()
+            }
+            print("main")
         }
         
         performOn(.HighPriority) {
             self.LoadUserProfileInfo()
+            self.ProfileHandleRequest.LoadAllPostLikeByUser(completion: {
+                
+            })
         }
         
         performOn(.Background) {
@@ -141,6 +150,8 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         let likes = UINib(nibName: "LikesTableViewCell", bundle: nil)
         tableView.register(likes, forCellReuseIdentifier: "likesCell")
+        
+        tableView.register(UINib(nibName: "ActiveDeactiveTableViewCell", bundle: nil), forCellReuseIdentifier: "activedeactiveCell")
     }
     
     @objc
@@ -243,28 +254,8 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     @objc
     func LoadAllPostLike() {
-        Alamofire.request(PROJECT_API.LIKEBYUSER, method: .get,encoding: JSONEncoding.default,headers: headers).responseJSON
-            { (response) in
-                switch response.result{
-                case .success(let value):
-                    let json = JSON(value)
-                    self.likeArr = (json["results"].array?.map{
-                        LikebyUserModel(post: $0["post"].stringValue.toInt(),
-                                        likeby: $0["like_by"].stringValue.toInt())
-                        }) ?? []
-                    
-                    
-                    self.mysegmentControl.setTitle("LIKES(\(self.likeArr.count))", forSegmentAt: 1)
-                    self.likeRefresher.endRefreshing()
-                    
-                    performOn(.Main, closure: {
-                        self.tableView.reloadData()
-                    })
-                    
-                case .failure:
-                    print("error")
-                }
-        }
+        
+        
     }
 
     
@@ -284,7 +275,18 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if index == 0{
-             return ProfileHandleRequest.PostActive.count
+            if isActiveOrHistory {
+                if ProfileHandleRequest.PostActive.count == 0 {
+                    return 2
+                }
+                return ProfileHandleRequest.PostActive.count + 1
+            }
+            else{
+                if ProfileHandleRequest.PostHistory.count == 0 {
+                    return 2
+                }
+                return ProfileHandleRequest.PostHistory.count + 1
+            }
         }else if index == 1 {
             return likeArr.count
         }else {
@@ -295,7 +297,10 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if index == 0 {
-            return 190
+            if indexPath.row == 0 {
+                return 50
+            }
+             return 190
         }
         else if index == 1 {
             return 150
@@ -307,10 +312,37 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if index == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Postcell", for: indexPath) as! PostsTableViewCell
-            cell.Data = ProfileHandleRequest.PostActive[indexPath.row]
-            cell.delelgate = self
-            return cell
+            if indexPath.row == 0 {
+                let activeCell = tableView.dequeueReusableCell(withIdentifier: "activedeactiveCell", for: indexPath) as! ActiveDeactiveTableViewCell
+                
+                activeCell.sagement.selectedSegmentIndex = isActiveOrHistory ? 0 : 1
+                activeCell.sagementclick = { check in
+                    self.isActiveOrHistory = check
+                    self.tableView.reloadData()
+                }
+                return activeCell
+            }
+            if isActiveOrHistory
+            {
+                if ProfileHandleRequest.PostActive.count == 0 {
+                    return UITableViewCell()
+                }
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: "Postcell", for: indexPath) as! PostsTableViewCell
+                cell.Data = ProfileHandleRequest.PostActive[indexPath.row - 1]
+                cell.delelgate = self
+                return cell
+            }
+            else{
+                if ProfileHandleRequest.PostHistory.count == 0 {
+                    return UITableViewCell()
+                }
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: "Postcell", for: indexPath) as! PostsTableViewCell
+                cell.Data = ProfileHandleRequest.PostHistory[indexPath.row - 1]
+                cell.delelgate = self
+                return cell
+            }
         }else {
        let cell = tableView.dequeueReusableCell(withIdentifier: "likesCell", for: indexPath) as! LikesTableViewCell
             cell.lblName.text = likeArr[indexPath.row].pro_detail.title
@@ -348,8 +380,6 @@ extension TestViewController: ProfileCellClickProtocol {
     func cellClickToEdit(ID: Int) {
        PushToEditPostViewController(ID: ID)
     }
-    
-    
 }
 
 extension TestViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

@@ -442,7 +442,7 @@ extension HomePageController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastIndex = AL.AllPostArr.count - 1
+        let lastIndex = AL.AllPostArr.count - 5
         if indexPath.row == lastIndex {
             AL.LoadAllPostsNextPage {
                 self.tableView.reloadData()

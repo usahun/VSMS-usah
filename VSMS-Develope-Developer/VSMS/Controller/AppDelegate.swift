@@ -30,21 +30,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,CLLocationManagerDelegate
 //        window?.rootViewController = HomePageController()
 //        window?.makeKeyAndVisible()
         
-//        let tabbar = CustomTabBarController()
-//        window = UIWindow(frame: UIScreen.main.bounds)
-//        window?.rootViewController = tabbar
-//        window?.makeKeyAndVisible()
+        let tabbar = CustomTabBarController()
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = tabbar
+        window?.makeKeyAndVisible()
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
        // LocationService.sharedInstance.delegate = self
         
         //day-28-06
