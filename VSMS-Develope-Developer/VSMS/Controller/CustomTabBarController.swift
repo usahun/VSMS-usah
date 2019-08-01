@@ -38,6 +38,7 @@ enum VSMSTabBar: Int {
 
 class CustomTabBarController: UITabBarController {
     
+    
     let LoginTab: UINavigationController = {
         let login = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginController") as! LoginController
         return UINavigationController(rootViewController: login)
@@ -91,8 +92,10 @@ class CustomTabBarController: UITabBarController {
     }
 
     fileprivate func setuptabBar () {
-
-        for (index, bar) in self.tabBar.items!.enumerated() {
+        
+        viewControllers = [SideMenuTab, PostAdTab, ProfileTab]
+        
+       for (index, bar) in self.tabBar.items!.enumerated() {
             bar.image = VSMSTabBar(rawValue: index)?.image
             bar.title = VSMSTabBar(rawValue: index)?.title
         }

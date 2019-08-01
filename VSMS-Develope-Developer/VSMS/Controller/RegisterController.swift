@@ -30,7 +30,6 @@ class RegisterController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        self.navigationController?.setNavigationBarHidden(false, animated: false)
-
     }
     
   
@@ -87,7 +86,6 @@ class RegisterController: UIViewController {
                         userDefault.set(json["id"].stringValue, forKey: "userid")
                         userDefault.set(self.textconfirmPassword.text, forKey: "password")
                     
-
                     Message.SuccessMessage(message: "Your account has been register.", View: self, callback: {
                         //switching the screen
                         let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "TestViewController") as! TestViewController

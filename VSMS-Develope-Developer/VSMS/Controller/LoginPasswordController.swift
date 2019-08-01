@@ -32,10 +32,11 @@ class LoginPasswordController: UIViewController {
         navigationController?.navigationBar.isHidden = false
 
         //if user is already logged in switching to profile screen
-
         self.ShowDefaultNavigation()
         self.HasNavNoTab()
+
     }
+    
     
 
     @IBAction func LoginbuttonTapped(_ sender: Any) {

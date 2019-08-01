@@ -66,16 +66,17 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     
     override func viewWillAppear(_ animated: Bool) {
+
         self.ShowDefaultNavigation()
         super.viewWillAppear(true)
         self.viewDidLoad()
-
         tableView.reloadData()
     }
 
     override func viewDidLoad() {
         //Check User is Log in
         super.viewDidLoad()
+      
         
         if !User.IsUserAuthorized() {
             self.PushToLogInViewController()
@@ -94,10 +95,12 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         tableView.refreshControl = postRefresher
 
+
         self.navigationController?.navigationBar.isHidden = false
         mysegmentControl.setTitle("POSTS(\(ProfileHandleRequest.AllPostActiveCount))", forSegmentAt: 0)
         mysegmentControl.setTitle("LIKES(\(likeArr.count))", forSegmentAt: 1)
         mysegmentControl.setTitle("LOANS(0)", forSegmentAt: 2)
+
         
         
         tableView.delegate = self
