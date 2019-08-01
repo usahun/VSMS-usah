@@ -35,7 +35,7 @@ class ProductImageTableViewCell: UITableViewCell {
         lblProductName.text = data.title
         lblProductPrice.text = data.cost.toCurrency()
         lblDiscount.text = data.discount.toCurrency()
-        lblDuration.text = "5 minutes ago"
+        lblDuration.text = data.create_at?.getDuration()
         lblPostType.text = data.postType.capitalizingFirstLetter()
     }
     

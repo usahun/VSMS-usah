@@ -96,6 +96,11 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
     var RentPostData = RentPost()
     var BuyPostData = BuyPost()
     
+    
+    var posttypecheck = true
+    var categorycheck = true
+    
+    
     weak var getDropDownTypeDelegate: getDropdowntypeProtocol?
     weak var refreshCollectionDelegate: refreshCollectionProtocol?
     
@@ -122,6 +127,7 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
                 self.isBeingEdit = true
                 self.tableview.reloadData()
                 self.view.hideToastActivity()
+                
             }
         }
 
@@ -163,8 +169,7 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
         let alertMessage = UIAlertController(title: nil, message: "Saving Product", preferredStyle: .alert)
         alertMessage.addActivityIndicator()
         self.present(alertMessage, animated: true, completion: nil)
-        
-        
+
         if JsonData.post_type == "sell" {
             SalePostData.price = JsonData.cost
             SalePostData.total_price = JsonData.cost
@@ -194,26 +199,52 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
             "Authorization" : User.getUserEncoded(),
         ]
         
-
-        Alamofire.request(PROJECT_API.POST_SELL,
-                          method: .post,
-                          parameters: JsonData.asDictionary,
-                          encoding: JSONEncoding.default,
-                          headers: headers).responseJSON { response in
-                        switch response.result{
-                        case .success (let value):
-                            print(value)
-                            performOn(.Main, closure: {
-                                alertMessage.dismissActivityIndicator()
-                                Message.AlertMessage(message: "Product Posted", header: "Message", View: self, callback: {
-                                    
-                                })
-                            })
-                        case .failure(let error):
-                            print(error)
-                            self.view.makeToast(error.localizedDescription)
-                        }
-                    }
+        if isBeingEdit
+        {
+            print(JsonData.asDictionary)
+            Alamofire.request("\(PROJECT_API.POST_SELL)\(JsonData.PostID)/",
+                              method: .put,
+                              parameters: JsonData.asDictionary,
+                              encoding: JSONEncoding.default,
+                              headers: headers).responseJSON { response in
+                                switch response.result{
+                                case .success (let value):
+                                    print(value)
+                                    performOn(.Main, closure: {
+                                        alertMessage.dismissActivityIndicator()
+                                        Message.AlertMessage(message: "Product updated", header: "Message", View: self, callback: {
+                                            
+                                        })
+                                    })
+                                case .failure(let error):
+                                    performOn(.Main, closure: {
+                                        alertMessage.dismissActivityIndicator()
+                                        self.view.makeToast("Error Error")
+                                    })
+                                }
+            }
+        }
+        else{
+            Alamofire.request(PROJECT_API.POST_SELL,
+                              method: .post,
+                              parameters: JsonData.asDictionary,
+                              encoding: JSONEncoding.default,
+                              headers: headers).responseJSON { response in
+                                switch response.result{
+                                case .success (let value):
+                                    print(value)
+                                    performOn(.Main, closure: {
+                                        alertMessage.dismissActivityIndicator()
+                                        Message.AlertMessage(message: "Product Posted", header: "Message", View: self, callback: {
+                                            
+                                        })
+                                    })
+                                case .failure(let error):
+                                    print(error)
+                                    self.view.makeToast(error.localizedDescription)
+                                }
+            }
+        }
     }
     
     //fucntion
@@ -225,6 +256,11 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
         case .detail:
             
             if indexPath.row == 3 && isHideType{
+                return 0
+            }
+            
+            if indexPath.row == 3 && isBeingEdit && JsonData.category == 2
+            {
                 return 0
             }
             
@@ -319,7 +355,7 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
             return 70
         }
         
-        if section == 2 && isHideDiscount {
+        if section == 2 && isHideDiscount || (section == 2 && JsonData.post_type == "buy") {
             return CGFloat.leastNonzeroMagnitude
         }
         return 40
@@ -354,7 +390,7 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
         if indexPath.row == 5 {
             self.getDropDownTypeDelegate = detailCell
         }
-        if indexPath.row == 3 && isHideType {
+        if indexPath.row == 3 && isHideType || (indexPath.row == 3 && isBeingEdit && JsonData.category == 2) {
             detailCell?.isHidden = true
         }
         else {
@@ -363,6 +399,102 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
 
         if indexPath.row == 9 {
             print("")
+        }
+        
+        if indexPath.row == 0 && JsonData.PostTypeVal != ""
+        {
+            detailCell?.postTypeCheck.Inputchecked()
+            detailCell?.btnPostType.setTitle(JsonData.PostTypeVal, for: .normal)
+            detailCell?.passingData.Value = JsonData.PostTypeVal ?? ""
+            detailCell?.passingData.ID = JsonData.post_type
+            JsonData.PostTypeVal = ""
+        }
+        if indexPath.row == 1 && JsonData.TitleVal != ""
+        {
+            detailCell?.titleCheck.Inputchecked()
+            detailCell?.txttitle.text = JsonData.title
+            detailCell?.passingData.ID = JsonData.title
+            detailCell?.passingData.Value = JsonData.title
+            JsonData.TitleVal = ""
+        }
+        if indexPath.row == 2 && JsonData.CategoryVal != ""
+        {
+            detailCell?.categoryCheck.Inputchecked()
+            detailCell?.btnCategory.setTitle(JsonData.CategoryVal, for: .normal)
+            detailCell?.passingData.ID = JsonData.category.toString()
+            detailCell?.passingData.Value = JsonData.CategoryVal ?? ""
+            JsonData.CategoryVal = ""
+        }
+        if indexPath.row == 3 && JsonData.TypeVal != ""
+        {
+            detailCell?.typeCheck.Inputchecked()
+            detailCell?.btnType.setTitle(JsonData.TypeVal, for: .normal)
+            detailCell?.passingData.ID = JsonData.type.toString()
+            detailCell?.passingData.Value = JsonData.TypeVal ?? ""
+            JsonData.TypeVal = ""
+        }
+        
+        if indexPath.row == 4 && JsonData.BrandVal != ""
+        {
+            detailCell?.brandCheck.Inputchecked()
+            detailCell?.btnBrand.setTitle(JsonData.BrandVal, for: .normal)
+            detailCell?.passingData.ID = JsonData.brand.toString()
+            detailCell?.passingData.Value = JsonData.BrandVal ?? ""
+            JsonData.BrandVal = ""
+        }
+        
+        if indexPath.row == 5 && JsonData.ModelVal != ""
+        {
+            detailCell?.modelCheck.Inputchecked()
+            detailCell?.btnModel.setTitle(JsonData.ModelVal, for: .normal)
+            detailCell?.passingData.ID = JsonData.modeling.toString()
+            detailCell?.passingData.Value = JsonData.ModelVal ?? ""
+            JsonData.ModelVal = ""
+        }
+    
+        if indexPath.row == 6 && JsonData.YearVal != ""
+        {
+            detailCell?.yearCheck.Inputchecked()
+            detailCell?.btnYear.setTitle(JsonData.YearVal, for: .normal)
+            detailCell?.passingData.ID = JsonData.year.toString()
+            detailCell?.passingData.Value = JsonData.YearVal ?? ""
+            JsonData.YearVal = ""
+        }
+        
+        if indexPath.row == 7 && JsonData.ConditionVal != ""
+        {
+            detailCell?.conditionCheck.Inputchecked()
+            detailCell?.btnCodition.setTitle(JsonData.ConditionVal, for: .normal)
+            detailCell?.passingData.ID = JsonData.condition
+            detailCell?.passingData.Value = JsonData.ConditionVal ?? ""
+            JsonData.ConditionVal = ""
+        }
+        
+        if indexPath.row == 8 && JsonData.ColorVal != ""
+        {
+            detailCell?.colorCheck.Inputchecked()
+            detailCell?.btnColor.setTitle(JsonData.ColorVal, for: .normal)
+            detailCell?.passingData.ID = JsonData.color
+            detailCell?.passingData.Value = JsonData.ColorVal ?? ""
+            JsonData.ColorVal = ""
+        }
+        
+        if indexPath.row == 9 && JsonData.description != ""
+        {
+            detailCell?.desCheck.Inputchecked()
+            detailCell?.textView.text = JsonData.description
+            detailCell?.passingData.ID = JsonData.description
+            detailCell?.passingData.Value = JsonData.description
+            JsonData.description = ""
+        }
+        
+        if indexPath.row == 10 && JsonData.PriceVal != ""
+        {
+            detailCell?.priceCheck.Inputchecked()
+            detailCell?.btnPrice.text = JsonData.cost
+            detailCell?.passingData.ID = JsonData.cost
+            detailCell?.passingData.Value = JsonData.cost
+            JsonData.PriceVal = ""
         }
         
         detailCell?.passingData.IndexPathKey = NSIndexPath(row: indexPath.row, section: indexPath.section)
@@ -379,6 +511,25 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
             self.getDropDownTypeDelegate = detailCell.self
         }
         
+        
+        if indexPath.row == 0 && JsonData.DiscountTypeVal != ""
+        {
+            detailCell?.passingData.ID = JsonData.discount_type
+            detailCell?.passingData.Value = JsonData.discount_type.capitalizingFirstLetter()
+            detailCell?.btnDiscountType.setTitle(JsonData.discount_type.capitalizingFirstLetter(), for: .normal)
+            JsonData.DiscountTypeVal = ""
+            detailCell?.discountTypeCheck.Inputchecked()
+        }
+        
+        if indexPath.row == 1 && JsonData.DiscountVal != ""
+        {
+            detailCell?.passingData.ID = JsonData.discount
+            detailCell?.passingData.Value = JsonData.discount
+            detailCell?.txtDiscount.text = JsonData.discount
+            detailCell?.discountCheck.Inputchecked()
+            JsonData.DiscountVal = ""
+        }
+        
         detailCell?.passingData.IndexPathKey = NSIndexPath(row: indexPath.row, section: indexPath.section)
         detailCell?.setValueDelegate = self
         return detailCell ?? UITableViewCell()
@@ -388,6 +539,38 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
             let nib = Bundle.main.loadNibNamed("ContactInputTableViewCell", owner: self, options: nil)
             detailCell = nib?[indexPath.row] as? ContactInputTableViewCell
         }
+        
+        
+        if indexPath.row == 0 && JsonData.NameVal != ""
+        {
+            detailCell?.passingData.ID = JsonData.name
+            detailCell?.passingData.Value = JsonData.name
+            detailCell?.txtName.text = JsonData.NameVal
+            JsonData.NameVal = ""
+        }
+        if indexPath.row == 1 && JsonData.PhoneNumberVal != ""
+        {
+            detailCell?.passingData.ID = JsonData.contact_phone
+            detailCell?.passingData.Value = JsonData.contact_phone
+            detailCell?.txtPhoneNumber.text = JsonData.contact_phone
+            JsonData.PhoneNumberVal = ""
+        }
+        if indexPath.row == 2 && JsonData.EmailVal != ""
+        {
+            detailCell?.passingData.ID = JsonData.contact_email
+            detailCell?.passingData.Value = JsonData.contact_email
+            detailCell?.txtEmail.text = JsonData.contact_email
+            JsonData.EmailVal = ""
+        }
+        if indexPath.row == 3 && JsonData.AddressVal != ""
+        {
+            detailCell?.passingData.ID = JsonData.contact_address
+            detailCell?.passingData.Value = JsonData.contact_address
+            detailCell?.txtAddress.text = JsonData.contact_address
+            JsonData.AddressVal = ""
+        }
+        
+        
         detailCell?.passingData.IndexPathKey = NSIndexPath(row: indexPath.row, section: indexPath.section)
         detailCell?.setValueDelegate = self
         return detailCell ?? UITableViewCell()

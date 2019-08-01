@@ -59,7 +59,8 @@ class ProductGridTableViewCell: UITableViewCell {
             img_1_Product.image = data1?.imagefront.base64ToImage()
             lbl_1_Productname.text = data1?.title
             lbl_1_Productprice.text = data1?.cost.toCurrency()
-            lbl_1_discount.attributedText = data1?.discount.toCurrency().strikeThrough()
+//            lbl_1_discount.attributedText = data1?.discount.toCurrency().strikeThrough()
+            lbl_1_duration.text = data1?.create_at?.getDuration()
         }
         
         if data2 != nil {
@@ -67,7 +68,8 @@ class ProductGridTableViewCell: UITableViewCell {
             img_2_Productimage.image = data2?.imagefront.base64ToImage()
             lbl_2_Productname.text = data2?.title
             lbl_2_productprice.text = data2?.cost.toCurrency()
-            lbl_2_discount.attributedText = data2?.discount.toCurrency().strikeThrough()
+//            lbl_2_discount.attributedText = data2?.discount.toCurrency().strikeThrough()
+            lbl_2_duration.text = data2?.create_at?.getDuration()
         }
     }
     

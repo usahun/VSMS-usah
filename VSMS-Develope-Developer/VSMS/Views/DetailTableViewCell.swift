@@ -39,6 +39,19 @@ class DetailTableViewCell: UITableViewCell {
     @IBOutlet weak var priceCheck: UIImageView!
     
     
+    //value
+    var posttypeVal: String?
+    var titleVal: String?
+    var categoryVal: String?
+    var typeVal: String?
+    var brandVal: String?
+    var modelVal: String?
+    var yearVal: String?
+    var conditionVal: String?
+    var colorVal: String?
+    var descriptionVal: String?
+    var priceVal: String?
+    
     //Internal Properties
     weak var delegate: getValueFromXibDetail?
     var passingData = CellClickViewModel()
@@ -53,6 +66,8 @@ class DetailTableViewCell: UITableViewCell {
     var rawValue: [dropdownData] = []
     var dropdownData: [String] = []
     var BrandChangeHandle: ((String) -> Void)?
+    var isCheck = true
+    
 
     //Override Methods
     override func awakeFromNib() {
@@ -156,6 +171,7 @@ class DetailTableViewCell: UITableViewCell {
         PostTypeDropdown.anchorView = btnPostType
         PostTypeDropdown.dataSource = dropdownData
         PostTypeDropdown.width = self.frame.width
+        
         // Action triggered on selection
         PostTypeDropdown.selectionAction = { [weak self] (index, item) in
             self!.postTypeCheck.image = #imageLiteral(resourceName: "check_mark")
@@ -165,6 +181,9 @@ class DetailTableViewCell: UITableViewCell {
             self?.btnPostType.setTitle(item, for: .normal)
             self!.PostTypeDropdown.hide()
         }
+        
+        
+        
     }
     
     func setupCategoryDropDown(){
@@ -336,3 +355,5 @@ extension DetailTableViewCell: UITextViewDelegate {
         self.delegate?.getDescription(value: passingData)
     }
 }
+
+

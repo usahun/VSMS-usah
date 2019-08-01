@@ -682,10 +682,7 @@
 				86B94E1722E83FEC00C793D2 /* CustomCell_Instagram.xib in Resources */,
 				86F4017922DF0E4500AB9ECD /* ProductImageTableViewCell.xib in Resources */,
 				86B10326229C4C7A00192DAD /* PhotoListCollectionViewCell.xib in Resources */,
-
-				865B5DBA221FDD3600864F7E /* Main.storyboard in Resources */,
 				861A6FD222E17C970028D81D /* ListCategoryTableViewCell.xib in Resources */,
-
 				C4AAF7AB22C60E1C00B82364 /* NewPostImageCollectionViewCell.xib in Resources */,
 				861A6FD622E195580028D81D /* ListAllProductViewController.xib in Resources */,
 				86626BA3229C470B00FE25DD /* ImageCollectionViewCell.xib in Resources */,

@@ -30,7 +30,9 @@ class PostViewModel {
     var discount: String = "0.0"
     var status: Int = 1
     
+    
     //var discount_type: String = ""
+    var name: String = ""
     var contact_phone: String = User.getUsername()
     var contact_email: String = ""
     var contact_address: String = ""
@@ -54,6 +56,24 @@ class PostViewModel {
     var buy_post: [[String: Any]] = [[:]]
     
     
+    //helper fields
+    var PostTypeVal: String?
+    var CategoryVal: String?
+    var TypeVal: String?
+    var BrandVal: String?
+    var ModelVal: String?
+    var YearVal: String?
+    var ConditionVal: String?
+    var ColorVal: String?
+    var DiscountTypeVal: String?
+    var TitleVal: String?
+    var PriceVal: String?
+    var DiscountVal: String?
+    var NameVal: String?
+    var PhoneNumberVal: String?
+    var EmailVal: String?
+    var AddressVal: String?
+    
     //Constructor
     init(){
         
@@ -61,7 +81,10 @@ class PostViewModel {
     
     func LoadPostByID(ID: Int, completion: @escaping (PostViewModel) -> Void)
     {
-        var result = PostViewModel()
+        let result = PostViewModel()
+        let semephore = DispatchGroup()
+        
+        semephore.enter()
         Alamofire.request(PROJECT_API.LOADPRODUCTOFUSER(ProID: ID),
                           method: .get,
                           encoding: JSONEncoding.default,
@@ -72,11 +95,103 @@ class PostViewModel {
             {
             case .success(let value):
                 let json = JSON(value)
+                
+                //get master data
+                result.PostID = json["id"].stringValue.toInt()
+                result.title = json["title"].stringValue
+                result.post_type = json["post_type"].stringValue
+                result.category = json["category"].stringValue.toInt()
+                result.type = json["type"].stringValue.toInt()
+                result.brand = json["brand"].stringValue.toInt()
+                result.modeling = json["modeling"].stringValue.toInt()
+                result.year = json["year"].stringValue.toInt()
+                result.condition = json["condition"].stringValue
+                result.color = json["color"].stringValue
+                result.description = json["description"].stringValue
+                result.status = json["status"].stringValue.toInt()
+                result.discount_type = json["discount_type"].stringValue
+                result.discount = json["discount"].stringValue
+                result.cost = json["cost"].stringValue
+                
+                result.contact_phone = json["contact_phone"].stringValue
+                result.contact_email = json["contact_email"].stringValue
+                result.contact_address = json["contact_address"].stringValue
+                
                 result.front_image_base64 = json["front_image_base64"].stringValue
                 result.left_image_base64 = json["left_image_base64"].stringValue
                 result.right_image_base64 = json["right_image_base64"].stringValue
                 result.back_image_base64 = json["back_image_base64"].stringValue
-                completion(result)
+                
+                result.front_image_path = result.front_image_base64
+                result.left_image_path = result.left_image_base64
+                result.right_image_path = result.right_image_base64
+                result.back_image_path = result.back_image_base64
+                semephore.leave()
+                
+                if result.post_type == "sell"
+                {
+                    result.sale_post = JSON(json["sales"]).arrayValue.map{
+                        SalePost(json: $0).asDictionary
+                    }
+                }
+                else if result.post_type == "buy"
+                {
+                    result.buy_post = JSON(json["buys"]).arrayValue.map{
+                        BuyPost(json: $0).asDictionary
+                    }
+                }
+                else if result.post_type == "rents"
+                {
+                    result.rent_post = JSON(json["rents"]).arrayValue.map{
+                        RentPost(json: $0).asDictionary
+                    }
+                }
+                
+                
+                result.PostTypeVal = json["post_type"].stringValue.capitalizingFirstLetter()
+                result.ConditionVal = result.condition.capitalizingFirstLetter()
+                result.ColorVal = result.color.capitalizingFirstLetter()
+                result.DiscountTypeVal = result.discount_type.capitalizingFirstLetter()
+                result.TitleVal = result.title
+                result.PriceVal = result.cost
+                result.DiscountVal = result.discount
+                result.PhoneNumberVal = result.contact_phone
+                result.EmailVal = result.contact_email
+                result.AddressVal = result.contact_address
+                
+                semephore.enter()
+                Converts.getCategorybyID(id: result.category, completion: { (category) in
+                    result.CategoryVal = category
+                    semephore.leave()
+                })
+                
+                semephore.enter()
+                Converts.getTypebyID(id: result.type, completion: { (type) in
+                    result.TypeVal = type
+                    semephore.leave()
+                })
+                
+                semephore.enter()
+                Converts.getBrandbyModeID(id: result.modeling, completion: { (brand) in
+                    result.BrandVal = brand
+                    semephore.leave()
+                })
+                
+                semephore.enter()
+                Converts.getModelbyID(id: result.modeling, completion: { (model) in
+                    result.ModelVal = model
+                    semephore.leave()
+                })
+                
+                semephore.enter()
+                Converts.getYearbyID(id: result.year, completion: { (year) in
+                    result.YearVal = year
+                    semephore.leave()
+                })
+                
+                semephore.notify(queue: .main, execute: {
+                    completion(result)
+                })
             case .failure(let error):
                 print(error)
             }
@@ -127,6 +242,15 @@ class SalePost {
     
     init() {}
     
+    init(id: Int, saleStatus: Int, recordStatus: Int, SoldDate: Date?, price: String, total: String) {
+        self.id = id
+        self.sale_status = saleStatus
+        self.record_status = recordStatus
+        self.sold_date = SoldDate
+        self.price = price
+        self.total_price = total
+    }
+    
     init(json: JSON)
     {
         self.id = json["id"].stringValue.toInt()
@@ -162,6 +286,11 @@ class RentPost {
     
     init(json: JSON){
         self.id = json["id"].stringValue.toInt()
+        self.rent_status = json["rent_status"].stringValue.toInt()
+        self.record_status = json["record_status"].stringValue.toInt()
+        self.rent_type = json["rent_type"].stringValue
+        //self.rent_date = json["rent_date"].stringValue
+        self.total_price = json["total_price"].stringValue
     }
 }
 
@@ -187,5 +316,8 @@ class BuyPost {
     
     init(json: JSON){
         self.id = json["id"].stringValue.toInt()
+        self.buy_status = json["buy_status"].stringValue.toInt()
+        self.record_status = json["record_status"].stringValue.toInt()
+        self.total_price = json["total_price"].stringValue
     }
 }
