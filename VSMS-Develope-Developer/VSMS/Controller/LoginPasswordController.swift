@@ -22,19 +22,17 @@ class LoginPasswordController: UIViewController {
     let defaultValues = UserDefaults.standard
     
     
-   
-  
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loginbutton.reloadInputViews()
-        navigationController?.navigationBar.isHidden = false
+        navigationController?.navigationBar.isHidden = true
+        //navigationController?.navigationBar.barTintColor = UIColor.blue
 
         //if user is already logged in switching to profile screen
         self.ShowDefaultNavigation()
         self.HasNavNoTab()
-
     }
     
     

@@ -19,6 +19,7 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.HasTabNoNav()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {

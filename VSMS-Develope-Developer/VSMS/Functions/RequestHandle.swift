@@ -52,6 +52,32 @@ class RequestHandle {
         }
     }
     
+    static func LoadRelated(postType: String, category: String, modeling: String, completion: @escaping ([HomePageModel]) -> Void){
+       // print(PROJECT_API.RELATED_PRODUCT(postType: postType, category: category, modeling: modeling))
+        var result: [HomePageModel] = []
+        Alamofire.request(PROJECT_API.RELATED_PRODUCT(postType: postType, category: category, modeling: modeling),
+                          method: .get,
+                          encoding: JSONEncoding.default
+            ).responseJSON
+            { (response) in
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    result = (json["results"].array?.map{
+                       HomePageModel(id: $0["id"].stringValue.toInt()
+                        , name: $0["title"].stringValue,
+                          cost: $0["cost"].stringValue,
+                          imagefront: $0["front_image_base64"].stringValue,
+                          discount: $0["discount"].stringValue, postType: $0["post_type"].stringValue)
+                        }) ?? []
+                    
+                    completion(result)
+                case .failure(let error):
+                    print(error)
+                }
+        }
+    }
+    
     static func LoadBestDeal(completion: @escaping ([HomePageModel]) -> Void){
         var result: [HomePageModel] = []
         Alamofire.request(PROJECT_API.BESTDEAL,
@@ -75,9 +101,27 @@ class RequestHandle {
        
     }
     
+    static func CountView(postID: Int, completion: @escaping (Int) -> Void){
+        Alamofire.request(PROJECT_API.COUNT_VIEWS(ProID: postID),
+                          method: .get,
+                          encoding: JSONEncoding.default
+            ).responseJSON
+            { (response) in
+                switch response.result{
+                case .success(let value):
+                    let json = JSON(value)
+                   // print(json)
+                    completion(json["count"].stringValue.toInt())
+                case .failure:
+                    print("error")
+                }
+        }
+        
+    }
+    
     static func LoadAllPostByPostTypeAndCategory(filter: RelatedFilter, completion: @escaping ([HomePageModel]) -> Void) {
         var result: [HomePageModel] = []
-        Alamofire.request(PROJECT_API.RELATED_PRODUCT(type: filter.type, category: filter.category),
+        Alamofire.request(PROJECT_API.RELATED_PRODUCT(postType: filter.type, category: filter.category, modeling: filter.modeling),
                           method: .get,
                           encoding: JSONEncoding.default
             ).responseJSON
@@ -98,6 +142,8 @@ class RequestHandle {
                 }
         }
     }
+    
+    
     
     static func SearchProduct(filter: SearchFilter, completion: @escaping ([HomePageModel]) -> Void) {
         var result: [HomePageModel] = []

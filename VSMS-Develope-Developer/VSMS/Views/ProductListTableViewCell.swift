@@ -15,6 +15,7 @@ class ProductListTableViewCell: UITableViewCell {
     @IBOutlet weak var lblDuration: UILabel!
     @IBOutlet weak var lblProductPrice: UILabel!
     @IBOutlet weak var lblPostType: UILabel!
+    @IBOutlet weak var lblView: UILabel!
     
     var ProductID: Int?
     var ProductData = HomePageModel()
@@ -34,8 +35,11 @@ class ProductListTableViewCell: UITableViewCell {
         imgProductImage.image = ProductData.imagefront.base64ToImage()
         lblProductname.text = ProductData.title.capitalizingFirstLetter()
         lblProductPrice.text = ProductData.cost.toCurrency()
-        print(ProductData.create_at?.getDuration())
         lblDuration.text = ProductData.create_at?.getDuration()
+        RequestHandle.CountView(postID: ProductData.product) { (count) in
+            self.lblView.text = count.toString()+" Views"
+        }
+
         
         lblPostType.text = ProductData.postType.capitalizingFirstLetter()
         if ProductData.postType == "sell" {

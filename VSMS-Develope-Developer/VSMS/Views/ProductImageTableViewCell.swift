@@ -14,7 +14,7 @@ class ProductImageTableViewCell: UITableViewCell {
     @IBOutlet weak var lblProductName: UILabel!
     @IBOutlet weak var lblProductPrice: UILabel!
     @IBOutlet weak var lblDuration: UILabel!
-    @IBOutlet weak var lblDiscount: UILabel!
+    @IBOutlet weak var lblViews: UILabel!
     @IBOutlet weak var lblPostType: UILabel!
     
     var ProductID: Int?
@@ -36,6 +36,9 @@ class ProductImageTableViewCell: UITableViewCell {
         lblProductPrice.text = data.cost.toCurrency()
         lblDiscount.text = data.discount.toCurrency()
         lblDuration.text = data.create_at?.getDuration()
+        RequestHandle.CountView(postID: data.product) { (count) in
+            self.lblViews.text = count.toString()+" Views"
+        }
         lblPostType.text = data.postType.capitalizingFirstLetter()
     }
     
