@@ -24,6 +24,8 @@ class ContectViewController: UIViewController,UITableViewDelegate,UITableViewDat
     var imgprofile = ImageProfileModel()
     var postArr: [HomePageModel] = []
     var UserPostID: Int?
+     var ProductDetail = DetailViewModel()
+    var userdetail:Profile?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,8 +40,11 @@ class ContectViewController: UIViewController,UITableViewDelegate,UITableViewDat
         tableView.reloadData()
         
         XibRegister()
-        LoadUserProfileInfo()
+        //LoadUserProfileInfo()
         LoadAllPostByUser()
+        
+        imageprofile.image = self.userdetail?.Profile
+        labelName.text = self.userdetail?.Name
     }
     
     func XibRegister(){
@@ -49,26 +54,26 @@ class ContectViewController: UIViewController,UITableViewDelegate,UITableViewDat
         
     }
     
-    func LoadUserProfileInfo(){
-        Alamofire.request(PROJECT_API.USER, method: .get,encoding: JSONEncoding.default,headers: headers).responseJSON
-            { (response) in
-                switch response.result{
-                case .success(let value):
-                    let json = JSON(value)
-                    self.imgprofile = ImageProfileModel(json: json)
-                    self.imageprofile.image = self.imgprofile.profile.base64_profile_image.base64ToImage()
-                    self.labelName.text = self.imgprofile.name
-                    
-                    self.tel = ImageSubClass(json: json["profile"])
-                case .failure:
-                    print("error")
-                }
-        }
-    }
+//    func LoadUserProfileInfo(){
+//        Alamofire.request(PROJECT_API.USER, method: .get,encoding: JSONEncoding.default,headers: headers).responseJSON
+//            { (response) in
+//                switch response.result{
+//                case .success(let value):
+//                    let json = JSON(value)
+//                    self.imgprofile = ImageProfileModel(json: json)
+//                    self.imageprofile.image = self.imgprofile.profile.base64_profile_image.base64ToImage()
+//                    self.labelName.text = self.imgprofile.name
+//
+//                    self.tel = ImageSubClass(json: json["profile"])
+//                case .failure:
+//                    print("error")
+//                }
+//        }
+//    }
     
     @objc
     func LoadAllPostByUser(){
-        Alamofire.request(PROJECT_API.LOADPRODUCTOFUSER(ProID: UserPostID!), method: .get,encoding: JSONEncoding.default,headers: headers).responseJSON
+        Alamofire.request(PROJECT_API.DETAIL_USER(userID: ProductDetail.created_by.toString())).responseJSON
             { (response) in
                 switch response.result{
                 case .success(let value):
@@ -127,10 +132,10 @@ class ContectViewController: UIViewController,UITableViewDelegate,UITableViewDat
             let cell = tableView.dequeueReusableCell(withIdentifier: "contectCell")
             if indexPath.row == 0 {
                 cell?.textLabel?.text = "Phone"
-                cell?.detailTextLabel?.text = tel.telephone
+                cell?.detailTextLabel?.text = userdetail?.PhoneNumber
             } else if indexPath.row == 1 {
                 cell?.textLabel?.text = "Email"
-                cell?.detailTextLabel?.text = imgprofile.email
+                cell?.detailTextLabel?.text = "\(userdetail?.email)"
             } else {
                 cell?.textLabel?.text = "Address"
                 cell?.detailTextLabel?.text = tel.address

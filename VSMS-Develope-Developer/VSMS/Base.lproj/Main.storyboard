@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7Vv-6I-FZU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7Vv-6I-FZU">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -2276,7 +2276,9 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="saD-g5-9ma">
+
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="1309"/>
+
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5xh-2E-paR">
@@ -2325,7 +2327,9 @@
                                             <color key="pageIndicatorTintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                         </pageControl>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Qc-3R-Xz7">
+
                                             <rect key="frame" x="0.0" y="257" width="414" height="997"/>
+
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Qq-s8-b4f">
                                                     <rect key="frame" x="16" y="8" width="382" height="30"/>
@@ -2759,6 +2763,22 @@
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="lGc-hd-Rq0"/>
                                                     </constraints>
                                                 </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dQa-ja-GeV" userLabel="Separate">
+                                                    <rect key="frame" x="0.0" y="1023" width="414" height="40"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Relate Posts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Urb-cb-ym1">
+                                                            <rect key="frame" x="176.66666666666663" y="9.6666666666669698" width="95" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="zgh-6o-lhH"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -2778,12 +2798,15 @@
                                                 <constraint firstItem="0Qq-s8-b4f" firstAttribute="leading" secondItem="4Qc-3R-Xz7" secondAttribute="leading" constant="16" id="GX5-wF-hzf"/>
                                                 <constraint firstItem="cmX-Ht-byq" firstAttribute="leading" secondItem="N7W-c1-Wnu" secondAttribute="trailing" id="I9G-Ue-HUS"/>
                                                 <constraint firstItem="1T6-gL-nkN" firstAttribute="leading" secondItem="4Qc-3R-Xz7" secondAttribute="leading" id="JMQ-tr-6Ho"/>
+                                                <constraint firstItem="dQa-ja-GeV" firstAttribute="leading" secondItem="4Qc-3R-Xz7" secondAttribute="leading" id="KZT-cI-mlc"/>
                                                 <constraint firstItem="cPX-5g-fzT" firstAttribute="leading" secondItem="4Qc-3R-Xz7" secondAttribute="leading" id="N5I-fP-IqL"/>
+                                                <constraint firstAttribute="trailing" secondItem="dQa-ja-GeV" secondAttribute="trailing" id="OFg-Tu-kjY"/>
                                                 <constraint firstAttribute="trailing" secondItem="0Qq-s8-b4f" secondAttribute="trailing" constant="16" id="Qyt-J0-aa2"/>
                                                 <constraint firstAttribute="trailing" secondItem="8Fg-6i-wlq" secondAttribute="trailing" id="S5R-0n-oVu"/>
                                                 <constraint firstItem="Yv4-tn-aYE" firstAttribute="leading" secondItem="4Qc-3R-Xz7" secondAttribute="leading" id="SPf-Qc-wGK"/>
                                                 <constraint firstItem="Q3y-3b-QGa" firstAttribute="leading" secondItem="4Qc-3R-Xz7" secondAttribute="leading" id="Sv1-u9-JNv"/>
                                                 <constraint firstItem="VOb-x2-GN2" firstAttribute="top" secondItem="Yv4-tn-aYE" secondAttribute="bottom" constant="5" id="TB8-x6-fWU"/>
+                                                <constraint firstAttribute="bottom" secondItem="dQa-ja-GeV" secondAttribute="bottom" id="TjI-r8-xT3"/>
                                                 <constraint firstItem="VOb-x2-GN2" firstAttribute="leading" secondItem="4Qc-3R-Xz7" secondAttribute="leading" id="TqW-Jz-IUy"/>
                                                 <constraint firstAttribute="trailing" secondItem="Nqq-ER-2pg" secondAttribute="trailing" constant="16" id="VQu-x3-WR2"/>
                                                 <constraint firstItem="Nqq-ER-2pg" firstAttribute="top" secondItem="0Qq-s8-b4f" secondAttribute="bottom" constant="8" id="VtI-dE-Zsg"/>
@@ -3232,7 +3255,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ubo-4D-WNi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+
             <point key="canvasLocation" x="1553" y="3335"/>
+
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="F5t-Eg-lEx">
@@ -4000,21 +4025,23 @@
     <resources>
         <image name="121logo" width="120" height="69"/>
         <image name="ArrowDown-50" width="50" height="50"/>
-        <image name="Camera" width="33.333332061767578" height="33.333332061767578"/>
-        <image name="Cover_Default" width="85.333335876464844" height="85.333335876464844"/>
+
+        <image name="Camera" width="33" height="33"/>
+        <image name="Cover_Default" width="85" height="85"/>
+
         <image name="Dream192" width="1500" height="1000"/>
         <image name="Dream193" width="1500" height="1000"/>
         <image name="EditUser-White" width="50" height="50"/>
         <image name="HamburgarIcon" width="25" height="25"/>
         <image name="Honda-Dream-black" width="620" height="450"/>
-        <image name="HondaClick2019" width="206.66667175292969" height="150"/>
-        <image name="HondaDream2019" width="206.66667175292969" height="150"/>
+        <image name="HondaClick2019" width="206" height="150"/>
+        <image name="HondaDream2019" width="206" height="150"/>
         <image name="Icon-Camera-20x20" width="20" height="20"/>
         <image name="Icon-Camera-20x20-1" width="20" height="20"/>
         <image name="Icon-home-20x20" width="20" height="20"/>
         <image name="Icon-nofi-20x20" width="20" height="20"/>
         <image name="Icon-sms-20x20" width="20" height="20"/>
-        <image name="Kawasaki2019" width="206.66667175292969" height="150"/>
+        <image name="Kawasaki2019" width="206" height="150"/>
         <image name="Pencil-White" width="52" height="52"/>
         <image name="Profile_Default" width="100" height="100"/>
         <image name="SearchIcon" width="25" height="25"/>
@@ -4331,10 +4358,10 @@ ZjFoMWoxczF4MX4xhjGIMYoxjDGOMZMxm0MHQwlDDkMcQyBDJ0MsQzlDPENJQ05DVkNZQ15DZkNpQ3tD
 fkODAAAAAAAAAgEAAAAAAAAAWQAAAAAAAAAAAAAAAAAAQ4U
 </mutableData>
         </image>
-        <image name="img" width="16.666666030883789" height="16.666666030883789"/>
-        <image name="list_active" width="16.666666030883789" height="16.666666030883789"/>
+        <image name="img" width="16" height="16"/>
+        <image name="list_active" width="16" height="16"/>
         <image name="registration-50" width="25" height="25"/>
-        <image name="thumnail" width="16.666666030883789" height="16.666666030883789"/>
+        <image name="thumnail" width="16" height="16"/>
         <image name="upload-50" width="25" height="25"/>
     </resources>
 </document>

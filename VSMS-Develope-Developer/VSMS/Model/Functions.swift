@@ -33,6 +33,7 @@ class PROJECT_API {
     static var COVER_PIC = "\(http_absoluteString)/api/v1/users/\(User.getUserID())/coverphoto/"
     static var LIKEBYUSER = "\(http_absoluteString)/likebyuser/"
     
+    
     //LogIN
     static var LOGIN = "\(http_absoluteString)/api/v1/rest-auth/login/"
     static var REGISTER = "\(http_absoluteString)/api/v1/users/"
@@ -40,6 +41,10 @@ class PROJECT_API {
     //Homepage
     static var HOMEPAGE = "\(http_absoluteString)/allposts/"
     static var BESTDEAL = "\(http_absoluteString)/bestdeal/"
+    
+    static func DETAIL_USER(userID: String) -> String {
+        return "\(http_absoluteString)/api/v1/users/\(userID)"
+    }
     
     static func RELATED_PRODUCT(postType: String, category: String, modeling: String) -> String {
         return "\(http_absoluteString)/relatedpost/?post_type=\(postType)&category=\(category)&modeling=\(modeling)&min_price=&max_price="

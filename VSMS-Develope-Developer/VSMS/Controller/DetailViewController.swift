@@ -18,6 +18,7 @@ class DetailViewController: UIViewController {
     var timer = Timer()
     var counter = 0
     var relateArr: [HomePageModel] = []
+    var userdetail: Profile?
     
     
     //Master Propertise
@@ -62,7 +63,10 @@ class DetailViewController: UIViewController {
         txtinterestRate.text = "1.5"
         txtTerm.text = "1"
         
-        borderText()
+        txtTerm.bordercolor()
+        txtinterestRate.bordercolor()
+        txtdeposit.bordercolor()
+        txtprice.bordercolor()
         imgProfilePic.layer.cornerRadius = imgProfilePic.frame.width * 0.5
         // Do any additional setup after loading the view.
         config()
@@ -88,23 +92,7 @@ class DetailViewController: UIViewController {
         txtTerm.addTarget(self, action: #selector(CalculatorLoan), for: UIControl.Event.editingChanged)
     }
     
-    func borderText() {
-        let myColor = UIColor(red: CGFloat(92/255.0), green: CGFloat(203/255.0),
-                              blue: CGFloat(207/255.0), alpha: CGFloat(1.0))
-        
-        txtprice.layer.borderColor = myColor.cgColor
-        txtprice.layer.borderWidth = 1.0
-        txtprice.layer.masksToBounds = true
-        txtTerm.layer.borderColor = myColor.cgColor
-        txtTerm.layer.borderWidth = 1.0
-        txtTerm.layer.masksToBounds = true
-        txtdeposit.layer.borderColor = myColor.cgColor
-        txtdeposit.layer.borderWidth = 1.0
-        txtdeposit.layer.masksToBounds = true
-        txtinterestRate.layer.borderColor = myColor.cgColor
-        txtinterestRate.layer.borderWidth = 1.0
-        txtinterestRate.layer.masksToBounds = true
-    }
+    
     
 
    
@@ -113,6 +101,8 @@ class DetailViewController: UIViewController {
       
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ContectViewController") as! ContectViewController
         vc.UserPostID = ProductDetail.created_by
+        vc.userdetail = self.userdetail
+        
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -198,6 +188,7 @@ class DetailViewController: UIViewController {
     
     func LoadUserDetail(){
         User.getUserInfo(id: ProductDetail.created_by) { (Profile) in
+            self.userdetail = Profile
             self.imgProfilePic.image = Profile.Profile
             self.lblProfileName.text = Profile.Name
             self.lblUserPhoneNumber.text = "Tel: \(Profile.PhoneNumber)"
