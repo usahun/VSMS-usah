@@ -32,7 +32,8 @@ class PROJECT_API {
     static var PROFILE_PIC = "\(http_absoluteString)/api/v1/users/\(User.getUserID())/profilephoto/"
     static var COVER_PIC = "\(http_absoluteString)/api/v1/users/\(User.getUserID())/coverphoto/"
     static var LIKEBYUSER = "\(http_absoluteString)/likebyuser/"
-    
+    static var LOANBYUSERACTIVE = "\(http_absoluteString)/loanbyuser/?record_status=1"
+    static var LOANBYUSERHISTORY = "\(http_absoluteString)/loanbyuser/?record_status=2"
     
     //LogIN
     static var LOGIN = "\(http_absoluteString)/api/v1/rest-auth/login/"
@@ -42,8 +43,9 @@ class PROJECT_API {
     static var HOMEPAGE = "\(http_absoluteString)/allposts/"
     static var BESTDEAL = "\(http_absoluteString)/bestdeal/"
     
+    
     static func DETAIL_USER(userID: String) -> String {
-        return "\(http_absoluteString)/api/v1/users/\(userID)"
+        return "\(http_absoluteString)/postbyuserfilter/\(userID)/"
     }
     
     static func RELATED_PRODUCT(postType: String, category: String, modeling: String) -> String {
@@ -68,7 +70,12 @@ class PROJECT_API {
     static func LOADPRODUCTOFUSER(ProID: Int) -> String {
         return "\(http_absoluteString)/postbyuser/\(ProID)/"
     }
-
+    
+    static func POSTBYUSER_FILTER(UserID: String,approved: String?,rejected: String?, modify: String?) -> String {
+        return "\(http_absoluteString)/postbyuserfilter/?created_by=\(UserID)&approved_by=\(approved ?? "")&rejected_by=\(rejected ?? "")&modified_by=\(modify ?? "")"
+    }
+   
+    
     //Count Views
     static func COUNT_VIEWS(ProID: Int) -> String {
         return "\(http_absoluteString)/countview/?post=\(ProID)"

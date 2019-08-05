@@ -16,6 +16,8 @@ class ContectViewController: UIViewController,UITableViewDelegate,UITableViewDat
     @IBOutlet weak var imageprofile: UIImageView!
     @IBOutlet weak var btnpost: UIButton!
     @IBOutlet weak var btncontact: UIButton!
+    @IBOutlet weak var linepost: UILabel!
+    @IBOutlet weak var linecontact: UILabel!
     
     @IBOutlet weak var labelName: UILabel!
     var listtype = true
@@ -54,26 +56,13 @@ class ContectViewController: UIViewController,UITableViewDelegate,UITableViewDat
         
     }
     
-//    func LoadUserProfileInfo(){
-//        Alamofire.request(PROJECT_API.USER, method: .get,encoding: JSONEncoding.default,headers: headers).responseJSON
-//            { (response) in
-//                switch response.result{
-//                case .success(let value):
-//                    let json = JSON(value)
-//                    self.imgprofile = ImageProfileModel(json: json)
-//                    self.imageprofile.image = self.imgprofile.profile.base64_profile_image.base64ToImage()
-//                    self.labelName.text = self.imgprofile.name
-//
-//                    self.tel = ImageSubClass(json: json["profile"])
-//                case .failure:
-//                    print("error")
-//                }
-//        }
-//    }
+
     
     @objc
-    func LoadAllPostByUser(){
-        Alamofire.request(PROJECT_API.DETAIL_USER(userID: ProductDetail.created_by.toString())).responseJSON
+   func LoadAllPostByUser(){
+//        print(PROJECT_API.POSTBYUSER_FILTER(UserID: userdetail!.ID, approved: ProductDetail.approved, rejected: ProductDetail.rejected, modify: ""))
+        
+        Alamofire.request(PROJECT_API.POSTBYUSER_FILTER(UserID: userdetail!.ID, approved: ProductDetail.approved, rejected: ProductDetail.rejected, modify: ""), method: .get, encoding: JSONEncoding.default,headers: headers).responseJSON
             { (response) in
                 switch response.result{
                 case .success(let value):
@@ -81,10 +70,10 @@ class ContectViewController: UIViewController,UITableViewDelegate,UITableViewDat
                     self.postArr = (json["results"].array?.map{
                         HomePageModel(json: $0)
                         } ?? [])
-                        print(json)
-                    performOn(.Main, closure: {
-                        self.tableView.reloadData()
-                    })
+                    print(json)
+        
+                    self.tableView.reloadData()
+                    
                     
                 case .failure:
                     print("error")
@@ -94,14 +83,27 @@ class ContectViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     
     @IBAction func buttonpostTap(_ sender: Any) {
-
+        if (btnpost != nil){
+            linepost.alpha = 1
+            linecontact.alpha = 0
+        }else{
+            linepost.alpha = 0
+            linecontact.alpha = 1
+        }
       listtype = true
       tableView.reloadData()
     }
     
     
     @IBAction func buttonContactTap(_ sender: Any) {
-        
+       
+        if (btncontact != nil){
+            linepost.alpha = 0
+            linecontact.alpha = 1
+        }else{
+            linecontact.alpha = 1
+            linecontact.alpha = 0
+        }
         listtype = false
          tableView.reloadData()
     }
@@ -135,7 +137,7 @@ class ContectViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 cell?.detailTextLabel?.text = userdetail?.PhoneNumber
             } else if indexPath.row == 1 {
                 cell?.textLabel?.text = "Email"
-                cell?.detailTextLabel?.text = "\(userdetail?.email)"
+                cell?.detailTextLabel?.text = userdetail?.email
             } else {
                 cell?.textLabel?.text = "Address"
                 cell?.detailTextLabel?.text = tel.address
