@@ -34,6 +34,9 @@ class DetailViewModel {
     var sales: [SalePost] = []
     var buys: [BuyPost] = []
     var rents: [RentPost] = []
+    var approved: String = ""
+    var rejected: String = ""
+    
     
     var front_image_base64: UIImage?
     var back_image_base64: UIImage?
@@ -71,6 +74,8 @@ class DetailViewModel {
         self.vin_code = json["vin_code"].stringValue
         self.machine_code = json["machine_code"].stringValue
         self.created_by = json["created_by"].stringValue.toInt()
+        self.approved = json["approved_by"].stringValue
+        self.rejected = json["rejected_by"].stringValue
         
         self.contact_phone = json["contact_phone"].stringValue
         self.contact_email = json["contact_email"].stringValue
