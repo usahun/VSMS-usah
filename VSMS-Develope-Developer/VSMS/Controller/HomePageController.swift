@@ -30,7 +30,7 @@ class MyNavigation: UINavigationController, leftMenuClick {
 }
 
 
-class HomePageController: UIViewController{
+class HomePageController: BaseViewController {
    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var SliderCollection: UICollectionView!
@@ -38,6 +38,9 @@ class HomePageController: UIViewController{
     @IBOutlet weak var btnImag: UIButton!
     @IBOutlet weak var btnGrid: UIButton!
     @IBOutlet weak var btnList: UIButton!
+    @IBOutlet weak var lblNewpost: UILabel!
+    @IBOutlet weak var lblbestDeal: UILabel!
+    
     
     @IBOutlet weak var txtSearch: UISearchBar!
     @IBOutlet weak var btnBuy: UIButton!
@@ -78,6 +81,18 @@ class HomePageController: UIViewController{
     let now = Date()
     let pastDate = Date(timeIntervalSinceNow: -60 * 62)
     
+    
+    override func localizeUI() {
+        btnBuy.setTitle("buy".localizable(), for: .normal)
+        btnSell.setTitle("sell".localizable(), for: .normal)
+        btnRent.setTitle("rent".localizable(), for: .normal)
+        btnCategory.setTitle("category".localizable(), for: .normal)
+        btnBrand.setTitle("brand".localizable(), for: .normal)
+        btnYear.setTitle("year".localizable(), for: .normal)
+        lblbestDeal.text = "bestdeal".localizable()
+        lblNewpost.text = "newpost".localizable()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -87,6 +102,9 @@ class HomePageController: UIViewController{
         ShowDefaultNavigation()
         RegisterXib()
         SlidingPhoto()
+        
+       
+        
         
         //txtSearch.disable()
         ConfigDrowDown()
@@ -154,6 +172,7 @@ class HomePageController: UIViewController{
         btnBrand.addTarget(self, action: #selector(btnSearchHandler(_:)), for: .touchUpInside)
         btnYear.addTarget(self, action: #selector(btnSearchHandler(_:)), for: .touchUpInside)
         
+        
         //config best deal flow layout
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -208,6 +227,29 @@ class HomePageController: UIViewController{
             print("default")
         }
     }
+    
+    @objc
+    func btnswicthLanguage(_ sender: UIButton){
+        let alertLanguage = UIAlertController(title: "Change Languages",message: "Chose Your Langes",
+                                                      preferredStyle: .actionSheet)
+        
+                let khmerAction = UIAlertAction(title: "Khmer", style: .default) { _ in
+                    LanguageManager.setLanguage(lang: .khmer)
+                    
+                }
+        
+                let englishAction = UIAlertAction(title: "English", style: .default) { _ in
+                    LanguageManager.setLanguage(lang: .english)
+                    
+                }
+        
+                alertLanguage.addAction(khmerAction)
+                alertLanguage.addAction(englishAction)
+                present(alertLanguage, animated: true, completion: nil)
+        
+    }
+    
+    
     
     @objc
     func btnSearchHandler(_ sender: UIButton){
@@ -292,6 +334,7 @@ class HomePageController: UIViewController{
         button.widthAnchor.constraint(equalToConstant: 30).isActive = true
         button.heightAnchor.constraint(equalToConstant: 30).isActive =  true
         let barButton = UIBarButtonItem(customView: button)
+        button.addTarget(self, action: #selector(btnswicthLanguage(_:)), for: .touchUpInside)
         
         //assign button to navigationbar
         self.navigationItem.rightBarButtonItem = barButton
@@ -506,7 +549,6 @@ extension HomePageController: navigationToHomepage {
 }
 
 
-        
     
 
 
