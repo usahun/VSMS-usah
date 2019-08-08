@@ -37,8 +37,10 @@ class ContectViewController: UIViewController,UITableViewDelegate,UITableViewDat
         imageprofile.clipsToBounds = true
         
         imageprofile.CirleWithWhiteBorder(thickness: 3)
-        self.btnpost.backgroundColor = UIColor.lightGray
-        self.btncontact.backgroundColor = UIColor.lightGray
+        self.btnpost.backgroundColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1)
+        self.btncontact.backgroundColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1)
+        self.btnpost.setTitleColor(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: .normal)
+        self.btncontact.setTitleColor(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: .normal)
         tableView.reloadData()
         
         XibRegister()

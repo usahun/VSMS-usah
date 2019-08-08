@@ -48,6 +48,7 @@ struct Profile {
     var PhoneNumber: String
     var Profile: UIImage
     var email: String
+    var Address: String
 }
 
 class ImageProfileModel {
@@ -55,6 +56,7 @@ class ImageProfileModel {
     var profileID : String = ""
     var name: String = ""
     var email: String = ""
+    var address: String = ""
     var profile: ImageSubClass = ImageSubClass()
     
     init(){}
@@ -64,6 +66,7 @@ class ImageProfileModel {
         self.name = json["username"].stringValue
         self.profile = ImageSubClass(json: json["profile"])
         self.email = json["email"].stringValue
+        self.address = json["address"].stringValue
     }
     
 }

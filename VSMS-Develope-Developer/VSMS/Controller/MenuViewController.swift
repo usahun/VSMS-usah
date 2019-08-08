@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import SideMenuSwift
-class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class MenuViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource {
 
     
     @IBOutlet weak var lblProfileName: UILabel!
@@ -19,13 +19,21 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     weak var delegate: leftMenuClick?
     
+    
+    
+    override func localizeUI(){
+        tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         imageprofile.layer.cornerRadius = imageprofile.frame.width * 0.5
         imageprofile.clipsToBounds = true
-
+        
+        tableView.reloadData()
         imageprofile.CirleWithWhiteBorder(thickness: 1)
-    
+        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+        
         tableView.delegate = self
         tableView.dataSource = self
         lblProfileName.text = User.getUsername()
@@ -37,7 +45,7 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8
+        return 7
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -66,21 +74,20 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         let row = indexPath.row
         
         if row == 0{
-            cell.titleLabel.text = " Your Profile"
+            cell.titleLabel.text = "yourprofile".localizable()
         } else if row == 1 {
-            cell.titleLabel.text = " Your Posts "
+            cell.titleLabel.text = "yourposts".localizable()
         } else if row == 2 {
-            cell.titleLabel.text = " Your Likes "
+            cell.titleLabel.text = "yourlike".localizable()
         } else if row == 3 {
-            cell.titleLabel.text = " Your Shares "
+            cell.titleLabel.text = "yourloan".localizable()
         } else if row == 4 {
-            cell.titleLabel.text = " Your Loans "
+            cell.titleLabel.text = "setting".localizable()
         } else if row == 5 {
-            cell.titleLabel.text = " Setting "
+            cell.titleLabel.text = "aboutus".localizable()
         } else if row == 6 {
-            cell.titleLabel.text = " About Us "
-        } else if row == 7 {
-            cell.titleLabel.text = " Term Privacy "
+            cell.titleLabel.text = "termofprivancy".localizable()
+        } else{
         }
         return cell
     }

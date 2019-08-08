@@ -138,7 +138,7 @@ class User {
                 completion(Profile(ID: json["id"].stringValue,
                                    Name: json["username"].stringValue,
                                    PhoneNumber: profile["telephone"].stringValue,
-                                   Profile: profile["base64_profile_image"].stringValue.base64ToImage() ?? UIImage(), email: json["email"].stringValue))
+                                   Profile: profile["base64_profile_image"].stringValue.base64ToImage() ?? UIImage(), email: json["email"].stringValue, Address: json["address"].stringValue))
             case .failure(let error):
                 print(error.localizedDescription)
             }
