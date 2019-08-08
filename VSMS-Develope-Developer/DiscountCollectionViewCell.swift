@@ -31,22 +31,4 @@ class DiscountCollectionViewCell: UICollectionViewCell {
     }
 
 }
-extension DiscountTableViewCell: UICollectionViewDelegateFlowLayout{
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var collectionViewSize = collectionView.frame.size
-        collectionViewSize.width = collectionViewSize.width/2.0
-        collectionViewSize.height = 50
-       // collectionViewSize.height = collectionViewSize.height/4.0
-        return collectionViewSize
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 4
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 4
-    }
-    
-}
+

@@ -32,18 +32,26 @@ extension String {
         return Int(self) ?? 0
     }
     
-
-    func toDate(withFormat format: String = "yyyy-MM-dd HH:mm:ss") -> String{
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone(identifier: "Asia/Tehran")
-        dateFormatter.locale = Locale(identifier: "fa-IR")
-        dateFormatter.calendar = Calendar(identifier: .gregorian)
-        dateFormatter.dateFormat = format
-        let date = dateFormatter.date(from: self)
-        
+    func toISODate() -> String
+    {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        if let date = formatter.date(from: self) {
+            let isoDate = ISO8601DateFormatter()
+            return isoDate.string(from: date)
+        }
         return ""
-        
+    }
+    
+    func DateFormat(withFormat format: String = "dd/MM/yyyy") -> String{
+        let formatter = ISO8601DateFormatter()
+        if let date = formatter.date(from: self) {
+            let StringFormat = DateFormatter()
+            StringFormat.locale = Locale(identifier: "Asia/Tehran")
+            StringFormat.dateFormat = format
+            return StringFormat.string(from: date)
+        }
+        return ""
     }
     
     func formationDate() -> String{
@@ -60,7 +68,6 @@ extension String {
         dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss" ; //"dd-MM-yyyy HH:mm:ss"
         dateFormatter.locale = tempLocale // reset the locale --> but no need here
         let dateString = dateFormatter.string(from: date)
-        print("EXACT_DATE : \(dateString)")
         return dateString
     }
     
@@ -78,7 +85,6 @@ extension String {
         let components = Set<Calendar.Component>([.minute, .hour, .day, .month, .year])
         let differenceOfDate = Calendar.current.dateComponents(components, from: formatedStartDate!, to: currentDate)
         
-        print (differenceOfDate)
         if differenceOfDate.year! > 0 {
             return "\(differenceOfDate.year ?? 1) year\(differenceOfDate.year! > 1 ? "s" : "")"
         }
@@ -401,4 +407,95 @@ extension UIAlertController {
 }
 
 
+extension UITableView {
+    func noRecordCell(Indexpath: IndexPath) -> UITableViewCell
+    {
+        self.register(UINib(nibName: "HelperTableViewCell", bundle: nil), forCellReuseIdentifier: "HelperTableCell")
+        
+        let cell = self.dequeueReusableCell(withIdentifier: "HelperTableCell", for: Indexpath) as! HelperTableViewCell
+        cell.lblText.text = "No Record!"
+        return cell
+    }
+    
+    func loadingCell(Indexpath: IndexPath) -> LoadingTableViewCell
+    {
+        self.register(UINib(nibName: "LoadingTableViewCell", bundle: nil), forCellReuseIdentifier: "LoadingTableViewCell")
+        
+        let cell = self.dequeueReusableCell(withIdentifier: "LoadingTableViewCell", for: Indexpath) as! LoadingTableViewCell
+        cell.activity.startAnimating()
+        return cell
+    }
+    
+    func ProductListTableCell(Indexpath: IndexPath) -> ProductListTableViewCell
+    {
+        self.register(UINib(nibName: "ProductListTableViewCell", bundle: nil), forCellReuseIdentifier: "ProductListCell")
+        let cell = self.dequeueReusableCell(withIdentifier: "ProductListCell", for: Indexpath) as! ProductListTableViewCell
+        return cell
+    }
+}
 
+extension UILabel {
+    func SetPostType(postType: String)
+    {
+        if postType == "sell"
+        {
+            self.backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
+        }
+        else if postType == "rent"
+        {
+            self.backgroundColor = #colorLiteral(red: 0.16155532, green: 0.6208058596, blue: 0.002179143718, alpha: 1)
+        }
+        else{
+            self.backgroundColor = #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
+        }
+        self.textColor = UIColor.white
+        self.text = postType.capitalizingFirstLetter()
+    }
+    
+    func SetValueText(value: String?)
+    {
+        if value != ""
+        {
+            self.textColor = UIColor.black
+            self.text = value
+        }
+        else{
+            self.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+            self.text = value
+        }
+    }
+}
+
+
+extension UITextField{
+    @IBInspectable var doneAccessory: Bool{
+        get{
+            return self.doneAccessory
+        }
+        set (hasDone) {
+            if hasDone{
+                addDoneButtonOnKeyboard()
+            }
+        }
+    }
+    
+    
+    func addDoneButtonOnKeyboard()
+    {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        doneToolbar.barStyle = .default
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneButtonAction))
+        let items = [flexSpace, done]
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        self.inputAccessoryView = doneToolbar
+    }
+    @objc func doneButtonAction()
+    {
+        self.resignFirstResponder()
+    }
+    
+    
+    
+}

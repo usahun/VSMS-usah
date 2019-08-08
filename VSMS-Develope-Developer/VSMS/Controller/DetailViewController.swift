@@ -131,9 +131,8 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func clickLoan(_ sender: Any) {
-        Message.AlertMessage(message: "", header: "LOAN", View: self) {
-            
-        }
+        let loanVC:LoanViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoanViewController") as! LoanViewController
+        self.navigationController?.pushViewController(loanVC, animated: true)
     }
     
     
@@ -164,7 +163,7 @@ class DetailViewController: UIViewController {
     }
     
     func InitailDetail(){
-        lblProductName.text = ProductDetail.title
+        lblProductName.text = ProductDetail.title.capitalizingFirstLetter()
         lblProductPrice.text = ProductDetail.cost.toCurrency()
         
         if ProductDetail.discount.toDouble() != 0.0

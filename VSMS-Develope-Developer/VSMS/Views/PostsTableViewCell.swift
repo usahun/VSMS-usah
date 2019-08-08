@@ -15,6 +15,8 @@ class PostsTableViewCell: UITableViewCell {
     @IBOutlet weak var PostImage: UIImageView!
     @IBOutlet weak var lblDuration: UILabel!
     @IBOutlet weak var btnButtonView: UIView!
+    @IBOutlet weak var lblPostType: UILabel!
+    @IBOutlet weak var lblView: UILabel!
     
     
     //Internal Properties
@@ -38,11 +40,11 @@ class PostsTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-        lblName.text = Data.title
+        lblName.text = Data.title.capitalizingFirstLetter()
         lblPrice.text = Data.cost.toCurrency()
         PostImage.image = Data.imagefront.base64ToImage()
         lblDuration.text = Data.create_at?.getDuration()
-        
+        lblPostType.SetPostType(postType: Data.postType)
     }
     
     

@@ -32,13 +32,13 @@ class ProductImageTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
         imgProduct.image = data.imagefront.base64ToImage()
-        lblProductName.text = data.title
+        lblProductName.text = data.title.capitalizingFirstLetter()
         lblProductPrice.text = data.cost.toCurrency()
         lblDuration.text = data.create_at?.getDuration()
         RequestHandle.CountView(postID: data.product) { (count) in
             self.lblViews.text = count.toString()+" Views"
         }
-        lblPostType.text = data.postType.capitalizingFirstLetter()
+        lblPostType.SetPostType(postType: data.postType)
     }
     
     @objc

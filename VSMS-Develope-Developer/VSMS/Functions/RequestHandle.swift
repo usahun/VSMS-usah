@@ -247,9 +247,6 @@ class RequestHandle {
     }
 }
 
-
-
-
 class HomepageRequestHandler {
     var next: String = ""
     var previous: String = ""
@@ -334,6 +331,8 @@ class UserProfileRequestHandle {
     var NextPostActive: String = ""
     var NextPostHistory: String = ""
     var NextLike: String = ""
+    var NextLoanActive: String = ""
+    var NextLoanHistory: String = ""
     
     //Record count
     var AllPostActiveCount: Int = 0
@@ -342,10 +341,17 @@ class UserProfileRequestHandle {
     //List Data
     var PostActive: [HomePageModel] = []
     var PostHistory: [HomePageModel] = []
+    var PostLike: [LikeViewModel] = []
+    var PostLoanActive: [HomePageModel] = []
+    var PostLoanHistory: [ListLoanViewModel] = []
+    
+    //Helper properties
+    private let semephore = DispatchGroup()
     
     init(){}
     
-    func LoadAllPostByUser(completion: @escaping () -> Void){
+    func LoadAllPostByUser(completion: @escaping () -> Void)
+    {
         Alamofire.request(PROJECT_API.POSTBYUSERACTIVE,
                           method: .get,
                           encoding: JSONEncoding.default,
@@ -376,7 +382,8 @@ class UserProfileRequestHandle {
         }
     }
     
-    func NextPostByUser(completion: @escaping () -> Void){
+    func NextPostByUser(completion: @escaping () -> Void)
+    {
         if self.NextPostActive == "" {
             return
         }
@@ -487,10 +494,116 @@ class UserProfileRequestHandle {
             { (response) in
                 switch response.result{
                 case .success(let value):
-                    print(value)
+                    let json = JSON(value)
+                    self.NextLike = json["next"].stringValue
+                    self.PostLike = json["results"].arrayValue.map{
+                        LikeViewModel(json: $0)
+                    }
+                        
+                    completion()
                     
                 case .failure:
                     print("error")
+                }
+        }
+    }
+    
+    func LoadNextPostLikeByUser(completion: @escaping () -> Void)
+    {
+        guard NextLike != "" else {
+            return
+        }
+        
+        semephore.enter()
+        Alamofire.request(PROJECT_API.LIKEBYUSER,
+                          method: .get,
+                          encoding: JSONEncoding.default,
+                          headers: headers).responseJSON
+            { (response) in
+                switch response.result{
+                case .success(let value):
+                    let json = JSON(value)
+                    self.NextLike = json["next"].stringValue
+                    
+                    self.semephore.leave()
+                    
+                    
+                case .failure:
+                    print("error")
+                }
+        }
+        
+        semephore.notify(queue: .main) {
+            completion()
+        }
+    }
+    
+    func LoadLoanActiveByUser(completion: @escaping () -> Void)
+    {
+        Alamofire.request(PROJECT_API.LOANBYUSERACTIVE,
+                          method: .get,
+                          encoding: JSONEncoding.default,
+                          headers: headers).responseJSON
+            { (response) in
+                switch response.result{
+                case .success(let value):
+                    let json = JSON(value)
+                    self.NextLoanActive = json["next"].stringValue
+                    self.PostLoanActive = json["results"].arrayValue.map{
+                        HomePageModel(json: $0)
+                    }
+                    
+                    completion()
+                    
+                case .failure:
+                    print("error")
+                    completion()
+                }
+        }
+    }
+    
+    func LoadNextLoanActiveByUser(completion: @escaping () -> Void)
+    {
+        guard NextLoanActive != "" else {
+            return
+        }
+        Alamofire.request(PROJECT_API.LOANBYUSERACTIVE,
+                          method: .get,
+                          encoding: JSONEncoding.default,
+                          headers: headers).responseJSON
+            { (response) in
+                switch response.result{
+                case .success(let value):
+                    let json = JSON(value)
+                    self.NextLoanActive = json["next"].stringValue
+                    self.PostLoanActive += json["results"].arrayValue.map{
+                        HomePageModel(json: $0)
+                    }
+                    
+                case .failure:
+                    print("error")
+                }
+        }
+    }
+    
+    func LoadLoanHistoryByUser(completion: @escaping () -> Void)
+    {
+        Alamofire.request(PROJECT_API.LOANBYUSERHISTORY,
+                          method: .get,
+                          encoding: JSONEncoding.default,
+                          headers: headers).responseJSON
+            { (response) in
+                switch response.result{
+                case .success(let value):
+                    let json = JSON(value)
+                    self.NextLoanHistory = json["next"].stringValue
+                    self.PostLoanHistory = json["results"].arrayValue.map{
+                        ListLoanViewModel(id: $0["id"].stringValue.toInt(), post: $0["post"].stringValue.toInt())
+                    }
+                    completion()
+                case .failure:
+                    print("error")
+                    completion()
                 }
         }
     }
@@ -499,6 +612,36 @@ class UserProfileRequestHandle {
         return self.NextPostActive == ""
     }
 }
+
+
+struct ListLoanViewModel
+{
+    var id: Int = 0
+    var post: Int = 0
+    
+}
+
+class LikeViewModel {
+    var id: Int = 0
+    var like_by: Int = 0
+    var modified: String?
+    var post: Int = 0
+    var record_status: Int = 0
+    
+    var productDetail: String = ""
+
+    init(){}
+    
+    init(json: JSON)
+    {
+        self.id = json["id"].stringValue.toInt()
+        self.like_by = json["like_by"].stringValue.toInt()
+        self.modified = json["modified"].stringValue
+        self.post = json["post"].stringValue.toInt()
+        self.record_status = json["record_status"].stringValue.toInt()
+    }
+}
+
 
 extension UIImage {
     func UpLoadCover(completion: @escaping () -> Void){

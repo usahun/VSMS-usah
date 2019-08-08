@@ -32,31 +32,27 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var likeArr: [LikebyUserModel] = []
     var loanArr: [String] = []
     var pickPhotoCheck = ""
-    var isActiveOrHistory = true
+    var isPostActiveOrHistory = true
+    var isLoadActiveOrHistory = true
+    var isLoading = true
+    var isHistoryLoading = true
+    var isLikeLoading = true
+    var isLoanActive = true
+    var isLoanHistory = true
     
     var index = 0
     var productDetail: DetailViewModel?
     //var ProductDetail = ProfileModel()
     var dpatch = DispatchGroup()
     
-    lazy var postRefresher: UIRefreshControl = {
+    lazy var refresher: UIRefreshControl = {
         let refresh = UIRefreshControl()
         refresh.tintColor = UIColor.gray
         refresh.center = self.view.center
-        refresh.addTarget(self, action: #selector(LoadAllPostByUser), for: .valueChanged)
+        refresh.addTarget(self, action: #selector(Refresher), for: .valueChanged)
         
         return refresh
     }()
-    
-    lazy var likeRefresher: UIRefreshControl = {
-        let refresh = UIRefreshControl()
-        refresh.tintColor = UIColor.gray
-        refresh.center = self.view.center
-        refresh.addTarget(self, action: #selector(LoadAllPostLike), for: .valueChanged)
-        
-        return refresh
-    }()
-
     
     let headers: HTTPHeaders = [
         "Cookie": "",
@@ -94,13 +90,13 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         profileImage.isUserInteractionEnabled = true
         profileImage.addGestureRecognizer(tapGestureRecognizer)
         
-        tableView.refreshControl = postRefresher
+        tableView.refreshControl = refresher
 
 
         self.navigationController?.navigationBar.isHidden = false
-        mysegmentControl.setTitle("POSTS(\(ProfileHandleRequest.AllPostActiveCount))", forSegmentAt: 0)
-        mysegmentControl.setTitle("LIKES(\(likeArr.count))", forSegmentAt: 1)
-        mysegmentControl.setTitle("LOANS(0)", forSegmentAt: 2)
+        mysegmentControl.setTitle("POST", forSegmentAt: 0)
+        mysegmentControl.setTitle("LIKE", forSegmentAt: 1)
+        mysegmentControl.setTitle("LOAN", forSegmentAt: 2)
 
         
         
@@ -120,26 +116,38 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         performOn(.Main) {
             self.ProfileHandleRequest.LoadAllPostByUser {
-                self.mysegmentControl.setTitle("Posts(\(self.ProfileHandleRequest.AllPostActiveCount))", forSegmentAt: 0)
+                //self.mysegmentControl.setTitle("Posts(\(self.ProfileHandleRequest.AllPostActiveCount))", forSegmentAt: 0)
+                self.isLoading = false
                 self.tableView.reloadData()
             }
             
             self.ProfileHandleRequest.LoadAllPostHistoryByUser {
+                self.isHistoryLoading = false
                 self.tableView.reloadData()
             }
-            print("main")
+            
+            self.ProfileHandleRequest.LoadAllPostLikeByUser(completion: {
+                self.isLikeLoading = false
+                //self.mysegmentControl.setTitle("Likes(\(self.ProfileHandleRequest.PostLike.count))", forSegmentAt: 1)
+                self.tableView.reloadData()
+            })
+            
+            self.ProfileHandleRequest.LoadLoanActiveByUser {
+                self.isLoanActive = false
+                self.tableView.reloadData()
+            }
+            
+            self.ProfileHandleRequest.LoadLoanHistoryByUser {
+                self.isLoanHistory = false
+                self.tableView.reloadData()
+            }
         }
         
         performOn(.HighPriority) {
             self.LoadUserProfileInfo()
-            self.ProfileHandleRequest.LoadAllPostLikeByUser(completion: {
-                
-            })
+            
         }
-        
-        performOn(.Background) {
-            self.LoadAllPostLike()
-        }
+
     }
     
     
@@ -152,6 +160,10 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         tableView.register(likes, forCellReuseIdentifier: "likesCell")
         
         tableView.register(UINib(nibName: "ActiveDeactiveTableViewCell", bundle: nil), forCellReuseIdentifier: "activedeactiveCell")
+        
+        tableView.register(UINib(nibName: "LoanTableViewCell", bundle: nil), forCellReuseIdentifier: "LoanTableViewCell")
+        
+        tableView.register(UINib(nibName: "LoanHistoryTableViewCell", bundle: nil), forCellReuseIdentifier: "LoanHistoryTableViewCell")
     }
     
     @objc
@@ -244,38 +256,57 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
     
     @objc
-    func LoadAllPostByUser(){
-        ProfileHandleRequest.LoadAllPostByUser {
-            self.mysegmentControl.setTitle("Posts(\(self.ProfileHandleRequest.AllPostActiveCount))", forSegmentAt: 0)
-            self.postRefresher.endRefreshing()
-            self.tableView.reloadData()
+    func Refresher(){
+        switch index
+        {
+        case 0:
+            if isPostActiveOrHistory{
+                ProfileHandleRequest.LoadAllPostByUser {
+                    self.refresher.endRefreshing()
+                    self.tableView.reloadData()
+                }
+            }
+            else{
+                ProfileHandleRequest.LoadAllPostHistoryByUser {
+                    self.refresher.endRefreshing()
+                    self.tableView.reloadData()
+                }
+            }
+        case 1:
+            ProfileHandleRequest.LoadAllPostLikeByUser {
+                self.refresher.endRefreshing()
+                self.tableView.reloadData()
+            }
+        case 2:
+            if isLoadActiveOrHistory
+            {
+                ProfileHandleRequest.LoadLoanActiveByUser {
+                    self.refresher.endRefreshing()
+                    self.tableView.reloadData()
+                }
+            }
+            else{
+                ProfileHandleRequest.LoadLoanActiveByUser {
+                    self.refresher.endRefreshing()
+                    self.tableView.reloadData()
+                }
+            }
+        default:
+            break
         }
     }
-    
-    @objc
-    func LoadAllPostLike() {
-        
-        
-    }
-
     
     @IBAction func swicthChange(_ sender: UISegmentedControl) {
         index = mysegmentControl.selectedSegmentIndex
-        if index == 0 {
-            tableView.refreshControl = postRefresher
-        }
-        else if index == 1 {
-            tableView.refreshControl = likeRefresher
-        }
-        else{
-            
-        }
         self.tableView.reloadData()
     }
     
+    
+    
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if index == 0{
-            if isActiveOrHistory {
+        if index == 0
+        {
+            if isPostActiveOrHistory {
                 if ProfileHandleRequest.PostActive.count == 0 {
                     return 2
                 }
@@ -287,45 +318,83 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 }
                 return ProfileHandleRequest.PostHistory.count + 1
             }
-        }else if index == 1 {
-            return likeArr.count
-        }else {
-            return loanArr.count
+        }
+        else if index == 1
+        {
+            if ProfileHandleRequest.PostLike.count == 0
+            {
+                return 1
+            }
+            return ProfileHandleRequest.PostLike.count
+        }
+        else
+        {
+            if isLoadActiveOrHistory
+            {
+                if ProfileHandleRequest.PostLoanActive.count == 0
+                {
+                    return 2
+                }
+                else{
+                    return ProfileHandleRequest.PostLoanActive.count + 1
+                }
+            }
+            else{
+                if ProfileHandleRequest.PostLoanHistory.count == 0
+                {
+                    return 2
+                }
+                else{
+                    return ProfileHandleRequest.PostLoanHistory.count + 1
+                }
+            }
         }
         
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
         if index == 0 {
             if indexPath.row == 0 {
                 return 50
             }
-             return 190
+             return 170
         }
         else if index == 1 {
-            return 150
+            return 140
         }
         else {
-            return 170
+            if indexPath.row == 0 {
+                return 50
+            }
+            if isLoadActiveOrHistory{
+                return 170
+            }
+            return 140
         }
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if index == 0 {
+        if index == 0
+        {
             if indexPath.row == 0 {
                 let activeCell = tableView.dequeueReusableCell(withIdentifier: "activedeactiveCell", for: indexPath) as! ActiveDeactiveTableViewCell
                 
-                activeCell.sagement.selectedSegmentIndex = isActiveOrHistory ? 0 : 1
+                activeCell.sagement.selectedSegmentIndex = isPostActiveOrHistory ? 0 : 1
                 activeCell.sagementclick = { check in
-                    self.isActiveOrHistory = check
+                    self.isPostActiveOrHistory = check
                     self.tableView.reloadData()
                 }
                 return activeCell
             }
-            if isActiveOrHistory
+            if isPostActiveOrHistory
             {
+                if isLoading {
+                    return tableView.loadingCell(Indexpath: indexPath)
+                }
+                
                 if ProfileHandleRequest.PostActive.count == 0 {
-                    return UITableViewCell()
+                    return tableView.noRecordCell(Indexpath: indexPath)
                 }
                 
                 let cell = tableView.dequeueReusableCell(withIdentifier: "Postcell", for: indexPath) as! PostsTableViewCell
@@ -334,8 +403,12 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 return cell
             }
             else{
+                if isHistoryLoading {
+                    return tableView.loadingCell(Indexpath: indexPath)
+                }
+                
                 if ProfileHandleRequest.PostHistory.count == 0 {
-                    return UITableViewCell()
+                    return tableView.noRecordCell(Indexpath: indexPath)
                 }
                 
                 let cell = tableView.dequeueReusableCell(withIdentifier: "Postcell", for: indexPath) as! PostsTableViewCell
@@ -343,15 +416,62 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 cell.delelgate = self
                 return cell
             }
-        }else {
-       let cell = tableView.dequeueReusableCell(withIdentifier: "likesCell", for: indexPath) as! LikesTableViewCell
-            cell.lblName.text = likeArr[indexPath.row].pro_detail.title
-            cell.lblPrice.text = likeArr[indexPath.row].pro_detail.cost.toCurrency()
-            cell.LikesImage.image = likeArr[indexPath.row].pro_detail.frontImage
-            ////
-            //cell.delegate = self
-            cell.ProID = likeArr[indexPath.row].post
-            return cell
+        }
+        else if index == 1
+        {
+            if ProfileHandleRequest.PostLike.count == 0
+            {
+                if isLikeLoading {
+                    return tableView.loadingCell(Indexpath: indexPath)
+                }
+                
+                return tableView.noRecordCell(Indexpath: indexPath)
+            }
+                let cell = tableView.dequeueReusableCell(withIdentifier: "likesCell", for: indexPath) as! LikesTableViewCell
+                cell.ProductData = ProfileHandleRequest.PostLike[indexPath.row]
+                cell.delegate = self
+                cell.reload()
+                return cell
+        }
+        else
+        {
+            if indexPath.row == 0 {
+                let activeCell = tableView.dequeueReusableCell(withIdentifier: "activedeactiveCell", for: indexPath) as! ActiveDeactiveTableViewCell
+                
+                activeCell.sagement.selectedSegmentIndex = isLoadActiveOrHistory ? 0 : 1
+                activeCell.sagementclick = { check in
+                    self.isLoadActiveOrHistory = check
+                    self.tableView.reloadData()
+                }
+                return activeCell
+            }
+            
+            if isLoadActiveOrHistory
+            {
+                if isLoanActive {
+                    return tableView.loadingCell(Indexpath: indexPath)
+                }
+                
+                if ProfileHandleRequest.PostLoanActive.count == 0
+                {
+                    return tableView.noRecordCell(Indexpath: indexPath)
+                }
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: "LoanTableViewCell", for: indexPath) as! LoanTableViewCell
+                return cell
+            }
+            else{
+                if isLoanHistory {
+                    return tableView.loadingCell(Indexpath: indexPath)
+                }
+                
+                if ProfileHandleRequest.PostLoanHistory.count == 0
+                {
+                    return tableView.noRecordCell(Indexpath: indexPath)
+                }
+                let cell = tableView.dequeueReusableCell(withIdentifier: "LoanHistoryTableViewCell", for: indexPath) as! LoanHistoryTableViewCell
+                return cell
+            }
         }
     }
     
@@ -374,7 +494,7 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 
 extension TestViewController: ProfileCellClickProtocol {
     func cellClickToDetail(ID: Int) {
-        PushToDetailProductByUserViewController(productID: ID)
+        PushToDetailProductViewController(productID: ID)
     }
     
     func cellClickToEdit(ID: Int) {

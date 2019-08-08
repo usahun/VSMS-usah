@@ -36,23 +36,12 @@ class ProductListTableViewCell: UITableViewCell {
         lblProductname.text = ProductData.title.capitalizingFirstLetter()
         lblProductPrice.text = ProductData.cost.toCurrency()
         lblDuration.text = ProductData.create_at?.getDuration()
+        lblPostType.SetPostType(postType: ProductData.postType)
         
         RequestHandle.CountView(postID: self.ProductData.product) { (count) in
             performOn(.Main, closure: {
                 self.lblView.text = count.toString()+" Views"
             })
-        }
-
-        
-        lblPostType.text = ProductData.postType.capitalizingFirstLetter()
-        if ProductData.postType == "sell" {
-            lblPostType.backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
-        }
-        else if ProductData.postType == "rent" {
-            lblPostType.backgroundColor = #colorLiteral(red: 0.16155532, green: 0.6208058596, blue: 0.002179143718, alpha: 1)
-        }
-        else if ProductData.postType == "buy" {
-            lblPostType.backgroundColor = #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
         }
     }
     

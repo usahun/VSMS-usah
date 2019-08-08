@@ -140,6 +140,7 @@ class HomePageController: UIViewController{
         
         DiscountCollection.delegate = self
         DiscountCollection.dataSource = self
+        //DiscountCollection.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -360,7 +361,7 @@ class HomePageController: UIViewController{
 }
 
     
-extension HomePageController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension HomePageController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == SliderCollection {
             return imgArr.count
@@ -380,14 +381,30 @@ extension HomePageController: UICollectionViewDataSource, UICollectionViewDelega
         }
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imgediscount", for: indexPath) as! DiscountCollectionViewCell
-            cell.MotoName.text = bestDealArr[indexPath.row].title
+            cell.MotoName.text = bestDealArr[indexPath.row].title.capitalizingFirstLetter()
             cell.image.image = bestDealArr[indexPath.row].imagefront.base64ToImage()
             cell.MotoPrice.text = bestDealArr[indexPath.row].cost.toCurrency()
-            cell.MotoDiscount.text = bestDealArr[indexPath.row].cost.toCurrency()
+            cell.MotoDiscount.attributedText = bestDealArr[indexPath.row].cost.toCurrency().strikeThrough()
             cell.ProductID = bestDealArr[indexPath.row].product
             cell.delegate = self
             return cell
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == DiscountCollection
+        {
+            return CGSize(width: (self.view.frame.width / 2) - 8, height: collectionView.frame.height)
+        }
+        return CGSize(width: self.view.frame.width, height: collectionView.frame.height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 4
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 4
     }
 }
 
@@ -434,10 +451,10 @@ extension HomePageController: UITableViewDelegate, UITableViewDataSource {
             return 350
         }
         else if CellIdentifier == 2 {
-            return 180
+            return 220
         }
         else {
-            return 125
+            return 140
         }
     }
     

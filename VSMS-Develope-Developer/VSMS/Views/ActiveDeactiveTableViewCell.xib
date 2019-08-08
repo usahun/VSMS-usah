@@ -28,6 +28,7 @@
                             <segment title="Active"/>
                             <segment title="History"/>
                         </segments>
+                        <color key="tintColor" red="0.20000000000000001" green="0.40000000000000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <connections>
                             <action selector="segmentClickHandle:" destination="KGk-i7-Jjw" eventType="valueChanged" id="Qi8-3D-m0Y"/>
                         </connections>

@@ -9,7 +9,9 @@ PODS:
     - GoogleMaps/Base
   - GooglePlaces (3.1.0):
     - GoogleMaps/Base (= 3.1.0)
+  - RSSelectionMenu (6.0.3)
   - SideMenuSwift (1.0.0)
+  - SkyFloatingLabelTextField (3.7.0)
   - SwiftyJSON (4.3.0)
   - TLPhotoPicker (1.8.3)
   - Toast-Swift (4.0.1)
@@ -20,7 +22,9 @@ DEPENDENCIES:
   - DropDown (= 2.3.4)
   - GoogleMaps
   - GooglePlaces
+  - RSSelectionMenu
   - SideMenuSwift (= 1.0.0)
+  - SkyFloatingLabelTextField (~> 3.0)
   - SwiftyJSON (~> 4.0)
   - TLPhotoPicker (= 1.8.3)
   - Toast-Swift (~> 4.0.0)
@@ -32,7 +36,9 @@ SPEC REPOS:
     - DropDown
     - GoogleMaps
     - GooglePlaces
+    - RSSelectionMenu
     - SideMenuSwift
+    - SkyFloatingLabelTextField
     - SwiftyJSON
     - TLPhotoPicker
     - Toast-Swift
@@ -43,11 +49,13 @@ SPEC CHECKSUMS:
   DropDown: f225ff0fd09dde064d17aa03db7e4d4e4ff40b6b
   GoogleMaps: 5c13302e6fe6bb6e686b267196586b91cd594225
   GooglePlaces: e874db179f2675c4f3eeda0b686b540273a578b0
+  RSSelectionMenu: decee83e020ee9d63e53995eb7f1ea5ca75f0667
   SideMenuSwift: f8567754feb36ade13ffd613f608829f4b86d4b3
+  SkyFloatingLabelTextField: 4b46db0ab1ccde0919cded29c656e6b4805eda04
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   TLPhotoPicker: 9955e20e4d59cf4a3accc2d3b320e1bf08f453bf
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
 
-PODFILE CHECKSUM: f813dcb7a4fcb9f81ef7cb315dc0bda7a74ca3ab
+PODFILE CHECKSUM: 8fd2bc1deb0f47da4f0f05d45467bf3893b22ae8
 
 COCOAPODS: 1.6.1

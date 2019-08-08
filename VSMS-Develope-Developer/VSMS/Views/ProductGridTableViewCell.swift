@@ -58,27 +58,24 @@ class ProductGridTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         if data1 != nil {
-            lbl_1_Productname.text = data1?.title
+            lbl_1_Productname.text = data1!.title.capitalizingFirstLetter()
             img_1_Product.image = data1?.imagefront.base64ToImage()
             lbl_1_Productname.text = data1?.title
             lbl_1_Productprice.text = data1?.cost.toCurrency()
-//            lbl_1_discount.attributedText = data1?.discount.toCurrency().strikeThrough()
             lbl_1_duration.text = data1?.create_at?.getDuration()
-            lbl_1_postTy.text = data1?.postType.capitalizingFirstLetter()
+            lbl_1_postTy.SetPostType(postType: data1!.postType)
             RequestHandle.CountView(postID: (data1?.product)!) { (count) in
                 self.lbl_1_Views.text = count.toString()+" Views"
             }
         }
         
         if data2 != nil {
-            lbl_2_Productname.text = data2?.title
+            lbl_2_Productname.text = data2!.title.capitalizingFirstLetter()
             img_2_Productimage.image = data2?.imagefront.base64ToImage()
             lbl_2_Productname.text = data2?.title
             lbl_2_productprice.text = data2?.cost.toCurrency()
-
-//            lbl_2_discount.attributedText = data2?.discount.toCurrency().strikeThrough()
             lbl_2_duration.text = data2?.create_at?.getDuration()
-            lbl_2_postTy.text = data2?.postType.capitalizingFirstLetter()
+            lbl_2_postTy.SetPostType(postType: data2!.postType)
             RequestHandle.CountView(postID: (data2?.product)!) { (count) in
                 self.lbl_2_Views.text = count.toString()+" Views"
             }

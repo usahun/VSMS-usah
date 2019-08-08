@@ -10,6 +10,8 @@ import UIKit
 
 class HelperTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var lblText: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

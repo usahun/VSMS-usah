@@ -74,7 +74,7 @@ class HomePageModel {
         self.discount = json["discount"].stringValue
         self.imagefront = json["front_image_base64"].stringValue
         self.postType = json["post_type"].stringValue
-        self.create_at = json["create_at"].stringValue
+        self.create_at = json["created"].stringValue
     }
 }
 

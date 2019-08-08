@@ -91,7 +91,7 @@ class CellClickViewModel {
 }
 
 
-struct dropdownData {
+struct dropdownData: Codable {
     var ID: String
     var Text: String
     var FKKey: String?

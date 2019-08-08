@@ -23,6 +23,7 @@ class PROJECT_API {
     static var TYPES = "\(http_absoluteString)/api/v1/types/"
     static var STATUS = "\(http_absoluteString)/api/v1/status/"
     static var PROVINCES = "\(http_absoluteString)/api/v1/provinces/"
+    static var GROUPS = "\(http_absoluteString)/api/v1/groups/"
     
     //Profile
     static var POST_BYUSER = "\(http_absoluteString)/postbyuser/"
@@ -62,7 +63,7 @@ class PROJECT_API {
 
     //Detail
     static func LOADPRODUCT(ProID: Int) -> String {
-        return "\(http_absoluteString)/allposts/\(ProID)/"
+        return "\(http_absoluteString)/detailposts/\(ProID)/"
     }
     static func GETUSERDETAIL(ID: Int) -> String {
         return "\(http_absoluteString)/api/v1/users/\(ID)/"
@@ -92,6 +93,19 @@ class User {
     static func getUsername() -> String {
         let defaultValues = UserDefaults.standard
         return defaultValues.string(forKey: "username") ?? ""
+    }
+    
+    static func setNewUsername(username: String)
+    {
+        let userDefault = UserDefaults.standard
+        userDefault.set(username, forKey: "username")
+    }
+    
+    static func getPassword() -> String
+    {
+        let defaultValues = UserDefaults.standard
+        let password = defaultValues.string(forKey: "password") ?? ""
+        return password
     }
     
     static func getUserEncoded() -> String {
@@ -130,6 +144,8 @@ class User {
             }
         }
     }
+    
+    
     
     static func IsUserAuthorized() -> Bool {
         let defaultValues = UserDefaults.standard
@@ -241,11 +257,61 @@ class Converts {
 
 
 class Functions {
+
+    static func getMaritalStautsList() -> [DropDownTemplate]
+    {
+        return [DropDownTemplate(ID: "single", Text: "Single"),
+                DropDownTemplate(ID: "married", Text: "Married"),
+                DropDownTemplate(ID: "separated", Text: "Separated"),
+                DropDownTemplate(ID: "divorced", Text: "Divorced"),
+                DropDownTemplate(ID: "windowed", Text: "Windowed")
+                ]
+    }
+    
+    static func getProvinceList(ProvinceURL: String?, completion: @escaping ([DropDownTemplate]) -> Void)
+    {
+        guard ProvinceURL != "" else {
+            return
+        }
+        
+        let semephore = DispatchGroup()
+        var result: [DropDownTemplate] = []
+        var nextPage = ""
+        semephore.enter()
+        Alamofire.request(ProvinceURL!,
+                          method: .get,
+                          encoding: JSONEncoding.default
+            ).responseJSON { (respone) in
+                switch respone.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    nextPage = json["next"].stringValue
+                    result = json["results"].array?.map {
+                        DropDownTemplate(ID: $0["id"].stringValue,
+                                         Text: $0["province"].stringValue)
+                        } ?? []
+                    semephore.leave()
+                    if nextPage != "" {
+                        semephore.enter()
+                        Functions.getProvinceList(ProvinceURL: nextPage, completion: { (val) in
+                            result += val
+                            semephore.leave()
+                        })
+                    }
+                    
+                    semephore.notify(queue: .main, execute: {
+                        completion(result)
+                    })
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+        }
+    }
     
     static func getDiscountTypeList() -> [String] {
         return ["Amount", "Percentage"]
     }
-    
     
     static func getDropDownList(key: Int ,completion: @escaping ([dropdownData]) -> ()){
         switch key{
@@ -270,7 +336,6 @@ class Functions {
                     print(error.localizedDescription)
                 }
             }
-            break
         case 3:
             //Type
             Alamofire.request(PROJECT_API.TYPES, method: .get, encoding: JSONEncoding.default).responseJSON { (respone) in
