@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2BA-mG-Xo8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VTm-R6-05o">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -988,7 +988,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="epH-eY-Gq9">
-                                                <rect key="frame" x="137.66666666666666" y="576" width="100" height="25"/>
+                                                <rect key="frame" x="133.66666666666666" y="576" width="108" height="25"/>
                                                 <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="s4t-EZ-Efy"/>
@@ -1813,10 +1813,10 @@
                                                         <constraint firstAttribute="height" constant="10" id="vFO-SZ-JqB"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Job" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="WL8-yV-WnU" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                                    <rect key="frame" x="36" y="-0.33333333333333393" width="339" height="30.333333333333336"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Job" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="WL8-yV-WnU" customClass="KaedeTextField" customModule="TextFieldEffects">
+                                                    <rect key="frame" x="36" y="0.0" width="339" height="43.666666666666664"/>
                                                     <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
@@ -1833,15 +1833,21 @@
                                                         <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
                                                             <color key="value" red="0.16155532" green="0.62080585960000001" blue="0.0021791437179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                                            <real key="value" value="0.0"/>
+                                                        </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </textField>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="zIn-4r-beS" firstAttribute="centerY" secondItem="klq-t6-Y58" secondAttribute="centerY" id="92r-fl-yMp"/>
-                                                <constraint firstItem="WL8-yV-WnU" firstAttribute="centerY" secondItem="klq-t6-Y58" secondAttribute="centerY" constant="-7" id="X4n-bA-fkI"/>
+                                                <constraint firstItem="WL8-yV-WnU" firstAttribute="leading" secondItem="zIn-4r-beS" secondAttribute="trailing" constant="10" id="EZV-oF-VkN"/>
+                                                <constraint firstAttribute="bottom" secondItem="WL8-yV-WnU" secondAttribute="bottom" id="Zix-XM-XBu"/>
+                                                <constraint firstAttribute="trailing" secondItem="WL8-yV-WnU" secondAttribute="trailing" id="bI4-5c-Wxo"/>
                                                 <constraint firstItem="zIn-4r-beS" firstAttribute="leading" secondItem="klq-t6-Y58" secondAttribute="leadingMargin" id="bYl-yK-FbX"/>
-                                                <constraint firstAttribute="trailing" secondItem="WL8-yV-WnU" secondAttribute="trailing" id="iRR-md-wUJ"/>
-                                                <constraint firstItem="WL8-yV-WnU" firstAttribute="leading" secondItem="zIn-4r-beS" secondAttribute="trailing" constant="10" id="yJS-BR-WEO"/>
+                                                <constraint firstItem="WL8-yV-WnU" firstAttribute="leading" secondItem="zIn-4r-beS" secondAttribute="trailing" constant="10" id="gCB-oY-Kqe"/>
+                                                <constraint firstItem="WL8-yV-WnU" firstAttribute="centerY" secondItem="klq-t6-Y58" secondAttribute="centerY" id="sVe-de-bQ3"/>
+                                                <constraint firstItem="WL8-yV-WnU" firstAttribute="top" secondItem="klq-t6-Y58" secondAttribute="top" id="y0E-Sv-fEZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

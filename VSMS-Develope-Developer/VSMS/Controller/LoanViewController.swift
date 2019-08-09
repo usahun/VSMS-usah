@@ -7,12 +7,8 @@
 //
 
 import UIKit
-import SkyFloatingLabelTextField
 
-class LoanViewController: UITableViewController {
-
-    
-    @IBOutlet weak var txtJob: SkyFloatingLabelTextField!
+class LoanViewController: UITableViewController { 
     
     
     override func viewDidLoad() {
