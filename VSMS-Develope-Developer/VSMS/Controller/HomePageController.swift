@@ -93,19 +93,21 @@ class HomePageController: BaseViewController {
         lblNewpost.text = "newpost".localizable()
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        SideMenuController.preferences.basic.menuWidth = 240
+        SideMenuController.preferences.basic.defaultCacheKey = "0"
+        SideMenuController.preferences.basic.statusBarBehavior = .hideOnMenu
         
         configuration()
         setupNavigationBarItem()
         ShowDefaultNavigation()
         RegisterXib()
         SlidingPhoto()
-        
-       
-        
-        
+    
         //txtSearch.disable()
         ConfigDrowDown()
         
@@ -269,6 +271,7 @@ class HomePageController: BaseViewController {
     @objc func menutap() {
         if User.IsUserAuthorized() {
             self.viewDidAppear(true)
+            // self.tabBarController?.tabBar.isHidden = true
             sideMenuController?.revealMenu()
         }
     }

@@ -22,18 +22,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,CLLocationManagerDelegate
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         
-        UITabBar.appearance().tintColor = .blue
-        
         GMSServices.provideAPIKey("AIzaSyCnzDhy4WqYYUBp6NnctYHfxxUdJmJeF-I")
         GMSPlacesClient.provideAPIKey("AIzaSyCnzDhy4WqYYUBp6NnctYHfxxUdJmJeF-I")
         // Override point for customization after application launch.
 //        window?.rootViewController = HomePageController()
 //        window?.makeKeyAndVisible()
         
-        let tabbar = CustomTabBarController()
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = tabbar
-        window?.makeKeyAndVisible()
+//        let tabbar = CustomTabBarController()
+//        window = UIWindow(frame: UIScreen.main.bounds)
+//        window?.rootViewController = tabbar
+//        window?.makeKeyAndVisible()
         
 
        // LocationService.sharedInstance.delegate = self

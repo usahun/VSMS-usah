@@ -41,7 +41,7 @@ class MenuViewController: BaseViewController,UITableViewDelegate,UITableViewData
    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.tabBarController?.tabBar.isHidden = false
+        //self.tabBarController?.tabBar.isHidden = false
     }
   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

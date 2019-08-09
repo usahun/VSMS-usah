@@ -70,6 +70,7 @@ class CustomTabBarController: UITabBarController {
     
     override var tabBar: UITabBar {
         let _tabar = super.tabBar
+        UITabBar.appearance().tintColor = #colorLiteral(red: 0.254701972, green: 0.5019594431, blue: 1, alpha: 1)
         _tabar.barTintColor = .white
         _tabar.isTranslucent = false
         _tabar.backgroundColor = .white
