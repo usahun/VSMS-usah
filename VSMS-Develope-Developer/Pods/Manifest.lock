@@ -12,7 +12,6 @@ PODS:
   - RSSelectionMenu (6.0.3)
   - SideMenuSwift (1.0.0)
   - SwiftyJSON (4.3.0)
-  - TextFieldEffects (1.6.0)
   - TLPhotoPicker (1.8.3)
   - Toast-Swift (4.0.1)
 
@@ -25,7 +24,6 @@ DEPENDENCIES:
   - RSSelectionMenu
   - SideMenuSwift (= 1.0.0)
   - SwiftyJSON (~> 4.0)
-  - TextFieldEffects
   - TLPhotoPicker (= 1.8.3)
   - Toast-Swift (~> 4.0.0)
 
@@ -39,7 +37,6 @@ SPEC REPOS:
     - RSSelectionMenu
     - SideMenuSwift
     - SwiftyJSON
-    - TextFieldEffects
     - TLPhotoPicker
     - Toast-Swift
 
@@ -52,10 +49,9 @@ SPEC CHECKSUMS:
   RSSelectionMenu: decee83e020ee9d63e53995eb7f1ea5ca75f0667
   SideMenuSwift: f8567754feb36ade13ffd613f608829f4b86d4b3
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
-  TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
   TLPhotoPicker: 9955e20e4d59cf4a3accc2d3b320e1bf08f453bf
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
 
-PODFILE CHECKSUM: 6288aba3fa1d3dae9b14b3d08c2a40d7665fcaf5
+PODFILE CHECKSUM: f684c85f2ac06d1ceacf2c9e873fdd78b18c83e2
 
 COCOAPODS: 1.6.1

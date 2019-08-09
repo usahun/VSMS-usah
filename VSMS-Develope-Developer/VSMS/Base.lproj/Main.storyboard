@@ -1813,7 +1813,7 @@
                                                         <constraint firstAttribute="height" constant="10" id="vFO-SZ-JqB"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Job" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="WL8-yV-WnU" customClass="KaedeTextField" customModule="TextFieldEffects">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Job" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="WL8-yV-WnU">
                                                     <rect key="frame" x="36" y="0.0" width="339" height="43.666666666666664"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
