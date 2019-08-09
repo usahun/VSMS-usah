@@ -301,6 +301,13 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
       return sec.rowCount
     }
     
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section == 3 {
+           return nil
+        }
+        return nil
+    }
+
 //    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
 //        if section == 3 {
 //            let footerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MapTableViewHeaderFooterView") as? MapTableViewHeaderFooterView
