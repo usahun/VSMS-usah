@@ -301,17 +301,32 @@ class PostAdViewController: UIViewController, UITableViewDataSource, UITabBarDel
       return sec.rowCount
     }
     
+<<<<<<< HEAD
+<<<<<<< HEAD
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section == 3 {
-            let footerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MapTableViewHeaderFooterView") as? MapTableViewHeaderFooterView
-            footerView?.contentView.backgroundColor = .white
-            footerView?.btnSubmitHandler = {
-                self.SubmitClick()
-            }
-            return footerView
+           return nil
         }
         return nil
     }
+=======
+=======
+>>>>>>> 5ff268ff3b44b89adc23221d17d76eb6e0a69270
+//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        if section == 3 {
+//            let footerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MapTableViewHeaderFooterView") as? MapTableViewHeaderFooterView
+//            footerView?.contentView.backgroundColor = .white
+//            footerView?.btnSubmitHandler = {
+//                self.SubmitClick()
+//            }
+//            return footerView
+//        }
+//        return nil
+//    }
+<<<<<<< HEAD
+>>>>>>> 5ff268ff3b44b89adc23221d17d76eb6e0a69270
+=======
+>>>>>>> 5ff268ff3b44b89adc23221d17d76eb6e0a69270
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let type = allTypes[section]
