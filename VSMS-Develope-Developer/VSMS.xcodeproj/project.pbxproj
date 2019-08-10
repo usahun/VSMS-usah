@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		5A40B576ABDEBD0C0DDE15E0 /* Pods_VSMS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422454760A29C3178F1F4F7C /* Pods_VSMS.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		86022E0D22D445FC00D4C9C2 /* ExtensionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86022E0C22D445FC00D4C9C2 /* ExtensionHelper.swift */; };
+		8602E5A622FE719700C31805 /* TabBarButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8602E5A522FE719700C31805 /* TabBarButton.xib */; };
+		8602E5A822FE71F100C31805 /* TabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8602E5A722FE71F100C31805 /* TabBarButton.swift */; };
 		8615106022D5845800A37835 /* ContactInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8615105E22D5845800A37835 /* ContactInputTableViewCell.swift */; };
 		8615106122D5845800A37835 /* ContactInputTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8615105F22D5845800A37835 /* ContactInputTableViewCell.xib */; };
 		8615106322D5911B00A37835 /* PhoneNumberInputHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8615106222D5911B00A37835 /* PhoneNumberInputHeaderTableViewCell.xib */; };
@@ -101,6 +103,7 @@
 		86F4DEE122E30BDE000ACA12 /* ListFromNavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F4DEDF22E30BDE000ACA12 /* ListFromNavigationViewController.xib */; };
 		86F65C6F22FAD8D200F01555 /* LoanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F65C6D22FAD8D200F01555 /* LoanTableViewCell.swift */; };
 		86F65C7022FAD8D200F01555 /* LoanTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F65C6E22FAD8D200F01555 /* LoanTableViewCell.xib */; };
+		86FA3AB722FD92D90032CAF6 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FA3AB622FD92D90032CAF6 /* AboutUsViewController.swift */; };
 		C402139A22574C9C007920C4 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402139922574C9B007920C4 /* MenuController.swift */; };
 		C402139E22574CD8007920C4 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C402139D22574CD7007920C4 /* SWRevealViewController.m */; };
 		C40213A522574D08007920C4 /* HomeSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40213A022574D06007920C4 /* HomeSearchController.swift */; };
@@ -143,6 +146,8 @@
 		1AF75AC80883AE714FAFFEFD /* Pods-VSMS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VSMS.debug.xcconfig"; path = "Target Support Files/Pods-VSMS/Pods-VSMS.debug.xcconfig"; sourceTree = "<group>"; };
 		422454760A29C3178F1F4F7C /* Pods_VSMS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VSMS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86022E0C22D445FC00D4C9C2 /* ExtensionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionHelper.swift; sourceTree = "<group>"; };
+		8602E5A522FE719700C31805 /* TabBarButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabBarButton.xib; sourceTree = "<group>"; };
+		8602E5A722FE71F100C31805 /* TabBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarButton.swift; sourceTree = "<group>"; };
 		8615105E22D5845800A37835 /* ContactInputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInputTableViewCell.swift; sourceTree = "<group>"; };
 		8615105F22D5845800A37835 /* ContactInputTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactInputTableViewCell.xib; sourceTree = "<group>"; };
 		8615106222D5911B00A37835 /* PhoneNumberInputHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhoneNumberInputHeaderTableViewCell.xib; sourceTree = "<group>"; };
@@ -238,6 +243,7 @@
 		86F4DEDF22E30BDE000ACA12 /* ListFromNavigationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListFromNavigationViewController.xib; sourceTree = "<group>"; };
 		86F65C6D22FAD8D200F01555 /* LoanTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanTableViewCell.swift; sourceTree = "<group>"; };
 		86F65C6E22FAD8D200F01555 /* LoanTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoanTableViewCell.xib; sourceTree = "<group>"; };
+		86FA3AB622FD92D90032CAF6 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
 		C402139922574C9B007920C4 /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		C402139B22574CD4007920C4 /* VSMS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VSMS-Bridging-Header.h"; sourceTree = "<group>"; };
 		C402139C22574CD6007920C4 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -298,6 +304,15 @@
 				86763E1E22D4A70700391237 /* DiscountInputTableViewCell.xib */,
 			);
 			name = Discount;
+			sourceTree = "<group>";
+		};
+		8602E5A422FE718400C31805 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				8602E5A522FE719700C31805 /* TabBarButton.xib */,
+				8602E5A722FE71F100C31805 /* TabBarButton.swift */,
+			);
+			name = TabBar;
 			sourceTree = "<group>";
 		};
 		8615105D22D57B2A00A37835 /* Contact */ = {
@@ -376,6 +391,7 @@
 		865B5DC7221FDD6400864F7E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8602E5A422FE718400C31805 /* TabBar */,
 				C4533A5222CDA900008F9D2F /* Profile */,
 				86E8F0AC22CC41410093D7A9 /* Dropdownlist */,
 				C453176D22C32F82006F0BB8 /* Components */,
@@ -413,6 +429,7 @@
 				86E46AB022D875FE0028C93E /* DetailViewController.swift */,
 				C48F457622E4618D0097370F /* ContectViewController.swift */,
 				864502EC22FBFCFC00E6396C /* LoanViewController.swift */,
+				86FA3AB622FD92D90032CAF6 /* AboutUsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -719,6 +736,7 @@
 				861C50C3229D667400946FAB /* HomePageTableViewCell.xib in Resources */,
 				86AAF0CA22C081C3003C46F3 /* GreditImageCollectionViewCell.xib in Resources */,
 				C489D19E22E0FEDF002BB560 /* Main.storyboard in Resources */,
+				8602E5A622FE719700C31805 /* TabBarButton.xib in Resources */,
 				8615106322D5911B00A37835 /* PhoneNumberInputHeaderTableViewCell.xib in Resources */,
 				86F65C7022FAD8D200F01555 /* LoanTableViewCell.xib in Resources */,
 			);
@@ -829,6 +847,7 @@
 				864222B122DEC6BD002E41E7 /* RequestHandle.swift in Sources */,
 				86626BAF229C480800FE25DD /* PhoneNumberHeader.swift in Sources */,
 				86F3CF7122D2DD85005F8FF6 /* DetailTableViewCell.swift in Sources */,
+				8602E5A822FE71F100C31805 /* TabBarButton.swift in Sources */,
 				C4CCAE4922F9676B00E21EC4 /* BaseViewController.swift in Sources */,
 				86626BBF229C496300FE25DD /* DeTailTableCell.swift in Sources */,
 				D5B6471E2255A91E00C113FF /* TablepostviewController.swift in Sources */,
@@ -892,6 +911,7 @@
 				86626BC3229C498400FE25DD /* AddmoreNumberPhoneTableViewCell.swift in Sources */,
 				86D6C40F22C74D1F003B952E /* CustomTabBarController.swift in Sources */,
 				D54C481522422F20004FE033 /* MyAccountController.swift in Sources */,
+				86FA3AB722FD92D90032CAF6 /* AboutUsViewController.swift in Sources */,
 				C40213A622574D08007920C4 /* UploadProfileController.swift in Sources */,
 				86B10336229C4E9D00192DAD /* PostContainer.swift in Sources */,
 				861A6FD522E195580028D81D /* ListAllProductViewController.swift in Sources */,
