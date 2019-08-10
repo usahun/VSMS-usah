@@ -27,19 +27,19 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="52"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6g2-Hi-sTj" userLabel="TabBarButton">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="52"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gEb-tc-jdH">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="52"/>
+                            <rect key="frame" x="0.0" y="5" width="414" height="55"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hBE-v5-B9P" userLabel="Home">
-                                    <rect key="frame" x="0.0" y="0.0" width="83" height="52"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="83" height="55"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tabHomeActive" translatesAutoresizingMaskIntoConstraints="NO" id="WW5-Bq-myA">
+                                        <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tabHome" translatesAutoresizingMaskIntoConstraints="NO" id="WW5-Bq-myA">
                                             <rect key="frame" x="0.0" y="5" width="83" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="w8y-f9-0ML"/>
@@ -47,7 +47,7 @@
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zv1-Mb-0As">
                                             <rect key="frame" x="0.0" y="33" width="83" height="12"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -63,9 +63,9 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fTn-4W-tyD" userLabel="Nofication">
-                                    <rect key="frame" x="83" y="0.0" width="82.5" height="52"/>
+                                    <rect key="frame" x="83" y="0.0" width="82.5" height="55"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tabNotification" translatesAutoresizingMaskIntoConstraints="NO" id="7rE-JN-KOV">
+                                        <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tabNotification" translatesAutoresizingMaskIntoConstraints="NO" id="7rE-JN-KOV">
                                             <rect key="frame" x="0.0" y="5" width="82.5" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="zct-KG-OsF"/>
@@ -89,7 +89,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FD7-UL-6N0" userLabel="PostAd">
-                                    <rect key="frame" x="165.5" y="0.0" width="83" height="52"/>
+                                    <rect key="frame" x="165.5" y="0.0" width="83" height="55"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b25-RS-cCz">
                                             <rect key="frame" x="0.0" y="33" width="83" height="12"/>
@@ -97,7 +97,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tabCamera" translatesAutoresizingMaskIntoConstraints="NO" id="Mq0-Yv-Ql2">
+                                        <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tabCamera" translatesAutoresizingMaskIntoConstraints="NO" id="Mq0-Yv-Ql2">
                                             <rect key="frame" x="0.0" y="5" width="83" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="fiU-9s-0JW"/>
@@ -115,7 +115,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="map-MP-Oip" userLabel="Chat">
-                                    <rect key="frame" x="248.5" y="0.0" width="82.5" height="52"/>
+                                    <rect key="frame" x="248.5" y="0.0" width="82.5" height="55"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dd9-PC-sku">
                                             <rect key="frame" x="0.0" y="33" width="82.5" height="12"/>
@@ -123,7 +123,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tabChat" translatesAutoresizingMaskIntoConstraints="NO" id="53y-JA-Ykj">
+                                        <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tabChat" translatesAutoresizingMaskIntoConstraints="NO" id="53y-JA-Ykj">
                                             <rect key="frame" x="0.0" y="5" width="82.5" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="Ntc-Xx-HbP"/>
@@ -141,7 +141,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jZq-8v-8hc" userLabel="Profile">
-                                    <rect key="frame" x="331" y="0.0" width="83" height="52"/>
+                                    <rect key="frame" x="331" y="0.0" width="83" height="55"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGk-Pc-8l7">
                                             <rect key="frame" x="0.0" y="34" width="83" height="12"/>
@@ -149,7 +149,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tabUser" translatesAutoresizingMaskIntoConstraints="NO" id="5rO-p5-KNZ">
+                                        <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tabUser" translatesAutoresizingMaskIntoConstraints="NO" id="5rO-p5-KNZ">
                                             <rect key="frame" x="0.0" y="4" width="83" height="27"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="27" id="Ta8-qD-CRa"/>
@@ -174,7 +174,7 @@
                         <constraint firstAttribute="trailing" secondItem="gEb-tc-jdH" secondAttribute="trailing" id="HHb-bV-YbI"/>
                         <constraint firstAttribute="bottom" secondItem="gEb-tc-jdH" secondAttribute="bottom" id="bMn-fd-m8u"/>
                         <constraint firstItem="gEb-tc-jdH" firstAttribute="leading" secondItem="6g2-Hi-sTj" secondAttribute="leading" id="bnk-WV-iIS"/>
-                        <constraint firstItem="gEb-tc-jdH" firstAttribute="top" secondItem="6g2-Hi-sTj" secondAttribute="top" id="g9c-gW-l8l"/>
+                        <constraint firstItem="gEb-tc-jdH" firstAttribute="top" secondItem="6g2-Hi-sTj" secondAttribute="top" constant="5" id="g9c-gW-l8l"/>
                     </constraints>
                 </view>
             </subviews>
@@ -187,13 +187,20 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="-7.2463768115942031" y="-402.45535714285711"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="HomeActive" value="NO"/>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="NotificationActive" value="NO"/>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="CameraActive" value="NO"/>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="ChatActive" value="NO"/>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="ProfileActive" value="NO"/>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="-7.2463768115942031" y="-397.43303571428572"/>
         </view>
     </objects>
     <resources>
         <image name="tabCamera" width="50" height="50"/>
         <image name="tabChat" width="50" height="50"/>
-        <image name="tabHomeActive" width="50" height="50"/>
+        <image name="tabHome" width="50" height="50"/>
         <image name="tabNotification" width="50" height="50"/>
         <image name="tabUser" width="50" height="50"/>
     </resources>

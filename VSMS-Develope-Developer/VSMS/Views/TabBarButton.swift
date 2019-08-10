@@ -7,8 +7,15 @@
 //
 
 import UIKit
+import SideMenuSwift
 
 class TabBarButton: UIView {
+    
+    @IBInspectable var HomeActive: Bool = false
+    @IBInspectable var ProfileActive: Bool = false
+    @IBInspectable var NotificationActive: Bool = false
+    @IBInspectable var CameraActive: Bool = false
+    @IBInspectable var ChatActive: Bool = false
 
     @IBOutlet private var content: UIView!
     @IBOutlet private weak var Home: UIImageView!
@@ -24,6 +31,10 @@ class TabBarButton: UIView {
     @IBOutlet private weak var lblProfile: UILabel!
     
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        customizedXib()
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,12 +46,97 @@ class TabBarButton: UIView {
         xibSetup()
     }
     
+    private func customizedXib()
+    {
+        if HomeActive
+        {
+            Home.image = UIImage(named: "tabHomeActive")
+        }
+        
+        if ProfileActive
+        {
+            Profile.image = UIImage(named: "tabUserActive")
+        }
+        
+        if NotificationActive
+        {
+            Notification.image = UIImage(named: "tabNotificationActive")
+        }
+        
+        if ChatActive
+        {
+            Chat.image = UIImage(named: "tabChatActive")
+        }
+    }
+    
     private func xibSetup()
     {
         Bundle.main.loadNibNamed("TabBarButton", owner: self, options: nil)
-        
         content.frame = self.bounds
+        content.addBorder(toSide: .Top, withColor: UIColor.darkGray.cgColor, andThickness: 0.5)
         self.addSubview(content)
+        addTargetTobutton()
     }
+    
+    private func addTargetTobutton()
+    {
+        self.Home.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(HomeClick)))
+        self.Notification.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(HomeClick)))
+        self.Camera.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CameraClick)))
+        self.Chat.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(HomeClick)))
+        self.Profile.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProfileClick)))
+    }
+    
+    @objc
+    private func HomeClick()
+    {
+        guard !HomeActive else {
+            return
+        }
+        
+        if let currentView = UIApplication.topViewController() {
+            let SideMenuTab: SideMenuController = {
+                let contentViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenu") as! MyNavigation
+                
+                let menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leftMenu") as! MenuViewController
+                menuViewController.delegate = contentViewController
+                
+                let sideMenuController = SideMenuController(
+                    contentViewController: contentViewController,
+                    menuViewController: menuViewController)
+                return sideMenuController
+            }()
+            currentView.present(SideMenuTab, animated: false, completion: nil)
+        }
+    }
+    
+    @objc
+    private func ProfileClick()
+    {
+        guard !ProfileActive else {
+            return
+        }
+        
+        if let currentView = UIApplication.topViewController() {
+            let ProfileTab: UINavigationController = {
+                let profile = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TestViewController") as! TestViewController
+                return UINavigationController(rootViewController: profile)
+            }()
+            currentView.present(ProfileTab, animated: false, completion: nil)
+        }
+    }
+    
+    @objc
+    private func CameraClick()
+    {
+        if let currentView = UIApplication.topViewController() {
+            let PostAD: UINavigationController = {
+                let postVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PostAdViewController") as! PostAdViewController
+                return UINavigationController(rootViewController: postVC)
+            }()
+            currentView.present(PostAD, animated: false, completion: nil)
+        }
+    }
+    
 }
 
