@@ -90,6 +90,9 @@
 		86E8F0B022CC427F0093D7A9 /* DropdownTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86E8F0AE22CC427F0093D7A9 /* DropdownTableViewCell.xib */; };
 		86E8F0B222CCBE4D0093D7A9 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8F0B122CCBE4D0093D7A9 /* Protocol.swift */; };
 		86EDF13022F9862E00CBA118 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EDF12F22F9862E00CBA118 /* AccountViewModel.swift */; };
+		86EE08B522FFC607001EF3A8 /* AboutUsandTermofprivancyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE08B422FFC607001EF3A8 /* AboutUsandTermofprivancyTableViewController.swift */; };
+		86EE08B922FFC6B7001EF3A8 /* AboutUsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE08B722FFC6B7001EF3A8 /* AboutUsTableViewCell.swift */; };
+		86EE08BA22FFC6B7001EF3A8 /* AboutUsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86EE08B822FFC6B7001EF3A8 /* AboutUsTableViewCell.xib */; };
 		86F0FB1922D1CF1500DF6559 /* PostList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F0FB1822D1CF1500DF6559 /* PostList.swift */; };
 		86F3CF7122D2DD85005F8FF6 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F3CF6F22D2DD85005F8FF6 /* DetailTableViewCell.swift */; };
 		86F3CF7222D2DD85005F8FF6 /* DetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F3CF7022D2DD85005F8FF6 /* DetailTableViewCell.xib */; };
@@ -103,7 +106,6 @@
 		86F4DEE122E30BDE000ACA12 /* ListFromNavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F4DEDF22E30BDE000ACA12 /* ListFromNavigationViewController.xib */; };
 		86F65C6F22FAD8D200F01555 /* LoanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F65C6D22FAD8D200F01555 /* LoanTableViewCell.swift */; };
 		86F65C7022FAD8D200F01555 /* LoanTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F65C6E22FAD8D200F01555 /* LoanTableViewCell.xib */; };
-		86FA3AB722FD92D90032CAF6 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FA3AB622FD92D90032CAF6 /* AboutUsViewController.swift */; };
 		C402139A22574C9C007920C4 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402139922574C9B007920C4 /* MenuController.swift */; };
 		C402139E22574CD8007920C4 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C402139D22574CD7007920C4 /* SWRevealViewController.m */; };
 		C40213A522574D08007920C4 /* HomeSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40213A022574D06007920C4 /* HomeSearchController.swift */; };
@@ -230,6 +232,9 @@
 		86E8F0AE22CC427F0093D7A9 /* DropdownTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropdownTableViewCell.xib; sourceTree = "<group>"; };
 		86E8F0B122CCBE4D0093D7A9 /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		86EDF12F22F9862E00CBA118 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
+		86EE08B422FFC607001EF3A8 /* AboutUsandTermofprivancyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsandTermofprivancyTableViewController.swift; sourceTree = "<group>"; };
+		86EE08B722FFC6B7001EF3A8 /* AboutUsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsTableViewCell.swift; sourceTree = "<group>"; };
+		86EE08B822FFC6B7001EF3A8 /* AboutUsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutUsTableViewCell.xib; sourceTree = "<group>"; };
 		86F0FB1822D1CF1500DF6559 /* PostList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostList.swift; sourceTree = "<group>"; };
 		86F3CF6F22D2DD85005F8FF6 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		86F3CF7022D2DD85005F8FF6 /* DetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTableViewCell.xib; sourceTree = "<group>"; };
@@ -243,7 +248,6 @@
 		86F4DEDF22E30BDE000ACA12 /* ListFromNavigationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListFromNavigationViewController.xib; sourceTree = "<group>"; };
 		86F65C6D22FAD8D200F01555 /* LoanTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanTableViewCell.swift; sourceTree = "<group>"; };
 		86F65C6E22FAD8D200F01555 /* LoanTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoanTableViewCell.xib; sourceTree = "<group>"; };
-		86FA3AB622FD92D90032CAF6 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
 		C402139922574C9B007920C4 /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		C402139B22574CD4007920C4 /* VSMS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VSMS-Bridging-Header.h"; sourceTree = "<group>"; };
 		C402139C22574CD6007920C4 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -391,6 +395,7 @@
 		865B5DC7221FDD6400864F7E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				86EE08B622FFC68A001EF3A8 /* AboutandTermofprivancy */,
 				8602E5A422FE718400C31805 /* TabBar */,
 				C4533A5222CDA900008F9D2F /* Profile */,
 				86E8F0AC22CC41410093D7A9 /* Dropdownlist */,
@@ -429,7 +434,7 @@
 				86E46AB022D875FE0028C93E /* DetailViewController.swift */,
 				C48F457622E4618D0097370F /* ContectViewController.swift */,
 				864502EC22FBFCFC00E6396C /* LoanViewController.swift */,
-				86FA3AB622FD92D90032CAF6 /* AboutUsViewController.swift */,
+				86EE08B422FFC607001EF3A8 /* AboutUsandTermofprivancyTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -479,6 +484,15 @@
 				86E8F0AE22CC427F0093D7A9 /* DropdownTableViewCell.xib */,
 			);
 			name = Dropdownlist;
+			sourceTree = "<group>";
+		};
+		86EE08B622FFC68A001EF3A8 /* AboutandTermofprivancy */ = {
+			isa = PBXGroup;
+			children = (
+				86EE08B722FFC6B7001EF3A8 /* AboutUsTableViewCell.swift */,
+				86EE08B822FFC6B7001EF3A8 /* AboutUsTableViewCell.xib */,
+			);
+			name = AboutandTermofprivancy;
 			sourceTree = "<group>";
 		};
 		86F4DED822E2D3FB000ACA12 /* SearchBar */ = {
@@ -723,6 +737,7 @@
 				861A6FD622E195580028D81D /* ListAllProductViewController.xib in Resources */,
 				86626BA3229C470B00FE25DD /* ImageCollectionViewCell.xib in Resources */,
 				86AAF0CF22C081C3003C46F3 /* NewlyTableViewCell.xib in Resources */,
+				86EE08BA22FFC6B7001EF3A8 /* AboutUsTableViewCell.xib in Resources */,
 				863AFE0122F7E8C8002D3D5D /* LoadingTableViewCell.xib in Resources */,
 				C453177322C3303A006F0BB8 /* NewPostListCollectionViewCell.xib in Resources */,
 				86763E2022D4A70700391237 /* DiscountInputTableViewCell.xib in Resources */,
@@ -836,10 +851,12 @@
 			files = (
 				865C543822C5B1810081FBC5 /* LoginPasswordController.swift in Sources */,
 				C40213A822574D08007920C4 /* HomePageController.swift in Sources */,
+				86EE08B522FFC607001EF3A8 /* AboutUsandTermofprivancyTableViewController.swift in Sources */,
 				861A6FCD22E1732D0028D81D /* ListAllPostByTypeViewController.swift in Sources */,
 				C4CCAE4722F9660700E21EC4 /* String+Extension.swift in Sources */,
 				86E8F0AF22CC427F0093D7A9 /* DropdownTableViewCell.swift in Sources */,
 				D54C48132242249D004FE033 /* RegisterController.swift in Sources */,
+				86EE08B922FFC6B7001EF3A8 /* AboutUsTableViewCell.swift in Sources */,
 				86AAF0C622C081C3003C46F3 /* GreditImageCollectionViewCell.swift in Sources */,
 				86763E1F22D4A70700391237 /* DiscountInputTableViewCell.swift in Sources */,
 				86B10329229C4C7A00192DAD /* HomeCollectionViewCell.swift in Sources */,
@@ -911,7 +928,6 @@
 				86626BC3229C498400FE25DD /* AddmoreNumberPhoneTableViewCell.swift in Sources */,
 				86D6C40F22C74D1F003B952E /* CustomTabBarController.swift in Sources */,
 				D54C481522422F20004FE033 /* MyAccountController.swift in Sources */,
-				86FA3AB722FD92D90032CAF6 /* AboutUsViewController.swift in Sources */,
 				C40213A622574D08007920C4 /* UploadProfileController.swift in Sources */,
 				86B10336229C4E9D00192DAD /* PostContainer.swift in Sources */,
 				861A6FD522E195580028D81D /* ListAllProductViewController.swift in Sources */,
