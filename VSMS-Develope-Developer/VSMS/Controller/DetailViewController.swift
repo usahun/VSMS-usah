@@ -24,7 +24,7 @@ class DetailViewController: UIViewController {
     var relateArr: [HomePageModel] = []
     var userdetail: Profile?
     var isLikeEnable = false
-    
+    var condtionlike = false
     
     //mapUser
    
@@ -67,7 +67,6 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        btnLike.isUserInteractionEnabled = false
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         imgProfilePic.addGestureRecognizer(tap)
         imgProfilePic.isUserInteractionEnabled = true
@@ -102,7 +101,7 @@ class DetailViewController: UIViewController {
             RequestHandle.Conditionlike(ProID: self.ProductDetail.id.toString(),
                                         UserID: User.getUserID().toString(),
                                         completion: { (val) in
-                                            self.btnLike.isUserInteractionEnabled = !val
+                                            self.condtionlike = val
             })
         }
         
@@ -164,10 +163,17 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func clickLike(_ sender: Any) {
-        Message.AlertMessage(message: "You have been like this product.", header: "LIKE", View: self) {
-           self.Btnlikebyuser()
+        
+        if condtionlike == true {
+            Message.AlertMessage(message: "You have like this product already.", header: "LIKE", View: self){}
+        }else{
+            Message.AlertMessage(message: "Like Successful.", header: "LIKE", View: self){
+                self.Btnlikebyuser()
+            }
         }
-    }
+
+}
+    
     
     @IBAction func clickLoan(_ sender: Any) {
         let loanVC:LoanViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoanViewController") as! LoanViewController
@@ -211,15 +217,12 @@ class DetailViewController: UIViewController {
             "Accept": "application/json",
             "Content-Type": "application/json",
             ]
-    
         
         Alamofire.request(PROJECT_API.POSTLIKEBYUSER, method: .post, parameters: data, encoding: JSONEncoding.default, headers: headers).responseJSON
             { response in
                 switch response.result {
                 case .success(let value):
                    print(value)
-                    Message.SuccessMessage(message: "Your Like This Prodcut Already", View: self, callback: {
-                    })
                     break
                 case .failure(let error):
                     print(error)

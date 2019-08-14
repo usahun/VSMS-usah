@@ -111,7 +111,7 @@ class RequestHandle {
                 case .success(let value):
                     let json = JSON(value)
                     // print(json)
-                    completion(json["count"].stringValue.toInt() == 1 ? true : false)
+                    completion(json["count"].stringValue.toInt() >= 1 ? true : false)
                 case .failure:
                     print("error")
                 }
