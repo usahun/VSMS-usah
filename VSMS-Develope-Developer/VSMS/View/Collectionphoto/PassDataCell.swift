@@ -7,20 +7,31 @@
 //
 
 import UIKit
+import DropDown
 
 class PassDataTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var mytextField: UITextField!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var textInput: UITextField!
+    
+    weak var delegate: CellTableClick?
+    var passingData = CellClickViewModel()
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        //self.resignFirstResponder()
+        self.textInput.addTarget(self, action: #selector(textChange), for: .editingChanged)
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    @IBAction func touchUpInside(_ sender: UITextField) {
+        
+        print("OK")
     }
     
+    @objc func textChange() {
+        passingData.ID = self.textInput.text!
+        passingData.Value = self.textInput.text!
+        self.delegate?.ClickCell(currentCell: passingData)
+    }
 }

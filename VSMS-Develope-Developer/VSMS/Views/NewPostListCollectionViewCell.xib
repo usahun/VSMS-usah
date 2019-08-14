@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NewPostCollectionCell_ID" id="gTV-IL-0wX" customClass="NewPostListCollectionViewCell" customModule="VSMS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="353" height="128"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="353" height="128"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6SB-sx-stv">
+                        <rect key="frame" x="5" y="5" width="130" height="118"/>
+                        <color key="backgroundColor" white="0.90000000000000002" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="118" id="ctK-Dn-96k"/>
+                            <constraint firstAttribute="width" constant="130" id="oNT-0m-Ola"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s2J-41-q4K" userLabel="Content">
+                        <rect key="frame" x="155" y="0.0" width="148" height="128"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dqk-hT-CQb">
+                                <rect key="frame" x="0.0" y="15" width="140" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ixT-S4-rad">
+                                <rect key="frame" x="0.0" y="57" width="104" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Old Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uLa-fl-Pat">
+                                <rect key="frame" x="0.0" y="88" width="63" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Dqk-hT-CQb" firstAttribute="top" secondItem="s2J-41-q4K" secondAttribute="top" constant="15" id="EhX-s2-2cR"/>
+                            <constraint firstItem="uLa-fl-Pat" firstAttribute="top" secondItem="ixT-S4-rad" secondAttribute="bottom" constant="10" id="K59-hn-Cq1"/>
+                            <constraint firstAttribute="trailing" secondItem="Dqk-hT-CQb" secondAttribute="trailing" constant="8" id="TsW-8d-C32"/>
+                            <constraint firstItem="ixT-S4-rad" firstAttribute="leading" secondItem="s2J-41-q4K" secondAttribute="leading" id="rpQ-Wf-0Kk"/>
+                            <constraint firstItem="Dqk-hT-CQb" firstAttribute="leading" secondItem="s2J-41-q4K" secondAttribute="leading" id="tqW-cL-o77"/>
+                            <constraint firstItem="ixT-S4-rad" firstAttribute="top" secondItem="Dqk-hT-CQb" secondAttribute="bottom" constant="18" id="u1q-Fe-TwJ"/>
+                            <constraint firstItem="uLa-fl-Pat" firstAttribute="leading" secondItem="s2J-41-q4K" secondAttribute="leading" id="x9l-lQ-W5H"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="6SB-sx-stv" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="63K-Zz-s33"/>
+                <constraint firstItem="6SB-sx-stv" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="6yP-7k-GxM"/>
+                <constraint firstItem="s2J-41-q4K" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="FS4-Xf-PYF"/>
+                <constraint firstAttribute="bottom" secondItem="6SB-sx-stv" secondAttribute="bottom" constant="5" id="hPc-BQ-Ndz"/>
+                <constraint firstAttribute="bottom" secondItem="s2J-41-q4K" secondAttribute="bottom" id="oWQ-8m-i5j"/>
+                <constraint firstItem="s2J-41-q4K" firstAttribute="leading" secondItem="6SB-sx-stv" secondAttribute="trailing" constant="20" id="pyL-Mq-aad"/>
+                <constraint firstAttribute="trailing" secondItem="s2J-41-q4K" secondAttribute="trailing" constant="50" id="tEy-jF-Zjp"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="353" height="128"/>
+            <connections>
+                <outlet property="Img" destination="6SB-sx-stv" id="WOb-mB-a5n"/>
+                <outlet property="lblOldPrice" destination="uLa-fl-Pat" id="XFQ-HM-gXs"/>
+                <outlet property="lblProductName" destination="Dqk-hT-CQb" id="ek6-uC-f1V"/>
+                <outlet property="lblProductPrice" destination="ixT-S4-rad" id="emx-8r-sSz"/>
+            </connections>
+            <point key="canvasLocation" x="-1" y="81"/>
+        </collectionViewCell>
+    </objects>
+</document>

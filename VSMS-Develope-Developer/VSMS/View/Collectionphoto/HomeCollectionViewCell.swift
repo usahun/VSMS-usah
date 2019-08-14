@@ -14,4 +14,5 @@ class HomeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var ContentTitle: UILabel!
     @IBOutlet weak var CurrentPriceLabel: UILabel!
     @IBOutlet weak var OldPriceLabel: UILabel!
+    
 }

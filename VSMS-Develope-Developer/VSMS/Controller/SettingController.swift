@@ -7,13 +7,30 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class SettingController: UIViewController {
 
     @IBOutlet weak var buttonactive: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.title = "Setting"
+
+    }
+    override func viewWillAppear(_ animated: Bool) {
+       // navigationController?.navigationBar.installBlurEffect()
+      
+    }
+    
+    func resetDefaults() {
+        let domain = Bundle.main.bundleIdentifier!
+        UserDefaults.standard.removePersistentDomain(forName: domain)
+        UserDefaults.standard.synchronize()
+        print(Array(UserDefaults.standard.dictionaryRepresentation().keys).count)
         
     }
     
@@ -32,19 +49,24 @@ class SettingController: UIViewController {
             buttonactive.setTitleColor(.blue, for: .normal)
         }
     }
-    @IBAction func backbtnpress(_ sender: Any) {
-        dismiss(animated: true, completion:nil)
-    }
+  
     
-    
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func btnLogoutHandler(_ sender: UIButton) {
+        let user_default = UserDefaults.standard
+        user_default.set(nil, forKey: "username")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            guard let loginpasswd = mainStoryboard.instantiateViewController(withIdentifier: "LoginController") as? LoginController else {
+                print("can't fine Viewcontroller")
+                return
+            }
+            
+            self.navigationController?.pushViewController(loginpasswd, animated: true)
+        }
+
     }
-    */
-
 }
+    
+

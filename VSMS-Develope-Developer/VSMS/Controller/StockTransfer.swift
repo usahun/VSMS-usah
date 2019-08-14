@@ -7,13 +7,7 @@
 //
 
 import Foundation
-
 import UIKit
-
-//protocol tabSwitch {
-//    func tabSwitchHandle()
-//}
-
 
 enum StoreProcess: Int {
     case banlance
@@ -24,80 +18,58 @@ protocol StoreProcessDelegate: class {
     func callbackType(_ with: [String], type: StoreProcess)
 }
 
-class StockTranfer : UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-//    func tabSwitchHandle() {
-//        Post.alpha = 0
-//        Balance.alpha = 1
-//        linebalance.isHidden = false
-//        linepost.isHidden = true
-//
-//        print("Hello from the other side")
-//    }
-    //Hello
-    
-    
-    
-    @IBOutlet weak var imagebackground: UIImageView!
-    
-    @IBAction func Uploadimage(_ sender: Any)
-    {
-      let image = UIImagePickerController()
-      image.delegate = self
-        
-        image.allowsEditing = false
-        self.present(image, animated: true){}
-    }
+class StockTranfer : UIViewController, UITableViewDataSource, UITableViewDelegate {
   
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
-        if let image = info[.originalImage] as? UIImage
-        {
-            imagebackground.image = image
-        }
-        else
-        {
-            //Error Message
-        }
-        self.dismiss(animated: true, completion: nil)
-    }
+    //Prperties
     
-    @IBOutlet weak var balanceViewController: TablebalanceViewController?
-    @IBOutlet weak var postViewController: TablepostviewController?
+    @IBOutlet weak var coverPicture: UIImageView!
+    @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var profileName: UILabel!
     
-    @IBOutlet weak var Post: UIView!
-    @IBOutlet weak var Balance: UIView!
-    @IBOutlet weak var linebalance: UIView!
-    @IBOutlet weak var linepost: UIView!
-    @IBOutlet weak var img: UIImageView!
+    @IBOutlet weak var tableContent: UITableView!
+    @IBOutlet weak var segmentSwitch: UISegmentedControl!
     
-    
-  
+    //Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        img.layer.cornerRadius = img.frame.width * 0.5
-        img.clipsToBounds = true
-      
-        
+//        tableContent.delegate = self
+//        tableContent.dataSource = self
+//        configNavigation()
     }
     
-    
-    @IBAction func switc (_ Sender: UISegmentedControl){
-        if Sender.selectedSegmentIndex == 1 {
-            Post.alpha = 0
-            Balance.alpha = 1
-            linebalance.isHidden = false
-            linepost.isHidden = true
-        } else {
-            Post.alpha = 1
-            Balance.alpha = 0
-            linepost.isHidden = false
-            linebalance.isHidden = true
-        }
+    @IBAction func editProfileclick(_ sender: Any) {
+        print("Edit Profile")
     }
+    @IBAction func shareClick(_ sender: Any) {
+        print("Share Click")
+    }
+    
+    @IBAction func settingClick(_ sender: Any) {
+        print("Setting Click")
+    }
+    
+
+    
+    ///functions
+    
+    func configNavigation(){
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "opacity50"), for: .default)
+        self.navigationController?.navigationBar.isTranslucent = true
+    }
+    
+    ///////Overide Method Table
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 20
+    }
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        cell.textLabel?.text = "Test"
+        return cell
+    }
+    
     
 }
-
 
 
 
