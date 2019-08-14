@@ -134,7 +134,7 @@ class DetailViewController: UIViewController {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ContectViewController") as! ContectViewController
         vc.UserPostID = ProductDetail.created_by
         vc.userdetail = self.userdetail
-        
+
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -164,6 +164,9 @@ class DetailViewController: UIViewController {
     
     @IBAction func clickLoan(_ sender: Any) {
         let loanVC:LoanViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoanViewController") as! LoanViewController
+        loanVC.Loan.loan_to = ProductDetail.created_by
+        loanVC.Loan.post = ProductDetail.id
+        loanVC.Loan.telephone = userdetail!.PhoneNumber
         self.navigationController?.pushViewController(loanVC, animated: true)
     }
     

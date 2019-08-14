@@ -243,16 +243,6 @@ extension MyAccountController {
 }
 
 
-struct DropDownTemplate: Codable, UniquePropertyDelegate {
-    
-    let ID: String?
-    let Text: String?
-    
-    func getUniquePropertyName() -> String {
-        return "ID"
-    }
-}
-
 extension UILabel {
     
     func getProvinceFromAPI(ProvinceID: Int)

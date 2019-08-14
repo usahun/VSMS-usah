@@ -342,7 +342,7 @@ class UserProfileRequestHandle {
     var PostActive: [HomePageModel] = []
     var PostHistory: [HomePageModel] = []
     var PostLike: [LikeViewModel] = []
-    var PostLoanActive: [HomePageModel] = []
+    var PostLoanActive: [ListLoanViewModel] = []
     var PostLoanHistory: [ListLoanViewModel] = []
     
     //Helper properties
@@ -550,7 +550,7 @@ class UserProfileRequestHandle {
                     let json = JSON(value)
                     self.NextLoanActive = json["next"].stringValue
                     self.PostLoanActive = json["results"].arrayValue.map{
-                        HomePageModel(json: $0)
+                        ListLoanViewModel(id: $0["id"].stringValue.toInt(), post: $0["post"].stringValue.toInt())
                     }
                     
                     completion()
@@ -577,7 +577,7 @@ class UserProfileRequestHandle {
                     let json = JSON(value)
                     self.NextLoanActive = json["next"].stringValue
                     self.PostLoanActive += json["results"].arrayValue.map{
-                        HomePageModel(json: $0)
+                        ListLoanViewModel(id: $0["id"].stringValue.toInt(), post: $0["post"].stringValue.toInt())
                     }
                     
                 case .failure:

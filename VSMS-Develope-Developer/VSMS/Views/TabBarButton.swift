@@ -131,7 +131,7 @@ class TabBarButton: UIView {
     {
         if let currentView = UIApplication.topViewController() {
             let PostAD: UINavigationController = {
-                let postVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PostAdViewController") as! PostAdViewController
+                let postVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PostViewController") as! PostViewController
                 return UINavigationController(rootViewController: postVC)
             }()
             currentView.present(PostAD, animated: false, completion: nil)

@@ -22,6 +22,11 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     @IBOutlet weak var mysegmentControl: UISegmentedControl!
     @IBOutlet weak var btnCoverChange: UIButton!
     
+    @IBOutlet weak var btnPost: UIButton!
+    @IBOutlet weak var btnLike: UIButton!
+    @IBOutlet weak var btnLoan: UIButton!
+    
+    
     
     var ProfileHandleRequest = UserProfileRequestHandle()
     var post = ["Posts","Likes"]
@@ -66,7 +71,6 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 
         self.ShowDefaultNavigation()
         super.viewWillAppear(true)
-        self.viewDidLoad()
         tableView.reloadData()
     }
 
@@ -92,31 +96,21 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         tableView.refreshControl = refresher
 
-
-        self.navigationController?.navigationBar.isHidden = false
-        mysegmentControl.setTitle("POST", forSegmentAt: 0)
-        mysegmentControl.setTitle("LIKE", forSegmentAt: 1)
-        mysegmentControl.setTitle("LOAN", forSegmentAt: 2)
-
-        
-        
         tableView.delegate = self
         tableView.dataSource = self
         picker.delegate = self
        
         profileImage.layer.cornerRadius = profileImage.frame.width * 0.5
         profileImage.clipsToBounds = true
-
-        //navigationController?.navigationBar.installBlurEffect()
         
         /////// Calling Functions
         XibRegister()
-    
-
+        LabelName.text = User.getUsername()
         
         performOn(.Main) {
+            self.LoadUserProfileInfo()
+            
             self.ProfileHandleRequest.LoadAllPostByUser {
-                //self.mysegmentControl.setTitle("Posts(\(self.ProfileHandleRequest.AllPostActiveCount))", forSegmentAt: 0)
                 self.isLoading = false
                 self.tableView.reloadData()
             }
@@ -128,7 +122,6 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             
             self.ProfileHandleRequest.LoadAllPostLikeByUser(completion: {
                 self.isLikeLoading = false
-                //self.mysegmentControl.setTitle("Likes(\(self.ProfileHandleRequest.PostLike.count))", forSegmentAt: 1)
                 self.tableView.reloadData()
             })
             
@@ -143,11 +136,6 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             }
         }
         
-        performOn(.HighPriority) {
-            self.LoadUserProfileInfo()
-            
-        }
-
     }
     
     
@@ -184,13 +172,7 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             }
         }
         let cancelBtn = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-//        if profileImage.image != nil {
-//            let removeBtn = UIAlertAction(title: "Remove", style: .destructive) { (alert) in
-//                print("remove")
-//            }
-//            alertCon.addAction(removeBtn)
-//        }
+    
         alertCon.addAction(uploadBtn)
         alertCon.addAction(takeNewCover)
         alertCon.addAction(cancelBtn)
@@ -238,11 +220,14 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             
         }
         
-        LabelName.text = imgprofile.name
+        LabelName.text = User.getUsername()
     }
     
     func LoadUserProfileInfo(){
-        Alamofire.request(PROJECT_API.USER, method: .get,encoding: JSONEncoding.default,headers: headers).responseJSON
+        Alamofire.request(PROJECT_API.USER,
+                          method: .get,
+                          encoding: JSONEncoding.default,
+                          headers: headers).responseJSON
             { (response) in
                 switch response.result{
                 case .success(let value):
@@ -286,7 +271,7 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 }
             }
             else{
-                ProfileHandleRequest.LoadLoanActiveByUser {
+                ProfileHandleRequest.LoadLoanHistoryByUser {
                     self.refresher.endRefreshing()
                     self.tableView.reloadData()
                 }
@@ -301,6 +286,27 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         self.tableView.reloadData()
     }
     
+    @IBAction func btnPostHandler(_ sender: UIButton) {
+        index = 0
+        self.tableView.reloadData()
+        btnPost.ActiveButton()
+        btnLike.DeactiveButton()
+        btnLoan.DeactiveButton()
+    }
+    @IBAction func btnLikeHandler(_ sender: UIButton) {
+        index = 1
+        self.tableView.reloadData()
+        btnPost.DeactiveButton()
+        btnLike.ActiveButton()
+        btnLoan.DeactiveButton()
+    }
+    @IBAction func btnLoanHandler(_ sender: UIButton) {
+        index = 2
+        self.tableView.reloadData()
+        btnPost.DeactiveButton()
+        btnLike.DeactiveButton()
+        btnLoan.ActiveButton()
+    }
     
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -458,6 +464,23 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 }
                 
                 let cell = tableView.dequeueReusableCell(withIdentifier: "LoanTableViewCell", for: indexPath) as! LoanTableViewCell
+                let data = ProfileHandleRequest.PostLoanActive[indexPath.row - 1] 
+                cell.LoanID = data.id
+                cell.ProductID = data.post
+                cell.ReloadXib()
+                
+                cell.DeleteHandle = { loanID in
+                    self.DeleteLoanHandler(LoanID: loanID)
+                }
+                
+                cell.DetailHandle = { loanID in
+                    self.DetailLoanHandler(LoanID: loanID)
+                }
+                
+                cell.EditHandle = { loanID in
+                    self.EditLoanHandler(LoanID: loanID)
+                }
+                
                 return cell
             }
             else{
@@ -470,6 +493,10 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     return tableView.noRecordCell(Indexpath: indexPath)
                 }
                 let cell = tableView.dequeueReusableCell(withIdentifier: "LoanHistoryTableViewCell", for: indexPath) as! LoanHistoryTableViewCell
+                let data = ProfileHandleRequest.PostLoanHistory[indexPath.row - 1]
+                cell.LoanID = data.id
+                cell.ProductID = data.post
+                cell.reloadXib()
                 return cell
             }
         }
@@ -490,6 +517,40 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         }
     }
     
+}
+
+extension TestViewController {
+    func DeleteLoanHandler(LoanID: Int)
+    {
+        let alertMessage = UIAlertController(title: nil, message: "Deleting Loan...", preferredStyle: .alert)
+        alertMessage.addActivityIndicator()
+        self.present(alertMessage, animated: true, completion: nil)
+        
+        LoanViewModel.Detail(loanID: LoanID) { (val) in
+            val.Delete(completion: { (result) in
+                alertMessage.dismissActivityIndicator()
+                self.ProfileHandleRequest.LoadLoanActiveByUser {
+                    self.tableView.reloadData()
+                }
+            })
+        }
+    }
+    
+    func DetailLoanHandler(LoanID: Int)
+    {
+        let loanVC:LoanViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoanViewController") as! LoanViewController
+        loanVC.Loan.id = LoanID
+        loanVC.is_Detail = true
+        self.navigationController?.pushViewController(loanVC, animated: true)
+    }
+    
+    func EditLoanHandler(LoanID: Int)
+    {
+        let loanVC:LoanViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoanViewController") as! LoanViewController
+        loanVC.Loan.id = LoanID
+        loanVC.is_Edit = true
+        self.navigationController?.pushViewController(loanVC, animated: true)
+    }
 }
 
 extension TestViewController: ProfileCellClickProtocol {
@@ -527,3 +588,17 @@ extension TestViewController: UIImagePickerControllerDelegate, UINavigationContr
 }
 
 
+private extension UIButton
+{
+    func ActiveButton()
+    {
+        self.setTitleColor(UIColor.white, for: .normal)
+        self.backgroundColor = #colorLiteral(red: 0.254701972, green: 0.5019594431, blue: 1, alpha: 1)
+    }
+    
+    func DeactiveButton()
+    {
+        self.setTitleColor(#colorLiteral(red: 0.254701972, green: 0.5019594431, blue: 1, alpha: 1), for: .normal)
+        self.backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
+    }
+}
