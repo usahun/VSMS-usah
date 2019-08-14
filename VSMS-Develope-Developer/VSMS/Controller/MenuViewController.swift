@@ -59,9 +59,14 @@ class MenuViewController: BaseViewController,UITableViewDelegate,UITableViewData
             self.delegate?.cellClick(list: "Your Like")
         case 3:
             break
+            self.delegate?.cellClick(list: "Your Loan")
             //self.delegate?.cellClick(list: "share")
         case 4:
-            self.delegate?.cellClick(list: "Your Loan")
+             self.delegate?.cellClick(list: "Setting")
+        case 5:
+             self.delegate?.cellClick(list: "About Us")
+        case 6:
+             self.delegate?.cellClick(list: "Term of Privacy")
         default:
             break
         }
