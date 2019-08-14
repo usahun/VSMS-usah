@@ -552,13 +552,12 @@ extension HomePageController: UISearchBarDelegate {
 
 extension HomePageController: navigationToHomepage {
     func menuClick(list: String) {
-        
+        sideMenuController?.hideMenu()
         switch list {
         case "profile":
             let profileVC:TestViewController = self.storyboard?.instantiateViewController(withIdentifier: "TestViewController") as! TestViewController
             let navi = UINavigationController(rootViewController: profileVC)
-            self.present(navi, animated: true,completion: nil)
-            
+            self.present(navi, animated: false,completion: nil)
         case "setting":
             let settingVC: SettingController =
                 self.storyboard?.instantiateViewController(withIdentifier: "SettingController") as! SettingController
@@ -577,22 +576,10 @@ extension HomePageController: navigationToHomepage {
             self.navigationController?.pushViewController(termof, animated: true)
         break
         default:
-            break
+            let listVC = ListFromNavigationViewController()
+            listVC.listType = list
+            self.navigationController?.pushViewController(listVC, animated: true)
         }
-      
-        
-//        if list == "profile" {
-//            let profileVC:TestViewController = self.storyboard?.instantiateViewController(withIdentifier: "TestViewController") as! TestViewController
-//            let navi = UINavigationController(rootViewController: profileVC)
-//            self.present(navi, animated: true, completion: nil)
-//            //self.navigationController?.pushViewController(profileVC, animated: true)
-//        }
-//        else{
-//            sideMenuController?.hideMenu()
-//            let listVC = ListFromNavigationViewController()
-//            listVC.listType = list
-//            self.navigationController?.pushViewController(listVC, animated: true)
-//        }
     }
 }
 
