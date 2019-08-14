@@ -90,7 +90,7 @@
 		86E8F0B022CC427F0093D7A9 /* DropdownTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86E8F0AE22CC427F0093D7A9 /* DropdownTableViewCell.xib */; };
 		86E8F0B222CCBE4D0093D7A9 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8F0B122CCBE4D0093D7A9 /* Protocol.swift */; };
 		86EDF13022F9862E00CBA118 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EDF12F22F9862E00CBA118 /* AccountViewModel.swift */; };
-		86EE08B522FFC607001EF3A8 /* AboutUsandTermofprivancyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE08B422FFC607001EF3A8 /* AboutUsandTermofprivancyTableViewController.swift */; };
+		86EE08B522FFC607001EF3A8 /* AboutUsandTermOfTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE08B422FFC607001EF3A8 /* AboutUsandTermOfTableViewController.swift */; };
 		86EE08B922FFC6B7001EF3A8 /* AboutUsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE08B722FFC6B7001EF3A8 /* AboutUsTableViewCell.swift */; };
 		86EE08BA22FFC6B7001EF3A8 /* AboutUsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86EE08B822FFC6B7001EF3A8 /* AboutUsTableViewCell.xib */; };
 		86F0FB1922D1CF1500DF6559 /* PostList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F0FB1822D1CF1500DF6559 /* PostList.swift */; };
@@ -120,6 +120,8 @@
 		C45661B722CE6D9200973945 /* LikesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45661B522CE6D9200973945 /* LikesTableViewCell.swift */; };
 		C45661B822CE6D9200973945 /* LikesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C45661B622CE6D9200973945 /* LikesTableViewCell.xib */; };
 		C47744BB22CA108E00B79D33 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47744BA22CA108E00B79D33 /* PostViewController.swift */; };
+		C4826FC823000FD000494DB0 /* TermofprivacyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4826FC623000FD000494DB0 /* TermofprivacyTableViewCell.swift */; };
+		C4826FC923000FD100494DB0 /* TermofprivacyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4826FC723000FD000494DB0 /* TermofprivacyTableViewCell.xib */; };
 		C489D19E22E0FEDF002BB560 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 865B5DB8221FDD3600864F7E /* Main.storyboard */; };
 		C48F457722E4618D0097370F /* ContectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48F457622E4618D0097370F /* ContectViewController.swift */; };
 		C492463D22D4A119003B41E4 /* HomePageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492463C22D4A119003B41E4 /* HomePageModel.swift */; };
@@ -234,7 +236,7 @@
 		86E8F0AE22CC427F0093D7A9 /* DropdownTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropdownTableViewCell.xib; sourceTree = "<group>"; };
 		86E8F0B122CCBE4D0093D7A9 /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		86EDF12F22F9862E00CBA118 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
-		86EE08B422FFC607001EF3A8 /* AboutUsandTermofprivancyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsandTermofprivancyTableViewController.swift; sourceTree = "<group>"; };
+		86EE08B422FFC607001EF3A8 /* AboutUsandTermOfTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsandTermOfTableViewController.swift; sourceTree = "<group>"; };
 		86EE08B722FFC6B7001EF3A8 /* AboutUsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsTableViewCell.swift; sourceTree = "<group>"; };
 		86EE08B822FFC6B7001EF3A8 /* AboutUsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutUsTableViewCell.xib; sourceTree = "<group>"; };
 		86F0FB1822D1CF1500DF6559 /* PostList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostList.swift; sourceTree = "<group>"; };
@@ -266,6 +268,8 @@
 		C45661B522CE6D9200973945 /* LikesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesTableViewCell.swift; sourceTree = "<group>"; };
 		C45661B622CE6D9200973945 /* LikesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LikesTableViewCell.xib; sourceTree = "<group>"; };
 		C47744BA22CA108E00B79D33 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		C4826FC623000FD000494DB0 /* TermofprivacyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermofprivacyTableViewCell.swift; sourceTree = "<group>"; };
+		C4826FC723000FD000494DB0 /* TermofprivacyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermofprivacyTableViewCell.xib; sourceTree = "<group>"; };
 		C48F457622E4618D0097370F /* ContectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContectViewController.swift; sourceTree = "<group>"; };
 		C492463C22D4A119003B41E4 /* HomePageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageModel.swift; sourceTree = "<group>"; };
 		C49A53EC22FDAE7F0017E122 /* CusInputUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CusInputUIView.swift; sourceTree = "<group>"; };
@@ -399,10 +403,8 @@
 		865B5DC7221FDD6400864F7E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-
 				86EE08B622FFC68A001EF3A8 /* AboutandTermofprivancy */,
 				C49A53EB22FDADD20017E122 /* Input */,
-
 				8602E5A422FE718400C31805 /* TabBar */,
 				C4533A5222CDA900008F9D2F /* Profile */,
 				86E8F0AC22CC41410093D7A9 /* Dropdownlist */,
@@ -441,7 +443,7 @@
 				86E46AB022D875FE0028C93E /* DetailViewController.swift */,
 				C48F457622E4618D0097370F /* ContectViewController.swift */,
 				864502EC22FBFCFC00E6396C /* LoanViewController.swift */,
-				86EE08B422FFC607001EF3A8 /* AboutUsandTermofprivancyTableViewController.swift */,
+				86EE08B422FFC607001EF3A8 /* AboutUsandTermOfTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -498,6 +500,8 @@
 			children = (
 				86EE08B722FFC6B7001EF3A8 /* AboutUsTableViewCell.swift */,
 				86EE08B822FFC6B7001EF3A8 /* AboutUsTableViewCell.xib */,
+				C4826FC623000FD000494DB0 /* TermofprivacyTableViewCell.swift */,
+				C4826FC723000FD000494DB0 /* TermofprivacyTableViewCell.xib */,
 			);
 			name = AboutandTermofprivancy;
 			sourceTree = "<group>";
@@ -745,6 +749,7 @@
 				865B5DBF221FDD3700864F7E /* LaunchScreen.storyboard in Resources */,
 				86F4DEDC22E2D42C000ACA12 /* SearchViewController.xib in Resources */,
 				864222B522DEFB44002E41E7 /* ProductListTableViewCell.xib in Resources */,
+				C4826FC923000FD100494DB0 /* TermofprivacyTableViewCell.xib in Resources */,
 				86AAF0CE22C081C3003C46F3 /* DiscountTableViewCell.xib in Resources */,
 				86B94E1722E83FEC00C793D2 /* CustomCell_Instagram.xib in Resources */,
 				86F4017922DF0E4500AB9ECD /* ProductImageTableViewCell.xib in Resources */,
@@ -868,7 +873,7 @@
 			files = (
 				865C543822C5B1810081FBC5 /* LoginPasswordController.swift in Sources */,
 				C40213A822574D08007920C4 /* HomePageController.swift in Sources */,
-				86EE08B522FFC607001EF3A8 /* AboutUsandTermofprivancyTableViewController.swift in Sources */,
+				86EE08B522FFC607001EF3A8 /* AboutUsandTermOfTableViewController.swift in Sources */,
 				861A6FCD22E1732D0028D81D /* ListAllPostByTypeViewController.swift in Sources */,
 				C4CCAE4722F9660700E21EC4 /* String+Extension.swift in Sources */,
 				86E8F0AF22CC427F0093D7A9 /* DropdownTableViewCell.swift in Sources */,
@@ -948,6 +953,7 @@
 				D54C481522422F20004FE033 /* MyAccountController.swift in Sources */,
 				C40213A622574D08007920C4 /* UploadProfileController.swift in Sources */,
 				86B10336229C4E9D00192DAD /* PostContainer.swift in Sources */,
+				C4826FC823000FD000494DB0 /* TermofprivacyTableViewCell.swift in Sources */,
 				861A6FD522E195580028D81D /* ListAllProductViewController.swift in Sources */,
 				864502E422FBB7DD00E6396C /* LoanHistoryTableViewCell.swift in Sources */,
 				86EDF13022F9862E00CBA118 /* AccountViewModel.swift in Sources */,

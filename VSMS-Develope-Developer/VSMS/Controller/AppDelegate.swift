@@ -37,15 +37,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,CLLocationManagerDelegate
        // LocationService.sharedInstance.delegate = self
         
         //day-10-08-2019
-//        let contentViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenu") as! MyNavigation
-//        
-//        let menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leftMenu") as! MenuViewController
-//        menuViewController.delegate = contentViewController
-//        
-//        let sideMenuController = SideMenuController(contentViewController: contentViewController, menuViewController: menuViewController)
-//        self.window?.rootViewController = sideMenuController
-//        self.window?.makeKeyAndVisible()
-//
+        let contentViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenu") as! MyNavigation
+        
+        let menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leftMenu") as! MenuViewController
+        menuViewController.delegate = contentViewController
+        
+        let sideMenuController = SideMenuController(contentViewController: contentViewController, menuViewController: menuViewController)
+        self.window?.rootViewController = sideMenuController
+        self.window?.makeKeyAndVisible()
+
 //        configureSideMenu()
 //        locationservice.delegate = self
 //        print(locationservice.lastLocation as Any)

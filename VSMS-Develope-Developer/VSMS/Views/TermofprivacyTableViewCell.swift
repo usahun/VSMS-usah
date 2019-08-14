@@ -1,22 +1,18 @@
 //
-//  AboutUsTableViewCell.swift
+//  TermofprivacyTableViewCell.swift
 //  VSMS
 //
-//  Created by Vuthy Tep on 8/11/19.
+//  Created by Rathana on 8/11/19.
 //  Copyright © 2019 121. All rights reserved.
 //
 
 import UIKit
 
-class AboutUsTableViewCell: UITableViewCell {
+class TermofprivacyTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var lblabout: UILabel!
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
-      
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

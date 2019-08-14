@@ -553,18 +553,46 @@ extension HomePageController: UISearchBarDelegate {
 extension HomePageController: navigationToHomepage {
     func menuClick(list: String) {
         
-        if list == "profile" {
+        switch list {
+        case "profile":
             let profileVC:TestViewController = self.storyboard?.instantiateViewController(withIdentifier: "TestViewController") as! TestViewController
             let navi = UINavigationController(rootViewController: profileVC)
-            self.present(navi, animated: true, completion: nil)
-            //self.navigationController?.pushViewController(profileVC, animated: true)
+            self.present(navi, animated: true,completion: nil)
+            
+        case "setting":
+            let settingVC: SettingController =
+                self.storyboard?.instantiateViewController(withIdentifier: "SettingController") as! SettingController
+           // let navi = UINavigationController(rootViewController: settingVC)
+            self.navigationController?.pushViewController(settingVC, animated: true)
+        case "About Us":
+            let about_usVC: AboutUsandTermOfTableViewController =
+            self.storyboard?.instantiateViewController(withIdentifier: "AboutUsandTermOfTableViewController") as! AboutUsandTermOfTableViewController
+            about_usVC.listType = "About Us"
+            self.navigationController?.pushViewController(about_usVC, animated: true)
+        case "Term of Privacy":
+            let termof: AboutUsandTermOfTableViewController =
+            self.storyboard?.instantiateViewController(withIdentifier: "AboutUsandTermOfTableViewController") as!
+            AboutUsandTermOfTableViewController
+            termof.listType = "Term of Privacy"
+            self.navigationController?.pushViewController(termof, animated: true)
+        break
+        default:
+            break
         }
-        else{
-            sideMenuController?.hideMenu()
-            let listVC = ListFromNavigationViewController()
-            listVC.listType = list
-            self.navigationController?.pushViewController(listVC, animated: true)
-        }
+      
+        
+//        if list == "profile" {
+//            let profileVC:TestViewController = self.storyboard?.instantiateViewController(withIdentifier: "TestViewController") as! TestViewController
+//            let navi = UINavigationController(rootViewController: profileVC)
+//            self.present(navi, animated: true, completion: nil)
+//            //self.navigationController?.pushViewController(profileVC, animated: true)
+//        }
+//        else{
+//            sideMenuController?.hideMenu()
+//            let listVC = ListFromNavigationViewController()
+//            listVC.listType = list
+//            self.navigationController?.pushViewController(listVC, animated: true)
+//        }
     }
 }
 
