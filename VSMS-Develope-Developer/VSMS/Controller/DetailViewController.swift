@@ -23,6 +23,8 @@ class DetailViewController: UIViewController {
     var counter = 0
     var relateArr: [HomePageModel] = []
     var userdetail: Profile?
+    var isLikeEnable = false
+    
     
     //mapUser
    
@@ -65,8 +67,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        
+        btnLike.isUserInteractionEnabled = false
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         imgProfilePic.addGestureRecognizer(tap)
         imgProfilePic.isUserInteractionEnabled = true
@@ -96,6 +97,12 @@ class DetailViewController: UIViewController {
                                       completion: { (val) in
                                         self.relateArr = val
                                         self.tblView.reloadData()
+            })
+            
+            RequestHandle.Conditionlike(ProID: self.ProductDetail.id.toString(),
+                                        UserID: User.getUserID().toString(),
+                                        completion: { (val) in
+                                            self.btnLike.isUserInteractionEnabled = !val
             })
         }
         
@@ -204,6 +211,7 @@ class DetailViewController: UIViewController {
             "Accept": "application/json",
             "Content-Type": "application/json",
             ]
+    
         
         Alamofire.request(PROJECT_API.POSTLIKEBYUSER, method: .post, parameters: data, encoding: JSONEncoding.default, headers: headers).responseJSON
             { response in

@@ -106,6 +106,21 @@ class RequestHandle {
        
     }
     
+    static func Conditionlike(ProID: String, UserID: String, completion: @escaping (Bool) -> Void){
+        Alamofire.request(PROJECT_API.CONDITIONLIKE(ProID: ProID, UserID: UserID), method: .get, encoding: JSONEncoding.default).responseJSON
+            { (response) in
+                switch response.result{
+                case .success(let value):
+                    let json = JSON(value)
+                    // print(json)
+                    completion(json["count"].stringValue.toInt() == 1 ? true : false)
+                case .failure:
+                    print("error")
+                }
+        }
+        
+    }
+    
     static func CountView(postID: Int, completion: @escaping (Int) -> Void){
         Alamofire.request(PROJECT_API.COUNT_VIEWS(ProID: postID),
                           method: .get,
