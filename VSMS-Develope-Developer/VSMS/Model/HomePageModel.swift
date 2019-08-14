@@ -20,7 +20,7 @@ class HomePageModel {
     var discount: String = "0.0"
     var postType: String = ""
     var create_at: String?
-    
+    var loanID: Int?
         
     init() {}
     
@@ -50,10 +50,22 @@ class HomePageModel {
         self.create_at = createdat
     }
     
+    init(loanID: Int, postID: Int, title: String, cost: String, discount: String, imageFront: String, postType: String, created_by: String)
+    {
+        self.loanID = loanID
+        self.product = postID
+        self.title = title
+        self.cost = cost
+        self.discount = discount
+        self.imagefront = imageFront
+        self.postType = postType
+        self.create_at = created_by
+    }
+    
+    
     init(postID: Int){
         performOn(.HighPriority) {
             RequestHandle.LoadListProductByPostID(postID: postID) { (val) in
-                print("in")
                 self.product = val.product
                 self.title = val.title
                 self.category = val.category

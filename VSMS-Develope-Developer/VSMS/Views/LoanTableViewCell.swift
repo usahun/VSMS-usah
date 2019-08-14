@@ -18,16 +18,52 @@ class LoanTableViewCell: UITableViewCell {
     @IBOutlet weak var lblView: UILabel!
     
     
-
+    var ProductID: Int!
+    var LoanID: Int!
+    
+    var EditHandle: ((Int) -> Void)?
+    var DeleteHandle: ((Int) -> Void)?
+    var DetailHandle: ((Int) -> Void)?
+    
+    func ReloadXib()
+    {
+        RequestHandle.LoadListProductByPostID(postID: ProductID) { (val) in
+            performOn(.Main, closure: {
+                self.imgProduct.image = val.imagefront.base64ToImage()
+                self.lblProductName.text = val.title.capitalizingFirstLetter()
+                self.lblDuration.text = val.create_at?.getDuration()
+                self.lblProductPrice.text = val.cost.toCurrency()
+                self.lblPostType.SetPostType(postType: val.postType)
+                self.lblView.text = "5 views"
+            })
+        }
+    }
+    
+    
+    @IBAction func btnEditclick(_ sender: UIButton) {
+        self.EditHandle!(LoanID)
+    }
+    
+    @IBAction func btnDeleteClick(_ sender: Any) {
+        Message.ConfirmDeleteMessage(message: "Are you to delete this loan?") {
+            self.DeleteHandle!(self.LoanID)
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handerCellClick)))
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
+    }
+    
+    @objc
+    func handerCellClick()
+    {
+        self.DetailHandle!(LoanID)
     }
     
 }

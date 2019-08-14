@@ -65,17 +65,7 @@ class LoginPasswordController: UIViewController {
                         self.defaultValues.set(userId, forKey: "userid")
                         self.defaultValues.set(userName, forKey: "username")
                         self.defaultValues.set(self.textpassword.text, forKey: "password")
-                        
-//                        //switching the screen
-//                        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-//                        guard let Profile = mainStoryboard.instantiateViewController(withIdentifier: "TestViewController") as? TestViewController else {
-//                            print("can't fine Viewcontroller")
-//                            return
-//                        }
-//                        
-//                        self.navigationController?.pushViewController(Profile, animated: true)
-//                        self.dismiss(animated: false, completion: nil)
-                        
+
                         self.navigationController?.popToRootViewController(animated: true)
                     }else{
                         //error message in case of invalid credential

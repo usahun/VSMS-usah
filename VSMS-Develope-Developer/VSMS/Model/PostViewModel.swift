@@ -253,7 +253,6 @@ class PostViewModel {
     }
 }
 
-
 class SalePost {
     var id: Int = -1
     var sale_status: Int = 3
@@ -325,7 +324,6 @@ class RentPost {
     }
 }
 
-
 class BuyPost {
     var id: Int = -1
     var buy_status: Int = 3
@@ -350,5 +348,109 @@ class BuyPost {
         self.buy_status = json["buy_status"].stringValue.toInt()
         self.record_status = json["record_status"].stringValue.toInt()
         self.total_price = json["total_price"].stringValue
+    }
+}
+
+//////////////////////
+
+class PostAdViewModel
+{
+    var id: Int = -1
+    var title: String = ""
+    var post_type: String = ""
+    var category: Int = 0
+    var type: Int = 1
+    var brand: Int = 0
+    var modeling: Int = 0
+    var year: Int = 0
+    var condition: String = ""
+    var color: String = ""
+    var vin_code: String = ""
+    var machine_code: String = ""
+    var description: String = ""
+    var cost: String = "0"
+    var created_by: Int = User.getUserID()
+    var discount_type: String = "amount"
+    var discount: String = "0"
+    var status: Int = 1
+    var user: Int = User.getUserID()
+    
+    
+    //var discount_type: String = ""
+    var name: String = ""
+    var contact_phone: String = User.getUsername()
+    var contact_email: String = ""
+    var contact_address: String = ""
+    
+    //Image
+    var front_image_path: String?
+    var front_image_base64: String?
+    
+    var right_image_path: String?
+    var right_image_base64: String?
+    
+    var left_image_path: String?
+    var left_image_base64: String?
+    
+    var back_image_path: String?
+    var back_image_base64: String?
+    
+    //Array Post
+    var sale_post: [[String: Any]] = [[:]]
+    var rent_post: [[String: Any]] = [[:]]
+    var buy_post: [[String: Any]] = [[:]]
+    
+    init(){}
+    
+    func Save(completion: @escaping (Bool) -> Void)
+    {
+        var URL = ""
+        if self.post_type == "sell"
+        {
+            URL = PROJECT_API.POST_SELL
+            let postSell = SalePost()
+            postSell.price = self.cost
+            postSell.total_price = self.cost
+            self.sale_post = [postSell.asDictionary]
+        }
+        else if self.post_type == "buy"
+        {
+            URL = PROJECT_API.POST_BUYS
+            let postBuy = BuyPost()
+            postBuy.total_price = self.cost
+            self.buy_post = [postBuy.asDictionary]
+        }
+        else if self.post_type == "rent"
+        {
+            URL = PROJECT_API.POST_RENTS
+            let postRent = RentPost()
+            postRent.price = self.cost
+            postRent.total_price = self.cost
+            self.rent_post = [postRent.asDictionary]
+        }
+        
+        Alamofire.request(URL,
+                          method: .post,
+                          parameters: self.asDictionary,
+                          encoding: JSONEncoding.default,
+                          headers: headers).responseJSON { response in
+                            switch response.result{
+                            case .success(let value):
+                                print(value)
+                                completion(true)
+                            case .failure(let error):
+                                print(error)
+                                completion(false)
+                            }
+        }
+    }
+    
+    var asDictionary : [String:Any] {
+        let mirror = Mirror(reflecting: self)
+        let dict = Dictionary(uniqueKeysWithValues: mirror.children.lazy.map({ (label:String?,value:Any) -> (String,Any)? in
+            guard label != nil else { return nil }
+            return (label!,value)
+        }).compactMap{ $0 })
+        return dict
     }
 }

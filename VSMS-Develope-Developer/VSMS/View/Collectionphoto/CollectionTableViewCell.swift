@@ -127,7 +127,8 @@ extension CollectionTableViewCell: UICollectionViewDelegate, UICollectionViewDat
         TLPhotoPicker.logDelegate = self
         TLPhotoPicker.configure = TLconfig
         
-        self.window?.rootViewController?.present(TLPhotoPicker, animated: true, completion: nil)
+        let topVC = UIApplication.topViewController()
+        topVC!.present(TLPhotoPicker, animated: true, completion: nil)
     }
     
     func refreshSelectAsset(){

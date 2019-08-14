@@ -61,6 +61,10 @@ class PROJECT_API {
     static var POST_BUYS = "\(http_absoluteString)/api/v1/postbuys/"
     static var POST_RENTS = "\(http_absoluteString)/postrent/"
     static var POST_SELL = "\(http_absoluteString)/postsale/"
+    
+    //Loan
+    static var LOAN = "\(http_absoluteString)/api/v1/loan/"
+    static var LOADLOANBYUSER = "\(http_absoluteString)/loanbyuser/"
 
     //Detail
     static func LOADPRODUCT(ProID: Int) -> String {
@@ -83,7 +87,6 @@ class PROJECT_API {
         return "\(http_absoluteString)/countview/?post=\(ProID)"
     }
 }
-
 
 class User {
     static func getUserID() -> Int {
@@ -255,17 +258,15 @@ class Converts {
     
 }
 
-
-
 class Functions {
 
     static func getMaritalStautsList() -> [DropDownTemplate]
     {
-        return [DropDownTemplate(ID: "single", Text: "Single"),
-                DropDownTemplate(ID: "married", Text: "Married"),
-                DropDownTemplate(ID: "separated", Text: "Separated"),
-                DropDownTemplate(ID: "divorced", Text: "Divorced"),
-                DropDownTemplate(ID: "windowed", Text: "Windowed")
+        return [DropDownTemplate(ID: "single", Text: "Single", Fkey: nil),
+                DropDownTemplate(ID: "married", Text: "Married", Fkey: nil),
+                DropDownTemplate(ID: "separated", Text: "Separated", Fkey: nil),
+                DropDownTemplate(ID: "divorced", Text: "Divorced", Fkey: nil),
+                DropDownTemplate(ID: "windowed", Text: "Windowed", Fkey: nil)
                 ]
     }
     
@@ -289,7 +290,8 @@ class Functions {
                     nextPage = json["next"].stringValue
                     result = json["results"].array?.map {
                         DropDownTemplate(ID: $0["id"].stringValue,
-                                         Text: $0["province"].stringValue)
+                                         Text: $0["province"].stringValue,
+                                         Fkey: nil)
                         } ?? []
                     semephore.leave()
                     if nextPage != "" {
@@ -431,6 +433,146 @@ class Functions {
     
 }
 
+class GenerateList
+{
+    static func getPostType() -> [DropDownTemplate]
+    {
+        return [DropDownTemplate(ID: "buy", Text: "Buy", Fkey: nil),
+                DropDownTemplate(ID: "rent", Text: "Rent", Fkey: nil),
+                DropDownTemplate(ID: "sell", Text: "Sell", Fkey: nil)]
+    }
+    
+    static func getCategory(completion: @escaping ([DropDownTemplate]) -> Void)
+    {
+        Alamofire.request(PROJECT_API.CATEGORIES,
+                          method: .get,
+                          encoding: JSONEncoding.default
+            ).responseJSON { (respone) in
+            switch respone.result {
+            case .success(let value):
+                let json = JSON(value)
+                let arrData = json["results"].array?.map {
+                    DropDownTemplate(ID: $0["id"].stringValue,
+                                     Text: $0["cat_name"].stringValue,
+                                     Fkey: nil)
+                }
+                completion(arrData ?? [])
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    static func getType(completion: @escaping ([DropDownTemplate]) -> Void)
+    {
+        Alamofire.request(PROJECT_API.TYPES,
+                          method: .get,
+                          encoding: JSONEncoding.default
+            ).responseJSON { (respone) in
+                switch respone.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    let arrData = json["results"].array?.map {
+                        DropDownTemplate(ID: $0["id"].stringValue,
+                                         Text: $0["type"].stringValue,
+                                         Fkey: nil)
+                    }
+                    completion(arrData ?? [])
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+        }
+    }
+    
+    static func getBrand(completion: @escaping ([DropDownTemplate]) -> Void)
+    {
+        Alamofire.request(PROJECT_API.BRANDS,
+                          method: .get,
+                          encoding: JSONEncoding.default
+            ).responseJSON { (respone) in
+                switch respone.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    let arrData = json["results"].array?.map {
+                        DropDownTemplate(ID: $0["id"].stringValue,
+                                         Text: $0["brand_name"].stringValue,
+                                         Fkey: $0["category"].stringValue)
+                    }
+                    completion(arrData ?? [])
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+        }
+    }
+    
+    static func getModel(completion: @escaping ([DropDownTemplate]) -> Void)
+    {
+        Alamofire.request(PROJECT_API.MODELS,
+                          method: .get,
+                          encoding: JSONEncoding.default
+            ).responseJSON { (respone) in
+                switch respone.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    let arrData = json["results"].array?.map {
+                        DropDownTemplate(ID: $0["id"].stringValue,
+                                         Text: $0["modeling_name"].stringValue,
+                                         Fkey: $0["model"].stringValue)
+                    }
+                    completion(arrData ?? [])
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+        }
+    }
+    
+    static func getYear(completion: @escaping ([DropDownTemplate]) -> Void)
+    {
+        Alamofire.request(PROJECT_API.YEARS,
+                          method: .get,
+                          encoding: JSONEncoding.default
+            ).responseJSON { (respone) in
+                switch respone.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    let arrData = json["results"].array?.map {
+                        DropDownTemplate(ID: $0["id"].stringValue,
+                                         Text: $0["year"].stringValue,
+                                         Fkey: nil)
+                    }
+                    completion(arrData ?? [])
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+        }
+    }
+    
+    static func getCondition() -> [DropDownTemplate]
+    {
+        return [DropDownTemplate(ID: "new", Text: "New", Fkey: nil),
+                DropDownTemplate(ID: "used", Text: "Used", Fkey: nil)]
+    }
+    
+    static func getColor() -> [DropDownTemplate]
+    {
+        return [DropDownTemplate(ID: "blue", Text: "Blue", Fkey: nil),
+                DropDownTemplate(ID: "black", Text: "Black", Fkey: nil),
+                DropDownTemplate(ID: "silver", Text: "Silver", Fkey: nil),
+                DropDownTemplate(ID: "red", Text: "Red", Fkey: nil),
+                DropDownTemplate(ID: "gray", Text: "Gray", Fkey: nil),
+                DropDownTemplate(ID: "yellow", Text: "Yellow", Fkey: nil),
+                DropDownTemplate(ID: "pink", Text: "Pink", Fkey: nil),
+                DropDownTemplate(ID: "purple", Text: "Purple", Fkey: nil),
+                DropDownTemplate(ID: "orange", Text: "Orange", Fkey: nil),
+                DropDownTemplate(ID: "green", Text: "Green", Fkey: nil),]
+    }
+    
+    static func getDiscountType() -> [DropDownTemplate]
+    {
+        return [DropDownTemplate(ID: "amount", Text: "Amount", Fkey: nil),
+                DropDownTemplate(ID: "percentage", Text: "Percentage", Fkey: nil)]
+    }
+}
 
 
 func PHAssetForFileURL(url: NSURL) -> PHAsset? {
