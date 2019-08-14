@@ -47,6 +47,7 @@ extension ListAllProductViewController: UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductListCell", for: indexPath) as! ProductListTableViewCell
         let data = dataArr[indexPath.row]
         cell.ProductData = data
+        cell.reload()
         cell.delegate = self
         
         return cell

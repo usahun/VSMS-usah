@@ -61,6 +61,7 @@ protocol refreshCollectionProtocol: class {
 protocol ProfileCellClickProtocol: class {
     func cellClickToDetail(ID: Int)
     func cellClickToEdit(ID: Int)
+    func cellClickToDelete(ID: Int)
 }
 
 protocol InitailViewControllerProtocol: class {

@@ -25,7 +25,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="thR-IG-qeC">
                                 <rect key="frame" x="0.0" y="0.0" width="268.5" height="298.5"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zg4-Zu-nl6">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zg4-Zu-nl6" customClass="CustomImage" customModule="VSMS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="268.5" height="239.5"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1wT-Ts-p56">
@@ -120,7 +120,7 @@
                                                 <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SET-or-1U7">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SET-or-1U7" customClass="CustomImage" customModule="VSMS" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="268.5" height="239.5"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XrX-dg-QrC">
@@ -195,8 +195,8 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="firstView" destination="thR-IG-qeC" id="Wf0-IB-Ku5"/>
-                <outlet property="img_1_Product" destination="zg4-Zu-nl6" id="gkg-vM-ovX"/>
-                <outlet property="img_2_Productimage" destination="SET-or-1U7" id="dl0-GF-Scq"/>
+                <outlet property="img_1_Product" destination="zg4-Zu-nl6" id="64a-oN-oRN"/>
+                <outlet property="img_2_Product" destination="SET-or-1U7" id="opP-2u-fEb"/>
                 <outlet property="lbl_1_Productname" destination="1wT-Ts-p56" id="7qc-Px-rYv"/>
                 <outlet property="lbl_1_Productprice" destination="Vja-Fc-qZk" id="dpD-Xl-8qg"/>
                 <outlet property="lbl_1_Views" destination="Hi0-W1-hNQ" id="uJQ-JT-mhO"/>

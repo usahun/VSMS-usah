@@ -103,7 +103,7 @@
                                     <constraint firstAttribute="bottom" secondItem="x20-p0-p3T" secondAttribute="bottom" constant="0.5" id="khd-Ll-gLd"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HondaClick2019" translatesAutoresizingMaskIntoConstraints="NO" id="2Zk-z0-zgR">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2Zk-z0-zgR" customClass="CustomImage" customModule="VSMS" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="140" height="143.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="140" id="sWr-Qj-k0V"/>
@@ -172,7 +172,4 @@
             <point key="canvasLocation" x="198.40000000000001" y="32.833583208395808"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="HondaClick2019" width="310" height="225"/>
-    </resources>
 </document>

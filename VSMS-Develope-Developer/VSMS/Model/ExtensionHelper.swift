@@ -7,9 +7,10 @@
 //
 
 import Foundation
-
+import Alamofire
 
 extension String {
+    
     func base64Encoded() -> String? {
         return data(using: .utf8)?.base64EncodedString()
     }
@@ -160,6 +161,7 @@ extension UIImage {
     }
 }
 
+
 extension UIImageView {
     func CirleWithWhiteBorder(thickness: CGFloat){
         self.layer.cornerRadius = self.layer.frame.width / 2
@@ -177,6 +179,16 @@ extension UIImageView {
         self.image = #imageLiteral(resourceName: "cross_mark")
     }
     
+//    func LoadFromURL(url: String)
+//    {
+//        Alamofire.request(url, method: .get)
+//            .validate()
+//            .responseData(completionHandler: { (responseData) in
+//                DispatchQueue.main.async {
+//                   self.image = UIImage(data: responseData.data!)
+//                }
+//            })
+//    }
 }
 
 extension UITextField {
@@ -465,7 +477,6 @@ extension UILabel {
         }
     }
 }
-
 
 extension UITextField{
     @IBInspectable var doneAccessory: Bool{

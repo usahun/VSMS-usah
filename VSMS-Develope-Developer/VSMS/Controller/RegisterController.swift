@@ -86,7 +86,7 @@ class RegisterController: UIViewController {
                         userDefault.set(json["id"].stringValue, forKey: "userid")
                         userDefault.set(self.textconfirmPassword.text, forKey: "password")
                         userDefault.set(json["username"].stringValue, forKey: "telephone")
-                    
+                        UserDefaults.standard.synchronize()
                     Message.SuccessMessage(message: "Your account has been register.", View: self, callback: {
                         //switching the screen
                         let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "TestViewController") as! TestViewController

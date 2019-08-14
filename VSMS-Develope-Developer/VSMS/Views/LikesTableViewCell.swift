@@ -10,7 +10,7 @@ import UIKit
 
 class LikesTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var LikesImage: UIImageView!
+    @IBOutlet weak var LikesImage: CustomImage!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var lblDuration: UILabel!
@@ -39,8 +39,8 @@ class LikesTableViewCell: UITableViewCell {
     {
         RequestHandle.LoadListProductByPostID(postID: ProductData.post) { (val) in
             performOn(.Main, closure: {
+                self.LikesImage.LoadFromURL(url: val.imagefront)
                 self.lblName.text = val.title.capitalizingFirstLetter()
-                self.LikesImage.image = val.imagefront.base64ToImage()
                 self.lblPrice.text = val.cost.toCurrency()
                 self.lblDuration.text = val.create_at?.getDuration()
                 self.lblPostType.SetPostType(postType: val.postType)

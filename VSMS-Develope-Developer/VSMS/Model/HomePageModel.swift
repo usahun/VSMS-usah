@@ -62,7 +62,6 @@ class HomePageModel {
         self.create_at = created_by
     }
     
-    
     init(postID: Int){
         performOn(.HighPriority) {
             RequestHandle.LoadListProductByPostID(postID: postID) { (val) in
@@ -84,11 +83,13 @@ class HomePageModel {
         self.title = json["title"].stringValue
         self.cost = json["cost"].stringValue
         self.discount = json["discount"].stringValue
-        self.imagefront = json["front_image_base64"].stringValue
+        self.imagefront = json["front_image_path"].stringValue
         self.postType = json["post_type"].stringValue
         self.create_at = json["created"].stringValue
     }
+    
 }
+
 
 
 class RelatedFilter {

@@ -65,6 +65,7 @@ class LoginPasswordController: UIViewController {
                         self.defaultValues.set(userId, forKey: "userid")
                         self.defaultValues.set(userName, forKey: "username")
                         self.defaultValues.set(self.textpassword.text, forKey: "password")
+                        UserDefaults.standard.synchronize()
 
                         self.navigationController?.popToRootViewController(animated: true)
                     }else{

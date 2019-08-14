@@ -93,12 +93,10 @@ class RequestHandle {
                 switch response.result{
                 case .success(let value):
                     let json = JSON(value)
-                    result = (json["results"].array?.map{
-                        HomePageModel(id: $0["id"].stringValue.toInt(), name: $0["title"].stringValue,cost: $0["cost"].stringValue,imagefront: $0["front_image_base64"].stringValue,discount: $0["discount"].stringValue, postType: $0["post_type"].stringValue)
-                        }) ?? []
-                    performOn(.Main, closure: {
-                        completion(result)
-                    })
+                    result = json["results"].array?.map{
+                        HomePageModel(json: $0)
+                        } ?? []
+                    completion(result)
                 case .failure:
                     print("error")
                 }
@@ -151,7 +149,7 @@ class RequestHandle {
                     let json = JSON(value)
                     print(json)
                     result = (json["results"].array?.map{
-                        HomePageModel(id: $0["id"].stringValue.toInt(), name: $0["title"].stringValue,cost: $0["cost"].stringValue,imagefront: $0["front_image_base64"].stringValue, discount: $0["discount"].stringValue, postType: $0["post_type"].stringValue)
+                        HomePageModel(json: $0)
                         }) ?? []
                     
                     performOn(.Main, closure: {
@@ -176,7 +174,7 @@ class RequestHandle {
                 case .success(let value):
                     let json = JSON(value)
                     result = (json["results"].array?.map{
-                        HomePageModel(id: $0["id"].stringValue.toInt(), name: $0["title"].stringValue,cost: $0["cost"].stringValue,imagefront: $0["front_image_base64"].stringValue, discount: $0["discount"].stringValue, postType: $0["post_type"].stringValue)
+                        HomePageModel(json: $0)
                         }) ?? []
                     
                     performOn(.Main, closure: {
@@ -200,12 +198,7 @@ class RequestHandle {
                 case .success(let value):
                     let json = JSON(value)
                     result = (json["results"].array?.map{
-                        HomePageModel(id: $0["id"].stringValue.toInt(),
-                                      name: $0["title"].stringValue,
-                                      cost: $0["cost"].stringValue,
-                                      imagefront: $0["front_image_base64"].stringValue,
-                                      discount: $0["discount"].stringValue,
-                                      postType: $0["post_type"].stringValue
+                        HomePageModel(json: $0
                         )}) ?? []
                     
                     performOn(.Main, closure: {
@@ -287,14 +280,7 @@ class HomepageRequestHandler {
                     self.count = json["count"].stringValue.toInt()
                     
                     self.AllPostArr = (json["results"].array?.map{
-                        HomePageModel(id: $0["id"].stringValue.toInt(),
-                                      name: $0["title"].stringValue,
-                                      cost: $0["cost"].stringValue,
-                                      imagefront: $0["front_image_base64"].stringValue,
-                                      discount: $0["discount"].stringValue,
-                                      postType: $0["post_type"].stringValue,
-                                      createdat: $0["created"].stringValue
-                        )
+                        HomePageModel(json: $0)
                         }) ?? []
                     completion()
                 case .failure:
@@ -321,13 +307,7 @@ class HomepageRequestHandler {
                     self.count = json["count"].stringValue.toInt()
                     
                     self.AllPostArr += (json["results"].array?.map{
-                        HomePageModel(id: $0["id"].stringValue.toInt(),
-                                      name: $0["title"].stringValue,
-                                      cost: $0["cost"].stringValue,
-                                      imagefront: $0["front_image_base64"].stringValue,
-                                      discount: $0["discount"].stringValue,
-                                      postType: $0["post_type"].stringValue,
-                                      createdat: $0["created"].stringValue)
+                        HomePageModel(json: $0)
                         }) ?? []
                     completion()
                 case .failure:
@@ -380,15 +360,8 @@ class UserProfileRequestHandle {
                     self.AllPostActiveCount = json["count"].stringValue.toInt()
 
                     self.PostActive = (json["results"].array?.map{
-                        HomePageModel(id: $0["id"].stringValue.toInt(),
-                                      name: $0["title"].stringValue,
-                                      cost: $0["cost"].stringValue,
-                                      imagefront: $0["front_image_base64"].stringValue,
-                                      discount: $0["discount"].stringValue,
-                                      postType: $0["post_type"].stringValue,
-                                      createdat: $0["created"].stringValue
-                        )}) ?? []
-                    
+                        HomePageModel(json: $0)
+                        }) ?? []
                         completion()
 
                 case .failure:
@@ -415,16 +388,9 @@ class UserProfileRequestHandle {
                     self.NextPostActive = json["next"].stringValue
                     self.AllPostActiveCount = json["count"].stringValue.toInt()
                     
-                    self.PostActive += (json["results"].array?.map{
-                        HomePageModel(id: $0["id"].stringValue.toInt(),
-                                      name: $0["title"].stringValue,
-                                      cost: $0["cost"].stringValue,
-                                      imagefront: $0["front_image_base64"].stringValue,
-                                      discount: $0["discount"].stringValue,
-                                      postType: $0["post_type"].stringValue,
-                                      createdat: $0["created"].stringValue
-                        )}) ?? []
-                    
+                    self.PostActive += json["results"].array?.map{
+                            HomePageModel(json: $0)
+                        } ?? []
                     completion()
                     
                 case .failure:

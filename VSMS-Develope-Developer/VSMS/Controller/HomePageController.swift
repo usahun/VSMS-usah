@@ -51,6 +51,10 @@ class HomePageController: BaseViewController {
     @IBOutlet weak var btnYear: UIButton!
     
     
+    var KhmerFlatButton: UIBarButtonItem!
+    var EnglishFlatButton: UIBarButtonItem!
+    
+    
     var AL = HomepageRequestHandler()
     var imgArr = [  UIImage(named:"Dream191"),
                     UIImage(named:"Dream192"),
@@ -83,21 +87,14 @@ class HomePageController: BaseViewController {
     
     
     override func localizeUI() {
-        btnBuy.setTitle("buy".localizable(), for: .normal)
-        btnSell.setTitle("sell".localizable(), for: .normal)
-        btnRent.setTitle("rent".localizable(), for: .normal)
-        btnCategory.setTitle("category".localizable(), for: .normal)
-        btnBrand.setTitle("brand".localizable(), for: .normal)
-        btnYear.setTitle("year".localizable(), for: .normal)
-        lblbestDeal.text = "bestdeal".localizable()
-        lblNewpost.text = "newpost".localizable()
+        self.Prepare()
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.Prepare()
 
-        
         SideMenuController.preferences.basic.menuWidth = 240
         SideMenuController.preferences.basic.defaultCacheKey = "0"
         SideMenuController.preferences.basic.statusBarBehavior = .hideOnMenu
@@ -111,7 +108,7 @@ class HomePageController: BaseViewController {
         //txtSearch.disable()
         ConfigDrowDown()
         
-        performOn(.HighPriority) {
+        performOn(.Main) {
             RequestHandle.LoadBestDeal(completion: { (val) in
                 self.bestDealArr = val
                 self.DiscountCollection.reloadData()
@@ -233,26 +230,16 @@ class HomePageController: BaseViewController {
     
     @objc
     func btnswicthLanguage(_ sender: UIButton){
-        let alertLanguage = UIAlertController(title: "Change Languages",message: "Chose Your Langes",
-                                                      preferredStyle: .actionSheet)
-        
-                let khmerAction = UIAlertAction(title: "Khmer", style: .default) { _ in
-                    LanguageManager.setLanguage(lang: .khmer)
-                    
-                }
-        
-                let englishAction = UIAlertAction(title: "English", style: .default) { _ in
-                    LanguageManager.setLanguage(lang: .english)
-                    
-                }
-        
-                alertLanguage.addAction(khmerAction)
-                alertLanguage.addAction(englishAction)
-                present(alertLanguage, animated: true, completion: nil)
-        
+        if UserDefaults.standard.string(forKey: currentLangKey) == "en"
+        {
+            LanguageManager.setLanguage(lang: .khmer)
+            self.navigationItem.rightBarButtonItem = KhmerFlatButton
+        }
+        else{
+            LanguageManager.setLanguage(lang: .english)
+            self.navigationItem.rightBarButtonItem = EnglishFlatButton
+        }
     }
-    
-    
     
     @objc
     func btnSearchHandler(_ sender: UIButton){
@@ -330,21 +317,35 @@ class HomePageController: BaseViewController {
         let negativeSpacer = UIBarButtonItem.init(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         negativeSpacer.width = -25
         navigationItem.leftBarButtonItems = [menubutton, imageItem]
-        let button = UIButton(type: .custom)
+        
         
         //set image for button
+        let button = UIButton(type: .custom)
         button.setImage(UIImage(named: "flatenglish"), for: .normal)
         button.frame = CGRect(x: 0, y: 0, width: 38, height: 38)
         button.widthAnchor.constraint(equalToConstant: 30).isActive = true
         button.heightAnchor.constraint(equalToConstant: 30).isActive =  true
-        let barButton = UIBarButtonItem(customView: button)
         button.addTarget(self, action: #selector(btnswicthLanguage(_:)), for: .touchUpInside)
+        EnglishFlatButton = UIBarButtonItem(customView: button)
         
+        let buttonKH = UIButton(type: .custom)
+        buttonKH.setImage(UIImage(named: "flatkhmer"), for: .normal)
+        buttonKH.frame = CGRect(x: 0, y: 0, width: 38, height: 38)
+        buttonKH.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        buttonKH.heightAnchor.constraint(equalToConstant: 30).isActive =  true
+        buttonKH.addTarget(self, action: #selector(btnswicthLanguage(_:)), for: .touchUpInside)
+        KhmerFlatButton = UIBarButtonItem(customView: buttonKH)
         //assign button to navigationbar
-        self.navigationItem.rightBarButtonItem = barButton
+        
+        if UserDefaults.standard.string(forKey: currentLangKey) == "en"
+        {
+            self.navigationItem.rightBarButtonItem = EnglishFlatButton
+        }
+        else{
+            self.navigationItem.rightBarButtonItem = KhmerFlatButton
+        }
+        
     }
-    
-    
     
     func ConfigDrowDown(){
         Functions.getDropDownList(key: 2) { (val) in
@@ -406,6 +407,20 @@ class HomePageController: BaseViewController {
     
 }
 
+extension HomePageController
+{
+    func Prepare()
+    {
+        btnBuy.setTitle("buy".localizable(), for: .normal)
+        btnSell.setTitle("sell".localizable(), for: .normal)
+        btnRent.setTitle("rent".localizable(), for: .normal)
+        btnCategory.setTitle("category".localizable(), for: .normal)
+        btnBrand.setTitle("brand".localizable(), for: .normal)
+        btnYear.setTitle("year".localizable(), for: .normal)
+        lblbestDeal.text = "bestdeal".localizable()
+        lblNewpost.text = "newpost".localizable()
+    }
+}
     
 extension HomePageController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -427,12 +442,9 @@ extension HomePageController: UICollectionViewDataSource, UICollectionViewDelega
         }
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imgediscount", for: indexPath) as! DiscountCollectionViewCell
-            cell.MotoName.text = bestDealArr[indexPath.row].title.capitalizingFirstLetter()
-            cell.image.image = bestDealArr[indexPath.row].imagefront.base64ToImage()
-            cell.MotoPrice.text = bestDealArr[indexPath.row].cost.toCurrency()
-            cell.MotoDiscount.attributedText = bestDealArr[indexPath.row].cost.toCurrency().strikeThrough()
-            cell.ProductID = bestDealArr[indexPath.row].product
+            cell.data = bestDealArr[indexPath.row]
             cell.delegate = self
+            cell.reload()
             return cell
         }
     }
@@ -488,6 +500,7 @@ extension HomePageController: UITableViewDelegate, UITableViewDataSource {
             
             cell.ProductData = data
             cell.delegate = self
+            cell.reload()
             return cell
         }
     }

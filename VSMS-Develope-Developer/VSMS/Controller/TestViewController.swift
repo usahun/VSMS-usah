@@ -287,25 +287,13 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
     
     @IBAction func btnPostHandler(_ sender: UIButton) {
-        index = 0
-        self.tableView.reloadData()
-        btnPost.ActiveButton()
-        btnLike.DeactiveButton()
-        btnLoan.DeactiveButton()
+        tabActive(buttonActive: sender)
     }
     @IBAction func btnLikeHandler(_ sender: UIButton) {
-        index = 1
-        self.tableView.reloadData()
-        btnPost.DeactiveButton()
-        btnLike.ActiveButton()
-        btnLoan.DeactiveButton()
+        tabActive(buttonActive: sender)
     }
     @IBAction func btnLoanHandler(_ sender: UIButton) {
-        index = 2
-        self.tableView.reloadData()
-        btnPost.DeactiveButton()
-        btnLike.DeactiveButton()
-        btnLoan.ActiveButton()
+        tabActive(buttonActive: sender)
     }
     
     
@@ -405,6 +393,7 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 
                 let cell = tableView.dequeueReusableCell(withIdentifier: "Postcell", for: indexPath) as! PostsTableViewCell
                 cell.Data = ProfileHandleRequest.PostActive[indexPath.row - 1]
+                cell.reload()
                 cell.delelgate = self
                 return cell
             }
@@ -420,6 +409,7 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 let cell = tableView.dequeueReusableCell(withIdentifier: "Postcell", for: indexPath) as! PostsTableViewCell
                 cell.Data = ProfileHandleRequest.PostHistory[indexPath.row - 1]
                 cell.delelgate = self
+                cell.reload()
                 return cell
             }
         }
@@ -551,15 +541,46 @@ extension TestViewController {
         loanVC.is_Edit = true
         self.navigationController?.pushViewController(loanVC, animated: true)
     }
+    
+    func tabActive(buttonActive: UIButton)
+    {
+        switch buttonActive
+        {
+        case btnPost:
+            index = 0
+            self.tableView.reloadData()
+            btnPost.ActiveButton()
+            btnLike.DeactiveButton()
+            btnLoan.DeactiveButton()
+        case btnLike:
+            index = 1
+            self.tableView.reloadData()
+            btnPost.DeactiveButton()
+            btnLike.ActiveButton()
+            btnLoan.DeactiveButton()
+        case btnLoan:
+            index = 2
+            self.tableView.reloadData()
+            btnPost.DeactiveButton()
+            btnLike.DeactiveButton()
+            btnLoan.ActiveButton()
+        default:
+            break
+        }
+    }
 }
 
 extension TestViewController: ProfileCellClickProtocol {
+    func cellClickToDelete(ID: Int) {
+        print(ID)
+    }
+    
     func cellClickToDetail(ID: Int) {
         PushToDetailProductViewController(productID: ID)
     }
     
     func cellClickToEdit(ID: Int) {
-       PushToEditPostViewController(ID: ID)
+       PresentController.PushToEditPostViewController(postID: ID, from: self)
     }
 }
 

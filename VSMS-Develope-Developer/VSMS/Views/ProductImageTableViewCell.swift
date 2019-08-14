@@ -10,7 +10,8 @@ import UIKit
 
 class ProductImageTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var imgProduct: UIImageView!
+
+    @IBOutlet weak var imgProduct: CustomImage!
     @IBOutlet weak var lblProductName: UILabel!
     @IBOutlet weak var lblProductPrice: UILabel!
     @IBOutlet weak var lblDuration: UILabel!
@@ -31,7 +32,7 @@ class ProductImageTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-        imgProduct.image = data.imagefront.base64ToImage()
+        imgProduct.LoadFromURL(url: data.imagefront)
         lblProductName.text = data.title.capitalizingFirstLetter()
         lblProductPrice.text = data.cost.toCurrency()
         lblDuration.text = data.create_at?.getDuration()

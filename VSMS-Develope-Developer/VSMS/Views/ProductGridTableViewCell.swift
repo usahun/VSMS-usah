@@ -14,7 +14,8 @@ class ProductGridTableViewCell: UITableViewCell {
     @IBOutlet weak var secondView: UIView!
     
     //record 1 properties
-    @IBOutlet weak var img_1_Product: UIImageView!
+
+    @IBOutlet weak var img_1_Product: CustomImage!
     @IBOutlet weak var lbl_1_Productname: UILabel!
     @IBOutlet weak var lbl_1_Productprice: UILabel!
     @IBOutlet weak var lbl_1_duration: UILabel!
@@ -22,7 +23,8 @@ class ProductGridTableViewCell: UITableViewCell {
     @IBOutlet weak var lbl_1_postTy: UILabel!
     
     //record 2 properties
-    @IBOutlet weak var img_2_Productimage: UIImageView!
+
+    @IBOutlet weak var img_2_Product: CustomImage!
     @IBOutlet weak var lbl_2_Productname: UILabel!
     @IBOutlet weak var lbl_2_productprice: UILabel!
     @IBOutlet weak var lbl_2_duration: UILabel!
@@ -59,7 +61,7 @@ class ProductGridTableViewCell: UITableViewCell {
 
         if data1 != nil {
             lbl_1_Productname.text = data1!.title.capitalizingFirstLetter()
-            img_1_Product.image = data1?.imagefront.base64ToImage()
+            img_1_Product.LoadFromURL(url: data1!.imagefront)
             lbl_1_Productname.text = data1?.title
             lbl_1_Productprice.text = data1?.cost.toCurrency()
             lbl_1_duration.text = data1?.create_at?.getDuration()
@@ -71,7 +73,7 @@ class ProductGridTableViewCell: UITableViewCell {
         
         if data2 != nil {
             lbl_2_Productname.text = data2!.title.capitalizingFirstLetter()
-            img_2_Productimage.image = data2?.imagefront.base64ToImage()
+            img_2_Product.LoadFromURL(url: data2!.imagefront)
             lbl_2_Productname.text = data2?.title
             lbl_2_productprice.text = data2?.cost.toCurrency()
             lbl_2_duration.text = data2?.create_at?.getDuration()
