@@ -80,7 +80,7 @@ class DiscountTableViewCell: UITableViewCell,UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = Imagediscount.dequeueReusableCell(withReuseIdentifier: "imgediscount", for: indexPath) as! DiscountCollectionViewCell
-        cell.image.image = self.discount[indexPath.row].imagefront.base64ToImage()
+        //cell.image.image = self.discount[indexPath.row].imagefront.base64ToImage()
         cell.MotoName.text = discount[indexPath.row].title
         cell.MotoPrice.text = "$ \(discount[indexPath.row].cost)"
         cell.MotoDiscount.text = "$\(discount[indexPath.row].discount)"

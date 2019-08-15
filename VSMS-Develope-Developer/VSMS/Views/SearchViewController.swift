@@ -81,6 +81,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductListCell", for: indexPath) as! ProductListTableViewCell
         cell.ProductData = resultArr[indexPath.row]
         cell.delegate = self
+        cell.reload()
         return cell
     }
     

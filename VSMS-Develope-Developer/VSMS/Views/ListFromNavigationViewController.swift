@@ -68,6 +68,7 @@ extension ListFromNavigationViewController: UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductListCell", for: indexPath) as! ProductListTableViewCell
         
         cell.ProductData = dataArr[indexPath.row]
+        cell.reload()
         cell.delegate = self
         return cell
     }

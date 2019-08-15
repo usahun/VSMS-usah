@@ -22,7 +22,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xh6-Iv-Dbq">
                         <rect key="frame" x="2" y="3" width="408" height="353.5"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3lC-N6-PFl">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3lC-N6-PFl" customClass="CustomImage" customModule="VSMS" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="408" height="285.5"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rent" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zkr-rx-a3g">
@@ -103,7 +103,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="OCy-9R-Cyg"/>
             <connections>
-                <outlet property="imgProduct" destination="3lC-N6-PFl" id="2z4-LD-NY7"/>
+                <outlet property="imgProduct" destination="3lC-N6-PFl" id="lgJ-k6-Acu"/>
                 <outlet property="lblDuration" destination="vwj-3Q-eny" id="JrI-Hm-Mwp"/>
                 <outlet property="lblPostType" destination="zkr-rx-a3g" id="bEV-W8-ZHg"/>
                 <outlet property="lblProductName" destination="QfZ-tn-tMa" id="whG-qv-v9W"/>

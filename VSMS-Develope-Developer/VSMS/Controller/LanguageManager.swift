@@ -10,7 +10,7 @@ import UIKit
 
 // Language
 private let defaultLang = "km-KH"
-private let currentLangKey = "CurrentLanguageKey"
+let currentLangKey = "CurrentLanguageKey"
 
 enum LanguageCode: String {
     case english    = "en"

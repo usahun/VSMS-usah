@@ -12,7 +12,7 @@ class PostsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
-    @IBOutlet weak var PostImage: UIImageView!
+    @IBOutlet weak var PostImage: CustomImage!
     @IBOutlet weak var lblDuration: UILabel!
     @IBOutlet weak var btnButtonView: UIView!
     @IBOutlet weak var lblPostType: UILabel!
@@ -35,16 +35,18 @@ class PostsTableViewCell: UITableViewCell {
     @objc func handerCellClick(){
         self.delelgate?.cellClickToDetail(ID: Data.product)
     }
+    
+    func reload()
+    {
+        PostImage.LoadFromURL(url: Data.imagefront)
+        lblName.text = Data.title.capitalizingFirstLetter()
+        lblPrice.text = Data.cost.toCurrency()
+        lblDuration.text = Data.create_at?.getDuration()
+        lblPostType.SetPostType(postType: Data.postType)
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-        lblName.text = Data.title.capitalizingFirstLetter()
-        lblPrice.text = Data.cost.toCurrency()
-        PostImage.image = Data.imagefront.base64ToImage()
-        lblDuration.text = Data.create_at?.getDuration()
-        lblPostType.SetPostType(postType: Data.postType)
     }
     
     
@@ -57,7 +59,9 @@ class PostsTableViewCell: UITableViewCell {
     }
     
     @IBAction func buttonDeleteTepped(_ sender: Any) {
-        print("Delete")
+        Message.ConfirmDeleteMessage(message: "Are you to delete this post?") {
+            self.delelgate?.cellClickToDelete(ID: self.Data.product)
+        }
     }
 
     

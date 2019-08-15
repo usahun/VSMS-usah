@@ -10,7 +10,7 @@ import UIKit
 
 class LoanHistoryTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var imgProduct: UIImageView!
+    @IBOutlet weak var imgProduct: CustomImage!
     @IBOutlet weak var lblProductName: UILabel!
     @IBOutlet weak var lblDuration: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
@@ -25,7 +25,7 @@ class LoanHistoryTableViewCell: UITableViewCell {
         RequestHandle.LoadListProductByPostID(postID: ProductID) { (val) in
 
             performOn(.Main, closure: {
-                self.imgProduct.image = val.imagefront.base64ToImage()
+                self.imgProduct.LoadFromURL(url: val.imagefront)
                 self.lblProductName.text = val.title.capitalizingFirstLetter()
                 self.lblDuration.text = val.create_at?.getDuration()
                 self.lblPrice.text = val.cost.toCurrency()

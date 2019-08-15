@@ -92,10 +92,10 @@ class PostViewController: UITableViewController {
         post_obj.right_image_path = imagePicker.right_image
         post_obj.back_image_path = imagePicker.back_image
         
-        post_obj.front_image_base64 = imagePicker.front_image
-        post_obj.left_image_base64 = imagePicker.left_image
-        post_obj.right_image_base64 = imagePicker.right_image
-        post_obj.back_image_base64 = imagePicker.back_image
+//        post_obj.front_image_base64 = imagePicker.front_image
+//        post_obj.left_image_base64 = imagePicker.left_image
+//        post_obj.right_image_base64 = imagePicker.right_image
+//        post_obj.back_image_base64 = imagePicker.back_image
     
         post_obj.Save { (result) in
             alertMessage.dismissActivityIndicator()

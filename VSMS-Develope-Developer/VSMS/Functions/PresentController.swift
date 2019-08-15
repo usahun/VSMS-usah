@@ -20,4 +20,12 @@ class PresentController
             currentView.present(ProfileTab, animated: false, completion: nil)
         }
     }
+    
+    static func PushToEditPostViewController(postID: Int, from: UIViewController)
+    {
+        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PostViewController") as? PostViewController
+        {
+            from.navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
 }

@@ -22,7 +22,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="peH-Ms-oNT">
                         <rect key="frame" x="5" y="8" width="428" height="126.5"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="24S-Mw-bq4">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="24S-Mw-bq4" customClass="CustomImage" customModule="VSMS" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="140" height="126.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="140" id="Fyq-Ww-xbv"/>
@@ -94,14 +94,14 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="imgProductImage" destination="24S-Mw-bq4" id="OXu-Xd-C7P"/>
+                <outlet property="imgProductImage" destination="24S-Mw-bq4" id="zoH-PM-ekg"/>
                 <outlet property="lblDuration" destination="EeK-3b-eja" id="6Qj-KG-I5Y"/>
                 <outlet property="lblPostType" destination="EhF-ew-lnE" id="tgn-8Q-8Er"/>
                 <outlet property="lblProductPrice" destination="Q5x-wT-pa4" id="fVh-bS-PNH"/>
                 <outlet property="lblProductname" destination="7pW-Nm-X5P" id="yf2-NU-r1C"/>
                 <outlet property="lblView" destination="Bvh-nc-4HE" id="Qs5-bg-2bb"/>
             </connections>
-            <point key="canvasLocation" x="-20.289855072463769" y="12.723214285714285"/>
+            <point key="canvasLocation" x="64" y="-13"/>
         </tableViewCell>
     </objects>
 </document>

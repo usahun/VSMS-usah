@@ -10,7 +10,8 @@ import UIKit
 
 class ProductListTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var imgProductImage: UIImageView!
+
+    @IBOutlet weak var imgProductImage: CustomImage!
     @IBOutlet weak var lblProductname: UILabel!
     @IBOutlet weak var lblDuration: UILabel!
     @IBOutlet weak var lblProductPrice: UILabel!
@@ -27,12 +28,10 @@ class ProductListTableViewCell: UITableViewCell {
         // Initialization code
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handerCellClick)))
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-        imgProductImage.image = ProductData.imagefront.base64ToImage()
+    
+    func reload()
+    {
+        imgProductImage.LoadFromURL(url: ProductData.imagefront)
         lblProductname.text = ProductData.title.capitalizingFirstLetter()
         lblProductPrice.text = ProductData.cost.toCurrency()
         lblDuration.text = ProductData.create_at?.getDuration()
@@ -43,6 +42,12 @@ class ProductListTableViewCell: UITableViewCell {
                 self.lblView.text = count.toString()+" Views"
             })
         }
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        // Configure the view for the selected state
+        
     }
     
     @objc
