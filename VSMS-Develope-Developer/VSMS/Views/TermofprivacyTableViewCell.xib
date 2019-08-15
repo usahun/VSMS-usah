@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -85,9 +85,31 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="åååååååå" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6h-5I-orh">
-                                <rect key="frame" x="10" y="461.5" width="434" height="19.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6h-5I-orh">
+                                <rect key="frame" x="10" y="461.5" width="434" height="573"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">This App is intended to be a friendly, enjoyable and useful experience, but as with anything concerning any kind of transactions there are risks involved and we strongly advise you to understand all of these terms before submitting the listing.
+</string>
+                                        <attributes>
+                                            <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <font key="NSFont" metaFont="system" size="16"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural" firstLineHeadIndent="20" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <mutableString key="content">This App acts as the screen for selYou agree that this App, in its own discretion, may terminate any listing or use of the service immediately and without notice if
+(a) You are not abiding by the general rules of this App
+(b) You have repeatedly broken a certain term
+(c) You have listed a suspicious itlers/lessors to post listings and for buyers/lessees to bid/purchase on seller or lessor\'s listings. We are not involved in the actual transaction between buyers/lessees and sellers/lessors. As a result, we have no control over the quality, safety or legality of the items listed the truth or accuracy of the product listings, We cannot and do not control whether or not sellers/lessors will complete the sale/rent of items they offer or buyers/lessees will complete the purchases/rent of items they have bid on.In addition, This App shall not be responsible for any items sold/rent through it, for any damage to items during the inspection period, nor for misrepresentations or breaches of contract by either buyer, lessee, seller or lessor.
+This App shall not be responsible for the cost of procurement of substitute goods or any losses resulting from any goods purchased or obtained. This App assumes no liability for the content of the listings. However if you fall victim of a fraudulent transaction, we will assist you as much as we can.</mutableString>
+                                        <attributes>
+                                            <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <font key="NSFont" metaFont="system" size="16"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
