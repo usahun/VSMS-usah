@@ -134,7 +134,10 @@ class User {
     }
     
     static func getUserInfo(id: Int, completion: @escaping (Profile) -> ()) {
-        Alamofire.request(PROJECT_API.GETUSERDETAIL(ID: id), method: .get, encoding: JSONEncoding.default).responseJSON { (respone) in
+        Alamofire.request(PROJECT_API.GETUSERDETAIL(ID: id),
+                          method: .get,
+                          encoding: JSONEncoding.default
+            ).responseJSON { (respone) in
             switch respone.result {
             case .success(let value):
                 let json = JSON(value)
@@ -146,7 +149,7 @@ class User {
             case .failure(let error):
                 print(error.localizedDescription)
             }
-        }
+        }.resume()
     }
     
     
