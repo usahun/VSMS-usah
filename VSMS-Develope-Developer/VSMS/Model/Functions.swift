@@ -80,6 +80,8 @@ class PROJECT_API {
         return "\(http_absoluteString)/like/?post=\(ProID)&like_by=\(UserID)"
     }
     
+    static var USERUNLIKE = "\(http_absoluteString)/like/"
+    
     static func POSTBYUSER_FILTER(UserID: String,approved: String?,rejected: String?, modify: String?) -> String {
         return "\(http_absoluteString)/postbyuserfilter/?created_by=\(UserID)&approved_by=\(approved ?? "")&rejected_by=\(rejected ?? "")&modified_by=\(modify ?? "")"
     }

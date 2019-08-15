@@ -32,8 +32,8 @@ class Message {
         View.present(AlertMessage, animated: true, completion: nil)
     }
     
-    public static func ConfirmRemove(message: String, callback:@escaping (() -> Void)){
-        let AlertMessage = UIAlertController(title: "Remove",
+    public static func ConfirmUnlike(message: String, callback:@escaping (() -> Void)){
+        let AlertMessage = UIAlertController(title: "Unlike",
                                              message: message,
                                              preferredStyle: .alert)
         AlertMessage.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { (alert) in
