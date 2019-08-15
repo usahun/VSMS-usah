@@ -24,6 +24,7 @@ class PROJECT_API {
     static var STATUS = "\(http_absoluteString)/api/v1/status/"
     static var PROVINCES = "\(http_absoluteString)/api/v1/provinces/"
     static var GROUPS = "\(http_absoluteString)/api/v1/groups/"
+    static var POSTLIKEBYUSER = "\(http_absoluteString)/like/?post&like_by"
     
     //Profile
     static var POST_BYUSER = "\(http_absoluteString)/postbyuser/"

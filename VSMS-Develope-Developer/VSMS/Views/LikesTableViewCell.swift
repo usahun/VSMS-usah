@@ -22,6 +22,7 @@ class LikesTableViewCell: UITableViewCell {
     weak var delegate: ProfileCellClickProtocol?
     var ProductData = LikeViewModel()
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -43,6 +44,11 @@ class LikesTableViewCell: UITableViewCell {
                 self.lblPrice.text = val.cost.toCurrency()
                 self.lblDuration.text = val.create_at?.getDuration()
                 self.lblPostType.SetPostType(postType: val.postType)
+            })
+        }
+        RequestHandle.CountView(postID: self.ProductData.post) { (count) in
+            performOn(.Main, closure: {
+                self.lblViewCount.text = count.toString()+" Views"
             })
         }
     }

@@ -158,7 +158,7 @@ class DetailViewController: UIViewController {
     
     @IBAction func clickLike(_ sender: Any) {
         Message.AlertMessage(message: "You have been like this product.", header: "LIKE", View: self) {
-            
+           self.Btnlikebyuser()
         }
     }
     
@@ -192,7 +192,35 @@ class DetailViewController: UIViewController {
         }
     }
     
-   
+    func Btnlikebyuser(){
+        
+        let data: Parameters = [
+            "post": ProductDetail.id,
+            "like_by": User.getUserID(),
+            "record_status": 1,
+            ]
+        let headers = [
+            "Cookie": "",
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            ]
+        
+        Alamofire.request(PROJECT_API.POSTLIKEBYUSER, method: .post, parameters: data, encoding: JSONEncoding.default, headers: headers).responseJSON
+            { response in
+                switch response.result {
+                case .success(let value):
+                   print(value)
+                    Message.SuccessMessage(message: "Your Like This Prodcut Already", View: self, callback: {
+                    })
+                    break
+                case .failure(let error):
+                    print(error)
+                    break
+                }
+                
+        }
+    }
+    
     func config(){
         self.navigationItem.title = "Detail"
     }
