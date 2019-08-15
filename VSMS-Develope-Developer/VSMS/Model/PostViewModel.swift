@@ -435,14 +435,13 @@ class PostAdViewModel
                           encoding: JSONEncoding.default,
                           headers: headers).responseJSON { response in
                             switch response.result{
-                            case .success(let value):
-                                print(value)
+                            case .success:
                                 completion(true)
                             case .failure(let error):
                                 print(error)
                                 completion(false)
                             }
-        }
+        }.resume()
     }
     
     var asDictionary : [String:Any] {

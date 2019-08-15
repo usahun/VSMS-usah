@@ -27,7 +27,6 @@ class CollectionTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 100, height: 100)
         layout.scrollDirection = .horizontal
@@ -95,7 +94,7 @@ extension CollectionTableViewCell: UICollectionViewDelegate, UICollectionViewDat
         let data = dataArr[indexPath.row]
         cell.data = data
         cell.imageIndex = indexPath.row
-        cell.reload()
+      
         
         cell.removeImage = { index in
             ImageCount = ImageCount - 1

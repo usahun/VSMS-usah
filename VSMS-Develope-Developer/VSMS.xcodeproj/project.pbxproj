@@ -58,6 +58,9 @@
 		86626BBF229C496300FE25DD /* DeTailTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86626BBD229C496300FE25DD /* DeTailTableCell.swift */; };
 		86626BC2229C498400FE25DD /* AddmoreNumberPhoneTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86626BC0229C498400FE25DD /* AddmoreNumberPhoneTableViewCell.xib */; };
 		86626BC3229C498400FE25DD /* AddmoreNumberPhoneTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86626BC1229C498400FE25DD /* AddmoreNumberPhoneTableViewCell.swift */; };
+		866C2DB42304F20A004B7682 /* ImagePickerUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866C2DB32304F20A004B7682 /* ImagePickerUIView.swift */; };
+		866C2DB62304F222004B7682 /* ImagePickerUIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 866C2DB52304F222004B7682 /* ImagePickerUIView.xib */; };
+		866C2DB82305175B004B7682 /* PresentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866C2DB72305175B004B7682 /* PresentController.swift */; };
 		86763E1F22D4A70700391237 /* DiscountInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86763E1D22D4A70700391237 /* DiscountInputTableViewCell.swift */; };
 		86763E2022D4A70700391237 /* DiscountInputTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86763E1E22D4A70700391237 /* DiscountInputTableViewCell.xib */; };
 		869CF1972276F0800006D7F2 /* PostAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869CF1962276F0800006D7F2 /* PostAdViewController.swift */; };
@@ -126,7 +129,6 @@
 		C45661B422CE6D6200973945 /* PostsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C45661B222CE6D6200973945 /* PostsTableViewCell.xib */; };
 		C45661B722CE6D9200973945 /* LikesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45661B522CE6D9200973945 /* LikesTableViewCell.swift */; };
 		C45661B822CE6D9200973945 /* LikesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C45661B622CE6D9200973945 /* LikesTableViewCell.xib */; };
-		C47744BB22CA108E00B79D33 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47744BA22CA108E00B79D33 /* PostViewController.swift */; };
 		C4826FC823000FD000494DB0 /* TermofprivacyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4826FC623000FD000494DB0 /* TermofprivacyTableViewCell.swift */; };
 		C4826FC923000FD100494DB0 /* TermofprivacyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4826FC723000FD000494DB0 /* TermofprivacyTableViewCell.xib */; };
 		C489D19E22E0FEDF002BB560 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 865B5DB8221FDD3600864F7E /* Main.storyboard */; };
@@ -212,6 +214,9 @@
 		86626BBD229C496300FE25DD /* DeTailTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeTailTableCell.swift; path = VSMS/View/Collectionphoto/DeTailTableCell.swift; sourceTree = SOURCE_ROOT; };
 		86626BC0229C498400FE25DD /* AddmoreNumberPhoneTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddmoreNumberPhoneTableViewCell.xib; path = VSMS/View/Collectionphoto/AddmoreNumberPhoneTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		86626BC1229C498400FE25DD /* AddmoreNumberPhoneTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddmoreNumberPhoneTableViewCell.swift; path = VSMS/View/Collectionphoto/AddmoreNumberPhoneTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		866C2DB32304F20A004B7682 /* ImagePickerUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerUIView.swift; sourceTree = "<group>"; };
+		866C2DB52304F222004B7682 /* ImagePickerUIView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImagePickerUIView.xib; sourceTree = "<group>"; };
+		866C2DB72305175B004B7682 /* PresentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentController.swift; sourceTree = "<group>"; };
 		86763E1D22D4A70700391237 /* DiscountInputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountInputTableViewCell.swift; sourceTree = "<group>"; };
 		86763E1E22D4A70700391237 /* DiscountInputTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscountInputTableViewCell.xib; sourceTree = "<group>"; };
 		869CF1962276F0800006D7F2 /* PostAdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAdViewController.swift; sourceTree = "<group>"; };
@@ -281,7 +286,6 @@
 		C45661B222CE6D6200973945 /* PostsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsTableViewCell.xib; sourceTree = "<group>"; };
 		C45661B522CE6D9200973945 /* LikesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesTableViewCell.swift; sourceTree = "<group>"; };
 		C45661B622CE6D9200973945 /* LikesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LikesTableViewCell.xib; sourceTree = "<group>"; };
-		C47744BA22CA108E00B79D33 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		C4826FC623000FD000494DB0 /* TermofprivacyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermofprivacyTableViewCell.swift; sourceTree = "<group>"; };
 		C4826FC723000FD000494DB0 /* TermofprivacyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermofprivacyTableViewCell.xib; sourceTree = "<group>"; };
 		C48F457622E4618D0097370F /* ContectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContectViewController.swift; sourceTree = "<group>"; };
@@ -458,7 +462,6 @@
 				864502EC22FBFCFC00E6396C /* LoanViewController.swift */,
 				8632208123039DDF002B9DF6 /* PostViewController.swift */,
 				86EE08B422FFC607001EF3A8 /* AboutUsandTermOfTableViewController.swift */,
-
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -497,6 +500,7 @@
 			children = (
 				86E5494B22D6F595002B2980 /* Message.swift */,
 				864222B022DEC6BD002E41E7 /* RequestHandle.swift */,
+				866C2DB72305175B004B7682 /* PresentController.swift */,
 			);
 			path = Functions;
 			sourceTree = "<group>";
@@ -643,6 +647,8 @@
 				863D30B723010F67002C2725 /* CusDropDownUIView.xib */,
 				863220872303F828002B9DF6 /* CusTextAreaInput.swift */,
 				863220852303F7EE002B9DF6 /* CusTextAreaInput.xib */,
+				866C2DB32304F20A004B7682 /* ImagePickerUIView.swift */,
+				866C2DB52304F222004B7682 /* ImagePickerUIView.xib */,
 			);
 			name = Input;
 			sourceTree = "<group>";
@@ -768,6 +774,7 @@
 				C4AAF7A722C5F2E300B82364 /* NewPostGridCollectionViewCell.xib in Resources */,
 				C49A53EF22FDAEB90017E122 /* CusInputUIView.xib in Resources */,
 				865B5DBF221FDD3700864F7E /* LaunchScreen.storyboard in Resources */,
+				866C2DB62304F222004B7682 /* ImagePickerUIView.xib in Resources */,
 				86F4DEDC22E2D42C000ACA12 /* SearchViewController.xib in Resources */,
 				864222B522DEFB44002E41E7 /* ProductListTableViewCell.xib in Resources */,
 				C4826FC923000FD100494DB0 /* TermofprivacyTableViewCell.xib in Resources */,
@@ -906,6 +913,7 @@
 				86AAF0C622C081C3003C46F3 /* GreditImageCollectionViewCell.swift in Sources */,
 				86763E1F22D4A70700391237 /* DiscountInputTableViewCell.swift in Sources */,
 				86B10329229C4C7A00192DAD /* HomeCollectionViewCell.swift in Sources */,
+				866C2DB42304F20A004B7682 /* ImagePickerUIView.swift in Sources */,
 				C402139A22574C9C007920C4 /* MenuController.swift in Sources */,
 				864222B122DEC6BD002E41E7 /* RequestHandle.swift in Sources */,
 				86626BAF229C480800FE25DD /* PhoneNumberHeader.swift in Sources */,
@@ -920,6 +928,7 @@
 				86B1032E229C4C7A00192DAD /* CollectionViewHeader.swift in Sources */,
 				C40213A522574D08007920C4 /* HomeSearchController.swift in Sources */,
 				864502ED22FBFCFC00E6396C /* LoanViewController.swift in Sources */,
+				866C2DB82305175B004B7682 /* PresentController.swift in Sources */,
 				C456204022D0BAE300DBF21D /* ProfileModel.swift in Sources */,
 				C4CCAE4B22F9679300E21EC4 /* LanguageManager.swift in Sources */,
 				86AAF0C722C081C3003C46F3 /* DiscountCollectionViewCell.swift in Sources */,

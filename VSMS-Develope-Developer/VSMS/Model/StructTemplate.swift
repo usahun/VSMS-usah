@@ -8,7 +8,7 @@
 
 import Foundation
 import RSSelectionMenu
-
+import TLPhotoPicker
 
 struct DropDownTemplate: Codable, UniquePropertyDelegate {
     
@@ -19,4 +19,11 @@ struct DropDownTemplate: Codable, UniquePropertyDelegate {
     func getUniquePropertyName() -> String {
         return "ID"
     }
+}
+
+
+struct imageWithPLAsset {
+    var image: UIImage
+    var PLAsset: TLPHAsset?
+    var selectedImage: UIImage?
 }

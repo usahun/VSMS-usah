@@ -12,6 +12,9 @@ import RSSelectionMenu
 
 class PostViewController: UITableViewController {
     
+    ///Image Picker
+    @IBOutlet weak var imagePicker: ImagePickerUIView!
+    
     ///Detail
     @IBOutlet weak var postType: CusDropDownUIView!
     @IBOutlet weak var txtTitle: CusInputUIView!
@@ -72,6 +75,10 @@ class PostViewController: UITableViewController {
     // MARK: - Table view data source
     
     @IBAction func SubmitHandler(_ sender: UIButton) {
+        let alertMessage = UIAlertController(title: nil, message: "Uploading Product", preferredStyle: .alert)
+        alertMessage.addActivityIndicator()
+        self.present(alertMessage, animated: true, completion: nil)
+        
         post_obj.title = txtTitle.Value
         post_obj.cost = txtPrice.Value
         post_obj.description = txtDescription.Value
@@ -80,19 +87,23 @@ class PostViewController: UITableViewController {
         post_obj.contact_phone = txtPhoneNumber.Value
         post_obj.contact_email = txtEmail.Value
         
-        post_obj.front_image_path = UIImage(named: "Dream191")?.toBase64()
-        post_obj.left_image_path = post_obj.front_image_path
-        post_obj.right_image_path = post_obj.front_image_path
-        post_obj.back_image_path = post_obj.front_image_path
+        post_obj.front_image_path = imagePicker.front_image
+        post_obj.left_image_path = imagePicker.left_image
+        post_obj.right_image_path = imagePicker.right_image
+        post_obj.back_image_path = imagePicker.back_image
         
-        post_obj.front_image_base64 = post_obj.front_image_path
-        post_obj.left_image_base64 = post_obj.front_image_path
-        post_obj.right_image_base64 = post_obj.front_image_path
-        post_obj.back_image_base64 = post_obj.front_image_path
-        
-        
+        post_obj.front_image_base64 = imagePicker.front_image
+        post_obj.left_image_base64 = imagePicker.left_image
+        post_obj.right_image_base64 = imagePicker.right_image
+        post_obj.back_image_base64 = imagePicker.back_image
+    
         post_obj.Save { (result) in
-            
+            alertMessage.dismissActivityIndicator()
+            if result{
+                Message.SuccessMessage(message: "Product uploaded successfully.", View: self, callback: {
+                    PresentController.ProfileController()
+                })
+            }
         }
         
         
@@ -399,7 +410,7 @@ extension PostViewController {
     {
         if indexpath.section == 0 && indexpath.row == 0
         {
-            return 110
+            return 130
         }
         if indexpath.section == 1 && indexpath.row == 9
         {

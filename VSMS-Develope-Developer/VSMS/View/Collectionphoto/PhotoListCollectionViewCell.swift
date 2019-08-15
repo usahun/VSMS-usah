@@ -16,27 +16,20 @@ class PhotoListCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var activity: UIActivityIndicatorView!
     
-    var imageIndex: Int?
-    var imageData: TLPHAsset?
+    var imageIndex: Int = 0
     var data = imageWithPLAsset(image: UIImage(named: "icons8-plus-math-50 (5)")!, PLAsset: nil, selectedImage: nil)
     var removeImage:((Int) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         activity.isHidden = true
-        postImageView?.image = data.image
     }
     
-    func reload(){
-        
-//        if data.selectedImage != nil {
-//            self.postImageView?.image = data.selectedImage
-//            self.btnRemove.isHidden = false
-//            return
-//        }
+    func reload(completion: @escaping (UIImage) -> Void){
         
         if data.PLAsset == nil {
             btnRemove.isHidden = true
+            postImageView?.image = data.image
             return
         }
         
@@ -55,12 +48,13 @@ class PhotoListCollectionViewCell: UICollectionViewCell {
             self.activity.isHidden = true
             self.postImageView?.image = image
             self.btnRemove.isHidden = false
+            completion(image!)
         })
     }
     
 
     @IBAction func btnRemoveClick(_ sender: UIButton) {
-        self.removeImage!(imageIndex!)
+        self.removeImage!(imageIndex)
     }
     
 }

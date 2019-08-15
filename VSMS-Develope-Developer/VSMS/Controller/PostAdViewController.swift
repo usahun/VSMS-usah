@@ -18,11 +18,7 @@ struct postImageModel {
     var Imagevalue: UIImage?
 }
 
-struct imageWithPLAsset {
-    var image: UIImage
-    var PLAsset: TLPHAsset?
-    var selectedImage: UIImage?
-}
+
 
 class Phone {
     var numbers: [String]? = []
