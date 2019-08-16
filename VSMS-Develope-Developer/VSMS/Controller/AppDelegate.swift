@@ -12,6 +12,7 @@ import GooglePlaces
 import SideMenuSwift
 
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate ,CLLocationManagerDelegate,LocationServiceDelegate {
    
@@ -21,22 +22,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,CLLocationManagerDelegate
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        //Config Facebook
         
+        
+        //Google API Key
         GMSServices.provideAPIKey("AIzaSyCnzDhy4WqYYUBp6NnctYHfxxUdJmJeF-I")
         GMSPlacesClient.provideAPIKey("AIzaSyCnzDhy4WqYYUBp6NnctYHfxxUdJmJeF-I")
-        // Override point for customization after application launch.
-//        window?.rootViewController = HomePageController()
-//        window?.makeKeyAndVisible()
         
-//        let tabbar = CustomTabBarController()
-//        window = UIWindow(frame: UIScreen.main.bounds)
-//        window?.rootViewController = tabbar
-//        window?.makeKeyAndVisible()
-        
-
-       // LocationService.sharedInstance.delegate = self
-        
-
+        //Start up with Slide Menu
         //day-13-08-2019
 //        let contentViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenu") as! MyNavigation
 //

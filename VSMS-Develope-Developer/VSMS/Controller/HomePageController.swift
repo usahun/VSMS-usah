@@ -470,6 +470,11 @@ extension HomePageController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if CellIdentifier == 2 {
             IndexProduct = -1
+            if AL.AllPostArr.count % 2 != 0
+            {
+                return (AL.AllPostArr.count / 2) + 1
+            }
+            
             return AL.AllPostArr.count / 2
         }
         return AL.AllPostArr.count
@@ -491,8 +496,14 @@ extension HomePageController: UITableViewDelegate, UITableViewDataSource {
             
             let index = indexPath.row * 2
             cell.data1 = AL.AllPostArr[index]
-            cell.data2 = AL.AllPostArr[index + 1]
+            
+            if let d2 = AL.AllPostArr.get(at: index + 1){
+                cell.data2 = d2
+            }
+            
             cell.delegate = self
+            cell.reload()
+
             return cell
         }
         else {
