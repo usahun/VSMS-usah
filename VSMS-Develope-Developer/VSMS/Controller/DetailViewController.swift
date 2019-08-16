@@ -145,9 +145,7 @@ class DetailViewController: UIViewController {
     
     //Events Handler
     @IBAction func clickCall(_ sender: Any) {
-        Message.AlertMessage(message: ProductDetail.contact_phone, header: "Call", View: self) {
-            makeAPhoneCall(phoneNumber: self.ProductDetail.contact_phone)
-        }
+        makeAPhoneCall(phoneNumber: self.ProductDetail.contact_phone)
     }
     
     @IBAction func clickSms(_ sender: Any) {
@@ -307,6 +305,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         cell.data1 = relateArr[index]
         cell.data2 = relateArr[index + 1]
         cell.delegate = self
+        
         return cell
         //return UITableViewCell()
         
@@ -323,8 +322,10 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        if let vc = cell.viewWithTag(111) as? UIImageView {
-            vc.image = self.ProductDetail.arrImage[indexPath.row]
+        if let vc = cell.viewWithTag(111) as? CustomImage {
+            performOn(.Main) {
+                vc.LoadFromURL(url: self.ProductDetail.arrImage[indexPath.row])
+            }
         }
         return cell
     }

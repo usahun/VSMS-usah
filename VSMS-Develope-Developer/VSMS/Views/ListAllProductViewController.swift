@@ -24,7 +24,7 @@ class ListAllProductViewController: UIViewController {
 
         tableView.register(UINib(nibName: "ProductListTableViewCell", bundle: nil), forCellReuseIdentifier: "ProductListCell")
         
-        performOn(.HighPriority) {
+        performOn(.Main) {
             RequestHandle.LoadAllPostByPostTypeAndCategory(filter: self.paramater!, completion: { (val) in
                 self.dataArr = val
                 self.tableView.reloadData()

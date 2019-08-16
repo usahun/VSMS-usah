@@ -13,7 +13,6 @@ import Photos
 
 var http_absoluteString = "http://103.205.26.103:8000"
 
-
 class PROJECT_API {
     /////
     static var CATEGORIES = "\(http_absoluteString)/api/v1/categories/"
@@ -86,6 +85,17 @@ class PROJECT_API {
     static func COUNT_VIEWS(ProID: Int) -> String {
         return "\(http_absoluteString)/countview/?post=\(ProID)"
     }
+}
+
+func httpHeader() -> HTTPHeaders
+{
+    let head = [
+        "Cookie": "",
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization" : User.getUserEncoded(),
+    ]
+    return head
 }
 
 class User {

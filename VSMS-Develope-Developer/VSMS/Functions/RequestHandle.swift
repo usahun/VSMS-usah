@@ -69,11 +69,7 @@ class RequestHandle {
                 case .success(let value):
                     let json = JSON(value)
                     result = (json["results"].array?.map{
-                       HomePageModel(id: $0["id"].stringValue.toInt()
-                        , name: $0["title"].stringValue,
-                          cost: $0["cost"].stringValue,
-                          imagefront: $0["front_image_base64"].stringValue,
-                          discount: $0["discount"].stringValue, postType: $0["post_type"].stringValue)
+                       HomePageModel(json: $0)
                         }) ?? []
                     
                     completion(result)
@@ -176,7 +172,7 @@ class RequestHandle {
         Alamofire.request(PROJECT_API.POSTBYUSERACTIVE,
                           method: .get,
                           encoding: JSONEncoding.default,
-                          headers: headers
+                          headers: httpHeader()
             ).responseJSON
             { (response) in
                 switch response.result{
@@ -201,7 +197,7 @@ class RequestHandle {
         Alamofire.request(PROJECT_API.LIKEBYUSER,
                           method: .get,
                           encoding: JSONEncoding.default,
-                          headers: headers
+                          headers: httpHeader()
             ).responseJSON
             { (response) in
                 switch response.result{
@@ -225,7 +221,7 @@ class RequestHandle {
         Alamofire.request(PROJECT_API.LOADPRODUCT(ProID: postID),
                           method: .get,
                           encoding: JSONEncoding.default,
-                          headers: headers
+                          headers: httpHeader()
             ).responseJSON
             { response in
                 switch response.result{
@@ -328,6 +324,13 @@ class UserProfileRequestHandle {
     //Helper properties
     private let semephore = DispatchGroup()
     
+    var headers: HTTPHeaders = [
+        "Cookie": "",
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization" : User.getUserEncoded(),
+    ]
+    
     init(){}
     
     func LoadAllPostByUser(completion: @escaping () -> Void)
@@ -335,7 +338,7 @@ class UserProfileRequestHandle {
         Alamofire.request(PROJECT_API.POSTBYUSERACTIVE,
                           method: .get,
                           encoding: JSONEncoding.default,
-                          headers: headers
+                          headers: self.headers
             ).responseJSON
             { (response) in
                 switch response.result{
@@ -364,7 +367,7 @@ class UserProfileRequestHandle {
         Alamofire.request(self.NextPostActive,
                           method: .get,
                           encoding: JSONEncoding.default,
-                          headers: headers
+                          headers: self.headers
             ).responseJSON
             { (response) in
                 switch response.result{
@@ -389,7 +392,7 @@ class UserProfileRequestHandle {
         Alamofire.request(PROJECT_API.POSTBYUSERHISTORY,
                           method: .get,
                           encoding: JSONEncoding.default,
-                          headers: headers
+                          headers: self.headers
             ).responseJSON
             { (response) in
                 switch response.result{
@@ -424,7 +427,7 @@ class UserProfileRequestHandle {
         Alamofire.request(self.NextPostHistory,
                           method: .get,
                           encoding: JSONEncoding.default,
-                          headers: headers
+                          headers: self.headers
             ).responseJSON
             { (response) in
                 switch response.result{
@@ -456,7 +459,8 @@ class UserProfileRequestHandle {
         Alamofire.request(PROJECT_API.LIKEBYUSER,
                           method: .get,
                           encoding: JSONEncoding.default,
-                          headers: headers).responseJSON
+                          headers: self.headers
+            ).responseJSON
             { (response) in
                 switch response.result{
                 case .success(let value):
@@ -484,7 +488,8 @@ class UserProfileRequestHandle {
         Alamofire.request(PROJECT_API.LIKEBYUSER,
                           method: .get,
                           encoding: JSONEncoding.default,
-                          headers: headers).responseJSON
+                          headers: self.headers
+            ).responseJSON
             { (response) in
                 switch response.result{
                 case .success(let value):
@@ -509,7 +514,8 @@ class UserProfileRequestHandle {
         Alamofire.request(PROJECT_API.LOANBYUSERACTIVE,
                           method: .get,
                           encoding: JSONEncoding.default,
-                          headers: headers).responseJSON
+                          headers: self.headers
+            ).responseJSON
             { (response) in
                 switch response.result{
                 case .success(let value):
@@ -536,7 +542,8 @@ class UserProfileRequestHandle {
         Alamofire.request(PROJECT_API.LOANBYUSERACTIVE,
                           method: .get,
                           encoding: JSONEncoding.default,
-                          headers: headers).responseJSON
+                          headers: self.headers
+            ).responseJSON
             { (response) in
                 switch response.result{
                 case .success(let value):
@@ -557,7 +564,8 @@ class UserProfileRequestHandle {
         Alamofire.request(PROJECT_API.LOANBYUSERHISTORY,
                           method: .get,
                           encoding: JSONEncoding.default,
-                          headers: headers).responseJSON
+                          headers: self.headers
+            ).responseJSON
             { (response) in
                 switch response.result{
                 case .success(let value):
@@ -620,7 +628,8 @@ extension UIImage {
                           method: .put,
                           parameters: parameters,
                           encoding: JSONEncoding.default,
-                          headers: headers).responseJSON { response in
+                          headers: httpHeader()
+            ).responseJSON { response in
                             switch response.result{
                             case .success:
                                 completion()
@@ -640,7 +649,8 @@ extension UIImage {
                           method: .put,
                           parameters: parameters,
                           encoding: JSONEncoding.default,
-                          headers: headers).responseJSON { response in
+                          headers: httpHeader()
+            ).responseJSON { response in
                             switch response.result{
                             case .success:
                                 completion()

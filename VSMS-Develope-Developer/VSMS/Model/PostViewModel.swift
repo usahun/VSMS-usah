@@ -433,7 +433,8 @@ class PostAdViewModel
                           method: .post,
                           parameters: self.asDictionary,
                           encoding: JSONEncoding.default,
-                          headers: headers).responseJSON { response in
+                          headers: httpHeader()
+            ).responseJSON { response in
                             switch response.result{
                             case .success:
                                 completion(true)

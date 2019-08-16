@@ -65,9 +65,10 @@ class LoginPasswordController: UIViewController {
                         self.defaultValues.set(userId, forKey: "userid")
                         self.defaultValues.set(userName, forKey: "username")
                         self.defaultValues.set(self.textpassword.text, forKey: "password")
+                        self.defaultValues.synchronize()
                         UserDefaults.standard.synchronize()
-
-                        self.navigationController?.popToRootViewController(animated: true)
+                        PresentController.ProfileController()
+                        //self.navigationController?.popToRootViewController(animated: true)
                     }else{
                         //error message in case of invalid credential
                         let AlertMessage = UIAlertController(title: "Warning", message: "Invalid username or password", preferredStyle: .alert)

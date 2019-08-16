@@ -93,7 +93,7 @@ class LoanViewModel
             method: .patch,
             parameters: self.asDictionary,
             encoding: JSONEncoding.default,
-            headers: headers
+            headers: httpHeader()
             ).responseJSON { response in
                 switch response.result{
                 case .success(let value):
@@ -111,7 +111,7 @@ class LoanViewModel
         Alamofire.request("\(PROJECT_API.LOAN)\(loanID)",
                           method: .get,
                           encoding: JSONEncoding.default,
-                          headers: headers
+                          headers: httpHeader()
             ).responseJSON { response in
                 switch response.result{
                 case .success(let value):
@@ -132,7 +132,7 @@ class LoanViewModel
                           method: .patch,
                           parameters: self.asDictionary,
                           encoding: JSONEncoding.default,
-                          headers: headers
+                          headers: httpHeader()
             ).responseJSON { response in
                 switch response.result{
                 case .success(let value):

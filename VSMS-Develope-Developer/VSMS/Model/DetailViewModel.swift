@@ -37,6 +37,10 @@ class DetailViewModel {
     var approved: String = ""
     var rejected: String = ""
     
+    var front_image_url: String = ""
+    var left_image_url: String = ""
+    var right_image_url: String = ""
+    var back_image_url: String = ""
     
     var front_image_base64: UIImage?
     var back_image_base64: UIImage?
@@ -44,7 +48,7 @@ class DetailViewModel {
     var right_image_base64: UIImage?
     
     //additionalFileds
-    var arrImage: [UIImage] = []
+    var arrImage: [String] = []
     var getYear: String = ""
     var getBrand: String = ""
     var getModel: String = ""
@@ -90,10 +94,16 @@ class DetailViewModel {
         self.right_image_base64 = json["right_image_base64"].stringValue.base64ToImage()
         self.back_image_base64 = json["back_image_base64"].stringValue.base64ToImage()
         
-        self.arrImage.append(self.front_image_base64!)
-        self.arrImage.append(self.left_image_base64!)
-        self.arrImage.append(self.right_image_base64!)
-        self.arrImage.append(self.back_image_base64!)
+        
+        self.front_image_url = json["front_image_path"].stringValue
+        self.left_image_url = json["left_image_path"].stringValue
+        self.right_image_url = json["right_image_path"].stringValue
+        self.back_image_url = json["back_image_path"].stringValue
+        
+        self.arrImage.append(self.front_image_url)
+        self.arrImage.append(self.left_image_url)
+        self.arrImage.append(self.right_image_url)
+        self.arrImage.append(self.back_image_url)
     }
     
     static func LoadProductByID(ProID: Int, completion: @escaping (DetailViewModel) -> ()){
