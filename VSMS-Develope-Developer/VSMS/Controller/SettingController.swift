@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-
+    
 class SettingTableController: UITableViewController
 {
     
@@ -22,13 +22,14 @@ class SettingTableController: UITableViewController
     }
     
     @IBAction func LogOutHandle(_ sender: UIButton) {
-        
+        Message.AlertLogOutMessage(from: self) {
+            User.resetUserDefault()
+            PresentController.HomePage()
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        
-        
+    
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

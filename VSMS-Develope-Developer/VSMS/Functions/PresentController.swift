@@ -7,9 +7,28 @@
 //
 
 import Foundation
+import SideMenuSwift
 
 class PresentController
 {
+    static func HomePage()
+    {
+        if let currentView = UIApplication.topViewController() {
+            let SideMenuTab: SideMenuController = {
+                let contentViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenu") as! MyNavigation
+                
+                let menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leftMenu") as! MenuViewController
+                menuViewController.delegate = contentViewController
+                
+                let sideMenuController = SideMenuController(
+                    contentViewController: contentViewController,
+                    menuViewController: menuViewController)
+                return sideMenuController
+            }()
+            currentView.present(SideMenuTab, animated: false, completion: nil)
+        }
+    }
+    
     static func ProfileController()
     {
         if let currentView = UIApplication.topViewController() {

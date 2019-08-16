@@ -572,8 +572,8 @@ extension HomePageController: navigationToHomepage {
             let navi = UINavigationController(rootViewController: profileVC)
             self.present(navi, animated: false,completion: nil)
         case "setting":
-            let settingVC: SettingController =
-                self.storyboard?.instantiateViewController(withIdentifier: "SettingController") as! SettingController
+            let settingVC: SettingTableController =
+                self.storyboard?.instantiateViewController(withIdentifier: "SettingTableController") as! SettingTableController
            // let navi = UINavigationController(rootViewController: settingVC)
             self.navigationController?.pushViewController(settingVC, animated: true)
         case "About Us":

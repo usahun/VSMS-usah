@@ -56,6 +56,15 @@ class Message {
         View.present(AlertMessage, animated: true, completion: nil)
     }
     
+    static func AlertLogOutMessage(from: UIViewController, completion: @escaping () -> Void)
+    {
+        let alertCon = UIAlertController(title: "Edit Profile", message: nil, preferredStyle: .actionSheet)
+        alertCon.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { (alert) in
+            completion()
+        }))
+        alertCon.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        from.present(alertCon, animated: true, completion: nil)
+    }
 }
 
 

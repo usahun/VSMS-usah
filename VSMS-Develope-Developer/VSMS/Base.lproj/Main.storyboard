@@ -13,7 +13,7 @@
         <!--Setting-->
         <scene sceneID="96b-IV-Oyz">
             <objects>
-                <tableViewController title="Setting" id="g9K-cq-6u8" customClass="SettingTableController" customModule="VSMS" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SettingTableController" title="Setting" useStoryboardIdentifierAsRestorationIdentifier="YES" id="g9K-cq-6u8" customClass="SettingTableController" customModule="VSMS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="45" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="8hC-W3-APc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

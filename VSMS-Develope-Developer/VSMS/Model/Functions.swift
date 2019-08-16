@@ -135,6 +135,16 @@ class User {
         return "Basic " + userPass.base64Encoded()!
     }
     
+    static func resetUserDefault()
+    {
+        let defaults = UserDefaults.standard
+        let dictionary = defaults.dictionaryRepresentation()
+        dictionary.keys.forEach { key in
+            defaults.removeObject(forKey: key)
+        }
+        defaults.synchronize()
+    }
+    
     static func IsAuthenticated(view: UIViewController, callBack: (() -> Void)) {
         let defaultValues = UserDefaults.standard
         if defaultValues.string(forKey: "username") == nil{
