@@ -32,6 +32,18 @@ class Message {
         View.present(AlertMessage, animated: true, completion: nil)
     }
     
+    public static func ConfirmRemove(message: String, callback:@escaping (() -> Void)){
+        let AlertMessage = UIAlertController(title: "Remove",
+                                             message: message,
+                                             preferredStyle: .alert)
+        AlertMessage.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { (alert) in
+            callback()
+        }))
+        AlertMessage.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        let view = UIApplication.topViewController()
+        view!.present(AlertMessage, animated: true, completion: nil)
+    }
+    
     public static func ConfirmDeleteMessage(message: String, callback:@escaping (() -> Void)){
         let AlertMessage = UIAlertController(title: "Delete",
                                              message: message,

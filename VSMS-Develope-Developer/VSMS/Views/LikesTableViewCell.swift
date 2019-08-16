@@ -16,12 +16,13 @@ class LikesTableViewCell: UITableViewCell {
     @IBOutlet weak var lblDuration: UILabel!
     @IBOutlet weak var lblPostType: UILabel!
     @IBOutlet weak var lblViewCount: UILabel!
+    @IBOutlet weak var btnlike: UIButton!
     
     //Internal Properties
     var ProID: Int = -1
     weak var delegate: ProfileCellClickProtocol?
     var ProductData = LikeViewModel()
-    
+    var DeleteHandle: ((Int) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -57,4 +58,10 @@ class LikesTableViewCell: UITableViewCell {
         self.delegate?.cellClickToDetail(ID: ProductData.post)
     }
     
+    @IBAction func btnlikeTapped(_ sender: Any) {
+        Message.ConfirmRemove(message: "Are you sure to unlike this product?")
+        {
+            // self.DeleteHandle!(self.ProID)
+        }
+    }
 }
