@@ -129,9 +129,12 @@
 		C45661B422CE6D6200973945 /* PostsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C45661B222CE6D6200973945 /* PostsTableViewCell.xib */; };
 		C45661B722CE6D9200973945 /* LikesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45661B522CE6D9200973945 /* LikesTableViewCell.swift */; };
 		C45661B822CE6D9200973945 /* LikesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C45661B622CE6D9200973945 /* LikesTableViewCell.xib */; };
+		C4726A992306CD5700C5B381 /* HideShowTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4726A982306CD5700C5B381 /* HideShowTextField.swift */; };
+		C4726A9B2306CDE100C5B381 /* PasswordToggleVisibilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4726A9A2306CDE100C5B381 /* PasswordToggleVisibilityView.swift */; };
 		C4826FC823000FD000494DB0 /* TermofprivacyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4826FC623000FD000494DB0 /* TermofprivacyTableViewCell.swift */; };
 		C4826FC923000FD100494DB0 /* TermofprivacyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4826FC723000FD000494DB0 /* TermofprivacyTableViewCell.xib */; };
 		C489D19E22E0FEDF002BB560 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 865B5DB8221FDD3600864F7E /* Main.storyboard */; };
+		C48E11172306794F007E52A8 /* ChangePasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48E11162306794F007E52A8 /* ChangePasswordController.swift */; };
 		C48F457722E4618D0097370F /* ContectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48F457622E4618D0097370F /* ContectViewController.swift */; };
 		C492463D22D4A119003B41E4 /* HomePageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492463C22D4A119003B41E4 /* HomePageModel.swift */; };
 		C49A53ED22FDAE7F0017E122 /* CusInputUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A53EC22FDAE7F0017E122 /* CusInputUIView.swift */; };
@@ -286,8 +289,11 @@
 		C45661B222CE6D6200973945 /* PostsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsTableViewCell.xib; sourceTree = "<group>"; };
 		C45661B522CE6D9200973945 /* LikesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesTableViewCell.swift; sourceTree = "<group>"; };
 		C45661B622CE6D9200973945 /* LikesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LikesTableViewCell.xib; sourceTree = "<group>"; };
+		C4726A982306CD5700C5B381 /* HideShowTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideShowTextField.swift; sourceTree = "<group>"; };
+		C4726A9A2306CDE100C5B381 /* PasswordToggleVisibilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordToggleVisibilityView.swift; sourceTree = "<group>"; };
 		C4826FC623000FD000494DB0 /* TermofprivacyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermofprivacyTableViewCell.swift; sourceTree = "<group>"; };
 		C4826FC723000FD000494DB0 /* TermofprivacyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermofprivacyTableViewCell.xib; sourceTree = "<group>"; };
+		C48E11162306794F007E52A8 /* ChangePasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordController.swift; sourceTree = "<group>"; };
 		C48F457622E4618D0097370F /* ContectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContectViewController.swift; sourceTree = "<group>"; };
 		C492463C22D4A119003B41E4 /* HomePageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageModel.swift; sourceTree = "<group>"; };
 		C49A53EC22FDAE7F0017E122 /* CusInputUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CusInputUIView.swift; sourceTree = "<group>"; };
@@ -421,6 +427,7 @@
 		865B5DC7221FDD6400864F7E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C4726A972306CD2A00C5B381 /* Password */,
 				86EE08B622FFC68A001EF3A8 /* AboutandTermofprivancy */,
 				C49A53EB22FDADD20017E122 /* Input */,
 				8602E5A422FE718400C31805 /* TabBar */,
@@ -462,6 +469,7 @@
 				864502EC22FBFCFC00E6396C /* LoanViewController.swift */,
 				8632208123039DDF002B9DF6 /* PostViewController.swift */,
 				86EE08B422FFC607001EF3A8 /* AboutUsandTermOfTableViewController.swift */,
+				C48E11162306794F007E52A8 /* ChangePasswordController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -636,6 +644,15 @@
 				864502E322FBB7DD00E6396C /* LoanHistoryTableViewCell.xib */,
 			);
 			name = Profile;
+			sourceTree = "<group>";
+		};
+		C4726A972306CD2A00C5B381 /* Password */ = {
+			isa = PBXGroup;
+			children = (
+				C4726A982306CD5700C5B381 /* HideShowTextField.swift */,
+				C4726A9A2306CDE100C5B381 /* PasswordToggleVisibilityView.swift */,
+			);
+			name = Password;
 			sourceTree = "<group>";
 		};
 		C49A53EB22FDADD20017E122 /* Input */ = {
@@ -926,6 +943,7 @@
 				86D6FC2322CDA25600B27B25 /* APIModel.swift in Sources */,
 				D55FA97B223EBD34005B0C8D /* SettingController.swift in Sources */,
 				86B1032E229C4C7A00192DAD /* CollectionViewHeader.swift in Sources */,
+				C4726A9B2306CDE100C5B381 /* PasswordToggleVisibilityView.swift in Sources */,
 				C40213A522574D08007920C4 /* HomeSearchController.swift in Sources */,
 				864502ED22FBFCFC00E6396C /* LoanViewController.swift in Sources */,
 				866C2DB82305175B004B7682 /* PresentController.swift in Sources */,
@@ -933,7 +951,9 @@
 				C4CCAE4B22F9679300E21EC4 /* LanguageManager.swift in Sources */,
 				86AAF0C722C081C3003C46F3 /* DiscountCollectionViewCell.swift in Sources */,
 				864F7A5D222E607C00437C24 /* AppDelegate.swift in Sources */,
+				C48E11172306794F007E52A8 /* ChangePasswordController.swift in Sources */,
 				863AFE0022F7E8C8002D3D5D /* LoadingTableViewCell.swift in Sources */,
+				C4726A992306CD5700C5B381 /* HideShowTextField.swift in Sources */,
 				86B1032D229C4C7A00192DAD /* PhotoListCollectionViewCell.swift in Sources */,
 				C402139E22574CD8007920C4 /* SWRevealViewController.m in Sources */,
 				C453177222C3303A006F0BB8 /* NewPostListCollectionViewCell.swift in Sources */,
@@ -1161,7 +1181,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N57Y6URRUJ;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = VSMS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1187,7 +1207,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N57Y6URRUJ;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = VSMS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
