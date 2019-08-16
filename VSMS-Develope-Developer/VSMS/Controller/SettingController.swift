@@ -10,65 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class SettingController: UIViewController {
 
-    @IBOutlet weak var buttonactive: UIButton!
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        navigationItem.title = "Setting"
-
-    }
-    override func viewWillAppear(_ animated: Bool) {
-       // navigationController?.navigationBar.installBlurEffect()
-      
-    }
-    
-    func resetDefaults() {
-        let domain = Bundle.main.bundleIdentifier!
-        UserDefaults.standard.removePersistentDomain(forName: domain)
-        UserDefaults.standard.synchronize()
-        print(Array(UserDefaults.standard.dictionaryRepresentation().keys).count)
-        
-    }
-    
-    @IBAction func activeclick(_ sender: UIButton) {
-         print(buttonactive.titleLabel?.text ?? "")
-        
-        let text = buttonactive.titleLabel?.text!
-        
-        if text == String ("Active")
-        {
-            buttonactive.setTitle("Disactive", for: .normal)
-            buttonactive.setTitleColor(.lightGray, for: .normal)
-        }
-        else {
-           buttonactive.setTitle("Active", for: .normal)
-            buttonactive.setTitleColor(.blue, for: .normal)
-        }
-    }
-  
-    
-
-    @IBAction func btnLogoutHandler(_ sender: UIButton) {
-        let user_default = UserDefaults.standard
-        user_default.set(nil, forKey: "username")
-        
-        DispatchQueue.main.asyncAfter(deadline: .now()) {
-            let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            guard let loginpasswd = mainStoryboard.instantiateViewController(withIdentifier: "LoginController") as? LoginController else {
-                print("can't fine Viewcontroller")
-                return
-            }
-            
-            self.navigationController?.pushViewController(loginpasswd, animated: true)
-        }
-
-    }
-}
-    
 class SettingTableController: UITableViewController
 {
     
@@ -81,6 +23,13 @@ class SettingTableController: UITableViewController
     
     @IBAction func LogOutHandle(_ sender: UIButton) {
         
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }
