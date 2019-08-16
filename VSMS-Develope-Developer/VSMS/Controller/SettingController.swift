@@ -69,4 +69,18 @@ class SettingController: UIViewController {
     }
 }
     
-
+class SettingTableController: UITableViewController
+{
+    
+    @IBOutlet weak var btnLogOut: BottomDetail!
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    @IBAction func LogOutHandle(_ sender: UIButton) {
+        
+    }
+    
+}

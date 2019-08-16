@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,19 +13,18 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AboutUs" rowHeight="468" id="KGk-i7-Jjw" customClass="AboutUsTableViewCell" customModule="VSMS" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="468"/>
+            <rect key="frame" x="0.0" y="0.0" width="438" height="468"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="467.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="438" height="467.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nV3-0b-mCb">
-                        <rect key="frame" x="5" y="5" width="310" height="40"/>
+                        <rect key="frame" x="5" y="5" width="428" height="40"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About Us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFc-nN-PL9">
-                                <rect key="frame" x="5" y="5" width="300" height="31"/>
+                                <rect key="frame" x="5" y="5" width="418" height="31"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                                <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -38,33 +37,44 @@
                             <constraint firstItem="pFc-nN-PL9" firstAttribute="leading" secondItem="nV3-0b-mCb" secondAttribute="leading" constant="5" id="khG-rs-V8w"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="200" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ZF-UG-VKD">
-                        <rect key="frame" x="5" y="55" width="310" height="370"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="370" id="aBI-8l-b1T"/>
-                        </constraints>
-                        <string key="text">Welcome to 121 online market platform!
-	
-Welcome to 121 online market platform! A new modern online market in Cambodia. User friendly, super quick and easy to use in online market, helps you Buy, Sell or Rent anything in your neighborhood. 121 Online Market Platform is the future of E-Commerce in Cambodia, aiming to make up for all inconveniences of other markets, and replace them with new modern solutions.   For example possibility to add products by signing up for an account with very clear information details, and marking the position of dealers’ shop on the map, its help you can understand more clearly about dealer. You can use it through the website, or download our free application from Play Store, App Store or Google Play.</string>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ZF-UG-VKD">
+                        <rect key="frame" x="20" y="82.5" width="398" height="248.5"/>
+                        <attributedString key="attributedText">
+                            <fragment>
+                                <mutableString key="content">A new modern online market in Cambodia. User friendly, super quick and easy to use in online market, helps you Buy, Sell or Rent anything in your neighborhood. 121 Online Market Platform is the future of E-Commerce in Cambodia, aiming to make up for all inconveniences of other markets, and replace them with new modern solutions.   For example possibility to add products by signing up for an account with very clear information details, and marking the position of dealers’ shop on the map, its help you can understand more clearly about dealer. You can use it through the website, or download our free application from Play Store, App Store or Google Play.</mutableString>
+                                <attributes>
+                                    <color key="NSColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <font key="NSFont" metaFont="system" size="16"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" firstLineHeadIndent="30" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to 121 online market platform!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wyX-Ct-KaJ">
+                        <rect key="frame" x="10" y="53" width="286" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <color key="textColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="3ZF-UG-VKD" secondAttribute="trailing" constant="5" id="ALs-hn-n6t"/>
-                    <constraint firstItem="3ZF-UG-VKD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="OIc-Hn-yw5"/>
-                    <constraint firstItem="3ZF-UG-VKD" firstAttribute="top" secondItem="nV3-0b-mCb" secondAttribute="bottom" constant="10" id="ObG-KA-RNb"/>
+                    <constraint firstItem="3ZF-UG-VKD" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="IDJ-6A-wXP"/>
+                    <constraint firstItem="wyX-Ct-KaJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Lhu-ek-Mm7"/>
+                    <constraint firstItem="3ZF-UG-VKD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="PuA-cw-fc7"/>
                     <constraint firstAttribute="trailing" secondItem="nV3-0b-mCb" secondAttribute="trailing" constant="5" id="TNe-Gu-cWj"/>
                     <constraint firstItem="nV3-0b-mCb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="b9b-2i-HhA"/>
+                    <constraint firstAttribute="trailing" secondItem="3ZF-UG-VKD" secondAttribute="trailing" constant="20" id="fsC-IZ-Yp7"/>
                     <constraint firstItem="nV3-0b-mCb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="juL-Re-IRW"/>
+                    <constraint firstItem="3ZF-UG-VKD" firstAttribute="top" secondItem="wyX-Ct-KaJ" secondAttribute="bottom" constant="10" id="mGe-x8-vyS"/>
+                    <constraint firstItem="wyX-Ct-KaJ" firstAttribute="top" secondItem="nV3-0b-mCb" secondAttribute="bottom" constant="8" id="uPC-xQ-0uU"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="lblabout" destination="pFc-nN-PL9" id="3w5-yO-20W"/>
             </connections>
-            <point key="canvasLocation" x="163.768115942029" y="129.24107142857142"/>
+            <point key="canvasLocation" x="249.27536231884059" y="129.24107142857142"/>
         </tableViewCell>
     </objects>
 </document>
