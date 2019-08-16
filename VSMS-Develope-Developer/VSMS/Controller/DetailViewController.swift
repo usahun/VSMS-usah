@@ -23,6 +23,8 @@ class DetailViewController: UIViewController {
     var counter = 0
     var relateArr: [HomePageModel] = []
     var userdetail: Profile?
+    var isLikeEnable = false
+    var condtionlike = false
     
     //mapUser
    
@@ -65,8 +67,6 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         imgProfilePic.addGestureRecognizer(tap)
         imgProfilePic.isUserInteractionEnabled = true
@@ -96,6 +96,12 @@ class DetailViewController: UIViewController {
                                       completion: { (val) in
                                         self.relateArr = val
                                         self.tblView.reloadData()
+            })
+            
+            RequestHandle.Conditionlike(ProID: self.ProductDetail.id.toString(),
+                                        UserID: User.getUserID().toString(),
+                                        completion: { (val) in
+                                            self.condtionlike = val
             })
         }
         
@@ -155,10 +161,17 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func clickLike(_ sender: Any) {
-        Message.AlertMessage(message: "You have been like this product.", header: "LIKE", View: self) {
-           self.Btnlikebyuser()
+        
+        if condtionlike == true {
+            Message.AlertMessage(message: "You have like this product already.", header: "LIKE", View: self){}
+        }else{
+            Message.AlertMessage(message: "Like Successful.", header: "LIKE", View: self){
+                self.Btnlikebyuser()
+            }
         }
-    }
+
+}
+    
     
     @IBAction func clickLoan(_ sender: Any) {
         let loanVC:LoanViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoanViewController") as! LoanViewController
@@ -208,8 +221,6 @@ class DetailViewController: UIViewController {
                 switch response.result {
                 case .success(let value):
                    print(value)
-                    Message.SuccessMessage(message: "Your Like This Prodcut Already", View: self, callback: {
-                    })
                     break
                 case .failure(let error):
                     print(error)

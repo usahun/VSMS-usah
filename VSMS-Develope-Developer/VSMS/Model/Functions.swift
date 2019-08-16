@@ -24,6 +24,7 @@ class PROJECT_API {
     static var PROVINCES = "\(http_absoluteString)/api/v1/provinces/"
     static var GROUPS = "\(http_absoluteString)/api/v1/groups/"
     static var POSTLIKEBYUSER = "\(http_absoluteString)/like/?post&like_by"
+   
     
     //Profile
     static var POST_BYUSER = "\(http_absoluteString)/postbyuser/"
@@ -74,6 +75,9 @@ class PROJECT_API {
     }
     static func LOADPRODUCTOFUSER(ProID: Int) -> String {
         return "\(http_absoluteString)/postbyuser/\(ProID)/"
+    }
+    static func CONDITIONLIKE(ProID: String, UserID: String) -> String {
+        return "\(http_absoluteString)/like/?post=\(ProID)&like_by=\(UserID)"
     }
     
     static func POSTBYUSER_FILTER(UserID: String,approved: String?,rejected: String?, modify: String?) -> String {
