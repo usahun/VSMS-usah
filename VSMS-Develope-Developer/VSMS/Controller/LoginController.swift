@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class LoginController: UIViewController {
     
     @IBOutlet weak var logo121: UIImageView!
@@ -34,7 +35,7 @@ class LoginController: UIViewController {
             return
         }
         
-        navigationController?.pushViewController(loginpasswd, animated: true)
+        self.navigationController?.pushViewController(loginpasswd, animated: true)
     }
     
     
@@ -46,7 +47,7 @@ class LoginController: UIViewController {
             return
         }
         
-        navigationController?.pushViewController(register, animated: true)
+        self.navigationController?.pushViewController(register, animated: true)
     }
     
 }

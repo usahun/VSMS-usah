@@ -40,11 +40,31 @@ class PresentController
         }
     }
     
+    static func LogInandRegister()
+    {
+        if let currentView = UIApplication.topViewController() {
+            let ProfileTab: UINavigationController = {
+                let profile = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginController") as! LoginController
+                return UINavigationController(rootViewController: profile)
+            }()
+            currentView.present(ProfileTab, animated: false, completion: nil)
+        }
+    }
+    
     static func PushToEditPostViewController(postID: Int, from: UIViewController)
     {
         if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PostViewController") as? PostViewController
         {
+            viewController.post_id = postID
             from.navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
+    
+    static func PushToEditProfileViewController(from: UIViewController)
+    {
+        if let editVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyAccountController") as? MyAccountController
+        {
+            from.navigationController?.pushViewController(editVC, animated: true)
         }
     }
 }

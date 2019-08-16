@@ -63,6 +63,9 @@ class PostViewController: UITableViewController {
     //Internal Properties
     var post_obj = PostAdViewModel()
     
+    var is_edit = false
+    var post_id: Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -70,6 +73,7 @@ class PostViewController: UITableViewController {
         
         ShowDefaultNavigation()
         Prepare()
+        PrepareToEdit()
     }
 
     // MARK: - Table view data source
@@ -222,6 +226,16 @@ extension PostViewController {
         GenerateList.getYear { (val) in
             self.year_arr = val
         }
+    }
+    
+    func PrepareToEdit()
+    {
+        guard let ProductID = self.post_id else {
+            return
+        }
+        
+        is_edit = true
+        print(ProductID)
     }
     
     func ShowPostTypeOption(style: PresentationStyle)

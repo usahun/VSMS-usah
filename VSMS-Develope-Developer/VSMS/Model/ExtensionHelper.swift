@@ -294,8 +294,12 @@ extension UIViewController {
     }
     
     func PushToLogInViewController(){
-        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginController") as? LoginController {
-            self.navigationController?.pushViewController(viewController, animated: true)
+        if let currentView = UIApplication.topViewController() {
+            let log: UINavigationController = {
+                let profile = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginController") as! LoginController
+                return UINavigationController(rootViewController: profile)
+            }()
+            currentView.present(log, animated: false, completion: nil)
         }
     }
     

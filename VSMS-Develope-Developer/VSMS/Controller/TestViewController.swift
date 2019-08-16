@@ -80,7 +80,7 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
       
         
         if !User.IsUserAuthorized() {
-            self.PushToLogInViewController()
+            PresentController.LogInandRegister()
         }
 
         

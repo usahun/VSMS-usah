@@ -58,9 +58,22 @@ class Message {
     
     static func AlertLogOutMessage(from: UIViewController, completion: @escaping () -> Void)
     {
-        let alertCon = UIAlertController(title: "Edit Profile", message: nil, preferredStyle: .actionSheet)
+        let alertCon = UIAlertController(title: "Are you sure to log out?", message: nil, preferredStyle: .actionSheet)
         alertCon.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { (alert) in
             completion()
+        }))
+        alertCon.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        from.present(alertCon, animated: true, completion: nil)
+    }
+    
+    static func AlertChangeLanguage(from: UIViewController, completion: @escaping (LanguageCode) -> Void)
+    {
+        let alertCon = UIAlertController(title: "Langauge", message: nil, preferredStyle: .actionSheet)
+        alertCon.addAction(UIAlertAction(title: "English", style: .default, handler: { (alert) in
+            completion(LanguageCode.english)
+        }))
+        alertCon.addAction(UIAlertAction(title: "Khmer", style: .default, handler: { (alert) in
+            completion(LanguageCode.khmer)
         }))
         alertCon.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         from.present(alertCon, animated: true, completion: nil)

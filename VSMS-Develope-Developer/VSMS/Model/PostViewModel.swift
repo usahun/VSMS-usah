@@ -429,7 +429,7 @@ class PostAdViewModel
             self.rent_post = [postRent.asDictionary]
         }
         
-        Alamofire.request(URL,
+        Alamofire.request(absolute_URL,
                           method: .post,
                           parameters: self.asDictionary,
                           encoding: JSONEncoding.default,
@@ -445,6 +445,24 @@ class PostAdViewModel
         }.resume()
     }
     
+    func Update(completion: @escaping (Bool) -> Void)
+    {
+        Alamofire.request(absolute_URL,
+                          method: .patch,
+                          parameters: self.asDictionary,
+                          encoding: JSONEncoding.default,
+                          headers: httpHeader()
+            ).responseJSON { response in
+                            switch response.result{
+                            case .success:
+                                break
+                            case .failure(let error):
+                                print(error)
+                                
+                            }
+        }
+    }
+    
     var asDictionary : [String:Any] {
         let mirror = Mirror(reflecting: self)
         let dict = Dictionary(uniqueKeysWithValues: mirror.children.lazy.map({ (label:String?,value:Any) -> (String,Any)? in
@@ -452,5 +470,33 @@ class PostAdViewModel
             return (label!,value)
         }).compactMap{ $0 })
         return dict
+    }
+    
+    var absolute_URL: String {
+        var URL = ""
+        if self.post_type == "sell"
+        {
+            URL = PROJECT_API.POST_SELL
+            let postSell = SalePost()
+            postSell.price = self.cost
+            postSell.total_price = self.cost
+            self.sale_post = [postSell.asDictionary]
+        }
+        else if self.post_type == "buy"
+        {
+            URL = PROJECT_API.POST_BUYS
+            let postBuy = BuyPost()
+            postBuy.total_price = self.cost
+            self.buy_post = [postBuy.asDictionary]
+        }
+        else if self.post_type == "rent"
+        {
+            URL = PROJECT_API.POST_RENTS
+            let postRent = RentPost()
+            postRent.price = self.cost
+            postRent.total_price = self.cost
+            self.rent_post = [postRent.asDictionary]
+        }
+        return URL
     }
 }
