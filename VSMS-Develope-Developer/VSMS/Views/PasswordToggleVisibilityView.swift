@@ -50,8 +50,8 @@ class PasswordToggleVisibilityView: UIView {
     
     override var tintColor: UIColor! {
         didSet {
-            eyeButton.tintColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
-            checkmarkImageView.tintColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+            eyeButton.tintColor = UIColor.darkGray
+            checkmarkImageView.tintColor = UIColor.darkGray
         }
     }
     
@@ -80,7 +80,7 @@ class PasswordToggleVisibilityView: UIView {
         eyeButton.setImage(self.eyeopen.withRenderingMode(.alwaysTemplate), for: .selected)
         eyeButton.addTarget(self, action: #selector(PasswordToggleVisibilityView.eyeButtonPressed(_:)), for: .touchUpInside)
         eyeButton.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        eyeButton.tintColor = self.tintColor
+        eyeButton.tintColor = UIColor.lightGray
         self.addSubview(eyeButton)
         
         let checkmarkImageWidth = (frame.width / 2) - padding
@@ -89,10 +89,10 @@ class PasswordToggleVisibilityView: UIView {
         checkmarkImageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         checkmarkImageView.contentMode = .center
         checkmarkImageView.backgroundColor = UIColor.clear
-        checkmarkImageView.tintColor = self.tintColor
+        checkmarkImageView.tintColor = UIColor.lightGray
         self.addSubview(checkmarkImageView)
         
-        self.checkmarkImageView.isHidden = true
+        self.checkmarkImageView.isHidden = false
     }
     
     

@@ -866,6 +866,11 @@
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="placholderLabel.textColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="  New Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vu5-Aw-QUs" customClass="HideShowPasswordTextField" customModule="VSMS" customModuleProvider="target">
                                                 <rect key="frame" x="15" y="174" width="345" height="45"/>
@@ -896,8 +901,12 @@
                                                 <state key="normal" title="Submit">
                                                     <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="SubmitTapped:" destination="LM1-tX-UsK" eventType="touchUpInside" id="ln8-ZA-hzU"/>
+                                                </connections>
                                             </button>
                                         </subviews>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="JQl-2d-LWP" firstAttribute="leading" secondItem="hXe-tb-EkS" secondAttribute="leading" constant="5" id="1Q6-Gd-FEH"/>
                                             <constraint firstItem="EBr-xz-1aQ" firstAttribute="leading" secondItem="hXe-tb-EkS" secondAttribute="leading" constant="15" id="6Jq-dZ-gGO"/>

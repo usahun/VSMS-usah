@@ -40,6 +40,14 @@ class PresentController
         }
     }
     
+    static func ChangePassword(from: UIViewController)
+    {
+        if let VC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChangePasswordController") as? ChangePasswordController
+        {
+            from.navigationController?.pushViewController(VC, animated: true)
+        }
+    }
+    
     static func LogInandRegister()
     {
         if let currentView = UIApplication.topViewController() {
