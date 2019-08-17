@@ -13,12 +13,7 @@ import Firebase
 
 class RegisterController: UIViewController {
     
-    @IBOutlet weak var textphone: UITextField!
-    @IBOutlet weak var textpassword: UITextField!
-    @IBOutlet weak var textconfirmPassword: UITextField!
     var defaultUser = UserDefaults.standard
-    
-    
     @IBOutlet weak var txtPhoneNumber: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var txtConfirmPassword: UITextField!
@@ -27,93 +22,92 @@ class RegisterController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        self.navigationController?.setNavigationBarHidden(false, animated: false)
-
+        configuration()
     }
     
+    func configuration()
+    {
+        txtPhoneNumber.addDoneButtonOnKeyboard()
+        txtPassword.addDoneButtonOnKeyboard()
+        txtConfirmPassword.addDoneButtonOnKeyboard()
+        ShowDefaultNavigation()
+        
+    }
+    
+    
     @IBAction func SubmitHandle(_ sender: Any) {
-        print("register")
+        Register()
+        
+//        let acc = AccountViewModel()
+//        acc.username = txtPhoneNumber.text!
+//        acc.password = txtConfirmPassword.text!
+//        
+//        acc.ProfileData.telephone = txtPhoneNumber.text!
+//        acc.RegisterUser { (result) in
+//            
+//        }
     }
     
    
-    @IBAction func submitTapped(_ sender: Any) {
-        
-        let data: Parameters = [
-            "username": textphone.text!,
-            "password": textconfirmPassword.text!,
-            "groups": [1],
-            "profile": [
-                "telephone": textphone.text!
-            ]
-        ]
-        let headers = [
-            "Cookie": "",
-            "Accept": "application/json",
-            "Content-Type": "application/json",
-        ]
-        
-        let userphone = textphone.text!
-        let password = textpassword.text!
-        let confirmpassword = textconfirmPassword.text!
-        
-        if (userphone.isEmpty || password.isEmpty || confirmpassword.isEmpty)
-        {
-           let myAlert = UIAlertController(title: "Alert", message: "All fields are requested in fill", preferredStyle: .alert)
-            
-            let okAlert = UIAlertAction(title: "ok", style: .default, handler: nil)
-            myAlert.addAction(okAlert)
-          self.present(myAlert, animated: true, completion: nil)
-            
-            return
-        }
-        
-        if(password != confirmpassword)
-        {
-            let myAlert = UIAlertController(title: "Alert", message: "Passwords do not match. Please try again", preferredStyle: .alert)
-            let okAlert = UIAlertAction(title: "ok", style: .default, handler: nil)
-            myAlert.addAction(okAlert)
-            self.present(myAlert, animated: true, completion: nil)
-            
-            return
-        }
-        
-        
-        Alamofire.request(PROJECT_API.REGISTER, method: .post, parameters: data,encoding: JSONEncoding.default, headers: headers).responseJSON
-            { response in
-                switch response.result {
-                case .success(let value):
-                    let json = JSON(value)
-                    let userDefault = UserDefaults.standard
-                        userDefault.set(json["username"].stringValue, forKey: "username")
-                        userDefault.set(json["id"].stringValue, forKey: "userid")
-                        userDefault.set(self.textconfirmPassword.text, forKey: "password")
-                        userDefault.set(json["username"].stringValue, forKey: "telephone")
-                        UserDefaults.standard.synchronize()
-                    Message.SuccessMessage(message: "Your account has been register.", View: self, callback: {
-                        //switching the screen
-                        let profileViewController = self.storyboard?.instantiateViewController(withIdentifier: "TestViewController") as! TestViewController
-                        self.navigationController?.pushViewController(profileViewController, animated: true)
-                    })
-                    break
-                case .failure(let error):
-                    print(error)
-                    break
-                }
-                
-        }
-        
-        
-    }
-    
     
     func Register()
     {
-        PhoneAuthProvider.provider().verifyPhoneNumber("+855966016549", uiDelegate: nil) { (verificationID, error) in
+        guard let phonenumber = txtPhoneNumber.text else { return }
+        guard let password = txtPassword.text else { return }
+        guard let confirmPassword = txtConfirmPassword.text else { return }
+        
+        if phonenumber == ""
+        {
+            txtPhoneNumber.becomeFirstResponder()
+            return
+        }
+        else if password == ""
+        {
+            txtPassword.becomeFirstResponder()
+            return
+        }
+        else if confirmPassword != password
+        {
+            txtConfirmPassword.text = ""
+            txtConfirmPassword.becomeFirstResponder()
+            return
+        }
+
+        
+        PhoneAuthProvider.provider().verifyPhoneNumber(phonenumber.ISOTelephone(), uiDelegate: nil) { (verificationID, error) in
             if let error = error {
                 print(error)
+                Message.AlertMessage(message: "\(error)", header: "Error", View: self, callback: {
+                    self.txtPhoneNumber.text = ""
+                    self.txtPassword.text = ""
+                    self.txtConfirmPassword.text = ""
+                    self.txtPhoneNumber.becomeFirstResponder()
+                })
                 return
             }
-            print(verificationID)
+
+            UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+            PresentController.PushToVerifyViewController(telelphone: phonenumber, password: confirmPassword, from: self)
         }
+        
+        
     }
 
+}
+
+extension String {
+    func subString(from: Int, to: Int) -> String {
+        let startIndex = self.index(self.startIndex, offsetBy: from)
+        let endIndex = self.index(self.startIndex, offsetBy: to)
+        return String(self[startIndex..<endIndex])
+    }
+    
+    func ISOTelephone() -> String
+    {
+        let firstChar = self.prefix(1)
+        if firstChar == "0" {
+            return "+855" + self.subString(from: 1, to: self.count)
+        }
+        return self
+    }
 }

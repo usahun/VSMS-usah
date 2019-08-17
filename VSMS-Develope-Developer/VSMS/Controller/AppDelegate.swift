@@ -46,6 +46,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,CLLocationManagerDelegate
 //        configureSideMenu()
 //        locationservice.delegate = selff
 //        print(locationservice.lastLocation as Any)
+        
+        
+//        Auth.auth().addIDTokenDidChangeListener { (auth, user) in
+//            if user != nil
+//            {
+//                let userProfile = UserFireBase()
+//                userProfile.id = user!.uid
+//                userProfile.username = "Rathana"
+//                userProfile.password = "123456"
+//                userProfile.search = "Rathana".lowercased()
+//                userProfile.Save({
+//
+//                })
+//            }
+//        }
+        
+        
+        
+//        UserFireBase.Load { (user) in
+//            user.username = "Edit testing again"
+//            user.Update({
+//
+//            })
+//        }
+       
         return true
     }
     

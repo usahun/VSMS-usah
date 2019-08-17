@@ -23,6 +23,7 @@
                         <rect key="frame" x="150" y="12" width="20" height="20"/>
                     </activityIndicatorView>
                 </subviews>
+                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="o7G-pS-JJn" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="sjI-ne-48Z"/>
                     <constraint firstItem="o7G-pS-JJn" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="wHg-Pe-o4x"/>

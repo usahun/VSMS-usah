@@ -21,7 +21,6 @@ class CusTextAreaInput: UIView, UITextViewDelegate {
             return secondaryLabel.text ?? ""
         }
         set(newValue){
-            imgCheck.Inputchecked()
             self.secondaryLabel.text = newValue
             self.lblPlaceHolder.text = newValue
         }
@@ -32,6 +31,7 @@ class CusTextAreaInput: UIView, UITextViewDelegate {
             return textView.text
         }
         set(newValue){
+            imgCheck.Inputchecked()
             secondaryLabel.isHidden = false
             lblPlaceHolder.isHidden = true
             textView.text = newValue

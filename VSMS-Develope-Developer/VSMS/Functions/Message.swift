@@ -177,4 +177,3 @@ func showToast(message : String, view: UIViewController) {
     })
 }
 
-

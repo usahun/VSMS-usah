@@ -17,7 +17,7 @@ class LoanViewModel
     var job: String = ""
     var average_income: String = ""
     var average_expense: String = ""
-    var telephone: String = ""
+    var telephone: String = "077350356" //Thou Number
     var gender: String = ""
     var loan_purpose: String = ""
     var loan_amount: String = ""
@@ -79,7 +79,8 @@ class LoanViewModel
                           headers: headers
             ).responseJSON { response in
                             switch response.result{
-                            case .success:
+                            case .success(let value):
+                                print(value)
                                 completion(true)
                             case .failure:
                                 completion(false)

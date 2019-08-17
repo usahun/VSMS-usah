@@ -708,7 +708,15 @@ extension UIImage {
                           headers: httpHeader()
             ).responseJSON { response in
                             switch response.result{
-                            case .success:
+                            case .success(let value):
+                                let json = JSON(value)
+                                let profile = JSON(json["profile"])
+                                UserFireBase.Load({ (userProfile) in
+                                    userProfile.coverURL = profile["cover_photo"].stringValue
+                                    userProfile.Update({
+                                        
+                                    })
+                                })
                                 completion()
                             case .failure(let error):
                                 print(error)
@@ -729,7 +737,16 @@ extension UIImage {
                           headers: httpHeader()
             ).responseJSON { response in
                             switch response.result{
-                            case .success:
+                            case .success(let value):
+                                print(value)
+                                let json = JSON(value)
+                                let profile = JSON(json["profile"])
+                                UserFireBase.Load({ (userProfile) in
+                                    userProfile.imageURL = profile["profile_photo"].stringValue
+                                    userProfile.Update({
+                                        
+                                    })
+                                })
                                 completion()
                             case .failure(let error):
                                 print(error)

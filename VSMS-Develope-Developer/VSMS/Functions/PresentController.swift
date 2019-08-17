@@ -75,4 +75,15 @@ class PresentController
             from.navigationController?.pushViewController(editVC, animated: true)
         }
     }
+    
+    static func PushToVerifyViewController(telelphone: String, password: String, from: UIViewController, isLogin: Bool = false)
+    {
+        if let verifyVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "VerifyViewController") as? VerifyViewController
+        {
+            verifyVC.account.username = telelphone
+            verifyVC.account.password = password
+            verifyVC.is_login = isLogin
+            from.navigationController?.pushViewController(verifyVC, animated: true)
+        }
+    }
 }
