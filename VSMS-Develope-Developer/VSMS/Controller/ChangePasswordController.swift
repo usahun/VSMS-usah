@@ -92,7 +92,7 @@ class ChangePasswordController: UIViewController {
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
-                    let myAlert = UIAlertController(title: "Change Password", message: "You have successfully to New password", preferredStyle: .alert)
+                    let myAlert = UIAlertController(title: "Change Password", message: "You have successfully to the New password", preferredStyle: .alert)
                     let okAlert = UIAlertAction(title: "OK", style: .default, handler: nil)
                     myAlert.addAction(okAlert)
                     self.present(myAlert, animated: true, completion: nil)

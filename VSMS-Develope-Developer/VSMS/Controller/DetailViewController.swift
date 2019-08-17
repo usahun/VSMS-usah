@@ -63,6 +63,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var txtinterestRate: UITextField!
     @IBOutlet weak var txtprice: UITextField!
     
+    @IBOutlet weak var LoanView: UIView!
     @IBOutlet weak var lblmonthlypayment: UILabel!
     
     override func viewDidLoad() {
@@ -109,6 +110,15 @@ class DetailViewController: UIViewController {
         txtprice.addTarget(self, action: #selector(CalculatorLoan), for: UIControl.Event.editingChanged)
         txtinterestRate.addTarget(self, action: #selector(CalculatorLoan), for: UIControl.Event.editingChanged)
         txtTerm.addTarget(self, action: #selector(CalculatorLoan), for: UIControl.Event.editingChanged)
+        
+        if(ProductDetail.post_type == "sell"){
+            LoanView.isHidden = true
+            
+        }
+        
+//        ProductDetail.post_type = "rent"
+//        ProductDetail.post_type = "buy"
+//        ProductDetail.post_type = "sell"
     }
     
     
