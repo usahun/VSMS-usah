@@ -414,6 +414,10 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 let cell = tableView.dequeueReusableCell(withIdentifier: "likesCell", for: indexPath) as! LikesTableViewCell
                 cell.ProductData = ProfileHandleRequest.PostLike[indexPath.row]
                 cell.delegate = self
+                cell.DeleteHandle = { ProID in
+                self.DeleteUnlike(ProID: ProID)
+                self.tableView.reloadData()
+            }
                 cell.reload()
                 return cell
         }
@@ -480,6 +484,8 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         }
     }
     
+    
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let lastIndex = ProfileHandleRequest.PostActive.count - 1
         if lastIndex == indexPath.row {
@@ -512,6 +518,21 @@ extension TestViewController {
                 }
             })
         }
+    }
+    
+    func DeleteUnlike(ProID: Int)
+    {
+        let alertMessage = UIAlertController(title: nil, message: "Removing Unlike...", preferredStyle: .alert)
+        alertMessage.addActivityIndicator()
+        self.present(alertMessage, animated: true,completion: nil)
+        LikeViewModel.Detail(ProID: ProID) { (val) in
+            val.Remove(LikeID: ProID, completion: { (result) in
+                alertMessage.dismissActivityIndicator()
+                print(val)
+                self.tableView.reloadData()
+            })
+        }
+        
     }
     
     func DetailLoanHandler(LoanID: Int)

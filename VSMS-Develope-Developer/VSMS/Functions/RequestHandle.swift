@@ -27,6 +27,8 @@ class RequestHandle {
     var AllPostNextPage: String?
     var AllPostPreviousePage: String?
     
+    
+    
     func LoadAllPosts(completion: @escaping ([HomePageModel]) -> Void){
         var result: [HomePageModel] = []
         Alamofire.request(PROJECT_API.HOMEPAGE,
@@ -619,6 +621,14 @@ struct ListLoanViewModel
 }
 
 class LikeViewModel {
+    
+    var headers: HTTPHeaders = [
+        "Cookie": "",
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization" : User.getUserEncoded(),
+        ]
+    
     var id: Int = 0
     var like_by: Int = 0
     var modified: String?
@@ -637,6 +647,50 @@ class LikeViewModel {
         self.post = json["post"].stringValue.toInt()
         self.record_status = json["record_status"].stringValue.toInt()
     }
+    
+    func Remove(LikeID: Int, completion: @escaping (Bool) -> Void)
+    {
+        let parameters: Parameters = [
+            "record_status": 2]
+        
+       self.record_status = 2
+        
+       Alamofire.request("\(PROJECT_API.USERUNLIKE)\(LikeID)",
+        method: .patch, parameters: parameters,
+        encoding: JSONEncoding.default,
+        headers: self.headers
+        ).responseJSON{ response in
+            switch response.result {
+            case .success(let value):
+            print(value)
+            completion(true)
+            case .failure(let error):
+            print(error)
+            completion(false)
+            }
+        }
+    }
+    
+    
+    static func Detail(ProID: Int, completion: @escaping (LikeViewModel) -> Void)
+    {
+        Alamofire.request("\(PROJECT_API.USERUNLIKE)\(ProID)",
+            method: .get,
+            encoding: JSONEncoding.default,
+            headers: httpHeader()
+            ).responseJSON { response in
+                switch response.result{
+                case .success(let value):
+                    let json = JSON(value)
+                    completion(LikeViewModel(json: json))
+                case .failure(let error):
+                    print(error)
+                }
+        }
+    }
+    
+   
+    
 }
 
 

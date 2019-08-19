@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class LikesTableViewCell: UITableViewCell {
     
@@ -23,6 +25,8 @@ class LikesTableViewCell: UITableViewCell {
     weak var delegate: ProfileCellClickProtocol?
     var ProductData = LikeViewModel()
     var DeleteHandle: ((Int) -> Void)?
+    var record_status: Int = 0
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -58,10 +62,12 @@ class LikesTableViewCell: UITableViewCell {
         self.delegate?.cellClickToDetail(ID: ProductData.post)
     }
     
+
     @IBAction func btnlikeTapped(_ sender: Any) {
-        Message.ConfirmRemove(message: "Are you sure to unlike this product?")
-        {
-            // self.DeleteHandle!(self.ProID)
+        Message.ConfirmUnlike(message: "Are you suer to unlike this product?") {
+            self.DeleteHandle!(self.ProductData.id)
         }
     }
+    
+   
 }
