@@ -62,6 +62,7 @@ class PostViewController: UITableViewController {
     
     //Internal Properties
     var post_obj = PostAdViewModel()
+    var dispatch = DispatchGroup()
     
     var is_edit = false
     var post_id: Int?
@@ -91,27 +92,46 @@ class PostViewController: UITableViewController {
         post_obj.contact_phone = txtPhoneNumber.Value
         post_obj.contact_email = txtEmail.Value
         
+        post_obj.machine_code = txtName.Value
+        
         post_obj.front_image_path = imagePicker.front_image
         post_obj.left_image_path = imagePicker.left_image
         post_obj.right_image_path = imagePicker.right_image
         post_obj.back_image_path = imagePicker.back_image
         
-//        post_obj.front_image_base64 = imagePicker.front_image
-//        post_obj.left_image_base64 = imagePicker.left_image
-//        post_obj.right_image_base64 = imagePicker.right_image
-//        post_obj.back_image_base64 = imagePicker.back_image
-    
-        post_obj.Save { (result) in
-            alertMessage.dismissActivityIndicator()
-            if result{
-                Message.SuccessMessage(message: "Product uploaded successfully.", View: self, callback: {
-                    PresentController.ProfileController()
-                })
+        if is_edit
+        {
+            post_obj.Update { (result) in
+                alertMessage.dismissActivityIndicator()
+                if result{
+                    Message.SuccessMessage(message: "Product updated successfully.", View: self, callback: {
+                       PresentController.ProfileController()
+                    })
+                }
             }
         }
-        
-        
+        else{
+            post_obj.Save { (result) in
+                alertMessage.dismissActivityIndicator()
+                if result{
+                    Message.SuccessMessage(message: "Product uploaded successfully.", View: self, callback: {
+                        PresentController.ProfileController()
+                    })
+                }
+            }
+        }
     }
+    
+    @IBAction func btnBack(_ sender: Any) {
+        if is_edit
+        {
+            self.navigationController?.popViewController(animated: true)
+        }
+        else{
+            PresentController.ProfileController()
+        }
+    }
+    
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -169,6 +189,10 @@ class PostViewController: UITableViewController {
             switch indexPath.row
             {
             case 0:
+                guard !is_edit else{
+                    tableView.deselectRow(at: indexPath, animated: false)
+                    return
+                }
                 self.ShowPostTypeOption(style: .push)
             case 2:
                 self.ShowCategoryOption(style: .push)
@@ -199,33 +223,39 @@ class PostViewController: UITableViewController {
 extension PostViewController {
     func Prepare()
     {
-        self.txtName.Value = User.getUsername()
-        //self.txtPhoneNumber.Value = User.getUsername()
-        
+        self.txtName.Value = post_obj.name
+        self.txtPhoneNumber.Value = post_obj.contact_phone
         self.post_arr = GenerateList.getPostType()
         self.color_arr = GenerateList.getColor()
         self.discount_type_arr = GenerateList.getDiscountType()
         self.condition_arr = GenerateList.getCondition()
         
+        dispatch.enter()
         GenerateList.getCategory { (val) in
             self.category_arr = val
+            self.dispatch.leave()
         }
-        
+        dispatch.enter()
         GenerateList.getType { (val) in
             self.type_arr = val
+            self.dispatch.leave()
         }
-        
+        dispatch.enter()
         GenerateList.getBrand { (val) in
             self.brand_arr = val
+            self.dispatch.leave()
         }
-        
+        dispatch.enter()
         GenerateList.getModel { (val) in
             self.model_arr = val
+            self.dispatch.leave()
         }
-        
+        dispatch.enter()
         GenerateList.getYear { (val) in
             self.year_arr = val
+            self.dispatch.leave()
         }
+        
     }
     
     func PrepareToEdit()
@@ -235,7 +265,39 @@ extension PostViewController {
         }
         
         is_edit = true
-        print(ProductID)
+        btnSubmit.setTitle("Update", for: .normal)
+        
+        dispatch.notify(queue: .main) {
+            self.post_obj.Load(PostID: ProductID) { (data) in
+                self.post_obj = data
+                
+                self.postType.Value = data.post_type.capitalizingFirstLetter()
+                
+                self.txtTitle.Value = data.title
+                self.cboCategory.Value = self.category_arr.first(where: {$0.ID == data.category.toString()})!.Text!
+                self.cboType.Value = self.type_arr.first(where: {$0.ID == data.type.toString()})!.Text!
+                
+                let Brand = self.model_arr.first(where: {$0.ID == data.modeling.toString()})!
+                self.cboBrand.Value = self.brand_arr.first(where: {$0.ID == Brand.Fkey})!.Text!
+                self.post_obj.brand = (self.brand_arr.first(where: {$0.ID == Brand.Fkey})?.ID?.toInt())!
+                
+                self.cboModel.Value = self.model_arr.first(where: {$0.ID == data.modeling.toString()})!.Text!
+                self.cboYear.Value = self.year_arr.first(where: {$0.ID == data.year.toString()})!.Text!
+                self.cboCondition.Value = self.condition_arr.first(where: {$0.ID == data.condition})!.Text!
+                self.cboColor.Value = self.color_arr.first(where: {$0.ID == data.color})!.Text!
+                self.txtDescription.Value = data.description
+                self.txtPrice.Value = data.cost
+                
+                self.cboDiscountType.Value = self.discount_type_arr.first(where: {$0.ID == data.discount_type})!.Text!
+                self.txtDiscountAmount.Value = data.discount
+                
+                self.txtName.Value = data.machine_code
+                self.txtPhoneNumber.Value = data.contact_phone
+                self.txtEmail.Value = data.contact_email
+                
+                self.tableView.reloadData()
+            }
+        }
     }
     
     func ShowPostTypeOption(style: PresentationStyle)

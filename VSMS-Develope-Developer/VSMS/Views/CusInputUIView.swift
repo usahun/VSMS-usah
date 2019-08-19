@@ -30,6 +30,9 @@ class CusInputUIView: UIView, UITextFieldDelegate {
             return txtInput.text ?? ""
         }
         set(newValue){
+            if newValue == "" {
+                return
+            }
             imgValidate.Inputchecked()
             secondaryLabel.isHidden = false
             txtInput.text = newValue

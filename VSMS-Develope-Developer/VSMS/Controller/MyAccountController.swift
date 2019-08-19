@@ -82,7 +82,7 @@ class MyAccountController: UITableViewController {
     func setUpAccountData()
     {
         lblUserGroup.getUserGroupFromAPI(userGroupID: UserAccount.group[0])
-        txtUsername.text = UserAccount.username
+        txtUsername.text = UserAccount.firstname == "" ? UserAccount.username : UserAccount.firstname
         lblGender.text = UserAccount.ProfileData.gender.capitalizingFirstLetter()
         txtDob.text = UserAccount.ProfileData.date_of_birth.DateFormat()
         lblPOB.getProvinceFromAPI(ProvinceID: UserAccount.ProfileData.place_of_birth ?? 0)
@@ -146,11 +146,16 @@ class MyAccountController: UITableViewController {
     
     @IBAction func btnSubmitHandle(_ sender: UIButton)
     {
+        if txtUsername.text == ""
+        {
+            return
+        }
+        
         let alertMessage = UIAlertController(title: nil, message: "Updating Profile", preferredStyle: .alert)
         alertMessage.addActivityIndicator()
         self.present(alertMessage, animated: true, completion: nil)
         
-        UserAccount.username = txtUsername.text!
+        UserAccount.firstname = txtUsername.text!
         UserAccount.ProfileData.date_of_birth = txtDob.text!.toISODate()
         UserAccount.ProfileData.telephone = txtPhoneNumber.text!
         UserAccount.ProfileData.wing_account_name = txtWingName.text!

@@ -319,7 +319,7 @@ class RentPost {
         self.rent_status = json["rent_status"].stringValue.toInt()
         self.record_status = json["record_status"].stringValue.toInt()
         self.rent_type = json["rent_type"].stringValue
-        //self.rent_date = json["rent_date"].stringValue
+        self.price = json["price"].stringValue
         self.total_price = json["total_price"].stringValue
     }
 }
@@ -356,6 +356,8 @@ class BuyPost {
 class PostAdViewModel
 {
     var id: Int = -1
+    
+    //Detail
     var title: String = ""
     var post_type: String = ""
     var category: Int = 0
@@ -365,19 +367,22 @@ class PostAdViewModel
     var year: Int = 0
     var condition: String = ""
     var color: String = ""
-    var vin_code: String = ""
-    var machine_code: String = ""
     var description: String = ""
     var cost: String = "0"
-    var created_by: Int = User.getUserID()
+    
+    //Discount
     var discount_type: String = "amount"
     var discount: String = "0"
-    var status: Int = 1
+
+    ///User
+    var machine_code: String = ""
     var user: Int = User.getUserID()
+    var created_by: Int = User.getUserID()
+    var modified_by: Int?
+    var vin_code: String = ""
     
-    
-    //var discount_type: String = ""
-    var name: String = ""
+    //Contact
+    var name: String = User.getfirstname()
     var contact_phone: String = User.getUsername()
     var contact_email: String = ""
     var contact_address: String = ""
@@ -395,42 +400,132 @@ class PostAdViewModel
     var back_image_path: String?
     var back_image_base64: String?
     
+    //record
+    var status: Int = 3
+    var modified: Date?
+    
     //Array Post
     var sale_post: [[String: Any]] = [[:]]
     var rent_post: [[String: Any]] = [[:]]
     var buy_post: [[String: Any]] = [[:]]
     
+    //Object helper
+    var sale: SalePost?
+    var rent: RentPost?
+    var buy: BuyPost?
+    
     init(){}
     
-    func Save(completion: @escaping (Bool) -> Void)
+    init(PostIDToDelete: Int)
     {
-        var URL = ""
+        self.id = PostIDToDelete
+    }
+    
+    init(json: JSON)
+    {
+        self.id = json["id"].stringValue.toInt()
+        //Detail
+        self.title = json["title"].stringValue
+        self.post_type = json["post_type"].stringValue
+        self.category = json["category"].stringValue.toInt()
+        self.type = json["type"].stringValue.toInt()
+        self.brand = json["brand"].stringValue.toInt()
+        self.modeling = json["modeling"].stringValue.toInt()
+        self.year = json["year"].stringValue.toInt()
+        self.condition = json["condition"].stringValue
+        self.color = json["color"].stringValue
+        self.description = json["description"].stringValue
+        self.cost = json["cost"].stringValue
+        
+        //Discount
+        self.discount_type = json["discount_type"].stringValue
+        self.discount = json["discount"].stringValue
+        
+        //Contact
+        self.machine_code = json["machine_code"].stringValue // Using instead of Name of User in Post AD
+        self.vin_code = json["vin_code"].stringValue //Using instead of Address Location 
+        self.contact_phone = json["contact_phone"].stringValue
+        self.contact_email = json["contact_email"].stringValue
+        self.contact_address = json["contact_address"].stringValue
+        
+        
+        //Photo
+        self.front_image_path = json["front_image_path"].stringValue
+        self.left_image_path = json["left_image_path"].stringValue
+        self.right_image_path = json["right_image_path"].stringValue
+        self.back_image_path = json["back_image_path"].stringValue
+        
+        //record
+        self.user = json["user"].stringValue.toInt()
+        self.status = json["status"].stringValue.toInt()
+        
+        
         if self.post_type == "sell"
         {
-            URL = PROJECT_API.POST_SELL
-            let postSell = SalePost()
-            postSell.price = self.cost
-            postSell.total_price = self.cost
-            self.sale_post = [postSell.asDictionary]
+            self.sale = JSON(json["sales"]).arrayValue.map{
+                SalePost(json: $0)
+                }.first
         }
         else if self.post_type == "buy"
         {
-            URL = PROJECT_API.POST_BUYS
-            let postBuy = BuyPost()
-            postBuy.total_price = self.cost
-            self.buy_post = [postBuy.asDictionary]
+            self.buy = JSON(json["buys"]).arrayValue.map{
+                BuyPost(json: $0)
+                }.first
         }
         else if self.post_type == "rent"
         {
-            URL = PROJECT_API.POST_RENTS
-            let postRent = RentPost()
-            postRent.price = self.cost
-            postRent.total_price = self.cost
-            self.rent_post = [postRent.asDictionary]
+            self.rent = JSON(json["rents"]).arrayValue.map{
+                RentPost(json: $0)
+            }.first
         }
         
+    }
+    
+    func Load(PostID: Int, completion: @escaping (PostAdViewModel) -> Void)
+    {
+        Alamofire.request(PROJECT_API.LOADPRODUCT(ProID: PostID),
+                          method: .get,
+                          encoding: JSONEncoding.default
+            ).responseJSON
+            { response in
+                switch response.result
+                {
+                case .success(let value):
+                    let json = JSON(value)
+                    let result = PostAdViewModel(json: json)
+                    completion(result)
+                case .failure(let error):
+                    print(error)
+                }
+        }
+    }
+    
+    func Save(completion: @escaping (Bool) -> Void)
+    {
+        self.AssignPostType()
         Alamofire.request(absolute_URL,
                           method: .post,
+                          parameters: self.asDictionary,
+                          encoding: JSONEncoding.default,
+                          headers: httpHeader()
+            ).responseJSON { response in
+                            switch response.result{
+                            case .success(let value):
+                                print(value)
+                                completion(true)
+                            case .failure(let error):
+                                print(error)
+                                completion(false)
+                            }
+        }.resume()
+    }
+    
+    func Update(completion: @escaping (Bool) -> Void)
+    {
+        self.AssignBeforeUpdate()
+        
+        Alamofire.request("\(absolute_URL)\(self.id)/",
+                          method: .patch,
                           parameters: self.asDictionary,
                           encoding: JSONEncoding.default,
                           headers: httpHeader()
@@ -442,28 +537,31 @@ class PostAdViewModel
                                 print(error)
                                 completion(false)
                             }
-        }.resume()
-    }
-    
-    func Update(completion: @escaping (Bool) -> Void)
-    {
-        Alamofire.request(absolute_URL,
-                          method: .patch,
-                          parameters: self.asDictionary,
-                          encoding: JSONEncoding.default,
-                          headers: httpHeader()
-            ).responseJSON { response in
-                            switch response.result{
-                            case .success:
-                                break
-                            case .failure(let error):
-                                print(error)
-                                
-                            }
         }
     }
     
-    var asDictionary : [String:Any] {
+    static func Delete(PostID: Int, completion: @escaping (Bool) -> Void)
+    {
+        let para: Parameters = ["status": 2]
+        Alamofire.request("\(PROJECT_API.UpdateProductStatus)\(PostID)/",
+            method: .put,
+            parameters: para,
+            encoding: JSONEncoding.default,
+            headers: httpHeader()
+            ).responseJSON { response in
+                switch response.result{
+                case .success(let value):
+                    print(value)
+                    completion(true)
+                case .failure(let error):
+                    print(error)
+                    completion(false)
+                }
+        }
+    }
+    
+    var asDictionary : [String:Any]
+    {
         let mirror = Mirror(reflecting: self)
         let dict = Dictionary(uniqueKeysWithValues: mirror.children.lazy.map({ (label:String?,value:Any) -> (String,Any)? in
             guard label != nil else { return nil }
@@ -472,11 +570,28 @@ class PostAdViewModel
         return dict
     }
     
-    var absolute_URL: String {
+    var absolute_URL: String
+    {
         var URL = ""
         if self.post_type == "sell"
         {
             URL = PROJECT_API.POST_SELL
+        }
+        else if self.post_type == "buy"
+        {
+            URL = PROJECT_API.POST_BUYS
+        }
+        else if self.post_type == "rent"
+        {
+            URL = PROJECT_API.POST_RENTS
+        }
+        return URL
+    }
+    
+    private func AssignPostType()
+    {
+        if self.post_type == "sell"
+        {
             let postSell = SalePost()
             postSell.price = self.cost
             postSell.total_price = self.cost
@@ -484,19 +599,40 @@ class PostAdViewModel
         }
         else if self.post_type == "buy"
         {
-            URL = PROJECT_API.POST_BUYS
             let postBuy = BuyPost()
             postBuy.total_price = self.cost
             self.buy_post = [postBuy.asDictionary]
         }
         else if self.post_type == "rent"
         {
-            URL = PROJECT_API.POST_RENTS
             let postRent = RentPost()
             postRent.price = self.cost
             postRent.total_price = self.cost
             self.rent_post = [postRent.asDictionary]
         }
-        return URL
+    }
+    
+    private func AssignBeforeUpdate()
+    {
+        if self.post_type == "sell"
+        {
+            sale?.price = self.cost
+            sale?.total_price = self.cost
+            self.sale_post = [sale!.asDictionary]
+            self.sale = nil
+        }
+        else if self.post_type == "buy"
+        {
+            buy?.total_price = self.cost
+            self.buy_post = [buy!.asDictionary]
+            self.buy = nil
+        }
+        else if self.post_type == "rent"
+        {
+            rent?.price = self.cost
+            rent?.total_price = self.cost
+            self.rent_post = [rent!.asDictionary]
+            self.rent = nil
+        }
     }
 }

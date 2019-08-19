@@ -20,6 +20,7 @@ class HomePageModel {
     var discount: String = "0.0"
     var postType: String = ""
     var create_at: String?
+    var status: Int?
     var loanID: Int?
         
     init() {}
@@ -86,6 +87,7 @@ class HomePageModel {
         self.imagefront = json["front_image_path"].stringValue
         self.postType = json["post_type"].stringValue
         self.create_at = json["created"].stringValue
+        self.status = json["status"].stringValue.toInt()
     }
     
 }

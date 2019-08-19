@@ -105,10 +105,13 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         /////// Calling Functions
         XibRegister()
-        LabelName.text = User.getUsername()
         
         performOn(.Main) {
-            self.LoadUserProfileInfo()
+            self.ProfileHandleRequest.LoadProfileDetail {
+                performOn(.Main, closure: {
+                    self.InitailizeProfile()
+                })
+            }
             
             self.ProfileHandleRequest.LoadAllPostByUser {
                 self.isLoading = false
@@ -152,6 +155,9 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         tableView.register(UINib(nibName: "LoanTableViewCell", bundle: nil), forCellReuseIdentifier: "LoanTableViewCell")
         
         tableView.register(UINib(nibName: "LoanHistoryTableViewCell", bundle: nil), forCellReuseIdentifier: "LoanHistoryTableViewCell")
+        
+        tableView.register(UINib(nibName: "ProductListTableViewCell", bundle: nil), forCellReuseIdentifier: "ProductListCell")
+        
     }
     
     @objc
@@ -187,6 +193,7 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             self.picker.sourceType = .photoLibrary
             self.present(self.picker, animated: true, completion: nil)
         }
+        
         let takeNewCover = UIAlertAction(title: "Take a Photo", style: .default) { (alert) in
             if UIImagePickerController.isSourceTypeAvailable(.camera){
                 self.picker.sourceType = .camera
@@ -210,34 +217,10 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         present(alertCon, animated: true, completion: nil)
     }
     
-    func profileandCover(){
-        if imgprofile.profile.base64_cover_image != "" {
-            CoverImage.image = imgprofile.profile.base64_cover_image.base64ToImage()
-            CoverImage.contentMode = .scaleAspectFill
-        }
-        if imgprofile.profile.base64_profile_image != "" {
-            profileImage.image = imgprofile.profile.base64_profile_image.base64ToImage()
-            
-        }
-        
-        LabelName.text = User.getUsername()
-    }
-    
-    func LoadUserProfileInfo(){
-        Alamofire.request(PROJECT_API.USER,
-                          method: .get,
-                          encoding: JSONEncoding.default,
-                          headers: headers).responseJSON
-            { (response) in
-                switch response.result{
-                case .success(let value):
-                    let json = JSON(value)
-                    self.imgprofile = ImageProfileModel(json: json)
-                    self.profileandCover()
-                case .failure:
-                    print("error")
-                }
-        }
+    func InitailizeProfile(){
+        profileImage.ImageLoadFromURL(url: ProfileHandleRequest.Profile.profile.profile_image)
+        CoverImage.ImageLoadFromURL(url: ProfileHandleRequest.Profile.profile.cover_image)
+        LabelName.text = ProfileHandleRequest.Profile.firstName == "" ? ProfileHandleRequest.Profile.name : ProfileHandleRequest.Profile.firstName
     }
     
     @objc
@@ -352,6 +335,9 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             if indexPath.row == 0 {
                 return 50
             }
+            if !isPostActiveOrHistory{
+                return 140
+            }
              return 170
         }
         else if index == 1 {
@@ -406,11 +392,13 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     return tableView.noRecordCell(Indexpath: indexPath)
                 }
                 
-                let cell = tableView.dequeueReusableCell(withIdentifier: "Postcell", for: indexPath) as! PostsTableViewCell
-                cell.Data = ProfileHandleRequest.PostHistory[indexPath.row - 1]
-                cell.delelgate = self
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ProductListCell", for: indexPath) as! ProductListTableViewCell
+                
+                cell.ProductData = ProfileHandleRequest.PostHistory[indexPath.row - 1]
+                cell.delegate = self
                 cell.reload()
                 return cell
+
             }
         }
         else if index == 1
@@ -572,7 +560,11 @@ extension TestViewController {
 
 extension TestViewController: ProfileCellClickProtocol {
     func cellClickToDelete(ID: Int) {
-        print(ID)
+        PostAdViewModel.Delete(PostID: ID) { (result) in
+            Message.AlertMessage(message: "Post has been deleted successfully.", header: "Successfully", View: self, callback: {
+                self.Refresher()
+            })
+        }
     }
     
     func cellClickToDetail(ID: Int) {
@@ -605,6 +597,13 @@ extension TestViewController: UIImagePickerControllerDelegate, UINavigationContr
                 }
             }
         }
+    }
+}
+
+extension TestViewController: CellClickProtocol
+{
+    func cellXibClick(ID: Int) {
+        self.PushToDetailProductViewController(productID: ID)
     }
 }
 

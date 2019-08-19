@@ -2794,7 +2794,7 @@
                     <navigationItem key="navigationItem" id="wCZ-YK-27n">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="uUy-72-y9p">
                             <connections>
-                                <segue destination="n0O-bI-QtL" kind="show" animates="NO" id="x2R-h9-P2U"/>
+                                <action selector="btnBack:" destination="hNy-OF-RcA" id="PyM-pQ-Uwv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -2822,7 +2822,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7KL-vh-hHd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3175" y="3587"/>
+            <point key="canvasLocation" x="3233" y="3770"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="F5t-Eg-lEx">
@@ -3237,59 +3237,42 @@
                                 <color key="textColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xmg-Sh-9eJ">
-                                <rect key="frame" x="20" y="400" width="335" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="Rzt-0J-Wxo"/>
-                                    <constraint firstAttribute="height" constant="30" id="Yl9-yQ-ZrU"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.57045853140000002" green="0.57047235969999999" blue="0.57046490910000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JRh-eT-e9o">
-                                <rect key="frame" x="17" y="489" width="338" height="40"/>
+                                <rect key="frame" x="20" y="723" width="335" height="35"/>
                                 <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="oUB-Om-H5C"/>
+                                    <constraint firstAttribute="height" constant="35" id="VLf-Hy-bzN"/>
                                 </constraints>
                                 <state key="normal" title="  Facebook " image="icons8-facebook-old-filled-24">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Login by using your Facebook Account" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8IT-3i-UlX">
-                                <rect key="frame" x="15" y="451" width="340" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="E2v-dI-GX6"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Login by using your Facebook Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8IT-3i-UlX">
+                                <rect key="frame" x="68.666666666666671" y="697.33333333333337" width="237.66666666666663" height="15.666666666666629"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="RVH-J5-y1W" firstAttribute="leading" secondItem="TjH-c4-OXU" secondAttribute="leading" constant="17" id="1sQ-O9-KzB"/>
+                            <constraint firstItem="JRh-eT-e9o" firstAttribute="leading" secondItem="TjH-c4-OXU" secondAttribute="leading" constant="20" id="4hb-ko-Vgf"/>
                             <constraint firstItem="TjH-c4-OXU" firstAttribute="trailing" secondItem="RVH-J5-y1W" secondAttribute="trailing" constant="20" id="5Bq-E0-78S"/>
                             <constraint firstItem="NBz-fg-PzO" firstAttribute="leading" secondItem="TjH-c4-OXU" secondAttribute="leading" constant="17" id="FxJ-dd-4dT"/>
-                            <constraint firstItem="TjH-c4-OXU" firstAttribute="trailing" secondItem="8IT-3i-UlX" secondAttribute="trailing" constant="20" id="H5e-LP-aFY"/>
-                            <constraint firstItem="xmg-Sh-9eJ" firstAttribute="leading" secondItem="TjH-c4-OXU" secondAttribute="leading" constant="20" id="Jca-wf-gI9"/>
-                            <constraint firstItem="8IT-3i-UlX" firstAttribute="top" secondItem="xmg-Sh-9eJ" secondAttribute="bottom" constant="21" id="K5A-zk-ei7"/>
-                            <constraint firstItem="JRh-eT-e9o" firstAttribute="top" secondItem="8IT-3i-UlX" secondAttribute="bottom" constant="8" id="Md5-0O-3OZ"/>
+                            <constraint firstItem="JRh-eT-e9o" firstAttribute="top" secondItem="8IT-3i-UlX" secondAttribute="bottom" constant="10" id="Gwz-Tw-fll"/>
+                            <constraint firstItem="TjH-c4-OXU" firstAttribute="bottom" secondItem="JRh-eT-e9o" secondAttribute="bottom" constant="20" id="KCu-E8-fpn"/>
                             <constraint firstItem="TjH-c4-OXU" firstAttribute="trailing" secondItem="vUv-7g-glZ" secondAttribute="trailing" constant="20" id="NiV-dW-tt3"/>
                             <constraint firstItem="xng-Td-AdR" firstAttribute="top" secondItem="NBz-fg-PzO" secondAttribute="bottom" constant="8" id="UNm-Up-jfE"/>
-                            <constraint firstItem="TjH-c4-OXU" firstAttribute="trailing" secondItem="xmg-Sh-9eJ" secondAttribute="trailing" constant="20" id="f9O-hf-H9H"/>
+                            <constraint firstItem="TjH-c4-OXU" firstAttribute="trailing" secondItem="JRh-eT-e9o" secondAttribute="trailing" constant="20" id="ZuL-nc-QHv"/>
                             <constraint firstItem="vUv-7g-glZ" firstAttribute="leading" secondItem="TjH-c4-OXU" secondAttribute="leading" constant="20" id="gJ3-XT-ucj"/>
                             <constraint firstItem="NBz-fg-PzO" firstAttribute="top" secondItem="TjH-c4-OXU" secondAttribute="top" constant="80" id="gmh-Aa-SRZ"/>
                             <constraint firstItem="RVH-J5-y1W" firstAttribute="top" secondItem="xng-Td-AdR" secondAttribute="bottom" constant="32" id="iri-Bj-MXe"/>
-                            <constraint firstItem="8IT-3i-UlX" firstAttribute="leading" secondItem="TjH-c4-OXU" secondAttribute="leading" constant="15" id="kjH-GY-S9S"/>
-                            <constraint firstItem="JRh-eT-e9o" firstAttribute="leading" secondItem="TjH-c4-OXU" secondAttribute="leading" constant="17" id="p7Z-nW-xmx"/>
-                            <constraint firstItem="xmg-Sh-9eJ" firstAttribute="top" secondItem="vUv-7g-glZ" secondAttribute="bottom" constant="40" id="pBE-hr-OZ0"/>
+                            <constraint firstItem="8IT-3i-UlX" firstAttribute="centerX" secondItem="lLd-7P-tuw" secondAttribute="centerX" id="mPJ-GA-y4i"/>
                             <constraint firstItem="TjH-c4-OXU" firstAttribute="trailing" secondItem="xng-Td-AdR" secondAttribute="trailing" constant="20" id="pkn-zU-kf9"/>
                             <constraint firstItem="TjH-c4-OXU" firstAttribute="trailing" secondItem="NBz-fg-PzO" secondAttribute="trailing" constant="20" id="wRm-6v-YNg"/>
                             <constraint firstItem="vUv-7g-glZ" firstAttribute="top" secondItem="RVH-J5-y1W" secondAttribute="bottom" constant="26" id="wXs-5m-aGZ"/>
                             <constraint firstItem="xng-Td-AdR" firstAttribute="leading" secondItem="TjH-c4-OXU" secondAttribute="leading" constant="17" id="xc8-et-eR1"/>
-                            <constraint firstItem="TjH-c4-OXU" firstAttribute="trailing" secondItem="JRh-eT-e9o" secondAttribute="trailing" constant="20" id="z25-oL-cEL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TjH-c4-OXU"/>
                     </view>
@@ -3658,7 +3641,4 @@
         <image name="registration-50" width="25" height="25"/>
         <image name="thumnail" width="16.666666030883789" height="16.666666030883789"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="x2R-h9-P2U"/>
-    </inferredMetricsTieBreakers>
 </document>

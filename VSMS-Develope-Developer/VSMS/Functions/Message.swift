@@ -60,7 +60,9 @@ class Message {
         let AlertMessage = UIAlertController(title: header,
                                              message: message,
                                              preferredStyle: .alert)
-        AlertMessage.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        AlertMessage.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (alert) in
+            callback()
+        }))
         AlertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: { (alert) in
             callback()
         }))
@@ -114,6 +116,19 @@ class BottomDetail: UIButton {
         self.layer.cornerRadius = 5
     }
 }
+
+class BorderView: UIView {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.layer.cornerRadius = 3
+        self.clipsToBounds = true
+        
+        self.layer.borderWidth = 0.5
+        self.layer.borderColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+    }
+}
+
 
 
 public enum QueueType {

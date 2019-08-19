@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="likesCell" rowHeight="151" id="KGk-i7-Jjw" customClass="LikesTableViewCell" customModule="VSMS" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="429" height="151"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="likesCell" rowHeight="154" id="KGk-i7-Jjw" customClass="LikesTableViewCell" customModule="VSMS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="429" height="154"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="429" height="150.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="429" height="153.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wRC-hd-NXb">
-                        <rect key="frame" x="2" y="0.0" width="425" height="142.5"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wRC-hd-NXb" customClass="BorderView" customModule="VSMS" customModuleProvider="target">
+                        <rect key="frame" x="12" y="10" width="405" height="142.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0dz-tl-M0Y">
                                 <rect key="frame" x="150" y="10" width="0.0" height="0.0"/>
@@ -35,7 +35,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lle-rn-WcT">
-                                <rect key="frame" x="362" y="95.5" width="55" height="20"/>
+                                <rect key="frame" x="342" y="95.5" width="55" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="Tcw-Qu-fXO"/>
                                     <constraint firstAttribute="width" constant="55" id="l3h-Ek-uyH"/>
@@ -57,7 +57,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9yK-2P-rfi">
-                                <rect key="frame" x="417" y="123" width="0.0" height="14.5"/>
+                                <rect key="frame" x="397" y="123" width="0.0" height="14.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14.5" id="QzV-SU-wlI"/>
                                 </constraints>
@@ -66,7 +66,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="isT-7s-9eC">
-                                <rect key="frame" x="392" y="62.5" width="25" height="25"/>
+                                <rect key="frame" x="372" y="62.5" width="25" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="2XG-yP-g3j"/>
                                     <constraint firstAttribute="width" constant="25" id="Eoc-WS-rZ7"/>
@@ -99,10 +99,10 @@
                 </subviews>
                 <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="wRC-hd-NXb" secondAttribute="trailing" constant="2" id="1dc-OU-5U7"/>
-                    <constraint firstItem="wRC-hd-NXb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="2" id="8nO-Be-FgO"/>
-                    <constraint firstAttribute="bottom" secondItem="wRC-hd-NXb" secondAttribute="bottom" constant="8" id="9i3-PS-QsS"/>
-                    <constraint firstItem="wRC-hd-NXb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="PXf-z1-6mG"/>
+                    <constraint firstAttribute="trailing" secondItem="wRC-hd-NXb" secondAttribute="trailing" constant="12" id="1dc-OU-5U7"/>
+                    <constraint firstItem="wRC-hd-NXb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="8nO-Be-FgO"/>
+                    <constraint firstAttribute="bottom" secondItem="wRC-hd-NXb" secondAttribute="bottom" constant="1" id="9i3-PS-QsS"/>
+                    <constraint firstItem="wRC-hd-NXb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="PXf-z1-6mG"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -115,7 +115,7 @@
                 <outlet property="lblPrice" destination="DHd-f9-0gm" id="1ig-ch-85n"/>
                 <outlet property="lblViewCount" destination="9yK-2P-rfi" id="RAl-w5-pmB"/>
             </connections>
-            <point key="canvasLocation" x="-162" y="47"/>
+            <point key="canvasLocation" x="-199" y="30"/>
         </tableViewCell>
     </objects>
     <resources>

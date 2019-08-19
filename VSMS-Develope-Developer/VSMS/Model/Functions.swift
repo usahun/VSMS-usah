@@ -29,8 +29,8 @@ class PROJECT_API {
     //Profile
     static var POST_BYUSER = "\(http_absoluteString)/postbyuser/"
     static var USER = "\(http_absoluteString)/api/v1/users/\(User.getUserID())/"
-    static var POSTBYUSERACTIVE = "\(http_absoluteString)/postbyuser/?status=1"
-    static var POSTBYUSERHISTORY = "\(http_absoluteString)/postbyuser/?status=2"
+    static var POSTBYUSERACTIVE = "\(http_absoluteString)/postbyuser/"
+    static var POSTBYUSERHISTORY = "\(http_absoluteString)/posybyuserhistory/?status=2"
     static var PROFILE_PIC = "\(http_absoluteString)/api/v1/users/\(User.getUserID())/profilephoto/"
     static var COVER_PIC = "\(http_absoluteString)/api/v1/users/\(User.getUserID())/coverphoto/"
     static var LIKEBYUSER = "\(http_absoluteString)/likebyuser/"
@@ -83,6 +83,9 @@ class PROJECT_API {
     static func POSTBYUSER_FILTER(UserID: String,approved: String?,rejected: String?, modify: String?) -> String {
         return "\(http_absoluteString)/postbyuserfilter/?created_by=\(UserID)&approved_by=\(approved ?? "")&rejected_by=\(rejected ?? "")&modified_by=\(modify ?? "")"
     }
+    
+    static var UpdateProductStatus = "\(http_absoluteString)/api/v1/renewaldelete/"
+    
    
     
     //Count Views
@@ -93,7 +96,7 @@ class PROJECT_API {
 
 func httpHeader() -> HTTPHeaders
 {
-    let head = [
+    let head: HTTPHeaders = [
         "Cookie": "",
         "Accept": "application/json",
         "Content-Type": "application/json",
@@ -103,6 +106,19 @@ func httpHeader() -> HTTPHeaders
 }
 
 class User {
+
+    static func setupNewUserLogIn(pk: Int, username: String, firstname: String, password: String)
+    {
+        User.resetUserDefault()
+        
+        let defaultUser = UserDefaults.standard
+        defaultUser.set(pk, forKey: "userid")
+        defaultUser.set(username, forKey: "username")
+        defaultUser.set(firstname, forKey: "first_name")
+        defaultUser.set(password, forKey: "password")
+        defaultUser.synchronize()
+    }
+    
     static func getUserID() -> Int {
         let defaultValues = UserDefaults.standard
         return Int(defaultValues.string(forKey: "userid") ?? "0") ?? 0
@@ -117,6 +133,13 @@ class User {
     {
         let userDefault = UserDefaults.standard
         userDefault.set(username, forKey: "username")
+        userDefault.synchronize()
+    }
+    
+    static func getfirstname() -> String
+    {
+        let defaultValues = UserDefaults.standard
+        return defaultValues.string(forKey: "first_name") ?? ""
     }
     
     static func getPassword() -> String
@@ -544,7 +567,7 @@ class GenerateList
                     let arrData = json["results"].array?.map {
                         DropDownTemplate(ID: $0["id"].stringValue,
                                          Text: $0["modeling_name"].stringValue,
-                                         Fkey: $0["model"].stringValue)
+                                         Fkey: $0["brand"].stringValue)
                     }
                     completion(arrData ?? [])
                 case .failure(let error):

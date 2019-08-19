@@ -319,6 +319,8 @@ class HomepageRequestHandler {
 
 class UserProfileRequestHandle {
     
+    var Profile = ImageProfileModel()
+    
     var NextPostActive: String = ""
     var NextPostHistory: String = ""
     var NextLike: String = ""
@@ -347,6 +349,26 @@ class UserProfileRequestHandle {
     ]
     
     init(){}
+    
+    func LoadProfileDetail(completion: @escaping () -> Void)
+    {
+        Alamofire.request(PROJECT_API.USER,
+                          method: .get,
+                          encoding: JSONEncoding.default,
+                          headers: self.headers
+            ).responseJSON
+            { (response) in
+                switch response.result{
+                case .success(let value):
+                    let json = JSON(value)
+                    self.Profile = ImageProfileModel(json: json)
+                    completion()
+                case .failure:
+                    print("error")
+                }
+        }
+    }
+    
     
     func LoadAllPostByUser(completion: @escaping () -> Void)
     {
@@ -417,14 +439,7 @@ class UserProfileRequestHandle {
                     self.AllPostHistoryCount = json["count"].stringValue.toInt()
                     
                     self.PostHistory = (json["results"].array?.map{
-                        HomePageModel(id: $0["id"].stringValue.toInt(),
-                                      name: $0["title"].stringValue,
-                                      cost: $0["cost"].stringValue,
-                                      imagefront: $0["front_image_base64"].stringValue,
-                                      discount: $0["discount"].stringValue,
-                                      postType: $0["post_type"].stringValue,
-                                      createdat: $0["created"].stringValue
-                        )}) ?? []
+                        HomePageModel(json: $0)}) ?? []
                     completion()
                     
                 case .failure:
@@ -452,14 +467,7 @@ class UserProfileRequestHandle {
                     self.AllPostHistoryCount = json["count"].stringValue.toInt()
                     
                     self.PostHistory += (json["results"].array?.map{
-                        HomePageModel(id: $0["id"].stringValue.toInt(),
-                                      name: $0["title"].stringValue,
-                                      cost: $0["cost"].stringValue,
-                                      imagefront: $0["front_image_base64"].stringValue,
-                                      discount: $0["discount"].stringValue,
-                                      postType: $0["post_type"].stringValue,
-                                      createdat: $0["created"].stringValue
-                        )}) ?? []
+                        HomePageModel(json: $0)}) ?? []
                     
                     completion()
                     

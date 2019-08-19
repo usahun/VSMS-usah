@@ -12,7 +12,7 @@ import SwiftyJSON
 
 class AccountViewModel {
     var id: Int?
-    var username: String = ""
+    var username: String = User.getUsername()
     var firstname: String = ""
     var lastname: String = ""
     var email: String = ""
@@ -23,10 +23,9 @@ class AccountViewModel {
     
     var asDictionary : [String:Any] {
         let parameter: Parameters = [
-            "id": self.id,
-            "username": self.username,
-            "firstname": self.firstname,
-            "lastname": self.lastname,
+            //"id": self.id ?? "",
+            "first_name": self.firstname,
+            //"lastname": self.lastname,
             "email": self.email,
             "groups": [self.group[0]],
             "password": self.password,
@@ -50,8 +49,8 @@ class AccountViewModel {
                     
                     self.id = json["id"].stringValue.toInt()
                     self.username = json["username"].stringValue
-                    self.firstname = json["firstname"].stringValue
-                    self.lastname = json["lastname"].stringValue
+                    self.firstname = json["first_name"].stringValue
+                    self.lastname = json["last_name"].stringValue
                     self.email = json["email"].stringValue
                     self.group = json["groups"].arrayValue.map{ $0.stringValue.toInt() }
                     

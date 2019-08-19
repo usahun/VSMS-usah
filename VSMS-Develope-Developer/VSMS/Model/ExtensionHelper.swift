@@ -480,6 +480,7 @@ extension UILabel {
             self.text = value
         }
     }
+
 }
 
 extension UITextField{
@@ -513,4 +514,49 @@ extension UITextField{
     
     
     
+}
+
+extension UIImageView
+{
+    func ImageLoadFromURL(url: String)
+    {
+        if let imageFromCache = imageCache.object(forKey: url as AnyObject) as? UIImage {
+            image = imageFromCache
+            return
+        }
+        
+        Alamofire.request(url, method: .get)
+            .validate()
+            .responseData(completionHandler: { (responseData) in
+                DispatchQueue.main.async {
+                        if let img = UIImage(data: responseData.data!){
+                            self.image = img
+                            imageCache.setObject(img, forKey: url as AnyObject)
+                        }
+                    
+                }
+            })
+    }
+    
+    
+    
+}
+
+
+extension UIButton
+{
+    func setTextByRecordStatus(status: Int)
+    {
+        switch status
+        {
+        case 3:
+            self.setTitle("Pending", for: .normal)
+            self.setTitleColor(#colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1), for: .normal)
+        case 4:
+            self.setTitle("Approved", for: .normal)
+            self.setTitleColor(#colorLiteral(red: 0.16155532, green: 0.6208058596, blue: 0.002179143718, alpha: 1), for: .normal)
+        default:
+            break
+        }
+    }
 }

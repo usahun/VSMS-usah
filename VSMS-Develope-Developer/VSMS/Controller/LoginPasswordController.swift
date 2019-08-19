@@ -33,12 +33,23 @@ class LoginPasswordController: UIViewController {
         //if user is already logged in switching to profile screen
         self.ShowDefaultNavigation()
         self.HasNavNoTab()
+        
+        textphonenumber.returnKeyType = .next
+        textphonenumber.delegate = self
+        
+        textpassword.returnKeyType = .done
+        textpassword.addDoneButtonOnKeyboard()
+        textpassword.delegate = self
     }
     
     
 
     @IBAction func LoginbuttonTapped(_ sender: Any) {
-        
+        submitLogIn()
+    }
+    
+    private func submitLogIn()
+    {
         let parameters: Parameters=[
             "username":textphonenumber.text!,
             "password":textpassword.text!
@@ -50,39 +61,59 @@ class LoginPasswordController: UIViewController {
         
         Alamofire.request(PROJECT_API.LOGIN, method: .post, parameters: parameters,encoding: JSONEncoding.default, headers: headers).responseJSON
             { response in
-
-                if let result = response.result.value {
-                    let jsonData = result as! NSDictionary
-                      if(jsonData.count >= 2){
-                        //getting the user from response
-                        let user = jsonData.value(forKey: "user") as! NSDictionary
-
-                        //getting user values
-                        let userId = user.value(forKey: "pk") as! Int
-                        let userName = user.value(forKey: "username") as! String
-                        
-                        //saving user values to defaults
-                        self.defaultValues.set(userId, forKey: "userid")
-                        self.defaultValues.set(userName, forKey: "username")
-                        self.defaultValues.set(self.textpassword.text, forKey: "password")
-                        self.defaultValues.synchronize()
-                        UserDefaults.standard.synchronize()
-                        PresentController.ProfileController()
-                        //self.navigationController?.popToRootViewController(animated: true)
-                    }else{
-                        //error message in case of invalid credential
-                        let AlertMessage = UIAlertController(title: "Warning", message: "Invalid username or password", preferredStyle: .alert)
-                        let OKbutton = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                        
-                        AlertMessage.addAction(OKbutton)
-                        self.present(AlertMessage, animated: true, completion: nil)
+                switch response.result
+                {
+                case .success(let value):
+                    let user = JSON(value)
+                    guard user["token"].stringValue != "" else
+                    {
+                        Message.AlertMessage(message: "Username and Password is incorrect! Please try agian.", header: "Warning", View: self, callback: {
+                            self.textpassword.text = ""
+                            self.checkTextField()
+                        })
+                        return
                     }
-            
-           }
-        
+                    let data = JSON(user["user"])
+                    User.setupNewUserLogIn(pk: data["pk"].stringValue.toInt(),
+                                           username: data["username"].stringValue,
+                                           firstname: data["first_name"].stringValue,
+                                           password: self.textpassword.text!)
+                    PresentController.ProfileController()
+                case .failure(let error):
+                    print(error)
+                    print("log wrong")
+                }
+        }
     }
-    
 
+}
+
+extension LoginPasswordController
+{
+    func checkTextField()
+    {
+        if textphonenumber.text == "" {
+            textphonenumber.becomeFirstResponder()
+        }
+        else if textpassword.text == "" {
+            textpassword.becomeFirstResponder()
+        }
     }
+}
 
+extension LoginPasswordController: UITextFieldDelegate
+{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == textphonenumber
+        {
+            textField.resignFirstResponder()
+            textpassword.becomeFirstResponder()
+        }
+        else if textField == textpassword
+        {
+            textField.resignFirstResponder()
+            self.submitLogIn()
+        }
+        return true
+    }
 }

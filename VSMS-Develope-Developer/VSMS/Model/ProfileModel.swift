@@ -55,6 +55,7 @@ class ImageProfileModel {
     
     var profileID : String = ""
     var name: String = ""
+    var firstName: String = ""
     var email: String = ""
     var address: String = ""
     var profile: ImageSubClass = ImageSubClass()
@@ -64,6 +65,7 @@ class ImageProfileModel {
     init(json: JSON){
         self.profileID = json["id"].stringValue
         self.name = json["username"].stringValue
+        self.firstName = json["first_name"].stringValue
         self.profile = ImageSubClass(json: json["profile"])
         self.email = json["email"].stringValue
         self.address = json["address"].stringValue
@@ -74,16 +76,16 @@ class ImageProfileModel {
 
 class ImageSubClass {
     var telephone: String = ""
-    var base64_profile_image: String = ""
-    var base64_cover_image: String = ""
+    var profile_image: String = ""
+    var cover_image: String = ""
     var address: String = ""
     
     init(){}
     
     init(json: JSON){
         self.telephone = json["telephone"].stringValue
-        self.base64_profile_image = json["base64_profile_image"].stringValue
-        self.base64_cover_image = json["base64_cover_image"].stringValue
+        self.profile_image = json["profile_photo"].stringValue
+        self.cover_image = json["cover_photo"].stringValue
         self.address = json["address"].stringValue
     }
 }

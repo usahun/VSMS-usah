@@ -19,6 +19,10 @@ class PostsTableViewCell: UITableViewCell {
     @IBOutlet weak var lblView: UILabel!
     
     
+    @IBOutlet weak var btnContainer: UIView!
+    @IBOutlet weak var btnStatus: UIButton!
+    
+    
     //Internal Properties
     var ProID: Int?
     var Data = HomePageModel()
@@ -43,6 +47,7 @@ class PostsTableViewCell: UITableViewCell {
         lblPrice.text = Data.cost.toCurrency()
         lblDuration.text = Data.create_at?.getDuration()
         lblPostType.SetPostType(postType: Data.postType)
+        btnStatus.setTextByRecordStatus(status: Data.status!)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -66,3 +71,5 @@ class PostsTableViewCell: UITableViewCell {
 
     
 }
+
+
