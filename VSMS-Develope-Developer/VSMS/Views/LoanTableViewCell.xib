@@ -30,13 +30,13 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZP-zv-crQ">
-                                <rect key="frame" x="155" y="5" width="281" height="0.0"/>
+                                <rect key="frame" x="155" y="10" width="281" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sau-vi-zL2">
-                                <rect key="frame" x="155" y="9" width="0.0" height="0.0"/>
+                                <rect key="frame" x="155" y="14" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -141,7 +141,7 @@
                             <constraint firstItem="FjP-v4-10B" firstAttribute="top" secondItem="sVZ-4Y-eFx" secondAttribute="bottom" constant="5" id="4u7-Zw-Cds"/>
                             <constraint firstAttribute="trailing" secondItem="FjP-v4-10B" secondAttribute="trailing" id="5KR-83-yTl"/>
                             <constraint firstAttribute="trailing" secondItem="sVZ-4Y-eFx" secondAttribute="trailing" constant="5" id="8PA-Y0-JJC"/>
-                            <constraint firstItem="fZP-zv-crQ" firstAttribute="top" secondItem="0Cw-WT-LB4" secondAttribute="top" constant="5" id="F1x-Bq-lZo"/>
+                            <constraint firstItem="fZP-zv-crQ" firstAttribute="top" secondItem="0Cw-WT-LB4" secondAttribute="top" constant="10" id="F1x-Bq-lZo"/>
                             <constraint firstItem="3fk-eN-4ch" firstAttribute="leading" secondItem="0Cw-WT-LB4" secondAttribute="leading" id="Inq-33-XPJ"/>
                             <constraint firstItem="Sau-vi-zL2" firstAttribute="top" secondItem="fZP-zv-crQ" secondAttribute="bottom" constant="4" id="L9X-8i-VVH"/>
                             <constraint firstAttribute="trailing" secondItem="fZP-zv-crQ" secondAttribute="trailing" constant="5" id="W2a-rW-Gae"/>

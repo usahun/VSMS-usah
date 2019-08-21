@@ -194,6 +194,7 @@
             <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="borderView" destination="CvT-zA-3IC" id="Yan-ps-Mtj"/>
                 <outlet property="firstView" destination="thR-IG-qeC" id="Wf0-IB-Ku5"/>
                 <outlet property="img_1_Product" destination="zg4-Zu-nl6" id="64a-oN-oRN"/>
                 <outlet property="img_2_Product" destination="SET-or-1U7" id="opP-2u-fEb"/>

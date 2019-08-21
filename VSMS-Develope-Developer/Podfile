@@ -15,6 +15,8 @@ target 'VSMS' do
    pod 'TLPhotoPicker', '1.8.3'
    pod 'Toast-Swift', '~> 4.0.0'
    pod 'RSSelectionMenu'
+   
+   
    #  pod 'LGSideMenuController'
    # pod 'Chatto', '= 3.4.0'
 #  pod 'ChattoAdditions', '= 3.4.0' # if you want to use the cells or the input component

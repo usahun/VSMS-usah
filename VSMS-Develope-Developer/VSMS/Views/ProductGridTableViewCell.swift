@@ -12,6 +12,7 @@ class ProductGridTableViewCell: UITableViewCell {
 
     @IBOutlet weak var firstView: UIView!
     @IBOutlet weak var secondView: UIView!
+    @IBOutlet weak var borderView: BorderView!
     
     //record 1 properties
 
@@ -54,11 +55,9 @@ class ProductGridTableViewCell: UITableViewCell {
     func handerCellClick2(){
         self.delegate?.cellXibClick(ID: data2!.product)
     }
-
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
+    
+    func reload()
+    {
         if data1 != nil {
             lbl_1_Productname.text = data1!.title.capitalizingFirstLetter()
             img_1_Product.LoadFromURL(url: data1!.imagefront)
@@ -81,8 +80,21 @@ class ProductGridTableViewCell: UITableViewCell {
             RequestHandle.CountView(postID: (data2?.product)!) { (count) in
                 self.lbl_2_Views.text = count.toString()+" Views"
             }
-
+            
         }
+        else
+        {
+            performOn(.Main) {
+                self.borderView.isHidden = true
+            }
+        }
+    }
+
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        
     }
     
 }
