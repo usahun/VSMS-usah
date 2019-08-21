@@ -86,6 +86,7 @@ class DetailViewController: UIViewController {
         LoadUserDetail()
         XibRegister()
         map()
+        tblView.reloadData()
         tblView.delegate = self
         tblView.dataSource = self
         
@@ -167,6 +168,7 @@ class DetailViewController: UIViewController {
         }else{
             Message.AlertMessage(message: "Like Successful.", header: "LIKE", View: self){
                 self.Btnlikebyuser()
+                self.tblView.reloadData()
             }
         }
 
