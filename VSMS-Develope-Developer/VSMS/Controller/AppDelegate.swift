@@ -10,7 +10,7 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 import SideMenuSwift
-
+import Firebase
 
 
 @UIApplicationMain
@@ -21,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,CLLocationManagerDelegate
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        //Config Firebase
+        FirebaseApp.configure()
         
         //Config Facebook
         

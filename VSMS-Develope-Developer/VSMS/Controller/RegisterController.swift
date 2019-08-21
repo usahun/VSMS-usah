@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-
+import Firebase
 
 class RegisterController: UIViewController {
     
@@ -18,21 +18,22 @@ class RegisterController: UIViewController {
     @IBOutlet weak var textconfirmPassword: UITextField!
     var defaultUser = UserDefaults.standard
     
-//    func resetDefaults() {
-//        let domain = Bundle.main.bundleIdentifier!
-//        UserDefaults.standard.removePersistentDomain(forName: domain)
-//        UserDefaults.standard.synchronize()
-//        print(Array(UserDefaults.standard.dictionaryRepresentation().keys).count)
-//
-//    }
     
-
+    @IBOutlet weak var txtPhoneNumber: UITextField!
+    @IBOutlet weak var txtPassword: UITextField!
+    @IBOutlet weak var txtConfirmPassword: UITextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        self.navigationController?.setNavigationBarHidden(false, animated: false)
+
     }
     
-  
+    @IBAction func SubmitHandle(_ sender: Any) {
+        print("register")
+    }
+    
    
     @IBAction func submitTapped(_ sender: Any) {
         
@@ -104,6 +105,15 @@ class RegisterController: UIViewController {
     }
     
     
-    
+    func Register()
+    {
+        PhoneAuthProvider.provider().verifyPhoneNumber("+855966016549", uiDelegate: nil) { (verificationID, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+            print(verificationID)
+        }
+    }
 
 }

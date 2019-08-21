@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -96,6 +96,7 @@
 		86E46AAF22D845470028C93E /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E46AAE22D845470028C93E /* DetailViewModel.swift */; };
 		86E46AB122D875FF0028C93E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E46AB022D875FE0028C93E /* DetailViewController.swift */; };
 		86E5494C22D6F596002B2980 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E5494B22D6F595002B2980 /* Message.swift */; };
+		86E63AF3230D184200421EAB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86E63AF2230D184200421EAB /* GoogleService-Info.plist */; };
 		86E8F0AF22CC427F0093D7A9 /* DropdownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8F0AD22CC427F0093D7A9 /* DropdownTableViewCell.swift */; };
 		86E8F0B022CC427F0093D7A9 /* DropdownTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86E8F0AE22CC427F0093D7A9 /* DropdownTableViewCell.xib */; };
 		86E8F0B222CCBE4D0093D7A9 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8F0B122CCBE4D0093D7A9 /* Protocol.swift */; };
@@ -251,6 +252,8 @@
 		86E46AAE22D845470028C93E /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		86E46AB022D875FE0028C93E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		86E5494B22D6F595002B2980 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		86E63AF2230D184200421EAB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		86E63AF4230D1FA000421EAB /* VSMS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VSMS.entitlements; sourceTree = "<group>"; };
 		86E8F0AD22CC427F0093D7A9 /* DropdownTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownTableViewCell.swift; sourceTree = "<group>"; };
 		86E8F0AE22CC427F0093D7A9 /* DropdownTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropdownTableViewCell.xib; sourceTree = "<group>"; };
 		86E8F0B122CCBE4D0093D7A9 /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
@@ -401,6 +404,7 @@
 		865B5DB3221FDD3600864F7E /* VSMS */ = {
 			isa = PBXGroup;
 			children = (
+				86E63AF4230D1FA000421EAB /* VSMS.entitlements */,
 				86E5494A22D6F578002B2980 /* Functions */,
 				C402139822574BE2007920C4 /* Model */,
 				865B5DC9221FDD7200864F7E /* Controller */,
@@ -412,6 +416,7 @@
 				C402139D22574CD7007920C4 /* SWRevealViewController.m */,
 				865B5DBD221FDD3700864F7E /* LaunchScreen.storyboard */,
 				865B5DC0221FDD3700864F7E /* Info.plist */,
+				86E63AF2230D184200421EAB /* GoogleService-Info.plist */,
 				C402139B22574CD4007920C4 /* VSMS-Bridging-Header.h */,
 				C4CCAE5122F9732C00E21EC4 /* Localizable.strings */,
 			);
@@ -730,6 +735,14 @@
 					865B5DB0221FDD3600864F7E = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1010;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -784,6 +797,7 @@
 				86B10326229C4C7A00192DAD /* PhotoListCollectionViewCell.xib in Resources */,
 				861A6FD222E17C970028D81D /* ListCategoryTableViewCell.xib in Resources */,
 				C4AAF7AB22C60E1C00B82364 /* NewPostImageCollectionViewCell.xib in Resources */,
+				86E63AF3230D184200421EAB /* GoogleService-Info.plist in Resources */,
 				861A6FD622E195580028D81D /* ListAllProductViewController.xib in Resources */,
 				86626BA3229C470B00FE25DD /* ImageCollectionViewCell.xib in Resources */,
 				86AAF0CF22C081C3003C46F3 /* NewlyTableViewCell.xib in Resources */,
@@ -818,18 +832,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-VSMS/Pods-VSMS-resources.sh",
-				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
-				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-VSMS/Pods-VSMS-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-VSMS/Pods-VSMS-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -842,30 +849,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-VSMS/Pods-VSMS-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/CollectionViewGridLayout/CollectionViewGridLayout.framework",
-				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
-				"${BUILT_PRODUCTS_DIR}/RSSelectionMenu/RSSelectionMenu.framework",
-				"${BUILT_PRODUCTS_DIR}/SideMenuSwift/SideMenuSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/TLPhotoPicker/TLPhotoPicker.framework",
-				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-VSMS/Pods-VSMS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CollectionViewGridLayout.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RSSelectionMenu.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenuSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TLPhotoPicker.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-VSMS/Pods-VSMS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1159,6 +1147,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = VSMS/VSMS.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N57Y6URRUJ;
@@ -1185,6 +1174,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = VSMS/VSMS.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N57Y6URRUJ;

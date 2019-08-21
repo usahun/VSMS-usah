@@ -26,28 +26,6 @@ class LoginController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.HasTabNoNav()
     }
-    
-    @IBAction func LoginbuttonTapped(_ sender: Any) {
-        
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        guard let loginpasswd = mainStoryboard.instantiateViewController(withIdentifier: "LoginPasswordController") as? LoginPasswordController else {
-            print("can't fine Viewcontroller")
-            return
-        }
-        
-        self.navigationController?.pushViewController(loginpasswd, animated: true)
-    }
-    
-    
-    @IBAction func RegisterbuttonTapped(_ sender: Any) {
-        
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        guard let register = mainStoryboard.instantiateViewController(withIdentifier: "RegisterController") as? RegisterController else {
-            print("can't fine Viewcontroller")
-            return
-        }
-        
-        self.navigationController?.pushViewController(register, animated: true)
-    }
+
     
 }

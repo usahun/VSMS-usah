@@ -16,6 +16,11 @@ target 'VSMS' do
    pod 'Toast-Swift', '~> 4.0.0'
    pod 'RSSelectionMenu'
    
+   # Firebase & Facebook
+   pod 'Firebase/Analytics'
+   pod 'Firebase/Core'
+   pod 'Firebase/Auth'
+   pod 'Firebase/Database'
    
    #  pod 'LGSideMenuController'
    # pod 'Chatto', '= 3.4.0'

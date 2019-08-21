@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1100"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C221B6F42B7B442B2D281285FF674B7B"
+               BlueprintIdentifier = "F4BA747C8987B7580A893EC859D12686"
                BuildableName = "RSSelectionMenu.framework"
                BlueprintName = "RSSelectionMenu"
                ReferencedContainer = "container:Pods.xcodeproj">
