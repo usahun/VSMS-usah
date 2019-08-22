@@ -144,6 +144,13 @@ class User {
         return defaultValues.string(forKey: "first_name") ?? ""
     }
     
+    static func setNewPassword(newPassword: String)
+    {
+        let userDefault = UserDefaults.standard
+        userDefault.set(username, forKey: "password")
+        userDefault.synchronize()
+    }
+    
     static func getPassword() -> String
     {
         let defaultValues = UserDefaults.standard
@@ -159,6 +166,7 @@ class User {
         let userPass = username + ":" + password
         return "Basic " + userPass.base64Encoded()!
     }
+
     
     static func resetUserDefault()
     {
