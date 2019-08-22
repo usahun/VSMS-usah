@@ -147,7 +147,7 @@ class User {
     static func setNewPassword(newPassword: String)
     {
         let userDefault = UserDefaults.standard
-        userDefault.set(username, forKey: "password")
+        userDefault.set(newPassword, forKey: "password")
         userDefault.synchronize()
     }
     
