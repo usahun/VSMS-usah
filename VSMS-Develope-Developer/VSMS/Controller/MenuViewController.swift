@@ -19,8 +19,6 @@ class MenuViewController: BaseViewController,UITableViewDelegate,UITableViewData
     
     weak var delegate: leftMenuClick?
     
-    
-    
     override func localizeUI(){
         tableView.reloadData()
     }
@@ -36,11 +34,18 @@ class MenuViewController: BaseViewController,UITableViewDelegate,UITableViewData
         
         tableView.delegate = self
         tableView.dataSource = self
-        lblProfileName.text = User.getUsername()
+        lblProfileName.text = User.getfirstname() == "" ? User.getUsername() : User.getfirstname()
+        
+        UserFireBase.Load { (user) in
+            if user.imageURL != "" {
+                self.imageprofile.ImageLoadFromURL(url: user.imageURL)
+            }
+        }
     }
    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        lblProfileName.text = User.getfirstname() == "" ? User.getUsername() : User.getfirstname()
         //self.tabBarController?.tabBar.isHidden = false
     }
   

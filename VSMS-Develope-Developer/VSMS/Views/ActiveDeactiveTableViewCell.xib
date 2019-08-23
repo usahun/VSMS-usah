@@ -21,6 +21,7 @@
                 <subviews>
                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="MUq-e4-oo4">
                         <rect key="frame" x="85" y="40" width="150" height="29"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="150" id="s1s-Ge-8YM"/>
                         </constraints>
@@ -34,6 +35,7 @@
                         </connections>
                     </segmentedControl>
                 </subviews>
+                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="MUq-e4-oo4" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="UEQ-Bi-o6I"/>
                     <constraint firstItem="MUq-e4-oo4" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="jC5-xc-Yeg"/>

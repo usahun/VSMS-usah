@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import Firebase
 
 class LoginPasswordController: UIViewController {
     
@@ -42,48 +43,43 @@ class LoginPasswordController: UIViewController {
         textpassword.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(false)
+        textpassword.text = ""
+        textphonenumber.text = ""
+    }
     
 
     @IBAction func LoginbuttonTapped(_ sender: Any) {
-        submitLogIn()
-    }
-    
-    private func submitLogIn()
-    {
-        let parameters: Parameters=[
-            "username":textphonenumber.text!,
-            "password":textpassword.text!
-        ]
-        
-        let headers = [
-            "Cookie": ""
-        ]
-        
-        Alamofire.request(PROJECT_API.LOGIN, method: .post, parameters: parameters,encoding: JSONEncoding.default, headers: headers).responseJSON
-            { response in
-                switch response.result
-                {
-                case .success(let value):
-                    let user = JSON(value)
-                    guard user["token"].stringValue != "" else
-                    {
-                        Message.AlertMessage(message: "Username and Password is incorrect! Please try agian.", header: "Warning", View: self, callback: {
-                            self.textpassword.text = ""
-                            self.checkTextField()
-                        })
-                        return
-                    }
-                    let data = JSON(user["user"])
-                    User.setupNewUserLogIn(pk: data["pk"].stringValue.toInt(),
-                                           username: data["username"].stringValue,
-                                           firstname: data["first_name"].stringValue,
-                                           password: self.textpassword.text!)
-                    PresentController.ProfileController()
-                case .failure(let error):
-                    print(error)
-                    print("log wrong")
-                }
+
+        if IsNilorEmpty(value: textphonenumber.text) {
+            textphonenumber.becomeFirstResponder()
+            return
         }
+        
+        if IsNilorEmpty(value: textpassword.text) {
+            textpassword.becomeFirstResponder()
+            return
+        }
+        
+        let phonenumber = textphonenumber.text!
+        let password = textpassword.text!
+    
+        PhoneAuthProvider.provider().verifyPhoneNumber(phonenumber.ISOTelephone(), uiDelegate: nil)
+        { (verificationID, error) in
+            if let error = error {
+                print(error)
+                Message.AlertMessage(message: "\(error)", header: "Error", View: self, callback: {
+                    self.textphonenumber.text = ""
+                    self.textpassword.text = ""
+                })
+                return
+            }
+            
+            UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+            PresentController.PushToVerifyViewController(telelphone: phonenumber, password: password, from: self, isLogin: true)
+        }
+        
     }
 
 }
@@ -112,7 +108,6 @@ extension LoginPasswordController: UITextFieldDelegate
         else if textField == textpassword
         {
             textField.resignFirstResponder()
-            self.submitLogIn()
         }
         return true
     }

@@ -16,7 +16,7 @@ class AccountViewModel {
     var firstname: String = ""
     var lastname: String = ""
     var email: String = ""
-    var group: [Int] = []
+    var group: [Int] = [1]
     var password: String = User.getPassword()
     
     var ProfileData = AccountSubProfile()
@@ -30,6 +30,27 @@ class AccountViewModel {
             "groups": [self.group[0]],
             "password": self.password,
             "profile": self.ProfileData.asDictionary
+        ]
+        return parameter
+    }
+    
+    var asRegisterDictionary : [String:Any] {
+        let parameter: Parameters = [
+            "username": self.username,
+            "first_name": self.firstname,
+            //"lastname": self.lastname,
+            "email": self.email,
+            "groups": [self.group[0]],
+            "password": self.password,
+            "profile": self.ProfileData.asDictionary
+        ]
+        return parameter
+    }
+    
+    var asLoginDictionary: Parameters {
+        let parameter: Parameters = [
+            "username": self.username,
+            "password": self.password
         ]
         return parameter
     }
@@ -77,14 +98,95 @@ class AccountViewModel {
                           method: .patch,
                           parameters: self.asDictionary,
                           encoding: JSONEncoding.default,
-                          headers: headers
+                          headers: httpHeader()
             ).responseJSON { (respone) in
                 switch respone.result
                 {
                 case .success:
+                    User.setNewFirstName(firstName: self.firstname)
                     completion()
                 case .failure(let error):
                     print(error)
+                }
+        }
+    }
+    
+    func RegisterUser(completion: @escaping (Bool) -> Void)
+    {
+        let headers: HTTPHeaders = [
+                        "Cookie": "",
+                        "Accept": "application/json",
+                        "Content-Type": "application/json",
+                    ]
+        
+        Alamofire.request(PROJECT_API.REGISTER,
+                          method: .post,
+                          parameters: self.asRegisterDictionary,
+                          encoding: JSONEncoding.default,
+                          headers: headers
+            ).responseJSON
+            { response in
+                switch response.result {
+                case .success(let value):
+                    print("Success")
+                    print(value)
+                    let json = JSON(value)
+                    
+                    if json["id"].stringValue == ""
+                    {
+                        completion(false)
+                    }
+                    else
+                    {
+                        User.setupNewUserLogIn(pk: json["id"].stringValue.toInt(),
+                                               username: json["username"].stringValue,
+                                               firstname: json["first_name"].stringValue,
+                                               password: self.password)
+                        completion(true)
+                    }
+                case .failure(let error):
+                    print(error)
+                    completion(false)
+                }
+                
+        }
+    }
+    
+    func LogInUser(completion: @escaping (Bool) -> Void)
+    {
+        let headers = [
+            "Cookie": ""
+        ]
+        
+        Alamofire.request(PROJECT_API.LOGIN,
+                          method: .post,
+                          parameters: self.asLoginDictionary,
+                          encoding: JSONEncoding.default,
+                          headers: headers
+            ).responseJSON
+            { response in
+                
+                if response.response?.statusCode == 400 {
+                    // handle as appropriate
+                    completion(false)
+                    return
+                }
+                
+                switch response.result
+                {
+                case .success(let value):
+                    print(value)
+                    let json = JSON(value)
+                    let user = JSON(json["user"])
+                    User.setupNewUserLogIn(pk: user["pk"].stringValue.toInt(),
+                                           username: user["username"].stringValue,
+                                           firstname: user["first_name"].stringValue,
+                                           password: self.password)
+                    completion(true)
+                case .failure(let error):
+                    print(error)
+                    print("log wrong")
+                    completion(false)
                 }
         }
     }
@@ -92,7 +194,7 @@ class AccountViewModel {
 
 class AccountSubProfile{
     var gender: String = ""
-    var date_of_birth: String = ""
+    var date_of_birth: String = Date().iso8601
     var telephone: String = ""
     var address: String = ""
     var province: Int?

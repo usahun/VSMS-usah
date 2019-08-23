@@ -97,6 +97,7 @@
 		86E46AB122D875FF0028C93E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E46AB022D875FE0028C93E /* DetailViewController.swift */; };
 		86E5494C22D6F596002B2980 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E5494B22D6F595002B2980 /* Message.swift */; };
 		86E63AF3230D184200421EAB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86E63AF2230D184200421EAB /* GoogleService-Info.plist */; };
+		86E63AF6230D3EA200421EAB /* VerifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E63AF5230D3EA200421EAB /* VerifyViewController.swift */; };
 		86E8F0AF22CC427F0093D7A9 /* DropdownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8F0AD22CC427F0093D7A9 /* DropdownTableViewCell.swift */; };
 		86E8F0B022CC427F0093D7A9 /* DropdownTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86E8F0AE22CC427F0093D7A9 /* DropdownTableViewCell.xib */; };
 		86E8F0B222CCBE4D0093D7A9 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8F0B122CCBE4D0093D7A9 /* Protocol.swift */; };
@@ -111,6 +112,7 @@
 		86F4017922DF0E4500AB9ECD /* ProductImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F4017722DF0E4500AB9ECD /* ProductImageTableViewCell.xib */; };
 		86F4017C22DF12B400AB9ECD /* ProductGridTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F4017A22DF12B400AB9ECD /* ProductGridTableViewCell.swift */; };
 		86F4017D22DF12B400AB9ECD /* ProductGridTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F4017B22DF12B400AB9ECD /* ProductGridTableViewCell.xib */; };
+		86F48B6E230EAD2B00B2622A /* FirebaseHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F48B6D230EAD2B00B2622A /* FirebaseHandle.swift */; };
 		86F4DEDB22E2D42C000ACA12 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F4DED922E2D42C000ACA12 /* SearchViewController.swift */; };
 		86F4DEDC22E2D42C000ACA12 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F4DEDA22E2D42C000ACA12 /* SearchViewController.xib */; };
 		86F4DEE022E30BDE000ACA12 /* ListFromNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F4DEDE22E30BDE000ACA12 /* ListFromNavigationViewController.swift */; };
@@ -257,6 +259,7 @@
 		86E5494B22D6F595002B2980 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		86E63AF2230D184200421EAB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		86E63AF4230D1FA000421EAB /* VSMS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VSMS.entitlements; sourceTree = "<group>"; };
+		86E63AF5230D3EA200421EAB /* VerifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyViewController.swift; sourceTree = "<group>"; };
 		86E8F0AD22CC427F0093D7A9 /* DropdownTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownTableViewCell.swift; sourceTree = "<group>"; };
 		86E8F0AE22CC427F0093D7A9 /* DropdownTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropdownTableViewCell.xib; sourceTree = "<group>"; };
 		86E8F0B122CCBE4D0093D7A9 /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
@@ -271,6 +274,7 @@
 		86F4017722DF0E4500AB9ECD /* ProductImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductImageTableViewCell.xib; sourceTree = "<group>"; };
 		86F4017A22DF12B400AB9ECD /* ProductGridTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductGridTableViewCell.swift; sourceTree = "<group>"; };
 		86F4017B22DF12B400AB9ECD /* ProductGridTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductGridTableViewCell.xib; sourceTree = "<group>"; };
+		86F48B6D230EAD2B00B2622A /* FirebaseHandle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseHandle.swift; sourceTree = "<group>"; };
 		86F4DED922E2D42C000ACA12 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		86F4DEDA22E2D42C000ACA12 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		86F4DEDE22E30BDE000ACA12 /* ListFromNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFromNavigationViewController.swift; sourceTree = "<group>"; };
@@ -475,6 +479,7 @@
 				8632208123039DDF002B9DF6 /* PostViewController.swift */,
 				86EE08B422FFC607001EF3A8 /* AboutUsandTermOfTableViewController.swift */,
 				C48E11162306794F007E52A8 /* ChangePasswordController.swift */,
+				86E63AF5230D3EA200421EAB /* VerifyViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -514,6 +519,7 @@
 				86E5494B22D6F595002B2980 /* Message.swift */,
 				864222B022DEC6BD002E41E7 /* RequestHandle.swift */,
 				866C2DB72305175B004B7682 /* PresentController.swift */,
+				86F48B6D230EAD2B00B2622A /* FirebaseHandle.swift */,
 			);
 			path = Functions;
 			sourceTree = "<group>";
@@ -944,6 +950,7 @@
 				C4726A992306CD5700C5B381 /* HideShowTextField.swift in Sources */,
 				86B1032D229C4C7A00192DAD /* PhotoListCollectionViewCell.swift in Sources */,
 				C402139E22574CD8007920C4 /* SWRevealViewController.m in Sources */,
+				86E63AF6230D3EA200421EAB /* VerifyViewController.swift in Sources */,
 				C453177222C3303A006F0BB8 /* NewPostListCollectionViewCell.swift in Sources */,
 				86B94E1622E83FEC00C793D2 /* CustomCell_Instagram.swift in Sources */,
 				86D6FC2722CDE1BF00B27B25 /* PostViewModel.swift in Sources */,
@@ -995,6 +1002,7 @@
 				86626BC3229C498400FE25DD /* AddmoreNumberPhoneTableViewCell.swift in Sources */,
 				86D6C40F22C74D1F003B952E /* CustomTabBarController.swift in Sources */,
 				D54C481522422F20004FE033 /* MyAccountController.swift in Sources */,
+				86F48B6E230EAD2B00B2622A /* FirebaseHandle.swift in Sources */,
 				C40213A622574D08007920C4 /* UploadProfileController.swift in Sources */,
 				86B10336229C4E9D00192DAD /* PostContainer.swift in Sources */,
 				C4826FC823000FD000494DB0 /* TermofprivacyTableViewCell.swift in Sources */,
@@ -1170,7 +1178,7 @@
 				CODE_SIGN_ENTITLEMENTS = VSMS/VSMS.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = N57Y6URRUJ;
 				INFOPLIST_FILE = VSMS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1197,7 +1205,7 @@
 				CODE_SIGN_ENTITLEMENTS = VSMS/VSMS.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = N57Y6URRUJ;
 				INFOPLIST_FILE = VSMS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (

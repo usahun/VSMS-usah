@@ -20,12 +20,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJD-OP-nuM">
-                        <rect key="frame" x="208.5" y="43" width="35.5" height="17"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <rect key="frame" x="209.5" y="43.5" width="33" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="IJD-OP-nuM" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Pdj-pU-Fhz"/>
                     <constraint firstItem="IJD-OP-nuM" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="yu6-m4-sSE"/>

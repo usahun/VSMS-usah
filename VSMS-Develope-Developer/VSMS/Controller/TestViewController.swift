@@ -166,11 +166,13 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         let alertCon = UIAlertController(title: "Edit Profile", message: nil, preferredStyle: .actionSheet)
         let uploadBtn = UIAlertAction(title: "Upload", style: .default) { (alert) in
             self.picker.sourceType = .photoLibrary
+            self.picker.allowsEditing = true
             self.present(self.picker, animated: true, completion: nil)
         }
         let takeNewCover = UIAlertAction(title: "Take a Photo", style: .default) { (alert) in
             if UIImagePickerController.isSourceTypeAvailable(.camera){
                 self.picker.sourceType = .camera
+                self.picker.allowsEditing = true
                 self.present(self.picker, animated: true, completion: nil)
             }
             else{
@@ -607,6 +609,7 @@ extension TestViewController: UIImagePickerControllerDelegate, UINavigationContr
         if let selectedImage: UIImage = info[.originalImage] as? UIImage {
             picker.dismiss(animated: true) {
                 if self.pickPhotoCheck == "profile" {
+                    
                     selectedImage.UpLoadProfile(completion: {
                         self.profileImage.image = selectedImage
                     })
@@ -631,15 +634,16 @@ extension TestViewController: CellClickProtocol
 
 private extension UIButton
 {
+    static var layyer: CALayer?
+    
     func ActiveButton()
     {
-        self.setTitleColor(UIColor.white, for: .normal)
-        self.backgroundColor = #colorLiteral(red: 0.254701972, green: 0.5019594431, blue: 1, alpha: 1)
+    
+
     }
     
     func DeactiveButton()
     {
-        self.setTitleColor(#colorLiteral(red: 0.254701972, green: 0.5019594431, blue: 1, alpha: 1), for: .normal)
-        self.backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
+ 
     }
 }

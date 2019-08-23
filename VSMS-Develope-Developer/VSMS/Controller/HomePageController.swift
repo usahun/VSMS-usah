@@ -126,6 +126,7 @@ class HomePageController: BaseViewController {
                 self.modelsArr = val
             })
         }
+    
     }
     
     override func viewDidAppear(_ animated: Bool) {

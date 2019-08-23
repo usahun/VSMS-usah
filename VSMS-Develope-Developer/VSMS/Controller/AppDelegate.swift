@@ -34,18 +34,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,CLLocationManagerDelegate
         
         //Start up with Slide Menu
         //day-13-08-2019
-//        let contentViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenu") as! MyNavigation
-//
-//        let menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leftMenu") as! MenuViewController
-//        menuViewController.delegate = contentViewController
-//
-//        let sideMenuController = SideMenuController(contentViewController: contentViewController, menuViewController: menuViewController)
-//        self.window?.rootViewController = sideMenuController
-//        self.window?.makeKeyAndVisible()
+        let contentViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenu") as! MyNavigation
+
+        let menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leftMenu") as! MenuViewController
+        menuViewController.delegate = contentViewController
+
+        let sideMenuController = SideMenuController(contentViewController: contentViewController, menuViewController: menuViewController)
+        self.window?.rootViewController = sideMenuController
+        self.window?.makeKeyAndVisible()
 
 //        configureSideMenu()
 //        locationservice.delegate = self
 //        print(locationservice.lastLocation as Any)
+        
+        
+//        Auth.auth().addIDTokenDidChangeListener { (auth, user) in
+//            if user != nil
+//            {
+//                let userProfile = UserFireBase()
+//                userProfile.id = user!.uid
+//                userProfile.username = "Rathana"
+//                userProfile.password = "123456"
+//                userProfile.search = "Rathana".lowercased()
+//                userProfile.Save({
+//
+//                })
+//            }
+//        }
+        
+        
+        
+//        UserFireBase.Load { (user) in
+//            user.username = "Edit testing again"
+//            user.Update({
+//
+//            })
+//        }
+       
         return true
     }
     

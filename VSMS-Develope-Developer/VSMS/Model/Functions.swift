@@ -138,6 +138,13 @@ class User {
         userDefault.synchronize()
     }
     
+    static func setNewFirstName(firstName: String)
+    {
+        let userDefault = UserDefaults.standard
+        userDefault.set(firstName, forKey: "first_name")
+        userDefault.synchronize()
+    }
+    
     static func getfirstname() -> String
     {
         let defaultValues = UserDefaults.standard

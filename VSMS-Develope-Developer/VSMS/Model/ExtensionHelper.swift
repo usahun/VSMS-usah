@@ -9,7 +9,20 @@
 import Foundation
 import Alamofire
 
+///Global Function
+
+func IsNilorEmpty(value: String?) -> Bool
+{
+    guard let val = value else{ return true }
+    if val == "" { return true }
+    return false
+}
+
+////////////end global Functions
+
+
 extension String {
+    
     
     func base64Encoded() -> String? {
         return data(using: .utf8)?.base64EncodedString()
@@ -54,6 +67,7 @@ extension String {
         }
         return ""
     }
+
     
     func formationDate() -> String{
         
@@ -560,3 +574,30 @@ extension UIButton
         }
     }
 }
+
+///formate Date
+extension ISO8601DateFormatter {
+    convenience init(_ formatOptions: Options, timeZone: TimeZone = TimeZone(secondsFromGMT: 0)!) {
+        self.init()
+        self.formatOptions = formatOptions
+        self.timeZone = timeZone
+    }
+}
+
+extension Formatter {
+    static let iso8601 = ISO8601DateFormatter([.withInternetDateTime, .withFractionalSeconds])
+}
+
+extension Date {
+    var iso8601: String {
+        return Formatter.iso8601.string(from: self)
+    }
+}
+
+extension String {
+    var iso8601: Date? {
+        return Formatter.iso8601.date(from: self)
+    }
+}
+
+
