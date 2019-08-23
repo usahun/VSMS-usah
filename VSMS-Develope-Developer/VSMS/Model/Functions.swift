@@ -40,6 +40,7 @@ class PROJECT_API {
     //LogIN
     static var LOGIN = "\(http_absoluteString)/api/v1/rest-auth/login/"
     static var REGISTER = "\(http_absoluteString)/api/v1/users/"
+    static var CHANGEPASSWORD = "\(http_absoluteString)/api/v1/changepassword/"
     
     //Homepage
     static var HOMEPAGE = "\(http_absoluteString)/allposts/"

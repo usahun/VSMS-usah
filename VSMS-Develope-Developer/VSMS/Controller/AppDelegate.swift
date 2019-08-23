@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,CLLocationManagerDelegate
         self.window?.makeKeyAndVisible()
 
 //        configureSideMenu()
-//        locationservice.delegate = self
+//        locationservice.delegate = selff
 //        print(locationservice.lastLocation as Any)
         
         

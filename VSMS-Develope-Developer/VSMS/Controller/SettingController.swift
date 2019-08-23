@@ -27,7 +27,7 @@ class SettingTableController: UITableViewController
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 && indexPath.row == 0
         {
-        
+            PresentController.ChangePassword(from: self)
         }
         
         if indexPath.section == 1 && indexPath.row == 0

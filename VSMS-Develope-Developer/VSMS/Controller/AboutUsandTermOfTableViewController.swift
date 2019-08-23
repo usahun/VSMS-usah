@@ -29,9 +29,9 @@ class AboutUsandTermOfTableViewController: UIViewController, UITableViewDelegate
  
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if listType == "About Us" {
-            return 300
+            return 468
         }else if listType == "Term of Privacy" {
-            return 700
+            return 1285
         }
         return 0
     }
