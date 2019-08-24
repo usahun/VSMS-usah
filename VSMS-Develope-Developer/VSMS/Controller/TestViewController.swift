@@ -26,6 +26,9 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     @IBOutlet weak var btnLike: UIButton!
     @IBOutlet weak var btnLoan: UIButton!
     
+    @IBOutlet weak var BorderActivePost: UILabel!
+    @IBOutlet weak var BorderActiveLike: UILabel!
+    @IBOutlet weak var BorderActiveLoan: UILabel!
     
     
     var ProfileHandleRequest = UserProfileRequestHandle()
@@ -560,21 +563,21 @@ extension TestViewController {
         case btnPost:
             index = 0
             self.tableView.reloadData()
-            btnPost.ActiveButton()
-            btnLike.DeactiveButton()
-            btnLoan.DeactiveButton()
+            BorderActivePost.isHidden = false
+            BorderActiveLike.isHidden = true
+            BorderActiveLoan.isHidden = true
         case btnLike:
             index = 1
             self.tableView.reloadData()
-            btnPost.DeactiveButton()
-            btnLike.ActiveButton()
-            btnLoan.DeactiveButton()
+            BorderActivePost.isHidden = true
+            BorderActiveLike.isHidden = false
+            BorderActiveLoan.isHidden = true
         case btnLoan:
             index = 2
             self.tableView.reloadData()
-            btnPost.DeactiveButton()
-            btnLike.DeactiveButton()
-            btnLoan.ActiveButton()
+            BorderActivePost.isHidden = true
+            BorderActiveLike.isHidden = true
+            BorderActiveLoan.isHidden = false
         default:
             break
         }
@@ -631,19 +634,3 @@ extension TestViewController: CellClickProtocol
     }
 }
 
-
-private extension UIButton
-{
-    static var layyer: CALayer?
-    
-    func ActiveButton()
-    {
-    
-
-    }
-    
-    func DeactiveButton()
-    {
- 
-    }
-}

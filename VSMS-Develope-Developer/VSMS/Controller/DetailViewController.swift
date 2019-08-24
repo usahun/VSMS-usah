@@ -175,9 +175,12 @@ class DetailViewController: UIViewController {
         
         if condtionlike == true {
             Message.AlertMessage(message: "You have like this product already.", header: "LIKE", View: self){}
-        }else{
+        }
+        else
+        {
             Message.AlertMessage(message: "Like Successful.", header: "LIKE", View: self){
                 self.Btnlikebyuser()
+                self.condtionlike = true
                 self.tblView.reloadData()
             }
         }
@@ -189,7 +192,6 @@ class DetailViewController: UIViewController {
         let loanVC:LoanViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoanViewController") as! LoanViewController
         loanVC.Loan.loan_to = ProductDetail.created_by
         loanVC.Loan.post = ProductDetail.id
-        loanVC.Loan.telephone = userdetail!.PhoneNumber
         self.navigationController?.pushViewController(loanVC, animated: true)
     }
     

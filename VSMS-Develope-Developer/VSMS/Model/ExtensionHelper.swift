@@ -364,7 +364,8 @@ extension UIViewController {
         self.tabBarController?.tabBar.isHidden = false
         
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.254701972, green: 0.5019594431, blue: 1, alpha: 1)
+        self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0, green: 0.3411764706, blue: 0.2941176471, alpha: 1)
+            
         self.navigationController?.navigationBar.tintColor = UIColor.white
     }
     
