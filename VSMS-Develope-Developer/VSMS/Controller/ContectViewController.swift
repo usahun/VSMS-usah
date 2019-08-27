@@ -54,6 +54,7 @@ class ContectViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 self.tableView.reloadData()
             }
         }
+        
         imageprofile.image = self.userdetail?.Profile
         labelName.text = self.userdetail?.Name
     }
@@ -66,6 +67,7 @@ class ContectViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     
 
+    
     
     @objc
    func LoadAllPostByUser(){
@@ -134,9 +136,14 @@ class ContectViewController: UIViewController,UITableViewDelegate,UITableViewDat
         
         if listtype == true {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProductListCell", for: indexPath) as! ProductListTableViewCell
-          cell.ProductData = postArr[indexPath.row]
-           return cell
-        } else{
+
+            cell.ProductData = postArr[indexPath.row]
+            cell.reload()
+            return cell
+            
+        }
+        else {
+
             let cell = tableView.dequeueReusableCell(withIdentifier: "contectCell")
             if indexPath.row == 0 {
                 cell?.textLabel?.text = "Phone"
@@ -149,9 +156,7 @@ class ContectViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 cell?.detailTextLabel?.text = tel.address
             }
             return cell ?? UITableViewCell()
-//            return cell ?? UITableViewCell()
         }
-         //UITableViewCell()
     }
 
 }

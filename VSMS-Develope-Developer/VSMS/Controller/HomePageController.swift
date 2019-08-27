@@ -46,9 +46,6 @@ class HomePageController: BaseViewController {
     @IBOutlet weak var btnBuy: UIButton!
     @IBOutlet weak var btnRent: UIButton!
     @IBOutlet weak var btnSell: UIButton!
-    @IBOutlet weak var btnCategory: UIButton!
-    @IBOutlet weak var btnBrand: UIButton!
-    @IBOutlet weak var btnYear: UIButton!
     
     
     var KhmerFlatButton: UIBarButtonItem!
@@ -104,10 +101,7 @@ class HomePageController: BaseViewController {
         ShowDefaultNavigation()
         RegisterXib()
         SlidingPhoto()
-    
-        //txtSearch.disable()
-        ConfigDrowDown()
-        
+      
         performOn(.Main) {
             RequestHandle.LoadBestDeal(completion: { (val) in
                 self.bestDealArr = val
@@ -149,6 +143,14 @@ class HomePageController: BaseViewController {
         refrestButtonFilter(type: 3)
     }
     
+    
+    @IBAction func Searchclick(_ sender: Any) {
+        let searchVC = SearchViewController()
+        searchVC.parameter = self.searchFilter
+        self.navigationController?.pushViewController(searchVC, animated: true)
+    }
+    
+    
     ///////////////////functions & Selectors
     func configuration(){
         
@@ -168,10 +170,6 @@ class HomePageController: BaseViewController {
         btnBuy.addTarget(self, action: #selector(btnPostTypeHandler(_:)), for: .touchUpInside)
         btnRent.addTarget(self, action: #selector(btnPostTypeHandler(_:)), for: .touchUpInside)
         btnSell.addTarget(self, action: #selector(btnPostTypeHandler(_:)), for: .touchUpInside)
-        
-        btnCategory.addTarget(self, action: #selector(btnSearchHandler(_:)), for: .touchUpInside)
-        btnBrand.addTarget(self, action: #selector(btnSearchHandler(_:)), for: .touchUpInside)
-        btnYear.addTarget(self, action: #selector(btnSearchHandler(_:)), for: .touchUpInside)
         
         
         //config best deal flow layout
@@ -239,20 +237,6 @@ class HomePageController: BaseViewController {
         else{
             LanguageManager.setLanguage(lang: .english)
             self.navigationItem.rightBarButtonItem = EnglishFlatButton
-        }
-    }
-    
-    @objc
-    func btnSearchHandler(_ sender: UIButton){
-        switch sender {
-        case btnCategory:
-            dd_category.show()
-        case btnBrand:
-            dd_brand.show()
-        case btnYear:
-            dd_year.show()
-        default:
-            print("")
         }
     }
     
@@ -348,58 +332,6 @@ class HomePageController: BaseViewController {
         
     }
     
-    func ConfigDrowDown(){
-        Functions.getDropDownList(key: 2) { (val) in
-            self.categoryRawData = val
-            self.categories = val.map{ $0.Text }
-            self.dd_category.anchorView = self.btnCategory
-            self.dd_category.dataSource = self.categories
-            // Action triggered on selection
-            self.dd_category.selectionAction = { [weak self] (index, item) in
-                self?.btnCategory.setTitle(item, for: .normal)
-                self!.dd_category.hide()
-                
-                self?.btnBrand.setTitle("Brand", for: .normal)
-                self?.searchFilter.brand = ""
-                self?.searchFilter.category = (self?.categoryRawData[index].ID)!
-                self?.brandSubRawData = (self?.brandRawData.filter({$0.FKKey == self?.searchFilter.category}))!
-                self?.brands = (self?.brandSubRawData.map{ $0.Text })!
-                self?.dd_brand.dataSource = self!.brands
-            }
-        }
-        
-        Functions.getDropDownList(key: 4) { (val) in
-            self.brandRawData = val
-            self.brandSubRawData = val
-            self.brands = val.map{$0.Text}
-            self.dd_brand.anchorView = self.btnBrand
-            self.dd_brand.dataSource = self.brands
-            // Action triggered on selection
-            self.dd_brand.selectionAction = { [weak self] (index, item) in
-                self?.btnBrand.setTitle(item, for: .normal)
-                self!.dd_brand.hide()
-                
-                self?.searchFilter.brand = (self?.brandSubRawData[index].ID)!
-                self?.searchFilter.modelings = (self?.modelsArr.filter{ $0.FKKey == self?.searchFilter.brand }
-                                                               .map{ $0.ID })!
-            }
-        }
-        
-        Functions.getDropDownList(key: 6) { (val) in
-            self.yearRawData = val
-            self.years = val.map{ $0.Text }
-            self.dd_year.anchorView = self.btnYear
-            self.dd_year.dataSource = self.years
-            // Action triggered on selection
-            self.dd_year.selectionAction = { [weak self] (index, item) in
-                self?.btnYear.setTitle(item, for: .normal)
-                self!.dd_year.hide()
-                
-                self?.searchFilter.year = self!.yearRawData[index].ID
-            }
-        }
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let DetailVC = segue.destination as? DetailViewController {
             DetailVC.ProductDetail = self.ProductDetail
@@ -415,9 +347,9 @@ extension HomePageController
         btnBuy.setTitle("buy".localizable(), for: .normal)
         btnSell.setTitle("sell".localizable(), for: .normal)
         btnRent.setTitle("rent".localizable(), for: .normal)
-        btnCategory.setTitle("category".localizable(), for: .normal)
-        btnBrand.setTitle("brand".localizable(), for: .normal)
-        btnYear.setTitle("year".localizable(), for: .normal)
+        //btnCategory.setTitle("category".localizable(), for: .normal)
+        //btnBrand.setTitle("brand".localizable(), for: .normal)
+       // btnYear.setTitle("year".localizable(), for: .normal)
         lblbestDeal.text = "bestdeal".localizable()
         lblNewpost.text = "newpost".localizable()
     }
@@ -573,6 +505,8 @@ extension HomePageController: UISearchBarDelegate {
         searchVC.parameter = self.searchFilter
         self.navigationController?.pushViewController(searchVC, animated: true)
     }
+    
+    
 }
 
 extension HomePageController: navigationToHomepage {

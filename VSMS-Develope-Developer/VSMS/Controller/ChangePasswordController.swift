@@ -64,19 +64,16 @@ class ChangePasswordController: UIViewController {
         let confirmpassword = txtComfirmPassword.text!
         
         if(userphone.isEmpty || password.isEmpty || confirmpassword.isEmpty){
-            
-            let myAlert = UIAlertController(title: "All field are need to quied", message: "All field are quied", preferredStyle: .alert)
-            let okAlert = UIAlertAction(title: "OK", style: .default, handler: nil)
-            myAlert.addAction(okAlert)
-            self.present(myAlert, animated: true, completion: nil)
+            Message.AlertMessage(message: "Please, Input empty field.", header: "Warning", View: self) {
+                self.resetTextField()
+            }
+            return
         }
         if(password != confirmpassword)
         {
-            let myAlert = UIAlertController(title: "Alert", message: "Passwords do not match. Please try again", preferredStyle: .alert)
-            let okAlert = UIAlertAction(title: "OK", style: .default, handler: nil)
-            myAlert.addAction(okAlert)
-            self.present(myAlert, animated: true, completion: nil)
-            
+            Message.AlertMessage(message: "Passwords do not match. Please try again.", header: "Warning", View: self) {
+                self.resetTextField()
+            }
             return
         }
         
@@ -91,22 +88,35 @@ class ChangePasswordController: UIViewController {
             ).responseJSON{ response in
                 switch response.result {
                 case .success(let value):
-                    let json = JSON(value)
+                    print(value)
+                    
                     let myAlert = UIAlertController(title: "Change Password", message: "You have successfully to the New password", preferredStyle: .alert)
-                    let okAlert = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    let okAlert = UIAlertAction(title: "OK", style: .default, handler: self.ChangeSuccessClick(_:))
+                    
                     myAlert.addAction(okAlert)
                     self.present(myAlert, animated: true, completion: nil)
                     User.setNewPassword(newPassword: password)
-                    print(value)
-                    print(json)
+ 
                 case .failure(let error):
                     print(error)
                 }
         }
     }
     
-
+    func ChangeSuccessClick(_ sender: UIAlertAction)
+    {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func resetTextField()
+    {
+        self.txtNewPassword.text = ""
+        self.txtOldPassword.text = ""
+        self.txtComfirmPassword.text = ""
+    }
 }
+
+
 extension ChangePasswordController: HideShowPasswordTextFieldDelegate {
     func isValidPassword(_ password: String) -> Bool {
         return password.count > 7
