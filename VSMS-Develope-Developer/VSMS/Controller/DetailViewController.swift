@@ -111,10 +111,10 @@ class DetailViewController: UIViewController {
         txtinterestRate.addTarget(self, action: #selector(CalculatorLoan), for: UIControl.Event.editingChanged)
         txtTerm.addTarget(self, action: #selector(CalculatorLoan), for: UIControl.Event.editingChanged)
         
-        if(ProductDetail.post_type == "sell"){
-            LoanView.isHidden = true
-            
-        }
+//        if(ProductDetail.post_type == "sell"){
+//            LoanView.isHidden = true
+//
+//        }
         
 //        ProductDetail.post_type = "rent"
 //        ProductDetail.post_type = "buy"
@@ -323,6 +323,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tblView.dequeueReusableCell(withIdentifier: "ProductGridCell", for: indexPath) as! ProductGridTableViewCell
@@ -335,6 +336,9 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         //return UITableViewCell()
         
     }
+    
+    
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 220
     }

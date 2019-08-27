@@ -583,7 +583,7 @@ extension HomePageController: navigationToHomepage {
             let profileVC:TestViewController = self.storyboard?.instantiateViewController(withIdentifier: "TestViewController") as! TestViewController
             let navi = UINavigationController(rootViewController: profileVC)
             self.present(navi, animated: false,completion: nil)
-        case "setting":
+        case "Setting":
             let settingVC: SettingTableController =
                 self.storyboard?.instantiateViewController(withIdentifier: "SettingTableController") as! SettingTableController
            // let navi = UINavigationController(rootViewController: settingVC)

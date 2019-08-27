@@ -81,6 +81,7 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         //Check User is Log in
         super.viewDidLoad()
       
+        tableView.reloadData()
         
         if !User.IsUserAuthorized() {
             PresentController.LogInandRegister()
@@ -533,8 +534,7 @@ extension TestViewController {
         LikeViewModel.Detail(ProID: ProID) { (val) in
             val.Remove(LikeID: ProID, completion: { (result) in
                 alertMessage.dismissActivityIndicator()
-                print(val)
-                self.tableView.reloadData()
+                self.Refresher()
             })
         }
         

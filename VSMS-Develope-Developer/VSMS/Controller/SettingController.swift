@@ -21,6 +21,7 @@ class SettingTableController: UITableViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
     

@@ -18,6 +18,7 @@ class ContectViewController: UIViewController,UITableViewDelegate,UITableViewDat
     @IBOutlet weak var btncontact: UIButton!
     @IBOutlet weak var linepost: UILabel!
     @IBOutlet weak var linecontact: UILabel!
+    var ProfileHandleRequest = UserProfileRequestHandle()
     
     @IBOutlet weak var labelName: UILabel!
     var listtype = true
@@ -28,6 +29,7 @@ class ContectViewController: UIViewController,UITableViewDelegate,UITableViewDat
     var UserPostID: Int?
      var ProductDetail = DetailViewModel()
     var userdetail:Profile?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -47,6 +49,11 @@ class ContectViewController: UIViewController,UITableViewDelegate,UITableViewDat
         //LoadUserProfileInfo()
         LoadAllPostByUser()
         
+        performOn(.Main) {
+            self.ProfileHandleRequest.LoadAllPostByUser {
+                self.tableView.reloadData()
+            }
+        }
         imageprofile.image = self.userdetail?.Profile
         labelName.text = self.userdetail?.Name
     }
@@ -73,10 +80,8 @@ class ContectViewController: UIViewController,UITableViewDelegate,UITableViewDat
                         HomePageModel(json: $0)
                         } ?? [])
                     print(json)
-        
+
                     self.tableView.reloadData()
-                    
-                    
                 case .failure:
                     print("error")
                 }
