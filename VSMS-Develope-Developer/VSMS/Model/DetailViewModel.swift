@@ -36,6 +36,7 @@ class DetailViewModel {
     var rents: [RentPost] = []
     var approved: String = ""
     var rejected: String = ""
+    var create_at: String?
     
     var front_image_url: String = ""
     var left_image_url: String = ""
@@ -80,6 +81,7 @@ class DetailViewModel {
         self.created_by = json["created_by"].stringValue.toInt()
         self.approved = json["approved_by"].stringValue
         self.rejected = json["rejected_by"].stringValue
+        self.create_at = json["created"].stringValue
         
         self.contact_phone = json["contact_phone"].stringValue
         self.contact_email = json["contact_email"].stringValue

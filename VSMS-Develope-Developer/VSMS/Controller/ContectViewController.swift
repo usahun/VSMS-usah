@@ -39,8 +39,8 @@ class ContectViewController: UIViewController,UITableViewDelegate,UITableViewDat
         imageprofile.clipsToBounds = true
         
         imageprofile.CirleWithWhiteBorder(thickness: 3)
-        self.btnpost.backgroundColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1)
-        self.btncontact.backgroundColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1)
+        self.btnpost.backgroundColor = #colorLiteral(red: 0, green: 0.5215686275, blue: 0.4666666667, alpha: 1)
+        self.btncontact.backgroundColor = #colorLiteral(red: 0, green: 0.5215686275, blue: 0.4666666667, alpha: 1)
         self.btnpost.setTitleColor(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: .normal)
         self.btncontact.setTitleColor(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: .normal)
         tableView.reloadData()
@@ -135,7 +135,6 @@ class ContectViewController: UIViewController,UITableViewDelegate,UITableViewDat
         if listtype == true {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProductListCell", for: indexPath) as! ProductListTableViewCell
           cell.ProductData = postArr[indexPath.row]
-            
            return cell
         } else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "contectCell")

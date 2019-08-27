@@ -42,6 +42,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var lblProductPrice: UILabel!
     @IBOutlet weak var lblOldPrice: UILabel!
     
+    @IBOutlet weak var lblDuration: UILabel!
     @IBOutlet weak var lblBrand: UILabel!
     @IBOutlet weak var lblYear: UILabel!
     @IBOutlet weak var lblColor: UILabel!
@@ -105,6 +106,8 @@ class DetailViewController: UIViewController {
                                         completion: { (val) in
                                             self.condtionlike = val
             })
+            
+            
         }
         
         txtprice.addTarget(self, action: #selector(CalculatorLoan), for: UIControl.Event.editingChanged)
@@ -252,6 +255,7 @@ class DetailViewController: UIViewController {
         lblProductName.text = ProductDetail.title.capitalizingFirstLetter()
         lblProductPrice.text = ProductDetail.cost.toCurrency()
         
+        
         if ProductDetail.discount.toDouble() != 0.0
         {
             lblOldPrice.attributedText = ProductDetail.cost.toCurrency().strikeThrough()
@@ -269,6 +273,7 @@ class DetailViewController: UIViewController {
         lblColor.text = ProductDetail.color
         lblDescription.text = ProductDetail.description
         lblPrice.text = ProductDetail.cost.toCurrency()
+        lblDuration.text = ProductDetail.create_at?.getDuration()
     }
     
     func LoadUserDetail(){

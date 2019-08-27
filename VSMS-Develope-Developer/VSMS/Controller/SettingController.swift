@@ -45,7 +45,7 @@ class SettingTableController: UITableViewController
                 PresentController.HomePage()
             }
         }
-    
+
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
