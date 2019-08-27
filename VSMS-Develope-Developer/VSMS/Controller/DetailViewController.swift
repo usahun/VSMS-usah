@@ -331,7 +331,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         cell.data1 = relateArr[index]
         cell.data2 = relateArr[index + 1]
         cell.delegate = self
-        
+        cell.reload()
         return cell
         //return UITableViewCell()
         
