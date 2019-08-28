@@ -45,7 +45,10 @@ class PROJECT_API {
     //Homepage
     static var HOMEPAGE = "\(http_absoluteString)/allposts/"
     static var BESTDEAL = "\(http_absoluteString)/bestdeal/"
-    
+    static func filterUsernameAndFacebookKey(username: String, fbKey: String) -> String
+    {
+        return "\(http_absoluteString)/api/v1/userfilter/?last_name=\(fbKey)&username=\(username)"
+    }
     
     static func DETAIL_USER(userID: String) -> String {
         return "\(http_absoluteString)/postbyuserfilter/\(userID)/"
@@ -89,12 +92,11 @@ class PROJECT_API {
     
     static var UpdateProductStatus = "\(http_absoluteString)/api/v1/renewaldelete/"
     
-   
-    
     //Count Views
     static func COUNT_VIEWS(ProID: Int) -> String {
         return "\(http_absoluteString)/countview/?post=\(ProID)"
     }
+    
 }
 
 func httpHeader() -> HTTPHeaders

@@ -11,16 +11,19 @@ target 'VSMS' do
    pod 'SideMenuSwift', '= 1.0.0'
    pod 'CollectionViewGridLayout'
    pod 'SwiftyJSON', '~> 4.0'
-   pod 'DropDown', '2.3.4'
    pod 'TLPhotoPicker', '1.8.3'
    pod 'Toast-Swift', '~> 4.0.0'
    pod 'RSSelectionMenu'
+   pod 'SCLAlertView'
    
    # Firebase & Facebook
    pod 'Firebase/Analytics'
    pod 'Firebase/Core'
    pod 'Firebase/Auth'
    pod 'Firebase/Database'
+   
+   pod 'FacebookCore'
+   pod 'FacebookLogin'
    
    #  pod 'LGSideMenuController'
    # pod 'Chatto', '= 3.4.0'

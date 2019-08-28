@@ -243,6 +243,14 @@ extension UIView {
         }
         layer.addSublayer(border)
     }
+    
+    func dropShadow() {
+        self.layer.shadowRadius = 2
+        self.layer.shadowColor = UIColor.gray.cgColor
+        self.layer.shadowOpacity = 0.7
+        self.layer.shadowOffset = CGSize.zero
+        self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+    }
 }
 
 
@@ -317,16 +325,6 @@ extension UIViewController {
         }
     }
     
-    func PushToEditPostViewController(ID: Int)
-    {
-        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PostAdViewController") as? PostAdViewController {
-//            performOn(.Main) {
-//                viewController.JsonData = PostViewModel(ID: ID)
-//            }
-            viewController.PostIDEdit = ID
-            self.navigationController?.pushViewController(viewController, animated: true)
-        }
-    }
 }
 
 extension UITableViewCell {

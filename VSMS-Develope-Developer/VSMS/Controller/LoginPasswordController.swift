@@ -14,26 +14,17 @@ import Firebase
 class LoginPasswordController: UIViewController {
     
     @IBOutlet weak var textphonenumber: UITextField!
-    
     @IBOutlet weak var textpassword: UITextField!
-    
     @IBOutlet weak var loginbutton: UIButton!
     
+    var account = AccountViewModel()
     
-    let defaultValues = UserDefaults.standard
-    
-    
-        
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loginbutton.reloadInputViews()
-        navigationController?.navigationBar.isHidden = true
-        //navigationController?.navigationBar.barTintColor = UIColor.blue
 
         //if user is already logged in switching to profile screen
-        self.ShowDefaultNavigation()
-        self.HasNavNoTab()
         
         textphonenumber.returnKeyType = .next
         textphonenumber.delegate = self
@@ -44,7 +35,6 @@ class LoginPasswordController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(false)
         textpassword.text = ""
         textphonenumber.text = ""
     }
@@ -64,22 +54,53 @@ class LoginPasswordController: UIViewController {
         
         let phonenumber = textphonenumber.text!
         let password = textpassword.text!
-    
-        PhoneAuthProvider.provider().verifyPhoneNumber(phonenumber.ISOTelephone(), uiDelegate: nil)
-        { (verificationID, error) in
-            if let error = error {
-                print(error)
-                Message.AlertMessage(message: "\(error)", header: "Error", View: self, callback: {
+        
+        
+        account.username = phonenumber
+        account.password = password
+        
+        AccountViewModel.IsUserExist(userName: phonenumber, fbKey: "") { (result) in
+            if !result {
+                Message.WarningMessage(message: "User is not exist.", View: self, callback: {
                     self.textphonenumber.text = ""
                     self.textpassword.text = ""
+                    self.textphonenumber.becomeFirstResponder()
                 })
                 return
             }
-            
-            UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
-            PresentController.PushToVerifyViewController(telelphone: phonenumber, password: password, from: self, isLogin: true)
         }
         
+        account.LogInUser { (result) in
+            performOn(.Main, closure: {
+                if result {
+                   self.verifyPhoneNumber()
+                }
+                else{
+                    Message.WarningMessage(message: "Incorrect Username and Password", View: self, callback: {
+                        self.textpassword.text = ""
+                        self.textpassword.becomeFirstResponder()
+                    })
+                }
+            })
+        }
+    }
+    
+    private func verifyPhoneNumber()
+    {
+        PhoneAuthProvider.provider().verifyPhoneNumber(account.username.ISOTelephone(), uiDelegate: nil)
+                        { (verificationID, error) in
+                            if let error = error {
+                                User.resetUserDefault()
+                                Message.AlertMessage(message: "\(error)", header: "Error", View: self, callback: {
+                                    self.textphonenumber.text = ""
+                                    self.textpassword.text = ""
+                                })
+                                return
+                            }
+        
+                            UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+                            PresentController.PushToVerifyViewController(telelphone: self.textphonenumber.text!, password: self.textpassword.text!, from: self, isLogin: true)
+                        }
     }
 
 }
@@ -95,6 +116,7 @@ extension LoginPasswordController
             textpassword.becomeFirstResponder()
         }
     }
+    
 }
 
 extension LoginPasswordController: UITextFieldDelegate

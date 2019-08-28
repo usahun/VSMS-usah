@@ -14,6 +14,8 @@ var paginationRecord: Int = 5
 
 class Message {
     
+    static var alert: UIAlertController?
+    
     public static func ErrorMessage(message: String, View: UIViewController) {
         let AlertMessage = UIAlertController(title: "Error",
                                              message: message,
@@ -70,6 +72,18 @@ class Message {
         View.present(AlertMessage, animated: true, completion: nil)
     }
     
+    public static func WarningMessage(message: String, View: UIViewController, callback:@escaping (() -> Void)){
+        let AlertMessage = UIAlertController(title: "Warning",
+                                             message: message,
+                                             preferredStyle: .alert)
+        
+        AlertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: { (alert) in
+            callback()
+        }))
+        
+        View.present(AlertMessage, animated: true, completion: nil)
+    }
+    
     static func AlertLogOutMessage(from: UIViewController, completion: @escaping () -> Void)
     {
         let alertCon = UIAlertController(title: "Are you sure to log out?", message: nil, preferredStyle: .actionSheet)
@@ -91,6 +105,28 @@ class Message {
         }))
         alertCon.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         from.present(alertCon, animated: true, completion: nil)
+    }
+    
+    static func Loading(from: UIViewController, text: String = "Please wait...")
+    {
+        alert = UIAlertController(title: nil, message: text, preferredStyle: .alert)
+        
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.gray
+        loadingIndicator.startAnimating();
+        
+        alert!.view.addSubview(loadingIndicator)
+        if let topVC = UIApplication.topViewController() {
+            topVC.present(alert!, animated: true, completion: nil)
+        }
+        
+    }
+    
+    static func DismissLoading()
+    {
+        alert?.dismiss(animated: false, completion: nil)
+        alert?.dismissActivityIndicator()
     }
 }
 
@@ -126,6 +162,8 @@ class BorderView: UIView {
         
         self.layer.borderWidth = 0.5
         self.layer.borderColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+        
+        self.dropShadow()
     }
 }
 

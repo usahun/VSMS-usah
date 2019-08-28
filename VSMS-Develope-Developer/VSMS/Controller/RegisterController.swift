@@ -21,7 +21,6 @@ class RegisterController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       self.navigationController?.setNavigationBarHidden(false, animated: false)
         configuration()
     }
     
@@ -74,23 +73,38 @@ class RegisterController: UIViewController {
         }
 
         
-        PhoneAuthProvider.provider().verifyPhoneNumber(phonenumber.ISOTelephone(), uiDelegate: nil) { (verificationID, error) in
-            if let error = error {
-                print(error)
-                Message.AlertMessage(message: "\(error)", header: "Error", View: self, callback: {
-                    self.txtPhoneNumber.text = ""
-                    self.txtPassword.text = ""
-                    self.txtConfirmPassword.text = ""
-                    self.txtPhoneNumber.becomeFirstResponder()
+        //Check if User is existing
+        AccountViewModel.IsUserExist(userName: phonenumber, fbKey: "") { (result) in
+            if result
+            {
+                Message.WarningMessage(message: "Phone number is already existing. Please try again.", View: self, callback: {
+                    self.resetInput()
                 })
-                return
             }
-
-            UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
-            PresentController.PushToVerifyViewController(telelphone: phonenumber, password: confirmPassword, from: self)
+            else
+            {
+                PhoneAuthProvider.provider().verifyPhoneNumber(phonenumber.ISOTelephone(), uiDelegate: nil) { (verificationID, error) in
+                    if let error = error {
+                        print(error)
+                        Message.AlertMessage(message: "\(error)", header: "Error", View: self, callback: {
+                            self.resetInput()
+                        })
+                        return
+                    }
+                    
+                    UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+                    PresentController.PushToVerifyViewController(telelphone: phonenumber, password: confirmPassword, from: self)
+                }
+            }
         }
-        
-        
+    }
+    
+    func resetInput()
+    {
+        self.txtPhoneNumber.text = ""
+        self.txtPassword.text = ""
+        self.txtConfirmPassword.text = ""
+        self.txtPhoneNumber.becomeFirstResponder()
     }
 
 }
