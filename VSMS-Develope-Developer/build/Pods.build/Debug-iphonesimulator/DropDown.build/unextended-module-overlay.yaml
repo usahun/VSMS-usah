@@ -1,0 +1,13 @@
+{
+  'version': 0,
+  'case-sensitive': 'false',
+  'roots': [{
+    'type': 'directory',
+    'name': "/Users/rathana/Desktop/09-08-2019/VSMS1/VSMS-usah/VSMS-Develope-Developer/build/Debug-iphonesimulator/DropDown/DropDown.framework/Modules"
+    'contents': [{
+      'type': 'file',
+      'name': "module.modulemap",
+      'external-contents': "/Users/rathana/Desktop/09-08-2019/VSMS1/VSMS-usah/VSMS-Develope-Developer/build/Pods.build/Debug-iphonesimulator/DropDown.build/unextended-module.modulemap",
+    }]
+  }]
+}
