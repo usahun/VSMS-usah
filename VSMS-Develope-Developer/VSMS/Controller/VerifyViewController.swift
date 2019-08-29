@@ -55,9 +55,10 @@ class VerifyViewController: UIViewController {
         
         Auth.auth().signIn(with: credential) { (authResult, error) in
             if let error = error {
-                self.view.makeToast(error as? String)
-                User.resetUserDefault()
-                self.navigationController?.popViewController(animated: true)
+                self.lblErrorMessage.isHidden = false
+                self.txtCode.text = ""
+                self.txtCode.becomeFirstResponder()
+                print(error as? String)
                 return
             }
             
@@ -88,7 +89,7 @@ class VerifyViewController: UIViewController {
             performOn(.Main, closure: {
                 if result {
                     Message.SuccessMessage(message: "Your Account has been registered.", View: self, callback: {
-                        PresentController.ProfileController()
+                        PresentController.ProfileController(animate: true)
                     })
                 }
                 else{
@@ -103,7 +104,7 @@ class VerifyViewController: UIViewController {
     func LogInUser()
     {
         Message.SuccessMessage(message: "Log in successfully.", View: self) {
-            PresentController.ProfileController()
+            PresentController.ProfileController(animate: true)
         }
     }
 }

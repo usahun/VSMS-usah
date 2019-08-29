@@ -81,9 +81,9 @@ class TabBarButton: UIView {
     private func addTargetTobutton()
     {
         self.Home.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(HomeClick)))
-        self.Notification.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(HomeClick)))
+        self.Notification.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NotificationClick)))
         self.Camera.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CameraClick)))
-        self.Chat.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(HomeClick)))
+        self.Chat.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ChatClick)))
         self.Profile.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProfileClick)))
     }
     
@@ -150,5 +150,48 @@ class TabBarButton: UIView {
         }
     }
     
+    @objc
+    private func NotificationClick()
+    {
+        if !User.IsUserAuthorized()
+        {
+            PresentController.LogInandRegister()
+            return
+        }
+        
+        guard !NotificationActive else {
+            return
+        }
+        
+        if let currentView = UIApplication.topViewController() {
+            let notificationVC: UINavigationController = {
+                let postVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NotificationViewController") as! NotificationViewController
+                return UINavigationController(rootViewController: postVC)
+            }()
+            currentView.present(notificationVC, animated: false, completion: nil)
+        }
+    }
+    
+    @objc
+    private func ChatClick()
+    {
+        if !User.IsUserAuthorized()
+        {
+            PresentController.LogInandRegister()
+            return
+        }
+        
+        guard !ChatActive else {
+            return
+        }
+        
+        if let currentView = UIApplication.topViewController() {
+            let chatVC: UINavigationController = {
+                let postVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
+                return UINavigationController(rootViewController: postVC)
+            }()
+            currentView.present(chatVC, animated: false, completion: nil)
+        }
+    }
 }
 

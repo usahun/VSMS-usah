@@ -109,13 +109,14 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         /////// Calling Functions
         XibRegister()
+        InitailizeProfile()
         
         performOn(.Main) {
-            self.ProfileHandleRequest.LoadProfileDetail {
-                performOn(.Main, closure: {
-                    self.InitailizeProfile()
-                })
-            }
+//            self.ProfileHandleRequest.LoadProfileDetail {
+//                performOn(.Main, closure: {
+//                    self.InitailizeProfile()
+//                })
+//            }
             
             self.ProfileHandleRequest.LoadAllPostByUser {
                 self.isLoading = false
@@ -226,7 +227,17 @@ class TestViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     func InitailizeProfile(){
         profileImage.ImageLoadFromURL(url: ProfileHandleRequest.Profile.profile.profile_image)
         CoverImage.ImageLoadFromURL(url: ProfileHandleRequest.Profile.profile.cover_image)
-        LabelName.text = ProfileHandleRequest.Profile.firstName == "" ? ProfileHandleRequest.Profile.name : ProfileHandleRequest.Profile.firstName
+        
+        UserFireBase.Load { (user) in
+            if user != nil {
+                performOn(.Main, closure: {
+                    self.profileImage.ImageLoadFromURL(url: user.imageURL)
+                    self.CoverImage.ImageLoadFromURL(url: user.coverURL)
+                })
+            }
+        }
+
+        LabelName.text = User.getfirstname() == "" ? User.getUsername() : User.getfirstname()
     }
     
     @objc

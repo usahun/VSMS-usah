@@ -84,6 +84,18 @@ class Message {
         View.present(AlertMessage, animated: true, completion: nil)
     }
     
+    public static func AttentionMessage(message: String, View: UIViewController, callback:@escaping (() -> Void)){
+        let AlertMessage = UIAlertController(title: "Attention",
+                                             message: message,
+                                             preferredStyle: .alert)
+        
+        AlertMessage.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (alert) in
+            callback()
+        }))
+        
+        View.present(AlertMessage, animated: true, completion: nil)
+    }
+    
     static func AlertLogOutMessage(from: UIViewController, completion: @escaping () -> Void)
     {
         let alertCon = UIAlertController(title: "Are you sure to log out?", message: nil, preferredStyle: .actionSheet)
@@ -215,3 +227,17 @@ func showToast(message : String, view: UIViewController) {
     })
 }
 
+class Alert {
+    class func showAlert(title: String, titleColor: UIColor, message: String, titleAction: String, actionStyle: UIAlertAction.Style, vc: UIViewController, _ callback: @escaping () -> Void) {
+        
+        let attributedString = NSAttributedString(string: title, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: titleColor])
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alert.setValue(attributedString, forKey: "attributedTitle")
+        
+        alert.addAction(UIAlertAction(title: titleAction, style: actionStyle, handler: { (alertAction) in
+            callback()
+        }))
+        vc.present(alert, animated: true)
+    }
+}

@@ -39,7 +39,24 @@ class LoginPasswordController: UIViewController {
         textphonenumber.text = ""
     }
     
-
+    @IBAction func btnFacebookClick(_ sender: Any) {
+        FacebookHandle.showFacebookConfirmation(from: self) {
+            if let user = FacebookHandle.fbUserData {
+                AccountViewModel.IsUserExist(userName: "", fbKey: user.lastname, completion: { (result) in
+                    if result {
+                        user.password = user.username
+                        user.LogInUser(completion: { (result) in
+                            PresentController.ProfileController()
+                        })
+                    }
+                    else {
+                        PresentController.PushToSetNumberViewController(user: user, from: self)
+                    }
+                })
+            }
+        }
+    }
+    
     @IBAction func LoginbuttonTapped(_ sender: Any) {
 
         if IsNilorEmpty(value: textphonenumber.text) {
@@ -89,9 +106,9 @@ class LoginPasswordController: UIViewController {
     {
         PhoneAuthProvider.provider().verifyPhoneNumber(account.username.ISOTelephone(), uiDelegate: nil)
                         { (verificationID, error) in
-                            if let error = error {
+                            if error != nil {
                                 User.resetUserDefault()
-                                Message.AlertMessage(message: "\(error)", header: "Error", View: self, callback: {
+                                Message.AttentionMessage(message: "Your number is temporary blocked, due to many requests. Please try again later.", View: self, callback: {
                                     self.textphonenumber.text = ""
                                     self.textpassword.text = ""
                                 })
@@ -99,7 +116,7 @@ class LoginPasswordController: UIViewController {
                             }
         
                             UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
-                            PresentController.PushToVerifyViewController(telelphone: self.textphonenumber.text!, password: self.textpassword.text!, from: self, isLogin: true)
+                            PresentController.PushToVerifyViewController(telelphone: self.textphonenumber.text!, password: self.textpassword.text!, from: self, isLogin: true, FBData: nil)
                         }
     }
 

@@ -400,6 +400,9 @@ class PostAdViewModel
     var back_image_path: String?
     var back_image_base64: String?
     
+    var extra_image1: String?
+    var extra_image2: String?
+    
     //record
     var status: Int = 3
     var modified: Date?
@@ -512,7 +515,17 @@ class PostAdViewModel
                             switch response.result{
                             case .success(let value):
                                 print(value)
-                                completion(true)
+                                let data = JSON(value)
+                                if IsNilorEmpty(value: data["id"].stringValue) {
+                                    print("something Wrong")
+                                    completion(false)
+                                    return
+                                }
+                                //Save post to Firebase
+                                let pfb = PostFireBase(PostJson: data)
+                                pfb.Save {
+                                    completion(true)
+                                } 
                             case .failure(let error):
                                 print(error)
                                 completion(false)
@@ -531,8 +544,18 @@ class PostAdViewModel
                           headers: httpHeader()
             ).responseJSON { response in
                             switch response.result{
-                            case .success:
-                                completion(true)
+                            case .success(let value):
+                                let data = JSON(value)
+                                if IsNilorEmpty(value: data["id"].stringValue) {
+                                    print("something Wrong")
+                                    completion(false)
+                                    return
+                                }
+                                //Update post to Firebase
+                                let pfb = PostFireBase(PostJson: data)
+                                pfb.Update {
+                                    completion(true)
+                                }
                             case .failure(let error):
                                 print(error)
                                 completion(false)
@@ -552,7 +575,18 @@ class PostAdViewModel
                 switch response.result{
                 case .success(let value):
                     print(value)
-                    completion(true)
+                    let data = JSON(value)
+                    if IsNilorEmpty(value: data["id"].stringValue) {
+                        print("something Wrong")
+                        completion(false)
+                        return
+                    }
+                    //Update Status Delete
+                    PostFireBase.Load(PostID: data["id"].stringValue, { (Post) in
+                        Post.Delete {
+                            completion(true)
+                        }
+                    })
                 case .failure(let error):
                     print(error)
                     completion(false)

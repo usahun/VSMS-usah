@@ -21,7 +21,8 @@ class ImagePickerUIView: UIView {
     var left_image: String?
     var right_image: String?
     var back_image: String?
-    
+    var extra_image1: String?
+    var extra_image2: String?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -66,7 +67,7 @@ extension ImagePickerUIView
     func setUpDataArr()
     {
         self.DataArr.removeAll()
-        for _ in 0..<4 {
+        for _ in 0..<6 {
             self.DataArr.append(imageWithPLAsset(image: UIImage(named: "icons8-plus-math-50 (5)")!, PLAsset: nil, selectedImage: nil))
         }
     }
@@ -89,11 +90,13 @@ extension ImagePickerUIView
     func getInstructionMessage(select: Int) -> String
     {
         switch (selectedAssets.count + select) {
-        case 0: return "Front Image"
-        case 1: return "Left Image"
-        case 2: return "Right Image"
-        case 3: return "Back Image"
-        default: return ""
+            case 0: return "Front Image"
+            case 1: return "Left Image"
+            case 2: return "Right Image"
+            case 3: return "Back Image"
+            case 4: return "Extra Image 1"
+            case 5: return "Extra Image 2"
+            default: return ""
         }
     }
     
@@ -107,8 +110,12 @@ extension ImagePickerUIView
                 self.left_image = image.toBase64()
             case 2:
                 self.right_image = image.toBase64()
-            default:
+            case 3:
                 self.back_image = image.toBase64()
+            case 4:
+                self.extra_image1 = image.toBase64()
+            default:
+                self.extra_image2 = image.toBase64()
         }
     }
 }
@@ -116,7 +123,7 @@ extension ImagePickerUIView
 extension ImagePickerUIView: UICollectionViewDelegate, UICollectionViewDataSource
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return 6
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -138,7 +145,7 @@ extension ImagePickerUIView: UICollectionViewDelegate, UICollectionViewDataSourc
         let TLPhotoPicker = TLPhotosPickerViewController()
         var TLconfig = TLPhotosPickerConfigure()
         
-        TLconfig.maxSelectedAssets = 4 - self.selectedAssets.count
+        TLconfig.maxSelectedAssets = 6 - self.selectedAssets.count
         TLconfig.allowedVideo = false
         TLconfig.allowedVideoRecording = false
 
@@ -167,7 +174,7 @@ extension ImagePickerUIView: TLPhotosPickerViewControllerDelegate {
     }
     
     func didExceedMaximumNumberOfSelection(picker: TLPhotosPickerViewController) {
-        Message.AlertMessage(message: "Image can select only 4.", header: "Warning", View: picker) {
+        Message.AlertMessage(message: "Image can select only 6.", header: "Warning", View: picker) {
             
         }
     }

@@ -74,9 +74,7 @@ class MyAccountController: UITableViewController {
         
         ////configfunction
         configDateOfBirthOption()
-       
-        
-        
+
     }
     
     func setUpAccountData()
