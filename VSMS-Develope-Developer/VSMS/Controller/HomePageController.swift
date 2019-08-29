@@ -10,7 +10,6 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import SideMenuSwift
-import DropDown
 
 class MyNavigation: UINavigationController, leftMenuClick {
     
@@ -67,14 +66,14 @@ class HomePageController: BaseViewController {
     var bestDealArr: [HomePageModel] = []
     var allPostArr: [HomePageModel] = []
     
-    var dd_category = DropDown()
+ 
     var categories: [String] = []
     var categoryRawData: [dropdownData] = []
-    var dd_brand = DropDown()
+
     var brands: [String] = []
     var brandRawData: [dropdownData] = []
     var brandSubRawData: [dropdownData] = []
-    var dd_year = DropDown()
+
     var years: [String] = []
     var yearRawData: [dropdownData] = []
     var modelsArr: [dropdownData] = []

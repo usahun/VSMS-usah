@@ -113,6 +113,12 @@ class TabBarButton: UIView {
     @objc
     private func ProfileClick()
     {
+        if !User.IsUserAuthorized()
+        {
+            PresentController.LogInandRegister()
+            return
+        }
+        
         guard !ProfileActive else {
             return
         }
@@ -129,6 +135,12 @@ class TabBarButton: UIView {
     @objc
     private func CameraClick()
     {
+        if !User.IsUserAuthorized()
+        {
+            PresentController.LogInandRegister()
+            return
+        }
+        
         if let currentView = UIApplication.topViewController() {
             let PostAD: UINavigationController = {
                 let postVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PostViewController") as! PostViewController

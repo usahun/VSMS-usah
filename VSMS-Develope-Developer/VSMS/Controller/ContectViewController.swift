@@ -55,7 +55,10 @@ class ContectViewController: UIViewController,UITableViewDelegate,UITableViewDat
             }
         }
         
-        imageprofile.image = self.userdetail?.Profile
+        if let img = self.userdetail?.Profile {
+            imageprofile.image = img
+        }
+
         labelName.text = self.userdetail?.Name
     }
     
@@ -73,7 +76,10 @@ class ContectViewController: UIViewController,UITableViewDelegate,UITableViewDat
    func LoadAllPostByUser(){
 //        print(PROJECT_API.POSTBYUSER_FILTER(UserID: userdetail!.ID, approved: ProductDetail.approved, rejected: ProductDetail.rejected, modify: ""))
         
-        Alamofire.request(PROJECT_API.POSTBYUSER_FILTER(UserID: userdetail!.ID, approved: ProductDetail.approved, rejected: ProductDetail.rejected, modify: ""), method: .get, encoding: JSONEncoding.default,headers: headers).responseJSON
+        Alamofire.request(PROJECT_API.POSTBYUSER_FILTER(UserID: userdetail!.ID, approved: ProductDetail.approved, rejected: ProductDetail.rejected, modify: ""),
+                          method: .get,
+                          encoding: JSONEncoding.default
+            ).responseJSON
             { (response) in
                 switch response.result{
                 case .success(let value):

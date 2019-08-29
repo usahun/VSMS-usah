@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import SwiftyJSON
+import SCLAlertView
 
 class VerifyViewController: UIViewController {
 
@@ -54,27 +55,30 @@ class VerifyViewController: UIViewController {
         
         Auth.auth().signIn(with: credential) { (authResult, error) in
             if let error = error {
-                print("Log In error")
-                print(error)
+                self.view.makeToast(error as? String)
+                User.resetUserDefault()
+                self.navigationController?.popViewController(animated: true)
                 return
             }
             
             //Is log or Register
-            if self.is_login {
-                self.LogInUser()
-            }
-            else
-            {
-                let NewUserFireBase = UserFireBase()
-                NewUserFireBase.id = authResult!.user.uid
-                NewUserFireBase.username = self.account.username
-                NewUserFireBase.password = self.account.password
-                NewUserFireBase.search = self.account.username.lowercased()
-                NewUserFireBase.Save({
-                    
-                })
-                self.RegisterUser()
-            }
+            performOn(.Main, closure: {
+                if self.is_login {
+                    self.LogInUser()
+                }
+                else
+                {
+                    let NewUserFireBase = UserFireBase()
+                    NewUserFireBase.id = authResult!.user.uid
+                    NewUserFireBase.username = self.account.username
+                    NewUserFireBase.password = self.account.password
+                    NewUserFireBase.search = self.account.username.lowercased()
+                    NewUserFireBase.Save({
+                        
+                    })
+                    self.RegisterUser()
+                }
+            })
         }
     }
     
@@ -98,17 +102,8 @@ class VerifyViewController: UIViewController {
 
     func LogInUser()
     {
-        account.LogInUser { (result) in
-            performOn(.Main, closure: {
-                if result {
-                    PresentController.ProfileController()
-                }
-                else{
-                    Message.AlertMessage(message: "User is not existing. Please Try again.", header: "Warning", View: self, callback: {
-                        self.navigationController?.popViewController(animated: true)
-                    })
-                }
-            })
+        Message.SuccessMessage(message: "Log in successfully.", View: self) {
+            PresentController.ProfileController()
         }
     }
 }

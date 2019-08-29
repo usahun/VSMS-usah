@@ -64,7 +64,7 @@ class CustomTabBarController: UITabBarController {
     }()
     
     let PostAdTab: UINavigationController = {
-        let postAd = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PostAdViewController") as! PostAdViewController
+        let postAd = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PostViewController") as! PostViewController
         return UINavigationController(rootViewController: postAd)
     }()
     

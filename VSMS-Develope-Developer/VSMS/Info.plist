@@ -23,6 +23,12 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb596607940863011</string>
+			</array>
+		</dict>
+		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
@@ -32,15 +38,28 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>1.0.01</string>
+	<key>FacebookAppID</key>
+	<string>596607940863011</string>
+	<key>FacebookDisplayName</key>
+	<string>121 Shoppe</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>YES</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>App needs Location</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app required to Always Using Permission for location service to view your current location.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>App needs Location</string>
 	<key>NSPhotoLibraryUsageDescription</key>

@@ -11,6 +11,7 @@ import SideMenuSwift
 
 class PresentController
 {
+    /////////////////Home Page///////////////
     static func HomePage()
     {
         if let currentView = UIApplication.topViewController() {
@@ -29,6 +30,7 @@ class PresentController
         }
     }
     
+    /////////////////Profile///////////////
     static func ProfileController()
     {
         if let currentView = UIApplication.topViewController() {
@@ -55,7 +57,7 @@ class PresentController
                 let profile = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginController") as! LoginController
                 return UINavigationController(rootViewController: profile)
             }()
-            currentView.present(ProfileTab, animated: false, completion: nil)
+            currentView.present(ProfileTab, animated: true, completion: nil)
         }
     }
     
@@ -84,6 +86,16 @@ class PresentController
             verifyVC.account.password = password
             verifyVC.is_login = isLogin
             from.navigationController?.pushViewController(verifyVC, animated: true)
+        }
+    }
+    
+    
+    static func PushToSetNumberViewController(user: AccountViewModel, from: UIViewController)
+    {
+        if let setNumberVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SetPhoneViewController") as? SetPhoneViewController
+        {
+            setNumberVC.UserAccount = user
+            from.navigationController?.pushViewController(setNumberVC, animated: true)
         }
     }
 }

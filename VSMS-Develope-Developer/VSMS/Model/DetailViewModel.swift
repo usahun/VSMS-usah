@@ -115,12 +115,14 @@ class DetailViewModel {
             "Cookie": "",
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "Authorization" : User.getUserEncoded(),
+            //"Authorization" : User.getUserEncoded(),
         ]
         
         dispatchGroup.enter()
-        Alamofire.request(PROJECT_API.LOADPRODUCT(ProID: ProID), method: .get,encoding: JSONEncoding.default,
-                          headers: headers ).responseJSON
+        Alamofire.request(PROJECT_API.LOADPRODUCT(ProID: ProID),
+                          method: .get,
+                          encoding: JSONEncoding.default
+            ).responseJSON
             { response in
                 switch response.result{
                 case .success (let value):

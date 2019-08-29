@@ -7,14 +7,12 @@
 //
 
 import UIKit
-import DropDown
 
 class PassDataTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var textInput: UITextField!
     
-    weak var delegate: CellTableClick?
     var passingData = CellClickViewModel()
     
     
@@ -32,6 +30,6 @@ class PassDataTableViewCell: UITableViewCell {
     @objc func textChange() {
         passingData.ID = self.textInput.text!
         passingData.Value = self.textInput.text!
-        self.delegate?.ClickCell(currentCell: passingData)
+     
     }
 }

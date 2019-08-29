@@ -170,7 +170,7 @@ class DetailViewController: UIViewController {
     
     @IBAction func clickSms(_ sender: Any) {
         Message.AlertMessage(message: "", header: "SMS", View: self) {
-            
+            UIApplication.shared.open(URL(string: "sms:")!, options: [:], completionHandler: nil)
         }
     }
     

@@ -27,6 +27,7 @@ class LikesTableViewCell: UITableViewCell {
     var DeleteHandle: ((Int) -> Void)?
     var record_status: Int = 0
     
+    var ImgPath = ""
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -42,6 +43,10 @@ class LikesTableViewCell: UITableViewCell {
     
     public func reload()
     {
+        if let imageFromCache = imageCache.object(forKey: ImgPath as AnyObject) as? UIImage {
+            self.LikesImage.image = imageFromCache
+        }
+        
         RequestHandle.LoadListProductByPostID(postID: ProductData.post) { (val) in
             performOn(.Main, closure: {
                 self.LikesImage.LoadFromURL(url: val.imagefront)
@@ -49,6 +54,8 @@ class LikesTableViewCell: UITableViewCell {
                 self.lblPrice.text = val.cost.toCurrency()
                 self.lblDuration.text = val.create_at?.getDuration()
                 self.lblPostType.SetPostType(postType: val.postType)
+                
+                self.ImgPath = val.imagefront
             })
         }
         RequestHandle.CountView(postID: self.ProductData.post) { (count) in

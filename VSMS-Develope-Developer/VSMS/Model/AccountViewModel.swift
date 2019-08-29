@@ -190,6 +190,30 @@ class AccountViewModel {
                 }
         }
     }
+    
+    static func IsUserExist(userName: String, fbKey: String, completion: @escaping (Bool) -> Void)
+    {
+        print(PROJECT_API.filterUsernameAndFacebookKey(username: userName, fbKey: fbKey))
+        Alamofire.request(PROJECT_API.filterUsernameAndFacebookKey(username: userName, fbKey: fbKey),
+            method: .get,
+            encoding: JSONEncoding.default
+            ).responseJSON { response in
+                
+                switch response.result{
+                case .success(let value):
+                    let check = JSON(value)
+                    let count = check["count"].stringValue.toInt()
+                    if count > 0 {
+                        completion(true)
+                    }
+                    else{
+                        completion(false)
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+        }
+    }
 }
 
 class AccountSubProfile{
