@@ -98,6 +98,8 @@ class PostViewController: UITableViewController {
         post_obj.left_image_path = imagePicker.left_image
         post_obj.right_image_path = imagePicker.right_image
         post_obj.back_image_path = imagePicker.back_image
+        post_obj.extra_image1 = imagePicker.extra_image1
+        post_obj.extra_image2 = imagePicker.extra_image2
         
         if is_edit
         {

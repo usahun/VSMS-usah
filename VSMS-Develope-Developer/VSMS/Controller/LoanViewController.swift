@@ -8,6 +8,7 @@
 
 import UIKit
 import RSSelectionMenu
+import Toast_Swift
 
 class LoanViewController: UITableViewController { 
     

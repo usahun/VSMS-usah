@@ -31,14 +31,14 @@ class PresentController
     }
     
     /////////////////Profile///////////////
-    static func ProfileController()
+    static func ProfileController(animate: Bool = false)
     {
         if let currentView = UIApplication.topViewController() {
             let ProfileTab: UINavigationController = {
                 let profile = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TestViewController") as! TestViewController
                 return UINavigationController(rootViewController: profile)
             }()
-            currentView.present(ProfileTab, animated: false, completion: nil)
+            currentView.present(ProfileTab, animated: animate, completion: nil)
         }
     }
     
@@ -78,12 +78,18 @@ class PresentController
         }
     }
     
-    static func PushToVerifyViewController(telelphone: String, password: String, from: UIViewController, isLogin: Bool = false)
+    static func PushToVerifyViewController(telelphone: String, password: String, from: UIViewController, isLogin: Bool = false, FBData: AccountViewModel?)
     {
         if let verifyVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "VerifyViewController") as? VerifyViewController
         {
             verifyVC.account.username = telelphone
             verifyVC.account.password = password
+            
+            if FBData != nil {
+                verifyVC.account.firstname = FBData!.firstname
+                verifyVC.account.email = FBData!.email
+            }
+            
             verifyVC.is_login = isLogin
             from.navigationController?.pushViewController(verifyVC, animated: true)
         }
@@ -96,6 +102,14 @@ class PresentController
         {
             setNumberVC.UserAccount = user
             from.navigationController?.pushViewController(setNumberVC, animated: true)
+        }
+    }
+    
+    static func PushToMessageViewController(from: UIViewController)
+    {
+        if let messageVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewMessageViewController") as? NewMessageViewController
+        {
+            from.navigationController?.pushViewController(messageVC, animated: true)
         }
     }
 }

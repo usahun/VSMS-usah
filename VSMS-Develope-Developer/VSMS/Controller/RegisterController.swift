@@ -36,18 +36,28 @@ class RegisterController: UIViewController {
     
     @IBAction func SubmitHandle(_ sender: Any) {
         Register()
-        
-//        let acc = AccountViewModel()
-//        acc.username = txtPhoneNumber.text!
-//        acc.password = txtConfirmPassword.text!
-//        
-//        acc.ProfileData.telephone = txtPhoneNumber.text!
-//        acc.RegisterUser { (result) in
-//            
-//        }
     }
     
-   
+    @IBAction func btnRegisterFacebook(_ sender: Any) {
+        FacebookHandle.showFacebookConfirmation(from: self) {
+            if let user = FacebookHandle.fbUserData {
+                AccountViewModel.IsUserExist(userName: "", fbKey: user.lastname, completion: { (result) in
+                    if result {
+                        user.password = user.username
+                        user.LogInUser(completion: { (check) in
+                            if check {
+                                PresentController.ProfileController()
+                            }
+                        })
+                    }
+                    else {
+                        PresentController.PushToSetNumberViewController(user: user, from: self)
+                    }
+                })
+            }
+        }
+    }
+    
     
     func Register()
     {
@@ -93,7 +103,7 @@ class RegisterController: UIViewController {
                     }
                     
                     UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
-                    PresentController.PushToVerifyViewController(telelphone: phonenumber, password: confirmPassword, from: self)
+                    PresentController.PushToVerifyViewController(telelphone: phonenumber, password: confirmPassword, from: self, isLogin: false, FBData: nil)
                 }
             }
         }

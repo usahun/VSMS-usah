@@ -72,7 +72,7 @@ class SetPhoneViewController: UIViewController {
             }
             
             UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
-            PresentController.PushToVerifyViewController(telelphone: self.txtPhoneNumber.text!, password: self.UserAccount!.username, from: self)
+            PresentController.PushToVerifyViewController(telelphone: self.txtPhoneNumber.text!, password: self.UserAccount!.username, from: self, isLogin: false, FBData: self.UserAccount)
         }
     }
     
