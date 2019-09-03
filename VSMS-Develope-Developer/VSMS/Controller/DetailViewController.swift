@@ -9,8 +9,7 @@ import UIKit
 import Foundation
 import Alamofire
 import SwiftyJSON
-import GoogleMaps
-import MapKit
+
 
 
 
@@ -56,8 +55,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var lblUserEmail: UILabel!
     @IBOutlet weak var lblAddress: UILabel!
     
-    @IBOutlet weak var mapView: MKMapView!
-    lazy var geocoder = CLGeocoder()
+   
     
     @IBOutlet weak var txtTerm: UITextField!
     @IBOutlet weak var txtdeposit: UITextField!
@@ -76,6 +74,9 @@ class DetailViewController: UIViewController {
         txtTerm.text = "1"
         
         
+        
+        
+        
         txtTerm.bordercolor()
         txtinterestRate.bordercolor()
         txtdeposit.bordercolor()
@@ -87,7 +88,7 @@ class DetailViewController: UIViewController {
         InitailDetail()
         LoadUserDetail()
         XibRegister()
-        map()
+       
         tblView.reloadData()
         tblView.delegate = self
         tblView.dataSource = self
@@ -124,30 +125,7 @@ class DetailViewController: UIViewController {
 //        ProductDetail.post_type = "sell"
     }
     
-    
-    func map(){
-        
-        let location = CLLocation(latitude: 11.562108, longitude: 104.888535)
-        geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
-            self.processResponse(withPlacemarks: placemarks, error: error)
-        }
-        
-    }
-    
-    private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?){
-        
-        if let error = error {
-            print("Unable to Reverse Geocode Location (\(error))")
-            lblAddress.text = "Unable to Find Address for Location"
-        }else{
-            if let placemarks = placemarks, let placemark = placemarks.first{
-                lblAddress.text = "Address: \(placemark.compactAddrss ?? "")"
-            }else{
-                lblAddress.text = "No Maching Address Found"
-            }
-        }
-        
-    }
+
     
     @objc func handleTap(_ sender: UITapGestureRecognizer){
       
@@ -372,21 +350,3 @@ extension DetailViewController: CellClickProtocol
     }
 }
 
-extension CLPlacemark {
-    var compactAddrss: String?{
-        if let name = name {
-            var result = name
-            if let street =  thoroughfare{
-                result += ", \(street)"
-            }
-            if let city = locality {
-                result += ", \(city)"
-            }
-            if let country = country {
-                result += ", \(country)"
-            }
-            return result
-        }
-        return nil
-    }
-}
